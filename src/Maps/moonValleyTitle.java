@@ -10,11 +10,11 @@ import Utils.Colors;
 import Utils.Point;
 
 // Represents the map that is used as a background for the main menu and credits menu screen
-public class TitleScreenMap extends Map {
+public class moonValleyTitle extends Map {
 
 	 private Sprite cat;
 
-    public TitleScreenMap() {
+    public moonValleyTitle() {
         super("moon_screen_map.txt", new TitleTileset());
         Point catLocation = getMapTile(8, 5).getLocation().subtractX(6).subtractY(7);
         cat = new Sprite(ImageLoader.loadSubImage("Cat.png", Colors.MAGENTA, 0, 0, 24, 24));
