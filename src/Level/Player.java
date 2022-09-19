@@ -36,9 +36,13 @@ public abstract class Player extends GameObject {
     // define keys
     protected KeyLocker keyLocker = new KeyLocker();
     protected Key MOVE_LEFT_KEY = Key.LEFT;
+    protected Key MOVE_LEFT_KEY_ALT = Key.A;
     protected Key MOVE_RIGHT_KEY = Key.RIGHT;
+    protected Key MOVE_RIGHT_KEY_ALT = Key.D;
     protected Key MOVE_UP_KEY = Key.UP;
+    protected Key MOVE_UP_KEY_ALT = Key.W;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
+    protected Key MOVE_DOWN_KEY_ALT = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
 
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
@@ -97,7 +101,7 @@ public abstract class Player extends GameObject {
         }
 
         // if a walk key is pressed, player enters WALKING state
-        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
+        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_LEFT_KEY_ALT)|| Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY_ALT) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY_ALT) || Keyboard.isKeyDown(MOVE_DOWN_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY_ALT)) {
             playerState = PlayerState.WALKING;
         }
     }
@@ -110,7 +114,7 @@ public abstract class Player extends GameObject {
         }
 
         // if walk left key is pressed, move player to the left
-        if (Keyboard.isKeyDown(MOVE_LEFT_KEY)) {
+        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_LEFT_KEY_ALT)) {
             moveAmountX -= walkSpeed;
             facingDirection = Direction.LEFT;
             currentWalkingXDirection = Direction.LEFT;
@@ -118,7 +122,7 @@ public abstract class Player extends GameObject {
         }
 
         // if walk right key is pressed, move player to the right
-        else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY)) {
+        else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY_ALT)) {
             moveAmountX += walkSpeed;
             facingDirection = Direction.RIGHT;
             currentWalkingXDirection = Direction.RIGHT;
@@ -128,12 +132,12 @@ public abstract class Player extends GameObject {
             currentWalkingXDirection = Direction.NONE;
         }
 
-        if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
+        if (Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY_ALT)) {
             moveAmountY -= walkSpeed;
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
         }
-        else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
+        else if (Keyboard.isKeyDown(MOVE_DOWN_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY_ALT)) {
             moveAmountY += walkSpeed;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
@@ -150,7 +154,7 @@ public abstract class Player extends GameObject {
             lastWalkingXDirection = Direction.NONE;
         }
 
-        if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
+        if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_LEFT_KEY_ALT) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY_ALT) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY_ALT) && Keyboard.isKeyUp(MOVE_DOWN_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY_ALT)) {
             playerState = PlayerState.STANDING;
         }
     }
