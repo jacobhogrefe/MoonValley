@@ -198,6 +198,26 @@ public class TitleTileset extends Tileset {
 
 		mapTiles.add(nightSky2);
 		
+		// Twinkling star/planet?
+		
+        Frame[] twinkleStarFrame = new Frame[] {
+        		
+                new FrameBuilder(getSubImage(4, 2), 500)
+                    .withScale(tileScale)
+                    .build(),
+                new FrameBuilder(getSubImage(4, 3), 500)
+                        .withScale(tileScale)
+                        .build(),
+                new FrameBuilder(getSubImage(4, 4), 500)
+                        .withScale(tileScale)
+                        .build(),
+
+        };
+        
+        MapTileBuilder twinkleStarTile = new MapTileBuilder(twinkleStarFrame);
+
+        mapTiles.add(twinkleStarTile);
+		
 		
 		
 		
