@@ -32,7 +32,8 @@ public class TitleTileset extends Tileset {
 		// order the coordinates were done in the common file.
 		// that was my reference, maybe Ill put these in a more logical order when I'm
 		// done, but it is much more likely that I will not.)
-		// Furthermore, if Star Wars can start on episode 4, I can start coding my moon tiles at 8.
+		// Furthermore, if Star Wars can start on episode 4, I can start coding my moon
+		// tiles at 8.
 		Frame moon8Frame = new FrameBuilder(getSubImage(3, 0)).withScale(tileScale).build();
 
 		MapTileBuilder moon8Tile = new MapTileBuilder(moon8Frame);
@@ -117,7 +118,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder letterV = new MapTileBuilder(letterVFrame);
 
 		mapTiles.add(letterV);
-		
+
 		// Letter A
 
 		Frame letterAFrame = new FrameBuilder(getSubImage(0, 4)).withScale(tileScale).build();
@@ -125,7 +126,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder letterA = new MapTileBuilder(letterAFrame);
 
 		mapTiles.add(letterA);
-		
+
 		// Letter L
 
 		Frame letterLFrame = new FrameBuilder(getSubImage(1, 0)).withScale(tileScale).build();
@@ -133,7 +134,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder letterL = new MapTileBuilder(letterLFrame);
 
 		mapTiles.add(letterL);
-		
+
 		// Letter E
 
 		Frame letterEFrame = new FrameBuilder(getSubImage(1, 1)).withScale(tileScale).build();
@@ -141,7 +142,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder letterE = new MapTileBuilder(letterEFrame);
 
 		mapTiles.add(letterE);
-		
+
 		// Letter Y
 
 		Frame letterYFrame = new FrameBuilder(getSubImage(1, 2)).withScale(tileScale).build();
@@ -149,7 +150,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder letterY = new MapTileBuilder(letterYFrame);
 
 		mapTiles.add(letterY);
-		
+
 		// New Grass
 
 		Frame newGrassFrame = new FrameBuilder(getSubImage(3, 1)).withScale(tileScale).build();
@@ -157,7 +158,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder newGrass = new MapTileBuilder(newGrassFrame);
 
 		mapTiles.add(newGrass);
-		
+
 		// Pine Tree
 
 		Frame pineTreeFrame = new FrameBuilder(getSubImage(3, 2)).withScale(tileScale).build();
@@ -165,7 +166,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder pineTree = new MapTileBuilder(pineTreeFrame);
 
 		mapTiles.add(pineTree);
-		
+
 		// Pine Tree
 
 		Frame jackOFrame = new FrameBuilder(getSubImage(3, 3)).withScale(tileScale).build();
@@ -173,7 +174,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder jackO = new MapTileBuilder(jackOFrame);
 
 		mapTiles.add(jackO);
-		
+
 		// big ole red mushroom
 
 		Frame bigShroomFrame = new FrameBuilder(getSubImage(3, 4)).withScale(tileScale).build();
@@ -181,51 +182,82 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder bigShroom = new MapTileBuilder(bigShroomFrame);
 
 		mapTiles.add(bigShroom);
-		
-		// Night sky 1 (different star placement than night sky 2 to give sky more realistic look when use din combination)
+
+		// Night sky 1 (different star placement than night sky 2 to give sky more
+		// realistic look when use din combination)
 
 		Frame nightSky1Frame = new FrameBuilder(getSubImage(4, 0)).withScale(tileScale).build();
 
 		MapTileBuilder nightSky1 = new MapTileBuilder(nightSky1Frame);
 
 		mapTiles.add(nightSky1);
-		
-		// Night sky 2 (different star placement than night sky 1 to give sky more realistic look when use din combination)
+
+		// Night sky 2 (different star placement than night sky 1 to give sky more
+		// realistic look when use din combination)
 
 		Frame nightSky2Frame = new FrameBuilder(getSubImage(4, 1)).withScale(tileScale).build();
 
 		MapTileBuilder nightSky2 = new MapTileBuilder(nightSky2Frame);
 
 		mapTiles.add(nightSky2);
+
+		// Twinkling star/planet?
+
+		// I wanted to make it so these don't all blink at the same time. I'm sure there
+		// is a better way to do it than creating a new frame for every star I place,
+		// but I couldn't figure it out so I went with this lazy solution.
+
+		Frame[] twinkleStarFrame = new Frame[] {
+				
+
+				new FrameBuilder(getSubImage(4, 2), (int) 300).withScale(tileScale).build(),
+				new FrameBuilder(getSubImage(4, 3), (int) 200).withScale(tileScale).build(),
+				new FrameBuilder(getSubImage(4, 4), (int) 200).withScale(tileScale).build(),
+
+		};
+
+		MapTileBuilder twinkleStarTile = new MapTileBuilder(twinkleStarFrame);
+
+		mapTiles.add(twinkleStarTile);
 		
 		// Twinkling star/planet?
-		
-        Frame[] twinkleStarFrame = new Frame[] {
-        		
-                new FrameBuilder(getSubImage(4, 2), 500)
-                    .withScale(tileScale)
-                    .build(),
-                new FrameBuilder(getSubImage(4, 3), 500)
-                        .withScale(tileScale)
-                        .build(),
-                new FrameBuilder(getSubImage(4, 4), 500)
-                        .withScale(tileScale)
-                        .build(),
 
-        };
-        
-        MapTileBuilder twinkleStarTile = new MapTileBuilder(twinkleStarFrame);
+		// I wanted to make it so these don't all blink at the same time. I'm sure there
+		// is a better way to do it than creating a new frame for every star I place,
+		// but I couldn't figure it out so I went with this lazy solution.
 
-        mapTiles.add(twinkleStarTile);
-		
-		
-		
-		
-		
-		
-		
-		
+		Frame[] twinkleStarFrame2 = new Frame[] {
 
+				new FrameBuilder(getSubImage(4, 2), (int) 200).withScale(tileScale).build(),
+				new FrameBuilder(getSubImage(4, 3), (int) 200).withScale(tileScale).build(),
+				new FrameBuilder(getSubImage(4, 4), (int) 200).withScale(tileScale).build(),
+
+		};
+
+		MapTileBuilder twinkleStarTile2 = new MapTileBuilder(twinkleStarFrame2);
+
+		mapTiles.add(twinkleStarTile2);
+		
+		// Twinkling star/planet?
+
+		// I wanted to make it so these don't all blink at the same time. I'm sure there
+		// is a better way to do it than creating a new frame for every star I place,
+		// but I couldn't figure it out so I went with this lazy solution.
+
+		Frame[] twinkleStarFrame3 = new Frame[] {
+			
+				
+				
+
+				new FrameBuilder(getSubImage(4, 2), (int) 400).withScale(tileScale).build(),
+				new FrameBuilder(getSubImage(4, 3), (int) 200).withScale(tileScale).build(),
+				new FrameBuilder(getSubImage(4, 4), (int) 200).withScale(tileScale).build(),
+
+		};
+
+		MapTileBuilder twinkleStarTile3 = new MapTileBuilder(twinkleStarFrame3);
+
+		mapTiles.add(twinkleStarTile3);
 
 		return mapTiles;
 	}
