@@ -65,6 +65,13 @@ public class TestMap extends Map {
         getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
+        
+        //added house entering scripts
+        getMapTile(17, 19).setInteractScript(new SimpleTextScript("Would you like to enter Cat's house?"));
+       
+        getMapTile(4, 26).setInteractScript(new SimpleTextScript("Would you like to enter Walrus's house?"));
+        
+        getMapTile(17, 4).setInteractScript(new SimpleTextScript("Would you like to enter Dino's house?"));
     }
 }
 
