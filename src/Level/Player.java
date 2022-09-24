@@ -44,6 +44,10 @@ public abstract class Player extends GameObject {
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key MOVE_DOWN_KEY_ALT = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
+    
+    
+    //players inventory. Other classes will be able to call get methods to determine if inventory contains certain items.
+    protected ItemList myInventory;
 
     public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);

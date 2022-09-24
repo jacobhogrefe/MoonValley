@@ -1,6 +1,7 @@
 package Engine;
 
 import GameObject.Rectangle;
+import Level.ItemList;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
 
@@ -26,9 +27,12 @@ public class GamePanel extends JPanel {
 
 	private boolean doPaint = false;
 	private boolean isGamePaused = false;
+	private boolean isInventoryOpen = false;
 	private SpriteFont pauseLabel;
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
+	private final Key inventoryKey = Key.I;
+	private ItemList itemList;
 
 	/*
 	 * The JPanel and various important class instances are setup here
@@ -86,8 +90,17 @@ public class GamePanel extends JPanel {
 		if (Keyboard.isKeyUp(pauseKey)) {
 			keyLocker.unlockKey(pauseKey);
 		}
+		
+		if (Keyboard.isKeyDown(inventoryKey) && !keyLocker.isKeyLocked(inventoryKey)) {
+			isInventoryOpen = !isInventoryOpen;
+			keyLocker.lockKey(inventoryKey);
+		}
+		
+		if (Keyboard.isKeyUp(inventoryKey)) {
+			keyLocker.unlockKey(inventoryKey);
+		}
 
-		if (!isGamePaused) {
+		if (!isGamePaused && !isInventoryOpen) {
 			screenManager.update();
 		}
 	}
@@ -98,7 +111,12 @@ public class GamePanel extends JPanel {
 		// if game is paused, draw pause gfx over Screen gfx
 		if (isGamePaused) {
 			pauseLabel.draw(graphicsHandler);
-			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 100));
+			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
+		}
+		
+		if (isInventoryOpen) {
+			graphicsHandler.drawFilledRectangle(90, 120, 600, 300, new Color(13, 171, 181, 255));
+			graphicsHandler.drawInventory(itemList);
 		}
 	}
 
