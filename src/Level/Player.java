@@ -8,6 +8,7 @@ import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public abstract class Player extends GameObject {
@@ -44,6 +45,8 @@ public abstract class Player extends GameObject {
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key MOVE_DOWN_KEY_ALT = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
+    protected Key QUICKSAVE_KEY = Key.N;
+    protected Key QUICKLOAD_KEY = Key.M;
     
     
     //players inventory. Other classes will be able to call get methods to determine if inventory contains certain items.
@@ -94,6 +97,24 @@ public abstract class Player extends GameObject {
             case INTERACTING:
                 playerInteracting();
                 break;
+        }
+
+        if (!keyLocker.isKeyLocked(QUICKSAVE_KEY) && Keyboard.isKeyDown(QUICKSAVE_KEY)) {
+            this.map.flagManager.updateFrom(this);
+
+            try {
+                this.map.flagManager.saveToSlot(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (!keyLocker.isKeyLocked(QUICKLOAD_KEY) && Keyboard.isKeyDown(QUICKLOAD_KEY)) {
+            try {
+                this.map.flagManager.loadFromSlot(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            this.map.flagManager.updateTo(this);
         }
     }
 
