@@ -3,7 +3,6 @@ package Engine;
 import GameObject.ImageEffect;
 import Level.ItemList;
 import SpriteFont.SpriteFont;
-
 import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
