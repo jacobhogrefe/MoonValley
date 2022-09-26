@@ -10,7 +10,7 @@ import Players.Cat;
 import Utils.Direction;
 import Utils.Point;
 
-// This class is for when the platformer game is actually being played
+// This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;

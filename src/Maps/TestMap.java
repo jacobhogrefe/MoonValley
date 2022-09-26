@@ -1,6 +1,7 @@
 package Maps;
 
 import EnhancedMapTiles.Rock;
+import Level.Collectable;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
@@ -54,6 +55,13 @@ public class TestMap extends Map {
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         return triggers;
+    }
+
+    @Override
+    public ArrayList<Collectable> loadCollectables() {
+        ArrayList<Collectable> collectables = new ArrayList<>();
+        collectables.add(new Collectable("yoshiCoin.png", getMapTile(12,19).getLocation()));
+        return collectables;
     }
 
     @Override

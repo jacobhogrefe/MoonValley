@@ -122,7 +122,7 @@ public class GraphicsHandler {
 		// the
 		// inventory easier for me.
 
-		// VEYR IMPORTANT: If you draw a new item into the png file with the intention
+		// VERY IMPORTANT: If you draw a new item into the png file with the intention
 		// of adding it to the draw logic here, IMMEDIATELY PUSH THE NEW IMAGE TO GITHUB
 		// BEFORE YOU
 		// START CODING HERE!! We will all be adding to the inventory and we do not want

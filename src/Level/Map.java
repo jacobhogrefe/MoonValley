@@ -57,6 +57,7 @@ public abstract class Map {
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
     protected ArrayList<Trigger> triggers;
+    protected ArrayList<Collectable> collectables;
 
     protected Script activeInteractScript;
 
@@ -106,6 +107,11 @@ public abstract class Map {
         this.triggers = loadTriggers();
         for (Trigger trigger: this.triggers) {
             trigger.setMap(this);
+        }
+
+        this.collectables = loadCollectables();
+        for (Collectable collectables:this.collectables) {
+            collectables.setMap(this);
         }
 
         this.loadScripts();
@@ -287,6 +293,11 @@ public abstract class Map {
         return new ArrayList<>();
     }
 
+    //List of collectables to be apart of the map, should be overridden in a subclass
+    protected ArrayList<Collectable> loadCollectables() {
+        return new ArrayList<>();
+    }
+
     public Camera getCamera() {
         return camera;
     }
@@ -299,6 +310,8 @@ public abstract class Map {
         return npcs;
     }
     public ArrayList<Trigger> getTriggers() { return triggers; }
+
+    public ArrayList<Collectable> getCollectables() {return collectables;}
 
     public ArrayList<MapTile> getAnimatedMapTiles() {
         return animatedMapTiles;

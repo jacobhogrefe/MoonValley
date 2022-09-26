@@ -7,7 +7,6 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
