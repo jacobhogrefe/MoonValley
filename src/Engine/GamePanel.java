@@ -1,7 +1,7 @@
 package Engine;
 
 import GameObject.Rectangle;
-import Level.ItemList;
+import Level.Player;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
 
@@ -32,7 +32,6 @@ public class GamePanel extends JPanel {
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
 	private final Key inventoryKey = Key.I;
-	private ItemList itemList;
 
 	/*
 	 * The JPanel and various important class instances are setup here
@@ -100,10 +99,11 @@ public class GamePanel extends JPanel {
 			keyLocker.unlockKey(inventoryKey);
 		}
 
-		if (!isGamePaused && !isInventoryOpen) {
+		if (!isGamePaused) {
 			screenManager.update();
 		}
 	}
+
 
 	public void draw() {
 		screenManager.draw(graphicsHandler);
@@ -116,8 +116,9 @@ public class GamePanel extends JPanel {
 		
 		if (isInventoryOpen) {
 			graphicsHandler.drawFilledRectangle(90, 120, 600, 300, new Color(13, 171, 181, 255));
-			graphicsHandler.drawInventory(itemList);
+			graphicsHandler.drawInventory();
 		}
+		
 	}
 
 	@Override
