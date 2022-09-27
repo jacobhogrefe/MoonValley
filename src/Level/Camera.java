@@ -26,6 +26,7 @@ public class Camera extends Rectangle {
     private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
+    private ArrayList<Collectable> activeCollectables = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
@@ -65,6 +66,7 @@ public class Camera extends Rectangle {
     public void updateMapEntities(Player player) {
         activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
         activeNPCs = loadActiveNPCs();
+        activeCollectables = loadActiveCollectables();
 
         for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
             enhancedMapTile.update(player);
@@ -72,6 +74,10 @@ public class Camera extends Rectangle {
 
         for (NPC npc : activeNPCs) {
             npc.update(player);
+        }
+
+        for (Collectable collectable : activeCollectables) {
+            collectable.update(player);
         }
     }
 
@@ -150,6 +156,26 @@ public class Camera extends Rectangle {
             }
         }
         return activeTriggers;
+    }
+
+    //Draws the active collectables on the map (when they exist and are within range of the camera)
+    private ArrayList<Collectable> loadActiveCollectables() {
+        ArrayList<Collectable> activeCollectables = new ArrayList<>();
+        for (int i = map.getCollectables().size() - 1; i >= 0; i--) {
+            Collectable collectable = map.getCollectables().get(i);
+
+            if (isMapEntityActive(collectable)) {
+                activeCollectables.add(collectable);
+                if (collectable.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    collectable.setMapEntityStatus(MapEntityStatus.ACTIVE);
+                }
+            } else if (collectable.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                collectable.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (collectable.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+                map.getCollectables().remove(i);
+            }
+        }
+        return activeCollectables;
     }
 
     /*
@@ -233,6 +259,15 @@ public class Camera extends Rectangle {
             }
         }
 
+
+        for (Collectable collectables : activeCollectables) {
+            if (containsDraw(collectables)) {
+                if (collectables.getBounds().getY() < player.getBounds().getY1()  + (player.getBounds().getHeight() / 2f)) {
+                    collectables.draw(graphicsHandler);
+                }
+            }
+        }
+
         // player is drawn to screen
         player.draw(graphicsHandler);
 
@@ -278,6 +313,10 @@ public class Camera extends Rectangle {
 
     public ArrayList<Trigger> getActiveTriggers() {
         return activeTriggers;
+    }
+
+    public ArrayList<Collectable> getActiveCollectables() {
+        return activeCollectables;
     }
 
     // gets end bound X position of the camera (start position is always 0)

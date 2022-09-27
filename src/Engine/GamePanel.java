@@ -71,7 +71,7 @@ public class GamePanel extends JPanel {
 		doPaint = true;
 	}
 
-	// this starts the timer (the game loop is started here
+	// this starts the timer (the game loop is started here)
 	public void startGame() {
 		timer.start();
 	}
