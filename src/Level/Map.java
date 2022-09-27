@@ -100,17 +100,17 @@ public abstract class Map {
         }
 
         this.npcs = loadNPCs();
-        for (NPC npc: this.npcs) {
+        for (NPC npc : this.npcs) {
             npc.setMap(this);
         }
 
         this.triggers = loadTriggers();
-        for (Trigger trigger: this.triggers) {
+        for (Trigger trigger : this.triggers) {
             trigger.setMap(this);
         }
 
         this.collectables = loadCollectables();
-        for (Collectable collectables:this.collectables) {
+        for (Collectable collectables : this.collectables) {
             collectables.setMap(this);
         }
 
@@ -347,6 +347,10 @@ public abstract class Map {
 
     public ArrayList<Trigger> getActiveTriggers() {
         return camera.getActiveTriggers();
+    }
+
+    public ArrayList<Collectable> getActiveCollectables() {
+        return camera.getActiveCollectables();
     }
 
     // add an enhanced map tile to the map's list of enhanced map tiles

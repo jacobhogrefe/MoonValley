@@ -9,6 +9,7 @@ import GameObject.SpriteSheet;
 import Utils.Direction;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -48,10 +49,23 @@ public abstract class Player extends GameObject {
     protected Key QUICKLOAD_KEY = Key.M;
     
     
-    //players inventory. Other classes will be able to call get methods to determine if inventory contains certain items.
-    protected ItemList myInventory;
+    //player's inventory. Each holdable item will have an int assigned to it. The player need only have an array of ints and the item information will be held elsewhere,
+    //retrievable with its associated int.
+    private int[] playerInventory = new int[55];
+    
+   
+    
 
-    public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
+    public  int[] getPlayerInventory() {
+    	playerInventory[1] = 1;
+		return playerInventory;
+	}
+
+	public void setPlayerInventory(int[] playerInventory) {
+		this.playerInventory = playerInventory;
+	}
+
+	public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);
         facingDirection = Direction.RIGHT;
         playerState = PlayerState.STANDING;

@@ -9,6 +9,7 @@ public class MenuBar extends JMenuBar {
     JCheckBoxMenuItem showNpcs;
     JCheckBoxMenuItem showEnchancedMapTiles;
     JCheckBoxMenuItem showTriggers;
+    JCheckBoxMenuItem showCollectables;
 
     public MenuBar(TileBuilder tileBuilder) {
         options = new JMenu("Options");
@@ -36,6 +37,14 @@ public class MenuBar extends JMenuBar {
             }
         });
         options.add(showTriggers);
+        showCollectables = new JCheckBoxMenuItem("Show Collectables");
+        showCollectables.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tileBuilder.setShowCollectables(!tileBuilder.getShowCollectables());
+            }
+        });
+        options.add(showCollectables);
         add(options);
     }
 }

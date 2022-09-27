@@ -1,13 +1,15 @@
 package Engine;
 
+import Level.Player;
+import InventorySystem.ItemCatalog;
 import GameObject.ImageEffect;
-import Level.ItemList;
-import SpriteFont.SpriteFont;
 
+import SpriteFont.SpriteFont;
 import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class GraphicsHandler {
 
@@ -113,7 +115,7 @@ public class GraphicsHandler {
 	// feel free to ask me how it works if you can't figure it out from my comments
 	// - Matt Z
 
-	public void drawInventory(ItemList list) {
+	public void drawInventory() {
 		// Load in tiles from the InventoryTileset png. For the "getSubImage" operation
 		// you are putting in the coordinate of the upper left hand corner of your image
 		// on the
@@ -151,17 +153,14 @@ public class GraphicsHandler {
 
 		// START Drawing the frame of the inventory, will always load in the same
 		// regardless of what is in inventory
-		
-		
-		
+
 		Font currentFont = g.getFont();
 		Font newFont = currentFont.deriveFont(currentFont.getSize() * 3.0F);
 		g.setFont(newFont);
 		g.setColor(java.awt.Color.black);
-		
-		
+
 		g.drawString("Your Beautiful Possessions", 165, 110);
-		
+
 		g.drawImage(inventoryUpLeft, 80, 120, null);
 
 		for (int i = 0; i < 11; i++) {
@@ -196,6 +195,16 @@ public class GraphicsHandler {
 				g.drawImage(emptySlot, 128 + (i * 48), (168 + (j * 48)), null);
 			}
 		}
+/*/
+		ItemCatalog itemCatalog = new ItemCatalog();
+
+		ArrayList<Boolean> playerHas = itemCatalog.loadPlayerHas();
+		ArrayList<Image> itemImages = itemCatalog.loadItemImages();
+
+		if (playerHas.get(1) == true) {
+			g.drawImage(itemImages.get(1), 128, 168, null);
+		}
+		/*/
 
 	}
 }
