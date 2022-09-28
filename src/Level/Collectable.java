@@ -28,7 +28,7 @@ public class Collectable extends MapEntity {
         this.bounds = new Rectangle(0,0, image.getWidth(), image.getHeight());
         this.x = location.x;
         this.y = location.y;
-        this.interactScript = new CollectableScript(nameOfItem);
+        this.collectableScript = new CollectableScript(nameOfItem);
     }
 
     //Gets the interact script of the collectable (just a simple text script)

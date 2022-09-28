@@ -34,13 +34,6 @@ public class GamePanel extends JPanel {
 	private final Key pauseKey = Key.P;
 	private final Key inventoryKey = Key.I;
 	
-
-	
-	
-	
-
-
-
 	/*
 	 * The JPanel and various important class instances are setup here
 	 */
