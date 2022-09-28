@@ -259,6 +259,7 @@ public class Camera extends Rectangle {
             if (containsDraw(collectables)) {
                 if (collectables.intersects(player)) {
                     //inventory add code goes here
+                    map.setActiveInteractScript(collectables.getInteractScript());
                     System.out.println("Collected! Generated from line 262 in Level.Camera.");
                     collectables.setMapEntityStatus(MapEntityStatus.REMOVED);
                 } else {

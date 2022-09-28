@@ -1,6 +1,5 @@
 package Scripts.TestMap;
 
-import Level.ScriptState;
 import Scripts.SimpleTextScript;
 
 public class CollectableScript extends SimpleTextScript {
