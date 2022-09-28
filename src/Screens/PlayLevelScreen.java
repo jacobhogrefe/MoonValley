@@ -73,9 +73,11 @@ public class PlayLevelScreen extends Screen {
             }
         }
         for (Collectable collectables : map.getCollectables()) {
-            collectables.setMap(map);
+            if (collectables.getInteractScript() != null) {
+                collectables.getInteractScript().setMap(map);
+                collectables.getInteractScript().setPlayer(player);
+            }
         }
-
         winScreen = new WinScreen(this);
     }
 
