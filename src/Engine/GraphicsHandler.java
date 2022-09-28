@@ -1,7 +1,6 @@
 package Engine;
 
 import Level.Player;
-import InventorySystem.ItemCatalog;
 import GameObject.ImageEffect;
 
 import SpriteFont.SpriteFont;
@@ -14,8 +13,6 @@ import java.util.ArrayList;
 public class GraphicsHandler {
 
 	private Graphics2D g;
-
-    
 
 	public void setGraphics(Graphics2D g) {
 		this.g = g;
@@ -108,11 +105,7 @@ public class GraphicsHandler {
 		g.setRenderingHints(originalHints);
 	}
 
-
-	
-	
-	    public void drawInventory(ArrayList<Image> itemImages, int[] playerInventory) {
-	 
+	public void drawInventory(ArrayList<Image> itemImages, int[] playerInventory) {
 
 		Image inventoryUpLeft = ImageLoader.load("InventoryTileset.png").getSubimage(0, 0, 16, 16).getScaledInstance(48,
 				48, Image.SCALE_SMOOTH);
@@ -167,26 +160,17 @@ public class GraphicsHandler {
 		}
 
 		// END Inventory frame
-	//	ItemCatalog itemCatalog = new ItemCatalog();
-	//	ArrayList<Image>itemImages = itemCatalog.getItemImages();
-		//itemCatalog.loadCatalog();
-		/*/
-		ArrayList<Image> itemImages = new ArrayList();
-		
-		itemImages = itemCatalog.getItemImages();
-		/*/
-		
-		//This nested for statement is confusing to look at, but the idea is it will draw the image associated with the number stored at each index in the player inventory.
+
+		// This nested for statement is confusing to look at, but the idea is it will
+		// draw the image associated with the number stored at each index in the player
+		// inventory.
 		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 11; i++) {
-				g.drawImage(itemImages.get(playerInventory[j*10 +i]), 128 + (i * 48), (168 + (j * 48)),null);
-			//	g.drawImage(itemImages.get(playerInventory[(j*10+i)]), 128 + (i * 48), (168 + (j * 48)),null);
+				g.drawImage(itemImages.get(playerInventory[j * 10 + i]), 128 + (i * 48), (168 + (j * 48)), null);
+
 			}
 		}
 
-
-		
-
 	}
-	
+
 }
