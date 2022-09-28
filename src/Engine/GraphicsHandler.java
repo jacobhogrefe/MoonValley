@@ -15,6 +15,8 @@ public class GraphicsHandler {
 
 	private Graphics2D g;
 
+    
+
 	public void setGraphics(Graphics2D g) {
 		this.g = g;
 	}
@@ -106,32 +108,12 @@ public class GraphicsHandler {
 		g.setRenderingHints(originalHints);
 	}
 
-	// Takes a list of items the player currently has in their inventory and draws a
-	// graphic representation
-	// If no items are in inventory, it will still draw the inventory with empty
-	// spaces, the border and empty spaces that will always be drawn are coded at
-	// the beginning of this method. It is a little confusing figuring out all the
-	// steps to add a new item to the inventory so
-	// feel free to ask me how it works if you can't figure it out from my comments
-	// - Matt Z
 
-	public void drawInventory() {
-		// Load in tiles from the InventoryTileset png. For the "getSubImage" operation
-		// you are putting in the coordinate of the upper left hand corner of your image
-		// on the
-		// tileset image, followed by the size of the square (16 pixels by 16 pixels).
-		// The image is then scaled to the same size map tiles are which made centering
-		// the
-		// inventory easier for me.
+	
+	
+	    public void drawInventory(ArrayList<Image> itemImages, int[] playerInventory) {
+	 
 
-		// VERY IMPORTANT: If you draw a new item into the png file with the intention
-		// of adding it to the draw logic here, IMMEDIATELY PUSH THE NEW IMAGE TO GITHUB
-		// BEFORE YOU
-		// START CODING HERE!! We will all be adding to the inventory and we do not want
-		// conflicts to emerge when we try to use the same space on the grid. It
-		// wouldn't be
-		// terribly hard to fix, but it would be annoying nonetheless and you would
-		// end up on my bad side.
 		Image inventoryUpLeft = ImageLoader.load("InventoryTileset.png").getSubimage(0, 0, 16, 16).getScaledInstance(48,
 				48, Image.SCALE_SMOOTH);
 		Image inventoryUpRight = ImageLoader.load("InventoryTileset.png").getSubimage(34, 0, 16, 16)
@@ -185,26 +167,26 @@ public class GraphicsHandler {
 		}
 
 		// END Inventory frame
-
-		// Items:
-		// In the future, this will determine which squares it should draw based on what
-		// the player inventory contains. For now, it just generates blank inventory
-		// spaces using the nested for statement method that almost killed me in CSC110
+	//	ItemCatalog itemCatalog = new ItemCatalog();
+	//	ArrayList<Image>itemImages = itemCatalog.getItemImages();
+		//itemCatalog.loadCatalog();
+		/*/
+		ArrayList<Image> itemImages = new ArrayList();
+		
+		itemImages = itemCatalog.getItemImages();
+		/*/
+		
+		//This nested for statement is confusing to look at, but the idea is it will draw the image associated with the number stored at each index in the player inventory.
 		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 11; i++) {
-				g.drawImage(emptySlot, 128 + (i * 48), (168 + (j * 48)), null);
+				g.drawImage(itemImages.get(playerInventory[j*10 +i]), 128 + (i * 48), (168 + (j * 48)),null);
+			//	g.drawImage(itemImages.get(playerInventory[(j*10+i)]), 128 + (i * 48), (168 + (j * 48)),null);
 			}
 		}
-/*/
-		ItemCatalog itemCatalog = new ItemCatalog();
 
-		ArrayList<Boolean> playerHas = itemCatalog.loadPlayerHas();
-		ArrayList<Image> itemImages = itemCatalog.loadItemImages();
 
-		if (playerHas.get(1) == true) {
-			g.drawImage(itemImages.get(1), 128, 168, null);
-		}
-		/*/
+		
 
 	}
+	
 }

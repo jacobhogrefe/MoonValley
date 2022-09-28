@@ -1,5 +1,6 @@
 package Level;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
@@ -31,7 +32,9 @@ public class Collectable extends MapEntity {
         this.y = location.y;
     }
 
-    //checks if the collectable has intersected with the player
+
+
+	//checks if the collectable has intersected with the player
     public boolean intersectsWith() {
         return bounds.intersects(player);
     }

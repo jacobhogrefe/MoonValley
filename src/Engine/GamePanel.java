@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /*
  * This is where the game loop starts
@@ -32,6 +33,13 @@ public class GamePanel extends JPanel {
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
 	private final Key inventoryKey = Key.I;
+	
+
+	
+	
+	
+
+
 
 	/*
 	 * The JPanel and various important class instances are setup here
@@ -89,7 +97,7 @@ public class GamePanel extends JPanel {
 		if (Keyboard.isKeyUp(pauseKey)) {
 			keyLocker.unlockKey(pauseKey);
 		}
-		
+		/*/
 		if (Keyboard.isKeyDown(inventoryKey) && !keyLocker.isKeyLocked(inventoryKey)) {
 			isInventoryOpen = !isInventoryOpen;
 			keyLocker.lockKey(inventoryKey);
@@ -98,7 +106,7 @@ public class GamePanel extends JPanel {
 		if (Keyboard.isKeyUp(inventoryKey)) {
 			keyLocker.unlockKey(inventoryKey);
 		}
-
+/*/
 		if (!isGamePaused) {
 			screenManager.update();
 		}
@@ -113,12 +121,15 @@ public class GamePanel extends JPanel {
 			pauseLabel.draw(graphicsHandler);
 			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
 		}
-		
+		/*/
 		if (isInventoryOpen) {
 			graphicsHandler.drawFilledRectangle(90, 120, 600, 300, new Color(13, 171, 181, 255));
+			
+
+			
 			graphicsHandler.drawInventory();
 		}
-		
+		/*/
 	}
 
 	@Override
