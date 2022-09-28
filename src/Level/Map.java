@@ -56,7 +56,7 @@ public abstract class Map {
     protected ArrayList<EnhancedMapTile> enhancedMapTiles;
     protected ArrayList<NPC> npcs;
     protected ArrayList<Trigger> triggers;
-    protected ArrayList<Collectable> collectables;
+    protected ArrayList<Collectible> collectibles;
 
     protected Script activeInteractScript;
 
@@ -108,9 +108,9 @@ public abstract class Map {
             trigger.setMap(this);
         }
 
-        this.collectables = loadCollectables();
-        for (Collectable collectables : this.collectables) {
-            collectables.setMap(this);
+        this.collectibles = loadCollectables();
+        for (Collectible collectibles : this.collectibles) {
+            collectibles.setMap(this);
         }
 
         this.loadScripts();
@@ -292,8 +292,8 @@ public abstract class Map {
         return new ArrayList<>();
     }
 
-    //List of collectables to be apart of the map, should be overridden in a subclass
-    protected ArrayList<Collectable> loadCollectables() {
+    //List of collectibles to be apart of the map, should be overridden in a subclass
+    protected ArrayList<Collectible> loadCollectables() {
         return new ArrayList<>();
     }
 
@@ -310,7 +310,7 @@ public abstract class Map {
     }
     public ArrayList<Trigger> getTriggers() { return triggers; }
 
-    public ArrayList<Collectable> getCollectables() {return collectables;}
+    public ArrayList<Collectible> getCollectables() {return collectibles;}
 
     public ArrayList<MapTile> getAnimatedMapTiles() {
         return animatedMapTiles;
@@ -348,7 +348,7 @@ public abstract class Map {
         return camera.getActiveTriggers();
     }
 
-    public ArrayList<Collectable> getActiveCollectables() {
+    public ArrayList<Collectible> getActiveCollectables() {
         return camera.getActiveCollectables();
     }
 
@@ -370,10 +370,10 @@ public abstract class Map {
         this.triggers.add(trigger);
     }
 
-    //add a collectable to the map's list of collectables
-    public void addCollectable(Collectable collectable) {
-        collectable.setMap(this);
-        this.collectables.add(collectable);
+    //add a collectible to the map's list of collectibles
+    public void addCollectable(Collectible collectible) {
+        collectible.setMap(this);
+        this.collectibles.add(collectible);
     }
 
     public void setAdjustCamera(boolean adjustCamera) {

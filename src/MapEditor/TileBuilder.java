@@ -94,8 +94,8 @@ public class TileBuilder extends JPanel {
         }
 
         if (showCollectables) {
-            for (Collectable collectables : map.getCollectables()) {
-                collectables.draw(graphicsHandler);
+            for (Collectible collectibles : map.getCollectables()) {
+                collectibles.draw(graphicsHandler);
             }
         }
 

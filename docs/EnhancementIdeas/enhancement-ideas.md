@@ -26,7 +26,7 @@ can travel between would make this game a lot more interesting and fun.
 ## Items and Inventory
 
 Games of this genre typically have an inventory system that allows for the player to pick up and hold on to items, and use them in some shape or form later on in the game.
-For example, the cat's ball could be an item placed in the player's inventory after finding it. Collectables could also be fun to add around maps to encourage the player to explore.
+For example, the cat's ball could be an item placed in the player's inventory after finding it. Collectibles could also be fun to add around maps to encourage the player to explore.
 
 ## Story
 
