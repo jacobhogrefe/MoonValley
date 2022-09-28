@@ -57,7 +57,7 @@ public class InventoryScreen extends Screen {
 		this.itemDescriptions.add("Ain't 'nuff room in this here valley for the two of us, partner...");
 		// END ITEM DECRIPTIONS
 		
-		//keyLocker.lockKey(Inventory_Key);
+		
 		
 		for(int i = 0; i<=54; i++) {
 			playerInventory[i] = 0;
