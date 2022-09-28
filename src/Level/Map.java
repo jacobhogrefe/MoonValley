@@ -6,7 +6,6 @@ import Engine.ScreenManager;
 import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -371,6 +370,12 @@ public abstract class Map {
         this.triggers.add(trigger);
     }
 
+    //add a collectable to the map's list of collectables
+    public void addCollectable(Collectable collectable) {
+        collectable.setMap(this);
+        this.collectables.add(collectable);
+    }
+
     public void setAdjustCamera(boolean adjustCamera) {
         this.adjustCamera = adjustCamera;
     }
@@ -392,6 +397,7 @@ public abstract class Map {
         // gets active surrounding npcs
         surroundingMapEntities.addAll(getActiveNPCs());
         surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
+        surroundingMapEntities.addAll(getActiveCollectables());
         return surroundingMapEntities;
     }
 

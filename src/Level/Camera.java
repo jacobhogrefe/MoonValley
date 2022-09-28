@@ -75,10 +75,6 @@ public class Camera extends Rectangle {
         for (NPC npc : activeNPCs) {
             npc.update(player);
         }
-
-        for (Collectable collectable : activeCollectables) {
-            collectable.update(player);
-        }
     }
 
     // updates any currently running script
@@ -259,10 +255,13 @@ public class Camera extends Rectangle {
             }
         }
 
-
         for (Collectable collectables : activeCollectables) {
             if (containsDraw(collectables)) {
-                if (collectables.getBounds().getY() < player.getBounds().getY1()  + (player.getBounds().getHeight() / 2f)) {
+                if (collectables.intersects(player)) {
+                    //inventory add code goes here
+                    System.out.println("Collected! Generated from line 262 in Level.Camera.");
+                    collectables.setMapEntityStatus(MapEntityStatus.REMOVED);
+                } else {
                     collectables.draw(graphicsHandler);
                 }
             }

@@ -9,13 +9,15 @@ import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Scripts.SimpleTextScript;
+import Scripts.TestMap.CollectableScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
-
 import java.util.ArrayList;
+
+import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
@@ -60,7 +62,7 @@ public class TestMap extends Map {
     @Override
     public ArrayList<Collectable> loadCollectables() {
         ArrayList<Collectable> collectables = new ArrayList<>();
-        collectables.add(new Collectable("yoshiCoin.png", getMapTile(12,19).getLocation()));
+        collectables.add(new Collectable("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin"));
         return collectables;
     }
 

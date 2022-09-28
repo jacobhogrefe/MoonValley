@@ -5,8 +5,8 @@ import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.Frame;
 import GameObject.Rectangle;
-import GameObject.Sprite;
 import Utils.Point;
+import Scripts.TestMap.CollectableScript;
 
 /* 
  * Basic collectable class that contains a few methods which draw the collectable, register
@@ -17,53 +17,29 @@ import Utils.Point;
 public class Collectable extends MapEntity {
     protected BufferedImage image;
     protected Rectangle bounds;
-    protected Map map;
-    protected Player player;
     protected MapEntityStatus mapEntityStatus = MapEntityStatus.ACTIVE;
     protected float x;
     protected float y;
+    protected CollectableScript collectableScript;
 
-    public Collectable(String imageName, Point location) {
+    public Collectable(String imageName, Point location, String nameOfItem) {
         super(location.x, location.y, new Frame(ImageLoader.load(imageName)));
         this.image = ImageLoader.load(imageName);
         this.bounds = new Rectangle(0,0, image.getWidth(), image.getHeight());
         this.x = location.x;
         this.y = location.y;
+        this.interactScript = new CollectableScript(nameOfItem);
     }
 
-    //checks if the collectable has intersected with the player
-    public boolean intersectsWith() {
-        return bounds.intersects(player);
+    //Gets the interact script of the collectable (just a simple text script)
+    public CollectableScript getInteractScript() {
+        return collectableScript; 
     }
-
-    //Adds the item to the inventory if the item hasn't been collected
-    public void onCollection() {
-        if (mapEntityStatus == MapEntityStatus.ACTIVE) {
-            mapEntityStatus = MapEntityStatus.REMOVED;
-            //inventory add code goes here
-            System.out.println("Item has been collected!");
-        }
-    }
-
-    //Sets the entity status of the collectable
-    public MapEntityStatus getMapEntityStatus() {
-        return mapEntityStatus;
-    }
-    //Sets and gets entity staus of the collectable
-    public void setMapEntityStatus(MapEntityStatus mapEntityStatus) {
-        this.mapEntityStatus = mapEntityStatus;
-    }
-
-    public void update(Player player) {
-        super.update();
-    }
-
+    
     //Draws the item based on if it has been collected or not
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        if (!isHidden) {
-            graphicsHandler.drawImage(image, Math.round(x), Math.round(y), image.getWidth(), image.getHeight());
-        }
+        super.draw(graphicsHandler);
     }
     
 }
