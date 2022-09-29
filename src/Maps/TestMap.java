@@ -1,7 +1,7 @@
 package Maps;
 
 import EnhancedMapTiles.Rock;
-import Level.Collectable;
+import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.Map;
 import Level.NPC;
@@ -9,7 +9,7 @@ import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Scripts.SimpleTextScript;
-import Scripts.TestMap.CollectableScript;
+import Scripts.TestMap.CollectibleScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
@@ -60,10 +60,10 @@ public class TestMap extends Map {
     }
 
     @Override
-    public ArrayList<Collectable> loadCollectables() {
-        ArrayList<Collectable> collectables = new ArrayList<>();
-        collectables.add(new Collectable("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin"));
-        return collectables;
+    public ArrayList<Collectible> loadCollectables() {
+        ArrayList<Collectible> collectibles = new ArrayList<>();
+        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin"));
+        return collectibles;
     }
 
     @Override

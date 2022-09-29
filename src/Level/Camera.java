@@ -26,7 +26,7 @@ public class Camera extends Rectangle {
     private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
     private ArrayList<NPC> activeNPCs = new ArrayList<>();
     private ArrayList<Trigger> activeTriggers = new ArrayList<>();
-    private ArrayList<Collectable> activeCollectables = new ArrayList<>();
+    private ArrayList<Collectible> activeCollectables = new ArrayList<>();
 
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
@@ -154,20 +154,20 @@ public class Camera extends Rectangle {
         return activeTriggers;
     }
 
-    //Draws the active collectables on the map (when they exist and are within range of the camera)
-    private ArrayList<Collectable> loadActiveCollectables() {
-        ArrayList<Collectable> activeCollectables = new ArrayList<>();
+    //Draws the active collectibles on the map (when they exist and are within range of the camera)
+    private ArrayList<Collectible> loadActiveCollectables() {
+        ArrayList<Collectible> activeCollectables = new ArrayList<>();
         for (int i = map.getCollectables().size() - 1; i >= 0; i--) {
-            Collectable collectable = map.getCollectables().get(i);
+            Collectible collectible = map.getCollectables().get(i);
 
-            if (isMapEntityActive(collectable)) {
-                activeCollectables.add(collectable);
-                if (collectable.mapEntityStatus == MapEntityStatus.INACTIVE) {
-                    collectable.setMapEntityStatus(MapEntityStatus.ACTIVE);
+            if (isMapEntityActive(collectible)) {
+                activeCollectables.add(collectible);
+                if (collectible.mapEntityStatus == MapEntityStatus.INACTIVE) {
+                    collectible.setMapEntityStatus(MapEntityStatus.ACTIVE);
                 }
-            } else if (collectable.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
-                collectable.setMapEntityStatus(MapEntityStatus.INACTIVE);
-            } else if (collectable.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+            } else if (collectible.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+                collectible.setMapEntityStatus(MapEntityStatus.INACTIVE);
+            } else if (collectible.getMapEntityStatus() == MapEntityStatus.REMOVED) {
                 map.getCollectables().remove(i);
             }
         }
@@ -255,15 +255,15 @@ public class Camera extends Rectangle {
             }
         }
 
-        for (Collectable collectables : activeCollectables) {
-            if (containsDraw(collectables)) {
-                if (collectables.intersects(player)) {
+        for (Collectible collectibles : activeCollectables) {
+            if (containsDraw(collectibles)) {
+                if (collectibles.intersects(player)) {
                     //inventory add code goes here
-                    map.setActiveInteractScript(collectables.getInteractScript());
+                    map.setActiveInteractScript(collectibles.getInteractScript());
                     System.out.println("Collected! Generated from line 262 in Level.Camera.");
-                    collectables.setMapEntityStatus(MapEntityStatus.REMOVED);
+                    collectibles.setMapEntityStatus(MapEntityStatus.REMOVED);
                 } else {
-                    collectables.draw(graphicsHandler);
+                    collectibles.draw(graphicsHandler);
                 }
             }
         }
@@ -315,7 +315,7 @@ public class Camera extends Rectangle {
         return activeTriggers;
     }
 
-    public ArrayList<Collectable> getActiveCollectables() {
+    public ArrayList<Collectible> getActiveCollectables() {
         return activeCollectables;
     }
 
