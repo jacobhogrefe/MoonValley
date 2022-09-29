@@ -37,7 +37,7 @@ public class MenuBar extends JMenuBar {
             }
         });
         options.add(showTriggers);
-        showCollectables = new JCheckBoxMenuItem("Show Collectables");
+        showCollectables = new JCheckBoxMenuItem("Show Collectibles");
         showCollectables.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -82,10 +82,10 @@ public class PlayLevelScreen extends Screen {
 				trigger.getTriggerScript().setPlayer(player);
 			}
 		}
-		for (Collectable collectables : map.getCollectables()) {
-            if (collectables.getInteractScript() != null) {
-                collectables.getInteractScript().setMap(map);
-                collectables.getInteractScript().setPlayer(player);
+		for (Collectible collectibles : map.getCollectables()) {
+            if (collectibles.getInteractScript() != null) {
+                collectibles.getInteractScript().setMap(map);
+                collectibles.getInteractScript().setPlayer(player);
             }
         }
 
