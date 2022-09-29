@@ -33,6 +33,7 @@ public class GamePanel extends JPanel {
 	private KeyLocker keyLocker = new KeyLocker();
 	private final Key pauseKey = Key.P;
 	private final Key inventoryKey = Key.I;
+	public int Clock;
 	
 	/*
 	 * The JPanel and various important class instances are setup here
@@ -52,6 +53,8 @@ public class GamePanel extends JPanel {
 		pauseLabel.setOutlineColor(Color.black);
 		pauseLabel.setOutlineThickness(2.0f);
 
+		
+		
 		// Every timer "tick" will call the update method as well as tell the JPanel to repaint
 		// Remember that repaint "schedules" a paint rather than carries it out immediately
 		// If the game is really laggy/slow, I would consider upping the FPS in the Config file.
@@ -63,7 +66,8 @@ public class GamePanel extends JPanel {
 		});
 		timer.setRepeats(true);
 	}
-
+	
+	Clock clock1 = new Clock();
 	// this is called later after instantiation, and will initialize screenManager
 	// this had to be done outside of the constructor because it needed to know the JPanel's width and height, which aren't available in the constructor
 	public void setupGame() {
@@ -124,8 +128,7 @@ public class GamePanel extends JPanel {
 		}
 		/*/
 	}
-
-	@Override
+		@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// every repaint call will schedule this method to be called
@@ -133,6 +136,7 @@ public class GamePanel extends JPanel {
 		graphicsHandler.setGraphics((Graphics2D) g);
 		if (doPaint) {
 			draw();
+			g.drawString("Time " + clock1.getTimeOfDay()+ ":00", 0, 25);
 		}
 	}
 }
