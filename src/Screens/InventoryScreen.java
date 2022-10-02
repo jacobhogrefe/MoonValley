@@ -84,6 +84,10 @@ public class InventoryScreen extends Screen {
 		
     
     }
+    
+    public void editPlayerInventory(int index, int itemNumber) {
+    	playerInventory[index]= itemNumber;
+    }
 
     public void draw(GraphicsHandler graphicsHandler) {
 	graphicsHandler.drawInventory(itemImages,playerInventory);	
