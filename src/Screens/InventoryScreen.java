@@ -1,7 +1,7 @@
 package Screens;
 
 import Engine.*;
-
+import Level.PlayerInventory;
 import SpriteFont.SpriteFont;
 
 import java.awt.*;
@@ -15,17 +15,18 @@ public class InventoryScreen extends Screen {
     protected PlayLevelScreen playLevelScreen;
 	protected KeyLocker keyLocker = new KeyLocker();
 	private GraphicsHandler graphicsHandler;
-	protected int[] playerInventory;
+	private PlayerInventory playerInventory;
+
 
 	protected Key Inventory_Key = Key.I;
 	protected boolean inventoryIsOpen = false;
 
-    public InventoryScreen(PlayLevelScreen playLevelScreen) {
+    public InventoryScreen(PlayLevelScreen playLevelScreen, PlayerInventory playerInventory) {
         this.playLevelScreen = playLevelScreen;
+        this.playerInventory = playerInventory;
         this.itemNames = new ArrayList<String>();
         this.itemDescriptions = new ArrayList<String>();
         this.itemImages = new ArrayList<Image>();
-        this.playerInventory = new int[55];
         initialize();
     }
 
@@ -57,13 +58,10 @@ public class InventoryScreen extends Screen {
 		this.itemDescriptions.add("Ain't 'nuff room in this here valley for the two of us, partner...");
 		// END ITEM DECRIPTIONS
 		
+	
 		
 		
-		for(int i = 0; i<=54; i++) {
-			playerInventory[i] = 0;
-		}
-		playerInventory[1] = 1;
-
+		
     }
 
     @Override
@@ -85,11 +83,9 @@ public class InventoryScreen extends Screen {
     
     }
     
-    public void editPlayerInventory(int index, int itemNumber) {
-    	playerInventory[index]= itemNumber;
-    }
+ 
 
     public void draw(GraphicsHandler graphicsHandler) {
-	graphicsHandler.drawInventory(itemImages,playerInventory);	
+	graphicsHandler.drawInventory(itemImages, playerInventory.getInventoryArray());	
     }
 }

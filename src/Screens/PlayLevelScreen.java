@@ -13,6 +13,7 @@ import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
 import Utils.Point;
+import Level.PlayerInventory;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -25,6 +26,8 @@ public class PlayLevelScreen extends Screen {
 	protected FlagManager flagManager;
 	protected KeyLocker keyLocker = new KeyLocker();
 	protected boolean isInventoryOpen = false;
+	protected PlayerInventory playerInventory = new PlayerInventory();
+	
 
 	protected Key Inventory_Key = Key.I;
 
@@ -88,9 +91,9 @@ public class PlayLevelScreen extends Screen {
                 collectibles.getInteractScript().setPlayer(player);
             }
         }
-
+		
 		winScreen = new WinScreen(this);
-		inventoryScreen = new InventoryScreen(this);
+		inventoryScreen = new InventoryScreen(this, playerInventory);
 	}
 
 
