@@ -63,6 +63,9 @@ public class TestMap extends Map {
     public ArrayList<Collectible> loadCollectables() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
         collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin", 2));
+        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(11,19).getLocation(), "Yoshi Coin", 2));
+        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(10,19).getLocation(), "Yoshi Coin", 2));
+        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(9,19).getLocation(), "Yoshi Coin", 2));
         return collectibles;
     }
 
