@@ -261,7 +261,6 @@ public class Camera extends Rectangle {
                 	map.giveItem(collectibles.getItemNumber());
                     map.flagManager.setFlag("itemCollected");
                     map.setActiveInteractScript(collectibles.getInteractScript());
-                    System.out.println("Collected! Generated from line 262 in Level.Camera.");
                     collectibles.setMapEntityStatus(MapEntityStatus.REMOVED);
                 } else {
                     collectibles.draw(graphicsHandler);
