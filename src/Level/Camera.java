@@ -258,7 +258,8 @@ public class Camera extends Rectangle {
         for (Collectible collectibles : activeCollectables) {
             if (containsDraw(collectibles)) {
                 if (collectibles.intersects(player)) {
-                    //inventory add code goes here
+                	map.giveItem(collectibles.getItemNumber());
+                    map.flagManager.setFlag("itemCollected");
                     map.setActiveInteractScript(collectibles.getInteractScript());
                     System.out.println("Collected! Generated from line 262 in Level.Camera.");
                     collectibles.setMapEntityStatus(MapEntityStatus.REMOVED);

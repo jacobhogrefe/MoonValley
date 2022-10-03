@@ -1,6 +1,8 @@
 package Screens;
 
 import java.awt.event.KeyListener;
+import java.util.Stack;
+
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
@@ -42,6 +44,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasTalkedToWalrus", false);
 		flagManager.addFlag("hasTalkedToDinosaur", false);
 		flagManager.addFlag("hasFoundBall", false);
+		flagManager.addFlag("itemCollected", false);
 		
 
 		// define/setup map
@@ -124,14 +127,36 @@ public class PlayLevelScreen extends Screen {
 		if (Keyboard.isKeyDown(Inventory_Key) && !keyLocker.isKeyLocked(Inventory_Key)) {
 			playLevelScreenState = PlayLevelScreenState.INVENTORY_OPEN;
 		}
+		if(map.getFlagManager().isFlagSet("itemCollected")) {
+			Stack<Integer> itemsReceived = new Stack<Integer>();
+			
+			itemsReceived = map.takeItems();
+			
+			while(!itemsReceived.empty()) {
+				playerInventory.addItem(itemsReceived.pop());
+			}
+			
+			inventoryScreen.setPlayerInventory(playerInventory);
+			map.getFlagManager().unsetFlag("itemCollected");
+			
+		}
 
 
+	}
+
+	public PlayerInventory getPlayerInventory() {
+		return playerInventory;
+	}
+
+	public void setPlayerInventory(PlayerInventory playerInventory) {
+		this.playerInventory = playerInventory;
 	}
 
 	public void draw(GraphicsHandler graphicsHandler) {
 		// based on screen state, draw appropriate graphics
 		switch (playLevelScreenState) {
 		case RUNNING:
+			playerInventory = inventoryScreen.getPlayerInventory();
 			map.draw(player, graphicsHandler);
 			break;
 		case LEVEL_COMPLETED:

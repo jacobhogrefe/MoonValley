@@ -21,17 +21,28 @@ public class Collectible extends MapEntity {
     protected float x;
     protected float y;
     protected CollectibleScript collectibleScript;
+    protected int itemNumber;
 
-    public Collectible(String imageName, Point location, String nameOfItem) {
+    public Collectible(String imageName, Point location, String nameOfItem, int itemNumber) {
         super(location.x, location.y, new Frame(ImageLoader.load(imageName)));
         this.image = ImageLoader.load(imageName);
         this.bounds = new Rectangle(0,0, image.getWidth(), image.getHeight());
         this.x = location.x;
         this.y = location.y;
         this.collectibleScript = new CollectibleScript(nameOfItem);
+        this.itemNumber = itemNumber;
+        
     }
 
-    //Gets the interact script of the collectible (just a simple text script)
+    public int getItemNumber() {
+		return itemNumber;
+	}
+
+	public void setItemNumber(int itemNumber) {
+		this.itemNumber = itemNumber;
+	}
+
+	//Gets the interact script of the collectible (just a simple text script)
     public CollectibleScript getInteractScript() {
         return collectibleScript; 
     }

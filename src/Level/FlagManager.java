@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 public class FlagManager {
     protected HashMap<String, Boolean> flags = new HashMap<>();
+    
 
     public void addFlag(String flagName) {
         flags.put(flagName, false);
@@ -21,6 +22,7 @@ public class FlagManager {
     public void addFlag(String flagName, boolean startingValue) {
         flags.put(flagName, startingValue);
     }
+ 
 
     public void setFlag(String flagName) {
         if (flags.containsKey(flagName)) {

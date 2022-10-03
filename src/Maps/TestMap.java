@@ -62,7 +62,7 @@ public class TestMap extends Map {
     @Override
     public ArrayList<Collectible> loadCollectables() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
-        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin"));
+        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin", 2));
         return collectibles;
     }
 

@@ -14,7 +14,7 @@ public class PlayerInventory {
 
 	public PlayerInventory() {
 		
-		this.inventoryArray = inventoryArray;
+		
 		for (int i = 0; i < 55; i++) {
 			inventoryArray[i] = 0;
 		}
