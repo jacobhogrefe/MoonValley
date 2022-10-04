@@ -25,7 +25,6 @@ public class ControlsScreen extends Screen {
     public void initialize() {
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
-
         controls[0] = new SpriteFont("Controls", 20, 50, "Comic Sans", 30, Color.white);
         controls[1] = new SpriteFont("W/Up arrow: Move player up", 50, 90, "Comic Sans", 30, Color.white);
         controls[2] = new SpriteFont("A/Left arrow: Move player left", 50, 130, "Comic Sans", 30, Color.white);
@@ -34,8 +33,7 @@ public class ControlsScreen extends Screen {
         controls[5] = new SpriteFont("Space: Interact with NPCs/search for collectibles", 50, 250, "Comic Sans", 30, Color.white);
         controls[6] = new SpriteFont("I: Access the Inventory", 50, 290, "Comic Sans", 30, Color.white);
         controls[7] = new SpriteFont("P: Pause game", 50, 330, "Comic Sans", 30, Color.white);
-        controls[8] = new SpriteFont("Press Space to return to the menu", 20, 560, "Comic Sans", 30, Color.white);
-
+        controls[8] = new SpriteFont("Press Space to go back", 20, 560, "Comic Sans", 30, Color.white);
         for (int i = 0; i < controls.length; i++) {
             controls[i].setOutlineColor(Color.black);
             controls[i].setOutlineThickness(3);
@@ -59,7 +57,11 @@ public class ControlsScreen extends Screen {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        background.draw(graphicsHandler);
+        if (previousGameState == GameState.MENU) {
+            background.draw(graphicsHandler);
+        } else {
+            graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
+        }
         for (int i = 0; i < controls.length; i++) {
             controls[i].draw(graphicsHandler);
         } 

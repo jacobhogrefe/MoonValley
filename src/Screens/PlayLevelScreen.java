@@ -25,6 +25,7 @@ public class PlayLevelScreen extends Screen {
 	protected PlayLevelScreenState playLevelScreenState;
 	protected WinScreen winScreen;
 	protected InventoryScreen inventoryScreen;
+	protected PauseScreen pauseScreen;
 	protected FlagManager flagManager;
 	protected KeyLocker keyLocker = new KeyLocker();
 	protected boolean isInventoryOpen = false;
