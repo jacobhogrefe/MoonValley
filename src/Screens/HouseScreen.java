@@ -18,7 +18,7 @@ import Utils.Point;
 import Level.PlayerInventory;
 
 // This class is for when the RPG game is actually being played
-public class PlayLevelScreen extends Screen {
+public class HouseScreen extends Screen {
 	protected ScreenCoordinator screenCoordinator;
 	protected Map map;
 	protected Player player;
@@ -33,18 +33,18 @@ public class PlayLevelScreen extends Screen {
 
 	protected Key Inventory_Key = Key.I;
 
-	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
+	public HouseScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
 	}
 
 	public void initialize() {
 		// setup state
 		flagManager = new FlagManager();
-		flagManager.addFlag("hasLostBall", false);
-		flagManager.addFlag("hasTalkedToWalrus", false);
-		flagManager.addFlag("hasTalkedToDinosaur", false);
-		flagManager.addFlag("hasFoundBall", false);
-		flagManager.addFlag("itemCollected", false);
+//		flagManager.addFlag("hasLostBall", false);
+//		flagManager.addFlag("hasTalkedToWalrus", false);
+//		flagManager.addFlag("hasTalkedToDinosaur", false);
+//		flagManager.addFlag("hasFoundBall", false);
+//		flagManager.addFlag("itemCollected", false);
 		
 
 		// define/setup map
@@ -64,39 +64,39 @@ public class PlayLevelScreen extends Screen {
 		map.getTextbox().setInteractKey(player.getInteractKey());
 
 		// setup map scripts to have references to the map and player
-		for (MapTile mapTile : map.getMapTiles()) {
-			if (mapTile.getInteractScript() != null) {
-				mapTile.getInteractScript().setMap(map);
-				mapTile.getInteractScript().setPlayer(player);
-			}
-		}
-		for (NPC npc : map.getNPCs()) {
-			if (npc.getInteractScript() != null) {
-				npc.getInteractScript().setMap(map);
-				npc.getInteractScript().setPlayer(player);
-			}
-		}
-		for (EnhancedMapTile enhancedMapTile : map.getEnhancedMapTiles()) {
-			if (enhancedMapTile.getInteractScript() != null) {
-				enhancedMapTile.getInteractScript().setMap(map);
-				enhancedMapTile.getInteractScript().setPlayer(player);
-			}
-		}
-		for (Trigger trigger : map.getTriggers()) {
-			if (trigger.getTriggerScript() != null) {
-				trigger.getTriggerScript().setMap(map);
-				trigger.getTriggerScript().setPlayer(player);
-			}
-		}
-		for (Collectible collectibles : map.getCollectables()) {
-            if (collectibles.getInteractScript() != null) {
-                collectibles.getInteractScript().setMap(map);
-                collectibles.getInteractScript().setPlayer(player);
-            }
-        }
-		
-		winScreen = new WinScreen(this);
-		inventoryScreen = new InventoryScreen(this, playerInventory);
+//		for (MapTile mapTile : map.getMapTiles()) {
+//			if (mapTile.getInteractScript() != null) {
+//				mapTile.getInteractScript().setMap(map);
+//				mapTile.getInteractScript().setPlayer(player);
+//			}
+//		}
+//		for (NPC npc : map.getNPCs()) {
+//			if (npc.getInteractScript() != null) {
+//				npc.getInteractScript().setMap(map);
+//				npc.getInteractScript().setPlayer(player);
+//			}
+//		}
+//		for (EnhancedMapTile enhancedMapTile : map.getEnhancedMapTiles()) {
+//			if (enhancedMapTile.getInteractScript() != null) {
+//				enhancedMapTile.getInteractScript().setMap(map);
+//				enhancedMapTile.getInteractScript().setPlayer(player);
+//			}
+//		}
+//		for (Trigger trigger : map.getTriggers()) {
+//			if (trigger.getTriggerScript() != null) {
+//				trigger.getTriggerScript().setMap(map);
+//				trigger.getTriggerScript().setPlayer(player);
+//			}
+//		}
+//		for (Collectible collectibles : map.getCollectables()) {
+//            if (collectibles.getInteractScript() != null) {
+//                collectibles.getInteractScript().setMap(map);
+//                collectibles.getInteractScript().setPlayer(player);
+//            }
+//        }
+//		
+//		winScreen = new WinScreen(this);
+//		inventoryScreen = new InventoryScreen(this, playerInventory);
 	}
 
 
@@ -117,7 +117,6 @@ public class PlayLevelScreen extends Screen {
 		case INVENTORY_OPEN:
 			inventoryScreen.update();
 			break;
-
 		}
 
 		// if flag is set at any point during gameplay, game is "won"
