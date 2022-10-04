@@ -5,6 +5,7 @@ import Engine.GraphicsHandler;
 import Engine.Screen;
 import Level.PlayerInventory;
 import Screens.CreditsScreen;
+import Screens.HouseScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 
@@ -51,7 +52,9 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
-						break;
+//					case HOUSE:
+//						currentScreen = HouseScreen(this);
+//						break;
 				}
 				currentScreen.initialize();
 			}
