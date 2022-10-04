@@ -16,7 +16,7 @@ public class MenuScreen extends Screen {
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected int menuItemSelected = -1;
     protected SpriteFont playGame;
-    protected SpriteFont instructions;
+    protected SpriteFont controls;
     protected SpriteFont credits;
     protected Map background;
     protected Stopwatch keyTimer = new Stopwatch();
@@ -33,9 +33,9 @@ public class MenuScreen extends Screen {
         playGame = new SpriteFont("PLAY GAME", 40, 455, "Comic Sans", 30, new Color(49, 207, 240));
         playGame.setOutlineColor(Color.black);
         playGame.setOutlineThickness(3);
-        instructions = new SpriteFont("INSTRUCTIONS", 40, 505, "Comic Sans", 30, new Color(49, 207, 240));
-        instructions.setOutlineColor(Color.black);
-        instructions.setOutlineThickness(3);
+        controls = new SpriteFont("CONTROLS", 40, 505, "Comic Sans", 30, new Color(49, 207, 240));
+        controls.setOutlineColor(Color.black);
+        controls.setOutlineThickness(3);
         credits = new SpriteFont("CREDITS", 40, 555, "Comic Sans", 30, new Color(49, 207, 240));
         credits.setOutlineColor(Color.black);
         credits.setOutlineThickness(3);
@@ -70,19 +70,19 @@ public class MenuScreen extends Screen {
         //if another button needs to be added, increase the Y location of the pointer by 50
         if (currentMenuItemHovered == 0) {
             playGame.setColor(new Color(255, 215, 0));
-            instructions.setColor(new Color(49, 207, 240));
+            controls.setColor(new Color(49, 207, 240));
             credits.setColor(new Color(49, 207, 240));
             pointerLocationX = 10;
             pointerLocationY = 435;
         } else if (currentMenuItemHovered == 1) {
             playGame.setColor(new Color(49, 207, 240));
-            instructions.setColor(new Color(255, 215, 0));
+            controls.setColor(new Color(255, 215, 0));
             credits.setColor(new Color(49, 207, 240));
             pointerLocationX = 10;
             pointerLocationY = 485;
         } else if (currentMenuItemHovered == 2) {
             playGame.setColor(new Color(49, 207, 240));
-            instructions.setColor(new Color(49, 207, 240));
+            controls.setColor(new Color(49, 207, 240));
             credits.setColor(new Color(255, 215, 0));
             pointerLocationX = 10;
             pointerLocationY = 535;
@@ -97,7 +97,7 @@ public class MenuScreen extends Screen {
             if (menuItemSelected == 0) {
                 screenCoordinator.setGameState(GameState.LEVEL);
             } else if (menuItemSelected == 1) {
-                screenCoordinator.setGameState(GameState.INSTRUCTIONS);
+                screenCoordinator.setGameState(GameState.CONTROLS);
             } else if (menuItemSelected == 2) {
                 screenCoordinator.setGameState(GameState.CREDITS);
             }
@@ -107,7 +107,7 @@ public class MenuScreen extends Screen {
     public void draw(GraphicsHandler graphicsHandler) {
         background.draw(graphicsHandler);
         playGame.draw(graphicsHandler);
-        instructions.draw(graphicsHandler);
+        controls.draw(graphicsHandler);
         credits.draw(graphicsHandler);
         graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, new Color(49, 207, 240), Color.black, 2);
     }
