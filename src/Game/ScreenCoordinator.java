@@ -3,9 +3,11 @@ package Game;
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
+import Game.GameState;
 import Level.PlayerInventory;
 import Screens.CreditsScreen;
 import Screens.HouseScreen;
+import Screens.ControlsScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 
@@ -52,9 +54,9 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
-//					case HOUSE:
-//						currentScreen = HouseScreen(this);
-//						break;
+						break;
+					case CONTROLS:
+						currentScreen = new ControlsScreen(this, previousGameState);
 				}
 				currentScreen.initialize();
 			}

@@ -83,7 +83,7 @@ public class TestMap extends Map {
         //added house entering scripts
 //        getMapTile(17, 19).setInteractScript(new SimpleTextScript("Would you like to enter Cat's house?"));
         
-        getMapTile(17, 19).setInteractScript(new EnterHouseScript());
+//        getMapTile(17, 19).setInteractScript(new EnterHouseScript());
         
         getMapTile(4, 26).setInteractScript(new SimpleTextScript("Would you like to enter Walrus's house?"));
         

@@ -117,6 +117,7 @@ public class PlayLevelScreen extends Screen {
 		case INVENTORY_OPEN:
 			inventoryScreen.update();
 			break;
+
 		}
 
 		// if flag is set at any point during gameplay, game is "won"

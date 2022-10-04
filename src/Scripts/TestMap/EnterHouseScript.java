@@ -17,8 +17,7 @@ public class EnterHouseScript extends Script {
     @Override
     protected void cleanup() {
     	hideTextbox();
-    	ScreenCoordinator screenCoordinator = new ScreenCoordinator();
-		screenCoordinator.setGameState(GameState.HOUSE);
+//		screenCoordinator.setGameState(GameState.HOUSE);
         unlockPlayer();
     }
 
