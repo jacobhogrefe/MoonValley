@@ -5,20 +5,27 @@ import Game.*;
 import Level.Map;
 import Maps.TitleScreenMap;
 import SpriteFont.SpriteFont;
+
 import java.awt.*;
 
 public class ControlsScreen extends Screen {
 
     protected ScreenCoordinator screenCoordinator;
     protected Screen previousScreen;
+    protected PlayLevelScreen playLevelScreen;
     protected Map background;
     protected KeyLocker keyLocker = new KeyLocker();
-    protected GameState previousGameState;
     protected SpriteFont[] controls = new SpriteFont[9];
+    protected GameState previousGameState;
 
-    public ControlsScreen(ScreenCoordinator screenCoordinator, GameState previousGameState) {
+    public ControlsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
-        this.previousGameState = previousGameState;
+        initialize();
+    }
+
+    public ControlsScreen(PlayLevelScreen playLevelScreen) {
+        this.playLevelScreen = playLevelScreen;
+        initialize();
     }
 
     @Override
@@ -38,7 +45,6 @@ public class ControlsScreen extends Screen {
             controls[i].setOutlineColor(Color.black);
             controls[i].setOutlineThickness(3);
         }
-
         keyLocker.lockKey(Key.SPACE);
     }
 
@@ -50,17 +56,22 @@ public class ControlsScreen extends Screen {
             keyLocker.unlockKey(Key.SPACE);
         }
 
+        //Checks whether or not playLevelScreen is null to go back to the proper screen
         if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
-            screenCoordinator.setGameState(previousGameState);
+            if (playLevelScreen != null) {
+                playLevelScreen.resumeLevel();
+            } else {
+                screenCoordinator.setGameState(GameState.MENU);
+            }
         }
     }
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        if (previousGameState == GameState.MENU) {
-            background.draw(graphicsHandler);
-        } else {
+        if (playLevelScreen != null) {
             graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
+        } else {
+            background.draw(graphicsHandler);
         }
         for (int i = 0; i < controls.length; i++) {
             controls[i].draw(graphicsHandler);

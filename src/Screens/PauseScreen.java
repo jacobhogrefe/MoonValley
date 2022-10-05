@@ -15,6 +15,8 @@ import java.awt.*;
 public class PauseScreen extends Screen {
 
     protected ScreenCoordinator screenCoordinator;
+    protected PlayLevelScreen playLevelScreen;
+    protected ControlsScreen controlsScreen;
     protected int currentMenuItemHovered = 0;
     protected int menuItemSelected = -1;
     protected SpriteFont pause;
@@ -24,14 +26,17 @@ public class PauseScreen extends Screen {
     protected Stopwatch keyTimer = new Stopwatch();
     protected int pointerLocationX, pointerLocationY;
     protected KeyLocker keyLocker = new KeyLocker();
+    protected boolean isControlsOpen = false;
 
-    public PauseScreen(ScreenCoordinator screenCoordinator) {
+    public PauseScreen(PlayLevelScreen playLevelScreen, ScreenCoordinator screenCoordinator) {
+        this.playLevelScreen = playLevelScreen;
         this.screenCoordinator = screenCoordinator;
+        initialize();
     }
 
     @Override
     public void initialize() {
-        pause = new SpriteFont("PAUSE", 40, 455, "Comic Sans", 30, Color.white);
+        pause = new SpriteFont("PAUSED", 10, 405, "Comic Sans", 30, Color.white);
         pause.setOutlineColor(Color.black);
         pause.setOutlineThickness(3);
         resume = new SpriteFont("RESUME", 40, 455, "Comic Sans", 30, new Color(49, 207, 240));
@@ -87,16 +92,16 @@ public class PauseScreen extends Screen {
             pointerLocationY = 535;
         }
 
-        // if space is pressed on menu item, change to appropriate screen based on which menu item was chosen
+        // if space is pressed on a pause menu item, change to appropriate screen based on which menu item was chosen
         if (Keyboard.isKeyUp(Key.SPACE)) {
             keyLocker.unlockKey(Key.SPACE);
         }
         if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
             menuItemSelected = currentMenuItemHovered;
             if (menuItemSelected == 0) {
-                screenCoordinator.setGameState(GameState.LEVEL);
+                playLevelScreen.resumeLevel();
             } else if (menuItemSelected == 1) {
-                screenCoordinator.setGameState(GameState.CONTROLS);
+                playLevelScreen.controls();
             } else if (menuItemSelected == 2) {
                 //SAVE LOGIC GOES HERE
                 screenCoordinator.setGameState(GameState.MENU);
@@ -112,9 +117,5 @@ public class PauseScreen extends Screen {
         controls.draw(graphicsHandler);
         saveAndQuit.draw(graphicsHandler);
         graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, new Color(49, 207, 240), Color.black, 2);
-    }
-
-    public int getMenuItemSelected() {
-        return menuItemSelected;
     }
 }
