@@ -24,6 +24,7 @@ public class PauseScreen extends Screen {
     protected SpriteFont controls;
     protected SpriteFont saveAndQuit;
     protected Stopwatch keyTimer = new Stopwatch();
+    protected Stopwatch spaceTimer = new Stopwatch();
     protected int pointerLocationX, pointerLocationY;
     protected KeyLocker keyLocker = new KeyLocker();
     protected boolean isControlsOpen = false;
@@ -49,6 +50,7 @@ public class PauseScreen extends Screen {
         saveAndQuit.setOutlineColor(Color.black);
         saveAndQuit.setOutlineThickness(3);
         keyTimer.setWaitTime(200);
+        spaceTimer.setWaitTime(50);
         menuItemSelected = -1;
         keyLocker.lockKey(Key.SPACE);
     }
@@ -93,14 +95,18 @@ public class PauseScreen extends Screen {
         }
 
         // if space is pressed on a pause menu item, change to appropriate screen based on which menu item was chosen
-        if (Keyboard.isKeyUp(Key.SPACE)) {
+        if (Keyboard.isKeyUp(Key.SPACE) && spaceTimer.isTimeUp()) {
+            spaceTimer.reset();
             keyLocker.unlockKey(Key.SPACE);
         }
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
+
+        //locking the key and checking if the spaceTimer is finished prevent the controls and pause menu from continually swapping between each other
+        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE) && spaceTimer.isTimeUp()) {
             menuItemSelected = currentMenuItemHovered;
             if (menuItemSelected == 0) {
                 playLevelScreen.resumeLevel();
             } else if (menuItemSelected == 1) {
+                keyLocker.lockKey(Key.SPACE);
                 playLevelScreen.controls();
             } else if (menuItemSelected == 2) {
                 //SAVE LOGIC GOES HERE

@@ -5,6 +5,7 @@ import Game.*;
 import Level.Map;
 import Maps.TitleScreenMap;
 import SpriteFont.SpriteFont;
+import Utils.Stopwatch;
 
 import java.awt.*;
 
@@ -15,6 +16,7 @@ public class ControlsScreen extends Screen {
     protected PlayLevelScreen playLevelScreen;
     protected Map background;
     protected KeyLocker keyLocker = new KeyLocker();
+    protected Stopwatch spaceTimer = new Stopwatch();
     protected SpriteFont[] controls = new SpriteFont[9];
     protected GameState previousGameState;
 
@@ -45,6 +47,7 @@ public class ControlsScreen extends Screen {
             controls[i].setOutlineColor(Color.black);
             controls[i].setOutlineThickness(3);
         }
+        spaceTimer.setWaitTime(50);
         keyLocker.lockKey(Key.SPACE);
     }
 
@@ -52,14 +55,17 @@ public class ControlsScreen extends Screen {
     public void update() {
         background.update(null);
 
-        if (Keyboard.isKeyUp(Key.SPACE)) {
+        if (Keyboard.isKeyUp(Key.SPACE) && spaceTimer.isTimeUp()) {
+            spaceTimer.reset();
             keyLocker.unlockKey(Key.SPACE);
         }
 
         //Checks whether or not playLevelScreen is null to go back to the proper screen
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
+        //locking the key and checking if the spaceTimer is finished prevent the controls and pause menu from continually swapping between each other
+        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE) && spaceTimer.isTimeUp()) {
             if (playLevelScreen != null) {
-                playLevelScreen.resumeLevel();
+                keyLocker.lockKey(Key.SPACE);
+                playLevelScreen.pause();
             } else {
                 screenCoordinator.setGameState(GameState.MENU);
             }
