@@ -3,6 +3,7 @@ package Screens;
 import java.io.IOException;
 
 import Engine.GraphicsHandler;
+import Engine.ScreenManager;
 import Game.ScreenCoordinator;
 import SpriteFont.SpriteFont;
 
@@ -108,6 +109,7 @@ public class SaveSlotScreen extends AbstractMenuScreen {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
+        graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
         titleText.draw(graphicsHandler);
         super.draw(graphicsHandler);
     }
