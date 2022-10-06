@@ -45,7 +45,7 @@ public abstract class AbstractMenuScreen extends Screen {
     public void initialize() {
         this.addOptions();
 
-        int minY = 505 - this.getNumItems() * 50;
+        int minY = 605 - this.getNumItems() * 50;
 
         for (int i = 0; i < this.getNumItems(); i++) {
             Option o = this.options.get(i);
@@ -66,6 +66,7 @@ public abstract class AbstractMenuScreen extends Screen {
         keyLocker.lockKey(Key.SPACE);
     }
 
+    @Override
     public void update() {
         // if down or up is pressed, change menu item "hovered" over (blue square in front of text will move along with currentMenuItemHovered changing)
         if (Keyboard.isKeyDown(Key.DOWN) && keyTimer.isTimeUp()) {
