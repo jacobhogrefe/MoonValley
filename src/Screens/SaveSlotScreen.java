@@ -94,11 +94,13 @@ public class SaveSlotScreen extends AbstractMenuScreen {
                     break;
             }
         }
+
+        this.options.add(new CancelOption());
     }
 
     @Override
     public void initialize() {
-        titleText = new SpriteFont(this.type == SlotType.SAVE ? "SAVE TO SLOT" : "LOAD FROM SLOT", 10, 405, "Comic Sans", 30, Color.white);
+        titleText = new SpriteFont(this.type == SlotType.SAVE ? "SAVE TO SLOT" : "LOAD FROM SLOT", 10, 355, "Comic Sans", 30, Color.white);
         titleText.setOutlineColor(Color.black);
         titleText.setOutlineThickness(3);
         super.initialize();

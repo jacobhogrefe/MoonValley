@@ -18,6 +18,18 @@ public abstract class AbstractMenuScreen extends Screen {
         public abstract void select(AbstractMenuScreen parent);
     }
 
+    public class CancelOption extends Option {
+        @Override
+        public String getText() {
+            return "BACK";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            parent.screenCoordinator.pop(parent);
+        }
+    }
+
     protected ScreenCoordinator screenCoordinator;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected int menuItemSelected = -1;
