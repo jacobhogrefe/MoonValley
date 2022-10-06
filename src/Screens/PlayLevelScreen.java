@@ -117,7 +117,9 @@ public class PlayLevelScreen extends Screen {
 		case INVENTORY_OPEN:
 			inventoryScreen.update();
 			break;
-
+//		case HOUSE:
+//			HouseScreen.update();
+//			break;
 		}
 
 		// if flag is set at any point during gameplay, game is "won"
@@ -166,6 +168,9 @@ public class PlayLevelScreen extends Screen {
 		case INVENTORY_OPEN:
 			inventoryScreen.draw(graphicsHandler);
 			break;
+//		case HOUSE:
+//			HouseScreen.draw(graphicsHandler);
+//			break;
 		}
 	}
 
@@ -199,6 +204,6 @@ public class PlayLevelScreen extends Screen {
 
 	// This enum represents the different states this screen can be in
 	private enum PlayLevelScreenState {
-		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN
+		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN, HOUSE
 	}
 }
