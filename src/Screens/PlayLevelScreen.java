@@ -2,6 +2,7 @@ package Screens;
 
 import java.util.Stack;
 
+import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
@@ -13,7 +14,6 @@ import Maps.TestMap;
 import Players.Cat;
 import Utils.Direction;
 import Utils.Point;
-import Level.PlayerInventory;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -31,6 +31,7 @@ public class PlayLevelScreen extends Screen {
 
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
+	protected Key Debug_Key = Key.ZERO;
 
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
@@ -129,6 +130,11 @@ public class PlayLevelScreen extends Screen {
 		if (Keyboard.isKeyDown(Pause_Key) && !keyLocker.isKeyLocked(Pause_Key)) {
 			this.pause();
 		}
+
+		if (GlobalKeyCooldown.Keys.ZERO.onceDown()) {
+			this.screenCoordinator.push(new DebugMenuScreen(this.screenCoordinator));
+		}
+
 		if(map.getFlagManager().isFlagSet("itemCollected")) {
 			Stack<Integer> itemsReceived = new Stack<Integer>();
 			
@@ -204,5 +210,19 @@ public class PlayLevelScreen extends Screen {
 	// This enum represents the different states this screen can be in
 	private enum PlayLevelScreenState {
 		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN
+	}
+
+	/**
+	 * Teleport to a new map at a specified position.
+	 * @param map the new map
+	 * @param x the player x
+	 * @param y the player y
+	 */
+	public void teleport(Map map, float x, float y) {
+		map.setFlagManager(this.flagManager);
+		this.map = map;
+		this.player.setMap(map);
+		this.player.setX(x);
+		this.player.setY(y);
 	}
 }

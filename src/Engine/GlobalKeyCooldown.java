@@ -72,5 +72,6 @@ public class GlobalKeyCooldown {
         public static final GlobalKeyCooldown SPACE = new GlobalKeyCooldown(Key.SPACE);
         public static final GlobalKeyCooldown UP = new GlobalKeyCooldown(Key.UP);
         public static final GlobalKeyCooldown DOWN = new GlobalKeyCooldown(Key.DOWN);
+        public static final GlobalKeyCooldown ZERO = new GlobalKeyCooldown(Key.ZERO);
     }
 }
