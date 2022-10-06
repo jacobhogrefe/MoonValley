@@ -2,9 +2,7 @@ package Engine;
 
 import GameObject.Rectangle;
 import Level.Player;
-import SpriteFont.SpriteFont;
 import Utils.Colors;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,11 +25,8 @@ public class GamePanel extends JPanel {
 	private GraphicsHandler graphicsHandler;
 
 	private boolean doPaint = false;
-	private boolean isGamePaused = false;
 	private boolean isInventoryOpen = false;
-	private SpriteFont pauseLabel;
 	private KeyLocker keyLocker = new KeyLocker();
-	private final Key pauseKey = Key.P;
 	private final Key inventoryKey = Key.I;
 	public int Clock;
 	
@@ -44,17 +39,9 @@ public class GamePanel extends JPanel {
 
 		// attaches Keyboard class's keyListener to this JPanel
 		this.addKeyListener(Keyboard.getKeyListener());
-
 		graphicsHandler = new GraphicsHandler();
-
 		screenManager = new ScreenManager();
-		
-		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Comic Sans", 24, Color.white);
-		pauseLabel.setOutlineColor(Color.black);
-		pauseLabel.setOutlineThickness(2.0f);
 
-		
-		
 		// Every timer "tick" will call the update method as well as tell the JPanel to repaint
 		// Remember that repaint "schedules" a paint rather than carries it out immediately
 		// If the game is really laggy/slow, I would consider upping the FPS in the Config file.
@@ -86,14 +73,6 @@ public class GamePanel extends JPanel {
 	}
 
 	public void update() {
-		if (Keyboard.isKeyDown(pauseKey) && !keyLocker.isKeyLocked(pauseKey)) {
-			isGamePaused = !isGamePaused;
-			keyLocker.lockKey(pauseKey);
-		}
-		
-		if (Keyboard.isKeyUp(pauseKey)) {
-			keyLocker.unlockKey(pauseKey);
-		}
 		/*/
 		if (Keyboard.isKeyDown(inventoryKey) && !keyLocker.isKeyLocked(inventoryKey)) {
 			isInventoryOpen = !isInventoryOpen;
@@ -104,20 +83,12 @@ public class GamePanel extends JPanel {
 			keyLocker.unlockKey(inventoryKey);
 		}
 /*/
-		if (!isGamePaused) {
-			screenManager.update();
-		}
+		screenManager.update();
 	}
 
 
 	public void draw() {
 		screenManager.draw(graphicsHandler);
-
-		// if game is paused, draw pause gfx over Screen gfx
-		if (isGamePaused) {
-			pauseLabel.draw(graphicsHandler);
-			graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
-		}
 		/*/
 		if (isInventoryOpen) {
 			graphicsHandler.drawFilledRectangle(90, 120, 600, 300, new Color(13, 171, 181, 255));

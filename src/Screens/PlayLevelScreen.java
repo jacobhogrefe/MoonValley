@@ -25,6 +25,8 @@ public class PlayLevelScreen extends Screen {
 	protected PlayLevelScreenState playLevelScreenState;
 	protected WinScreen winScreen;
 	protected InventoryScreen inventoryScreen;
+	protected PauseScreen pauseScreen;
+	protected ControlsScreen controlsScreen;
 	protected FlagManager flagManager;
 	protected KeyLocker keyLocker = new KeyLocker();
 	protected boolean isInventoryOpen = false;
@@ -32,6 +34,7 @@ public class PlayLevelScreen extends Screen {
 	
 
 	protected Key Inventory_Key = Key.I;
+	protected Key Pause_Key = Key.P;
 
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
@@ -97,6 +100,8 @@ public class PlayLevelScreen extends Screen {
 		
 		winScreen = new WinScreen(this);
 		inventoryScreen = new InventoryScreen(this, playerInventory);
+		pauseScreen = new PauseScreen(this, screenCoordinator);
+		controlsScreen = new ControlsScreen(this);
 	}
 
 
@@ -120,6 +125,12 @@ public class PlayLevelScreen extends Screen {
 //		case HOUSE:
 //			HouseScreen.update();
 //			break;
+		case PAUSED:
+			pauseScreen.update();
+			break;
+		case CONTROLS: 
+			controlsScreen.update();
+			break;
 		}
 
 		// if flag is set at any point during gameplay, game is "won"
@@ -129,6 +140,9 @@ public class PlayLevelScreen extends Screen {
 
 		if (Keyboard.isKeyDown(Inventory_Key) && !keyLocker.isKeyLocked(Inventory_Key)) {
 			playLevelScreenState = PlayLevelScreenState.INVENTORY_OPEN;
+		}
+		if (Keyboard.isKeyDown(Pause_Key) && !keyLocker.isKeyLocked(Pause_Key)) {
+			playLevelScreenState = PlayLevelScreenState.PAUSED;
 		}
 		if(map.getFlagManager().isFlagSet("itemCollected")) {
 			Stack<Integer> itemsReceived = new Stack<Integer>();
@@ -143,8 +157,6 @@ public class PlayLevelScreen extends Screen {
 			map.getFlagManager().unsetFlag("itemCollected");
 			
 		}
-
-
 	}
 
 	public PlayerInventory getPlayerInventory() {
@@ -171,23 +183,33 @@ public class PlayLevelScreen extends Screen {
 //		case HOUSE:
 //			HouseScreen.draw(graphicsHandler);
 //			break;
+		case PAUSED:
+			pauseScreen.draw(graphicsHandler);
+			break;
+		case CONTROLS:
+			controlsScreen.draw(graphicsHandler);
+			break;
 		}
 	}
 
 	public PlayLevelScreenState getPlayLevelScreenState() {
 		return playLevelScreenState;
 	}
+
 	public boolean inventoryIsOpen(){
-		if (isInventoryOpen) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return isInventoryOpen;
 	}
 	
 	public void closeInventory() {
 		isInventoryOpen = false;
+	}
+
+	public void pause() {
+		playLevelScreenState = PlayLevelScreenState.PAUSED;
+	}
+
+	public void controls() {
+		playLevelScreenState = PlayLevelScreenState.CONTROLS;
 	}
 	
 	public void resumeLevel() {
@@ -204,6 +226,6 @@ public class PlayLevelScreen extends Screen {
 
 	// This enum represents the different states this screen can be in
 	private enum PlayLevelScreenState {
-		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN, HOUSE
+		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN, HOUSE, PAUSED, CONTROLS
 	}
 }
