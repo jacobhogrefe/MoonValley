@@ -107,7 +107,7 @@ public class ScreenCoordinator extends Screen {
 	}
 
 	private void debugPrintStack(String s) {
-		if (false) {
+		if (true) { // debug output disabled
 			return;
 		}
 
