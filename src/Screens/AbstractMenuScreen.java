@@ -18,13 +18,23 @@ public abstract class AbstractMenuScreen extends Screen {
         public abstract void select(AbstractMenuScreen parent);
     }
 
+    public class CancelOption extends Option {
+        @Override
+        public String getText() {
+            return "BACK";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            parent.screenCoordinator.pop(parent);
+        }
+    }
+
     protected ScreenCoordinator screenCoordinator;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected int menuItemSelected = -1;
     protected ArrayList<Option> options = new ArrayList<>();
-    protected Stopwatch keyTimer = new Stopwatch();
     protected int pointerLocationX, pointerLocationY;
-    protected KeyLocker keyLocker = new KeyLocker();
 
     protected static final Color COLOR_SELECTED = new Color(49, 207, 240);
     protected static final Color COLOR_UNSELECTED = new Color(255, 215, 0);
@@ -62,19 +72,15 @@ public abstract class AbstractMenuScreen extends Screen {
             o.spriteFont.setOutlineThickness(3);
         }
 
-        keyTimer.setWaitTime(200);
         menuItemSelected = -1;
-        keyLocker.lockKey(Key.SPACE);
     }
 
     @Override
     public void update() {
         // if down or up is pressed, change menu item "hovered" over (blue square in front of text will move along with currentMenuItemHovered changing)
-        if (Keyboard.isKeyDown(Key.DOWN) && keyTimer.isTimeUp()) {
-            keyTimer.reset();
+        if (GlobalKeyCooldown.Keys.DOWN.onceDown()) {
             currentMenuItemHovered++;
-        } else if (Keyboard.isKeyDown(Key.UP) && keyTimer.isTimeUp()) {
-            keyTimer.reset();
+        } else if (GlobalKeyCooldown.Keys.UP.onceDown()) {
             currentMenuItemHovered--;
         }
 
@@ -98,11 +104,9 @@ public abstract class AbstractMenuScreen extends Screen {
         pointerLocationY = 585 - 50 * this.getNumItems() + 50 * currentMenuItemHovered;
 
         // if space is pressed on menu item, change to appropriate screen based on which menu item was chosen
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
-        }
+        GlobalKeyCooldown.Keys.SPACE.cancelIfUp();
 
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
+        if (GlobalKeyCooldown.Keys.SPACE.onceDown()) {
             menuItemSelected = currentMenuItemHovered;
             this.options.get(menuItemSelected).select(this);
         }

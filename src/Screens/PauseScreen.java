@@ -1,13 +1,13 @@
 package Screens;
 
+import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
-import Engine.Screen;
 import Engine.ScreenManager;
-import Game.GameState;
 import Game.ScreenCoordinator;
+import Screens.SaveSlotScreen.SlotType;
 import SpriteFont.SpriteFont;
 import Utils.Stopwatch;
 import java.awt.*;
@@ -23,10 +23,7 @@ public class PauseScreen extends AbstractMenuScreen {
     protected SpriteFont resume;
     protected SpriteFont controls;
     protected SpriteFont saveAndQuit;
-    protected Stopwatch keyTimer = new Stopwatch();
-    protected Stopwatch spaceTimer = new Stopwatch();
     protected int pointerLocationX, pointerLocationY;
-    protected KeyLocker keyLocker = new KeyLocker();
     protected boolean isControlsOpen = false;
 
     public static class ResumeOption extends Option {
@@ -49,27 +46,43 @@ public class PauseScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            //locking the key and checking if the spaceTimer is finished prevent the controls and pause menu from continually swapping between each other
-            if (!((PauseScreen) parent).spaceTimer.isTimeUp()) {
-                parent.menuItemSelected = -1;
-                return;
-            }
-
-            parent.keyLocker.lockKey(Key.SPACE);
-            ((PauseScreen) parent).playLevelScreen.controls();
+            parent.screenCoordinator.push(new ControlsScreen(parent.screenCoordinator));
         }
     }
 
-    public static class SaveAndQuitOption extends Option {
+    public static class SaveOption extends Option {
         @Override
         public String getText() {
-            return "SAVE AND QUIT";
+            return "SAVE";
         }
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            // SAVE LOGIC GOES HERE
-            parent.screenCoordinator.setGameState(GameState.MENU);
+            parent.screenCoordinator.push(new SaveSlotScreen(parent.screenCoordinator, SlotType.SAVE));
+        }
+    }
+
+    public static class LoadOption extends Option {
+        @Override
+        public String getText() {
+            return "LOAD";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            parent.screenCoordinator.push(new SaveSlotScreen(parent.screenCoordinator, SlotType.LOAD));
+        }
+    }
+
+    public static class QuitOption extends Option {
+        @Override
+        public String getText() {
+            return "QUIT";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            parent.screenCoordinator.exitToMenu();
         }
     }
     
@@ -83,26 +96,17 @@ public class PauseScreen extends AbstractMenuScreen {
     public void addOptions() {
         this.options.add(new ResumeOption());
         this.options.add(new ControlsOption());
-        this.options.add(new SaveAndQuitOption());
+        this.options.add(new SaveOption());
+        this.options.add(new LoadOption());
+        this.options.add(new QuitOption());
     }
 
     @Override
     public void initialize() {
         super.initialize();
-        pause = new SpriteFont("PAUSED", 10, 405, "Comic Sans", 30, Color.white);
+        pause = new SpriteFont("PAUSED", 10, 305, "Comic Sans", 30, Color.white);
         pause.setOutlineColor(Color.black);
         pause.setOutlineThickness(3);
-        spaceTimer.setWaitTime(50);
-    }
-
-    @Override
-    public void update() {
-        if (Keyboard.isKeyUp(Key.SPACE) && spaceTimer.isTimeUp()) {
-            spaceTimer.reset();
-            keyLocker.unlockKey(Key.SPACE);
-        }
-
-        super.update();
     }
 
     @Override

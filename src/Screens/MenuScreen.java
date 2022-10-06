@@ -1,7 +1,6 @@
 package Screens;
 
 import Engine.*;
-import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.Map;
 import Maps.TitleScreenMap;
@@ -22,7 +21,7 @@ public class MenuScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            parent.screenCoordinator.setGameState(GameState.LEVEL);
+            parent.screenCoordinator.push(new PlayLevelScreen(parent.screenCoordinator));
         }
     }
 
@@ -34,7 +33,7 @@ public class MenuScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            parent.screenCoordinator.setGameState(GameState.CONTROLS);
+            parent.screenCoordinator.push(new ControlsScreen(parent.screenCoordinator));
         }
     }
 
@@ -46,14 +45,14 @@ public class MenuScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            parent.screenCoordinator.setGameState(GameState.CREDITS);
+            parent.screenCoordinator.push(new CreditsScreen(parent.screenCoordinator));
         }
     }
 
     public MenuScreen(ScreenCoordinator screenCoordinator) {
         super(screenCoordinator);
     }
-    
+
     @Override
     public void initialize() {
         background = new TitleScreenMap();
