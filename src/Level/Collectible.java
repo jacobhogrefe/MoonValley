@@ -22,7 +22,6 @@ public class Collectible extends MapEntity {
     protected float y;
     protected CollectibleScript collectibleScript;
     protected int itemNumber;
-    protected boolean isKeyCollectible;
 
     public Collectible(String imageName, Point location, String nameOfItem, int itemNumber, boolean isKeyCollectible) {
         super(location.x, location.y, new Frame(ImageLoader.load(imageName)));
@@ -31,7 +30,6 @@ public class Collectible extends MapEntity {
         this.x = location.x;
         this.y = location.y;
         this.itemNumber = itemNumber;
-        this.isKeyCollectible = isKeyCollectible;
         this.collectibleScript = new CollectibleScript(nameOfItem, isKeyCollectible);
     }
 
