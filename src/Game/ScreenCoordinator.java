@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.ArrayDeque;
+
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
@@ -61,7 +63,10 @@ public class ScreenCoordinator extends Screen {
 						currentScreen = new ControlsScreen(this);
 						break;
 				}
-				currentScreen.initialize();
+
+				if (gameState != GameState.STACK) {
+					currentScreen.initialize();
+				}
 			}
 			previousGameState = gameState;
 
@@ -75,4 +80,48 @@ public class ScreenCoordinator extends Screen {
 		// call the draw method for the currentScreen
 		currentScreen.draw(graphicsHandler);
 	}
+
+	public PlayLevelScreen getPlayLevelScreen() {
+		return playLevelScreen;
+	}
+
+	/* RECURSIVE FUNCTIONALITY BELOW @author hle0 */
+
+	protected static class StackFrame {
+        public GameState state;
+        public Screen screen;
+
+        public StackFrame(GameState state, Screen screen) {
+            this.state = state;
+            this.screen = screen;
+        }
+    }
+	
+    protected ArrayDeque<StackFrame> stack = new ArrayDeque<>();
+
+    public void push(Screen screen) {
+        this.stack.push(new StackFrame(this.gameState, this.currentScreen));
+
+        this.gameState = GameState.STACK;
+        this.currentScreen = screen;
+		this.currentScreen.initialize();
+    }
+
+    protected void drop() {
+        StackFrame frame = this.stack.pop();
+
+        this.gameState = frame.state;
+        this.currentScreen = frame.screen;
+    }
+
+    public void pop(Screen screen) {
+        if (this.currentScreen != screen) {
+            System.err.println("Warning; tried to pop a screen that wasn't the top screen.");
+            while (this.currentScreen != screen) {
+                this.drop();
+            }
+        }
+        
+        this.drop();
+    }
 }
