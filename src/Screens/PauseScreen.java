@@ -1,12 +1,11 @@
 package Screens;
 
+import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
-import Engine.Screen;
 import Engine.ScreenManager;
-import Game.GameState;
 import Game.ScreenCoordinator;
 import SpriteFont.SpriteFont;
 import Utils.Stopwatch;
@@ -23,10 +22,7 @@ public class PauseScreen extends AbstractMenuScreen {
     protected SpriteFont resume;
     protected SpriteFont controls;
     protected SpriteFont saveAndQuit;
-    protected Stopwatch keyTimer = new Stopwatch();
-    protected Stopwatch spaceTimer = new Stopwatch();
     protected int pointerLocationX, pointerLocationY;
-    protected KeyLocker keyLocker = new KeyLocker();
     protected boolean isControlsOpen = false;
 
     public static class ResumeOption extends Option {
@@ -49,14 +45,7 @@ public class PauseScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            //locking the key and checking if the spaceTimer is finished prevent the controls and pause menu from continually swapping between each other
-            if (!((PauseScreen) parent).spaceTimer.isTimeUp()) {
-                parent.menuItemSelected = -1;
-                return;
-            }
-
-            parent.keyLocker.lockKey(Key.SPACE);
-            ((PauseScreen) parent).playLevelScreen.controls();
+            parent.screenCoordinator.push(new ControlsScreen(parent.screenCoordinator));
         }
     }
 
@@ -69,7 +58,7 @@ public class PauseScreen extends AbstractMenuScreen {
         @Override
         public void select(AbstractMenuScreen parent) {
             // SAVE LOGIC GOES HERE
-            parent.screenCoordinator.setGameState(GameState.MENU);
+            parent.screenCoordinator.exitToMenu();
         }
     }
     
@@ -92,17 +81,6 @@ public class PauseScreen extends AbstractMenuScreen {
         pause = new SpriteFont("PAUSED", 10, 405, "Comic Sans", 30, Color.white);
         pause.setOutlineColor(Color.black);
         pause.setOutlineThickness(3);
-        spaceTimer.setWaitTime(50);
-    }
-
-    @Override
-    public void update() {
-        if (Keyboard.isKeyUp(Key.SPACE) && spaceTimer.isTimeUp()) {
-            spaceTimer.reset();
-            keyLocker.unlockKey(Key.SPACE);
-        }
-
-        super.update();
     }
 
     @Override
