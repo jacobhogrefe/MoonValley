@@ -7,6 +7,7 @@ import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.ScreenManager;
 import Game.ScreenCoordinator;
+import Screens.SaveSlotScreen.SlotType;
 import SpriteFont.SpriteFont;
 import Utils.Stopwatch;
 import java.awt.*;
@@ -49,15 +50,38 @@ public class PauseScreen extends AbstractMenuScreen {
         }
     }
 
-    public static class SaveAndQuitOption extends Option {
+    public static class SaveOption extends Option {
         @Override
         public String getText() {
-            return "SAVE AND QUIT";
+            return "SAVE";
         }
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            // SAVE LOGIC GOES HERE
+            parent.screenCoordinator.push(new SaveSlotScreen(parent.screenCoordinator, SlotType.SAVE));
+        }
+    }
+
+    public static class LoadOption extends Option {
+        @Override
+        public String getText() {
+            return "LOAD";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            parent.screenCoordinator.push(new SaveSlotScreen(parent.screenCoordinator, SlotType.LOAD));
+        }
+    }
+
+    public static class QuitOption extends Option {
+        @Override
+        public String getText() {
+            return "QUIT";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
             parent.screenCoordinator.exitToMenu();
         }
     }
@@ -72,13 +96,15 @@ public class PauseScreen extends AbstractMenuScreen {
     public void addOptions() {
         this.options.add(new ResumeOption());
         this.options.add(new ControlsOption());
-        this.options.add(new SaveAndQuitOption());
+        this.options.add(new SaveOption());
+        this.options.add(new LoadOption());
+        this.options.add(new QuitOption());
     }
 
     @Override
     public void initialize() {
         super.initialize();
-        pause = new SpriteFont("PAUSED", 10, 405, "Comic Sans", 30, Color.white);
+        pause = new SpriteFont("PAUSED", 10, 305, "Comic Sans", 30, Color.white);
         pause.setOutlineColor(Color.black);
         pause.setOutlineThickness(3);
     }
