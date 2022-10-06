@@ -1,24 +1,29 @@
 package Scripts.TestMap;
 
-import Level.ScriptState;
 import Scripts.SimpleTextScript;
-import java.io.*;
-import javax.sound.sampled.*;
-import Engine.Config;
+import Utils.Sound;
 
 public class CollectibleScript extends SimpleTextScript {
 
-    public CollectibleScript(String text) {
+    protected Sound sound;
+    protected String textItem;
+    protected boolean playCompleted;
+
+    public CollectibleScript(String text, boolean isKeyCollectible) {
         super("You have found a " + text + "!");
-        File soundPath = new File(Config.SOUNDS_PATH + "collectibleSound.wav");
-        try {
-            Clip clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(soundPath));
-            clip.start();
-        } catch (Exception e) {
-            System.out.println("Sound file not found!!");
+        textItem = "You have found a " + text + "!";
+        if (isKeyCollectible) {
+            sound = new Sound("keyCollectible.wav", false);
+        } else {
+            sound = new Sound("collectible.wav", false);
         }
     }
-    
-    
+
+    @Override
+    protected void setup() {
+        lockPlayer();
+        showTextbox();
+        addTextToTextboxQueue(textItem);
+        sound.play();
+    }
 }

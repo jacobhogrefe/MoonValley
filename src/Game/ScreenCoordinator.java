@@ -9,6 +9,7 @@ import Screens.CreditsScreen;
 import Screens.HouseScreen;
 import Screens.ControlsScreen;
 import Screens.MenuScreen;
+import Screens.PauseScreen;
 import Screens.PlayLevelScreen;
 
 /*
@@ -18,6 +19,7 @@ import Screens.PlayLevelScreen;
 public class ScreenCoordinator extends Screen {
 	// currently shown Screen
 	protected Screen currentScreen = new DefaultScreen();
+	protected PlayLevelScreen playLevelScreen;
 
 	// keep track of gameState so ScreenCoordinator knows which Screen to show
 	protected GameState gameState;
@@ -56,7 +58,8 @@ public class ScreenCoordinator extends Screen {
 						currentScreen = new CreditsScreen(this);
 						break;
 					case CONTROLS:
-						currentScreen = new ControlsScreen(this, previousGameState);
+						currentScreen = new ControlsScreen(this);
+						break;
 				}
 				currentScreen.initialize();
 			}
