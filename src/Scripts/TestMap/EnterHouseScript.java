@@ -1,6 +1,5 @@
 package Scripts.TestMap;
 
-import Game.ScreenCoordinator;
 import Level.Script;
 import Level.ScriptState;
 

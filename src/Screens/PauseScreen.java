@@ -1,15 +1,10 @@
 package Screens;
 
-import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
-import Engine.Key;
-import Engine.KeyLocker;
-import Engine.Keyboard;
 import Engine.ScreenManager;
 import Game.ScreenCoordinator;
 import Screens.SaveSlotScreen.SlotType;
 import SpriteFont.SpriteFont;
-import Utils.Stopwatch;
 import java.awt.*;
 
 public class PauseScreen extends AbstractMenuScreen {

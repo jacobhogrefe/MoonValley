@@ -1,13 +1,11 @@
 package Engine;
 
 import GameObject.Rectangle;
-import Level.Player;
 import Utils.Colors;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /*
  * This is where the game loop starts
@@ -27,7 +25,7 @@ public class GamePanel extends JPanel {
 	private boolean doPaint = false;
 	private boolean isInventoryOpen = false;
 	private KeyLocker keyLocker = new KeyLocker();
-	private final Key inventoryKey = Key.I;
+	private static final Key inventoryKey = Key.I;
 	public int Clock;
 	
 	/*

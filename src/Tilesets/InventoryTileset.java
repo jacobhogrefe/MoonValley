@@ -8,8 +8,6 @@ import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
 import Engine.ImageLoader;
 import GameObject.Frame;
-import GameObject.ImageEffect;
-import Level.TileType;
 import Level.Tileset;
 
 import java.util.ArrayList;

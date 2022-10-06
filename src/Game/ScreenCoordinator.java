@@ -1,7 +1,6 @@
 package Game;
 
 import java.util.ArrayDeque;
-import java.util.List;
 
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
@@ -107,7 +106,9 @@ public class ScreenCoordinator extends Screen {
 	}
 
 	private void debugPrintStack(String s) {
-		if (true) { // debug output disabled
+		boolean debug = false;
+
+		if (!debug) { // debug output disabled
 			return;
 		}
 

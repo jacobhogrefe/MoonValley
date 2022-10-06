@@ -2,7 +2,6 @@ package Screens;
 
 import Engine.*;
 import Level.PlayerInventory;
-import SpriteFont.SpriteFont;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ public class InventoryScreen extends Screen {
 	protected ArrayList<String> itemDescriptions;
 	protected PlayLevelScreen playLevelScreen;
 	protected KeyLocker keyLocker = new KeyLocker();
-	private GraphicsHandler graphicsHandler;
 	private PlayerInventory playerInventory;
 
 	protected Key Inventory_Key = Key.I;

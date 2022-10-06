@@ -5,7 +5,6 @@ import Game.*;
 import Level.Map;
 import Maps.TitleScreenMap;
 import SpriteFont.SpriteFont;
-import Utils.Stopwatch;
 
 import java.awt.*;
 
