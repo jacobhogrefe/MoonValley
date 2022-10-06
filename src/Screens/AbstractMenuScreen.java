@@ -43,6 +43,7 @@ public abstract class AbstractMenuScreen extends Screen {
     //if another button needs to be added change the Y-value by 50 and the X-value by
     @Override
     public void initialize() {
+        this.options.clear();
         this.addOptions();
 
         int minY = 605 - this.getNumItems() * 50;
