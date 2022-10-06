@@ -51,6 +51,7 @@ public class FlagManager {
     public static class ExtraSaveData implements Serializable {
         public float x;
         public float y;
+        public int[] inventory;
     }
 
     public ExtraSaveData extraSaveData = new ExtraSaveData();
@@ -84,10 +85,12 @@ public class FlagManager {
     public void updateFrom(Player player) {
         this.extraSaveData.x = player.getX();
         this.extraSaveData.y = player.getY();
+        this.extraSaveData.inventory = player.getPlayerInventory();
     }
 
     public void updateTo(Player player) {
         player.setX(this.extraSaveData.x);
         player.setY(this.extraSaveData.y);
+        player.setPlayerInventory(this.extraSaveData.inventory);
     }
 }
