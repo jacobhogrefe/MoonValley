@@ -1,16 +1,12 @@
 package Screens;
 
 import Engine.*;
-import Game.GameState;
 import Game.ScreenCoordinator;
-import Level.Map;
-import Maps.TitleScreenMap;
 import SpriteFont.SpriteFont;
 import Utils.Stopwatch;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 // This is the class for a generic menu screen.
 public abstract class AbstractMenuScreen extends Screen {
@@ -114,7 +110,7 @@ public abstract class AbstractMenuScreen extends Screen {
         for (int i = 0; i < this.getNumItems(); i++) {
             this.options.get(i).spriteFont.draw(graphicsHandler);
         }
-        
+
         graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, COLOR_SELECTED, Color.black, 2);
     }
 
