@@ -45,6 +45,18 @@ public class MenuScreen extends AbstractMenuScreen {
         }
     }
 
+    public static class QuitOption extends Option {
+        @Override
+        public String getText() {
+            return "QUIT";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            System.exit(0);
+        }
+    }
+
     public MenuScreen(ScreenCoordinator screenCoordinator) {
         super(screenCoordinator);
     }
@@ -62,6 +74,7 @@ public class MenuScreen extends AbstractMenuScreen {
         this.options.add(new PlayGameOption());
         this.options.add(new ControlsOption());
         this.options.add(new CreditsOption());
+        this.options.add(new QuitOption());
     }
 
     @Override
