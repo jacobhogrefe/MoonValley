@@ -105,6 +105,11 @@ public class GamePanel extends JPanel {
 		if (doPaint) {
 			draw();
 			g.drawString("Time " + clock1.getTimeOfDay()+ ":00", 0, 25);
+			if(clock1.getTimeOfDay() >= 12) {
+				graphicsHandler.drawFilledRectangle(0,0,ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight(), new Color(0,0,0,150));
+
+				}
+
 		}
 	}
 }
