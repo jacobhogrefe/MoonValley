@@ -9,16 +9,12 @@ import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Scripts.SimpleTextScript;
-import Scripts.TestMap.CollectibleScript;
 import Scripts.TestMap.DinoScript;
-import Scripts.TestMap.EnterHouseScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 import java.util.ArrayList;
-
-import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {

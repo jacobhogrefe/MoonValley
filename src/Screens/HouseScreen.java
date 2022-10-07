@@ -1,6 +1,5 @@
 package Screens;
 
-import java.awt.event.KeyListener;
 import java.util.Stack;
 
 import Engine.GraphicsHandler;
@@ -8,7 +7,6 @@ import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
-import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.TestMap;
@@ -190,10 +188,6 @@ public class HouseScreen extends Screen {
 
 	public void resetLevel() {
 		initialize();
-	}
-
-	public void goBackToMenu() {
-		screenCoordinator.setGameState(GameState.MENU);
 	}
 
 	// This enum represents the different states this screen can be in

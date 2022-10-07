@@ -5,32 +5,26 @@ package Level;
  * screens we might add that manage the main game).
  */
 
+import java.util.Arrays;
+
 public class PlayerInventory {
 
 	private int[] inventoryArray = new int[55];
-	private int currentFilledSlots;
-	private int currentEmptySlots = 55 - currentFilledSlots;
-	private int firstEmptySlot;
 
 	public PlayerInventory() {
-		
-		
 		for (int i = 0; i < 55; i++) {
 			inventoryArray[i] = 0;
 		}
-
-		this.currentEmptySlots = 54;
-		this.firstEmptySlot = 0;
-		
-
 	}
 
 	public int getFirstEmptySlot() {
-		return firstEmptySlot;
-	}
+		for (int i = 0; i < this.inventoryArray.length; i++) {
+			if (this.inventoryArray[i] == 0) {
+				return i;
+			}
+		}
 
-	public void setFirstEmptySlot(int firstEmptySlot) {
-		this.firstEmptySlot = firstEmptySlot;
+		return -1;
 	}
 
 	public int[] getInventoryArray() {
@@ -42,78 +36,42 @@ public class PlayerInventory {
 	}
 
 	public int getCurrentFilledSlots() {
-		return currentFilledSlots;
-	}
-
-	public void setCurrentFilledSlots(int currentFilledSlots) {
-		this.currentFilledSlots = currentFilledSlots;
+		return (int) Arrays.stream(this.inventoryArray).filter(i -> i != 0).count();
 	}
 
 	public int getCurrentEmptySlots() {
-		return currentEmptySlots;
+		return (int) Arrays.stream(this.inventoryArray).filter(i -> i == 0).count();
 	}
 
-// add an item, checks to make sure inventory is item, otherwise does nothing which prevents breaking game
-	public void addItem(int itemNumber) {
-
-		if (currentEmptySlots != 0) {
-			inventoryArray[firstEmptySlot] = itemNumber;
-			currentFilledSlots++;
-			newFirstEmptySlot();
+	/**
+	 * add an item.
+	 * returns true if it was added, false if the inventory was full.
+	 */
+	public boolean addItem(int itemNumber) {
+		if (this.getCurrentEmptySlots() == 0) {
+			return false;
 		} else {
+			inventoryArray[this.getFirstEmptySlot()] = itemNumber;
+			return true;
 		}
 	}
 
-//removes item from inventory
+	//removes item from inventory
 	public void removeItem(int slotNumber) {
-
 		inventoryArray[slotNumber] = 0;
-		currentFilledSlots--;
-		newFirstEmptySlot();
-
 	}
 
 	// swaps the location of two items. For the sake of the game logic, an empty
 	// slot is also considered an item
-	public void moveItem(int fromSlot, int toSlot) {
-
-		int startingSlot = inventoryArray[fromSlot];
-		int finalSlot = inventoryArray[toSlot];
-
-		inventoryArray[toSlot] = inventoryArray[startingSlot];
-		inventoryArray[fromSlot] = inventoryArray[finalSlot];
-		newFirstEmptySlot();
+	public void moveItem(int slotA, int slotB) {
+		// https://en.wikipedia.org/wiki/XOR_swap_algorithm
+		inventoryArray[slotA] ^= inventoryArray[slotB];
+		inventoryArray[slotB] ^= inventoryArray[slotA];
+		inventoryArray[slotA] ^= inventoryArray[slotB];
 	}
 
 	// searches the inventory for a specified item and returns true if found
 	public boolean containsItem(int itemNumber) {
-
-		boolean foundItem = false;
-
-		for (int i = 0; i < 55; i++) {
-			if (inventoryArray[i] == itemNumber) {
-				foundItem = true;
-			}
-		}
-
-		return foundItem;
-
+		return Arrays.stream(this.inventoryArray).filter(i -> i == itemNumber).findAny().isPresent();
 	}
-
-	// finds the first empty slot in inventory and sets firstEmptySlot - call this
-	// after adding/removing/moving items
-	public void newFirstEmptySlot() {
-		boolean foundSlot = false;
-		int i = 0;
-		while (!foundSlot) {
-			if (inventoryArray[i] == 0) {
-				firstEmptySlot = i;
-				foundSlot = true;
-			} else {
-				i++;
-			}
-		}
-
-	}
-
 }

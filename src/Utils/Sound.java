@@ -19,10 +19,10 @@ public class Sound implements LineListener {
             DataLine.Info soundInfo = new DataLine.Info(Clip.class, soundFormat);
             soundClip = (Clip) AudioSystem.getLine(soundInfo);
             soundClip.addLineListener(this);
-            soundClip.open(soundStream);
             if (doesSoundLoop) {
                 soundClip.loop(Clip.LOOP_CONTINUOUSLY);
             }
+            soundClip.open(soundStream);
         } catch (Exception e) {
             System.out.println("Sound file: " + "\"" + soundFileName + "\" was not found!");
         }
