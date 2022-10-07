@@ -14,7 +14,6 @@ public class PauseScreen extends AbstractMenuScreen {
     protected ControlsScreen controlsScreen;
     protected int currentMenuItemHovered = 0;
     protected int menuItemSelected = -1;
-    protected SpriteFont pause;
     protected SpriteFont resume;
     protected SpriteFont controls;
     protected SpriteFont saveAndQuit;
@@ -88,6 +87,11 @@ public class PauseScreen extends AbstractMenuScreen {
     }
 
     @Override
+    public String getTitle() {
+        return "PAUSED";
+    }
+
+    @Override
     public void addOptions() {
         this.options.add(new ResumeOption());
         this.options.add(new ControlsOption());
@@ -97,17 +101,8 @@ public class PauseScreen extends AbstractMenuScreen {
     }
 
     @Override
-    public void initialize() {
-        super.initialize();
-        pause = new SpriteFont("PAUSED", 10, 305, "Comic Sans", 30, Color.white);
-        pause.setOutlineColor(Color.black);
-        pause.setOutlineThickness(3);
-    }
-
-    @Override
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
-        pause.draw(graphicsHandler);
         super.draw(graphicsHandler);
     }
 }

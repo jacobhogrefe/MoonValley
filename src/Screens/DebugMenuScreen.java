@@ -54,6 +54,11 @@ public class DebugMenuScreen extends AbstractMenuScreen {
     }
 
     @Override
+    public String getTitle() {
+        return "Debug Menu";
+    }
+
+    @Override
     public void initialize() {
         if (!DEBUG_ENABLED) {
             this.screenCoordinator.pop(this);

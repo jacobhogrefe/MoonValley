@@ -34,12 +34,17 @@ public abstract class AbstractMenuScreen extends Screen {
     protected int menuItemSelected = -1;
     protected ArrayList<Option> options = new ArrayList<>();
     protected int pointerLocationX, pointerLocationY;
+    protected SpriteFont titleText = null;
 
     protected static final Color COLOR_SELECTED = new Color(49, 207, 240);
     protected static final Color COLOR_UNSELECTED = new Color(255, 215, 0);
 
     public AbstractMenuScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+    }
+
+    public String getTitle() {
+        return null;
     }
 
     // add all the Options to this.options
@@ -69,6 +74,13 @@ public abstract class AbstractMenuScreen extends Screen {
             );
             o.spriteFont.setOutlineColor(Color.black);
             o.spriteFont.setOutlineThickness(3);
+        }
+
+        String title = this.getTitle();
+        if (title != null) {
+            titleText = new SpriteFont(title, 10, minY - 50, "Comic Sans", 30, Color.white);
+            titleText.setOutlineColor(Color.black);
+            titleText.setOutlineThickness(3);
         }
 
         menuItemSelected = -1;
@@ -115,6 +127,9 @@ public abstract class AbstractMenuScreen extends Screen {
         for (int i = 0; i < this.getNumItems(); i++) {
             this.options.get(i).spriteFont.draw(graphicsHandler);
         }
+
+        if (this.titleText != null)
+            this.titleText.draw(graphicsHandler);
 
         graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, COLOR_SELECTED, Color.black, 2);
     }
