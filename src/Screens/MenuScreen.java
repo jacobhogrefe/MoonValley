@@ -1,14 +1,9 @@
 package Screens;
 
 import Engine.*;
-import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.Map;
 import Maps.TitleScreenMap;
-import SpriteFont.SpriteFont;
-import Utils.Stopwatch;
-
-import java.awt.*;
 
 // This is the class for the main menu screen
 public class MenuScreen extends AbstractMenuScreen {
@@ -22,7 +17,7 @@ public class MenuScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            parent.screenCoordinator.setGameState(GameState.LEVEL);
+            parent.screenCoordinator.push(new PlayLevelScreen(parent.screenCoordinator));
         }
     }
 
@@ -34,7 +29,7 @@ public class MenuScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            parent.screenCoordinator.setGameState(GameState.CONTROLS);
+            parent.screenCoordinator.push(new ControlsScreen(parent.screenCoordinator));
         }
     }
 
@@ -46,14 +41,26 @@ public class MenuScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
-            parent.screenCoordinator.setGameState(GameState.CREDITS);
+            parent.screenCoordinator.push(new CreditsScreen(parent.screenCoordinator));
+        }
+    }
+
+    public static class QuitOption extends Option {
+        @Override
+        public String getText() {
+            return "QUIT";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            System.exit(0);
         }
     }
 
     public MenuScreen(ScreenCoordinator screenCoordinator) {
         super(screenCoordinator);
     }
-    
+
     @Override
     public void initialize() {
         background = new TitleScreenMap();
@@ -67,6 +74,7 @@ public class MenuScreen extends AbstractMenuScreen {
         this.options.add(new PlayGameOption());
         this.options.add(new ControlsOption());
         this.options.add(new CreditsOption());
+        this.options.add(new QuitOption());
     }
 
     @Override

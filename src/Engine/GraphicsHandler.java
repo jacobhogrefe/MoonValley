@@ -1,9 +1,7 @@
 package Engine;
 
-import Level.Player;
 import GameObject.ImageEffect;
 
-import SpriteFont.SpriteFont;
 import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
