@@ -1,12 +1,12 @@
 package Engine;
 
 import GameObject.ImageEffect;
+import Registry.ItemRegistry;
 
 import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class GraphicsHandler {
 
@@ -103,7 +103,7 @@ public class GraphicsHandler {
 		g.setRenderingHints(originalHints);
 	}
 
-	public void drawInventory(ArrayList<Image> itemImages, int[] playerInventory) {
+	public void drawInventory(int[] playerInventory) {
 
 		Image inventoryUpLeft = ImageLoader.load("InventoryTileset.png").getSubimage(0, 0, 16, 16).getScaledInstance(48,
 				48, Image.SCALE_SMOOTH);
@@ -121,8 +121,6 @@ public class GraphicsHandler {
 				.getScaledInstance(48, 48, Image.SCALE_SMOOTH);
 		Image inventoryRight = ImageLoader.load("InventoryTileset.png").getSubimage(34, 17, 16, 16)
 				.getScaledInstance(48, 48, Image.SCALE_SMOOTH);
-		Image emptySlot = ImageLoader.load("InventoryTileset.png").getSubimage(17, 17, 16, 16).getScaledInstance(48, 48,
-				Image.SCALE_SMOOTH);
 
 		// START Drawing the frame of the inventory, will always load in the same
 		// regardless of what is in inventory
@@ -164,7 +162,7 @@ public class GraphicsHandler {
 		// inventory.
 		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 11; i++) {
-				g.drawImage(itemImages.get(playerInventory[j * 10 + i]), 128 + (i * 48), (168 + (j * 48)), null);
+				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 10 + i]).texture, 128 + (i * 48), (168 + (j * 48)), null);
 
 			}
 		}
