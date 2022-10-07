@@ -1,13 +1,11 @@
 package Engine;
 
 import GameObject.Rectangle;
-import Level.Player;
 import Utils.Colors;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /*
  * This is where the game loop starts
@@ -27,7 +25,7 @@ public class GamePanel extends JPanel {
 	private boolean doPaint = false;
 	private boolean isInventoryOpen = false;
 	private KeyLocker keyLocker = new KeyLocker();
-	private final Key inventoryKey = Key.I;
+	private static final Key inventoryKey = Key.I;
 	public int Clock;
 	
 	/*
@@ -93,7 +91,6 @@ public class GamePanel extends JPanel {
 		if (isInventoryOpen) {
 			graphicsHandler.drawFilledRectangle(90, 120, 600, 300, new Color(13, 171, 181, 255));
 			
-
 			
 			graphicsHandler.drawInventory();
 		}
@@ -108,11 +105,6 @@ public class GamePanel extends JPanel {
 		if (doPaint) {
 			draw();
 			g.drawString("Time " + clock1.getTimeOfDay()+ ":00", 0, 25);
-			if(clock1.getTimeOfDay() >= 12) {
-			graphicsHandler.drawFilledRectangle(0,0,ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight(), new Color(0,0,0,150));
-			
-			}
-
 		}
 	}
 }
