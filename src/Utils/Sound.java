@@ -6,10 +6,12 @@ import Engine.Config;
 
 public class Sound implements LineListener {
 
-    protected boolean playCompleted;
-    protected boolean doesSoundLoop;
+    protected boolean playCompleted, doesSoundLoop;
     protected Clip soundClip;
 
+    /* ALL SOUNDS SHOULD BE PLACED IN THE SOUND FOLDER
+     * Sound class that does all the heavy work in loading and playing a sound within the game
+     */
     public Sound(String soundFileName, boolean doesSoundLoop) {
         this.doesSoundLoop = doesSoundLoop;
         try {
@@ -19,9 +21,6 @@ public class Sound implements LineListener {
             DataLine.Info soundInfo = new DataLine.Info(Clip.class, soundFormat);
             soundClip = (Clip) AudioSystem.getLine(soundInfo);
             soundClip.addLineListener(this);
-            if (doesSoundLoop) {
-                soundClip.loop(Clip.LOOP_CONTINUOUSLY);
-            }
             soundClip.open(soundStream);
         } catch (Exception e) {
             System.out.println("Sound file: " + "\"" + soundFileName + "\" was not found!");
@@ -38,7 +37,10 @@ public class Sound implements LineListener {
 
     //plays the sound stored in the sound object
     public void play() {
-        if (soundClip != null) {
+        if (soundClip != null && !doesSoundLoop) {
+            soundClip.start();
+        } else if (doesSoundLoop) {
+            soundClip.loop(Clip.LOOP_CONTINUOUSLY);
             soundClip.start();
         }
     }

@@ -1,9 +1,7 @@
 package Registry;
 
 import java.util.ArrayList;
-
 import Engine.ImageLoader;
-
 import java.awt.Image;
 
 public class ItemRegistry {
