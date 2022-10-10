@@ -32,7 +32,7 @@ public class SmartMapTeleportScript extends MapTeleportScript {
                 // we'll pop out on the right on the other map
                 return (float) (this.toMap.getWidthPixels() - this.getPlayer().getWidth());
             } else { // right side
-                return (float) (this.getPlayer().getWidth());
+                return 0.0f;
             }
         }
     }
@@ -51,7 +51,7 @@ public class SmartMapTeleportScript extends MapTeleportScript {
                 // we'll pop out on the bottom on the other map
                 return (float) (this.toMap.getHeightPixels() - this.getPlayer().getHeight());
             } else { // bottom side
-                return (float) (this.getPlayer().getHeight());
+                return 0.0f;
             }
         }
     }
