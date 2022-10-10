@@ -1,15 +1,11 @@
 package Game;
 
+import java.util.ArrayDeque;
+
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
-import Game.GameState;
-import Level.PlayerInventory;
-import Screens.CreditsScreen;
-import Screens.HouseScreen;
-import Screens.ControlsScreen;
 import Screens.MenuScreen;
-import Screens.PauseScreen;
 import Screens.PlayLevelScreen;
 
 /*
@@ -20,59 +16,116 @@ public class ScreenCoordinator extends Screen {
 	// currently shown Screen
 	protected Screen currentScreen = new DefaultScreen();
 	protected PlayLevelScreen playLevelScreen;
-
-	// keep track of gameState so ScreenCoordinator knows which Screen to show
-	protected GameState gameState;
-	protected GameState previousGameState;
-	
-
-	public GameState getGameState() {
-		return gameState;
-	}
-
-	// Other Screens can set the gameState of this class to force it to change the currentScreen
-	public void setGameState(GameState gameState) {
-		this.gameState = gameState;
-	}
+	public MenuScreen mainMenuScreen;
 
 	@Override
 	public void initialize() {
 		// start game off with Menu Screen
-		gameState = GameState.MENU;
+		mainMenuScreen = new MenuScreen(this);
+		mainMenuScreen.initialize();
+		this.currentScreen = mainMenuScreen;
 	}
 
 	@Override
 	public void update() {
-		do {
-			// if previousGameState does not equal gameState, it means there was a change in gameState
-			// this triggers ScreenCoordinator to bring up a new Screen based on what the gameState is
-			if (previousGameState != gameState) {
-				switch(gameState) {
-					case MENU:
-						currentScreen = new MenuScreen(this);
-						break;
-					case LEVEL:
-						currentScreen = new PlayLevelScreen(this);
-						break;
-					case CREDITS:
-						currentScreen = new CreditsScreen(this);
-						break;
-					case CONTROLS:
-						currentScreen = new ControlsScreen(this);
-						break;
-				}
-				currentScreen.initialize();
-			}
-			previousGameState = gameState;
-
-			// call the update method for the currentScreen
-			currentScreen.update();
-		} while (previousGameState != gameState);
+		currentScreen.update();
 	}
 
 	@Override
 	public void draw(GraphicsHandler graphicsHandler) {
 		// call the draw method for the currentScreen
 		currentScreen.draw(graphicsHandler);
+	}
+
+	public PlayLevelScreen getPlayLevelScreen() {
+		return playLevelScreen;
+	}
+
+	/* RECURSIVE FUNCTIONALITY BELOW @author hle0 */
+	
+    protected ArrayDeque<Screen> stack = new ArrayDeque<>();
+
+	/**
+	 * "Enter" a new screen from a starting screen, with the ability to resume the old one later.
+	 * @param screen the new screen to enter
+	 */
+    public void push(Screen screen) {
+        this.stack.addLast(this.currentScreen);
+
+        this.currentScreen = screen;
+		this.currentScreen.initialize();
+
+		if (this.currentScreen instanceof PlayLevelScreen) {
+			this.playLevelScreen = (PlayLevelScreen) this.currentScreen;
+		}
+
+		this.debugPrintStack("push");
+    }
+
+	/**
+	 * Drop down one frame.
+	 * Be careful.
+	 */
+    protected void drop() {
+        this.currentScreen = this.stack.removeLast();
+    }
+
+	/**
+	 * Descend down the stack until reaching the desired Screen.
+	 * e.g., goes from the controls menu to the pause menu to the playlevel.
+	 */
+	public void dropUntil(Screen screen) {
+		while (this.currentScreen != screen) {
+			this.drop();
+		}
+
+		this.debugPrintStack("dropUntil");
+	}
+
+	/**
+	 * Exit a screen, going to the one before it. Warns if it is dropping more than one level (should not happen)
+	 * @param screen the screen to get rid of.
+	 */
+    public void pop(Screen screen) {
+        if (this.currentScreen != screen) {
+            System.err.println("Warning; tried to pop a screen that wasn't the top screen.");
+            this.dropUntil(screen);
+        }
+        
+        this.drop();
+
+		this.debugPrintStack("pop");
+    }
+
+	public void resumeLevel() {
+		this.dropUntil(this.playLevelScreen);
+	}
+
+	public void exitToMenu() {
+		this.dropUntil(this.mainMenuScreen);
+	}
+
+	private void debugPrintStack(String s) {
+		boolean debug = false;
+
+		if (!debug) { // debug output disabled
+			return;
+		}
+
+		System.out.println(s);
+
+		this.debugPrintStack();
+	}
+
+	private void debugPrintStack() {
+		Object[] screens = this.stack.toArray();
+
+		System.out.println("Screen stack contents:");
+
+		for (int i = 0; i < this.stack.size(); i++) {
+			System.out.printf("[%d] %s\n", i, screens[i].getClass().getName());
+		}
+
+		System.out.printf("[!!] %s\n", this.currentScreen.getClass().getName());
 	}
 }

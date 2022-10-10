@@ -1,7 +1,6 @@
 package Screens;
 
 import Engine.*;
-import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.Map;
 import Maps.TitleScreenMap;
@@ -13,7 +12,6 @@ import java.awt.*;
 public class CreditsScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map background;
-    protected KeyLocker keyLocker = new KeyLocker();
     protected SpriteFont creditsLabel;
     protected SpriteFont createdByLabel;
     protected SpriteFont returnInstructionsLabel;
@@ -30,19 +28,16 @@ public class CreditsScreen extends Screen {
         creditsLabel = new SpriteFont("Credits", 15, 35, "Times New Roman", 30, Color.white);
         createdByLabel = new SpriteFont("Created by Alex Thimineur", 130, 140, "Times New Roman", 20, Color.white);
         returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 560, "Times New Roman", 30, Color.white);
-        keyLocker.lockKey(Key.SPACE);
     }
 
     public void update() {
         background.update(null);
 
-        if (Keyboard.isKeyUp(Key.SPACE)) {
-            keyLocker.unlockKey(Key.SPACE);
-        }
+        GlobalKeyCooldown.Keys.SPACE.cancelIfUp();
 
         // if space is pressed, go back to main menu
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
-            screenCoordinator.setGameState(GameState.MENU);
+        if (GlobalKeyCooldown.Keys.SPACE.onceDown()) {
+            screenCoordinator.pop(this);
         }
     }
 

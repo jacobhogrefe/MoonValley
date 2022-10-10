@@ -1,4 +1,5 @@
 package Maps;
+import java.util.ArrayList;
 
 import EnhancedMapTiles.Rock;
 import Level.Collectible;
@@ -17,11 +18,8 @@ import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
+import Level.Map;
 import Tilesets.HouseTileset;
-
-import java.util.ArrayList;
-
-import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
 public class HouseMap extends Map {
@@ -34,7 +32,7 @@ public class HouseMap extends Map {
     @Override
     public ArrayList<HouseEntry> loadHouseEntries() {
     	ArrayList<HouseEntry> entries = new ArrayList<>();
-    	entries.add(new HouseEntry(5, 9, ));
+//    	entries.add(new HouseEntry(5, 9, house_map.txt, HouseTileset));
     	return entries;
     }
 }

@@ -5,7 +5,6 @@ import Game.*;
 import Level.Map;
 import Maps.TitleScreenMap;
 import SpriteFont.SpriteFont;
-import Utils.Stopwatch;
 
 import java.awt.*;
 
@@ -15,18 +14,17 @@ public class ControlsScreen extends Screen {
     protected Screen previousScreen;
     protected PlayLevelScreen playLevelScreen;
     protected Map background;
-    protected KeyLocker keyLocker = new KeyLocker();
-    protected Stopwatch spaceTimer = new Stopwatch();
     protected SpriteFont[] controls = new SpriteFont[9];
-    protected GameState previousGameState;
 
     public ControlsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        this.playLevelScreen = screenCoordinator.getPlayLevelScreen();
         initialize();
     }
 
     public ControlsScreen(PlayLevelScreen playLevelScreen) {
         this.playLevelScreen = playLevelScreen;
+        this.screenCoordinator = playLevelScreen.screenCoordinator;
         initialize();
     }
 
@@ -47,28 +45,16 @@ public class ControlsScreen extends Screen {
             controls[i].setOutlineColor(Color.black);
             controls[i].setOutlineThickness(3);
         }
-        spaceTimer.setWaitTime(50);
-        keyLocker.lockKey(Key.SPACE);
     }
 
     @Override
     public void update() {
         background.update(null);
 
-        if (Keyboard.isKeyUp(Key.SPACE) && spaceTimer.isTimeUp()) {
-            spaceTimer.reset();
-            keyLocker.unlockKey(Key.SPACE);
-        }
-
         //Checks whether or not playLevelScreen is null to go back to the proper screen
         //locking the key and checking if the spaceTimer is finished prevent the controls and pause menu from continually swapping between each other
-        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE) && spaceTimer.isTimeUp()) {
-            if (playLevelScreen != null) {
-                keyLocker.lockKey(Key.SPACE);
-                playLevelScreen.pause();
-            } else {
-                screenCoordinator.setGameState(GameState.MENU);
-            }
+        if (GlobalKeyCooldown.Keys.SPACE.onceDown()) {
+            screenCoordinator.pop(this);
         }
     }
 
