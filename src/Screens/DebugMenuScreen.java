@@ -5,6 +5,7 @@ import Level.Map;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.moonValleyTitle;
+import Maps.Biomes.BiomeStart;
 
 public class DebugMenuScreen extends AbstractMenuScreen {
     public static final boolean DEBUG_ENABLED = true;
@@ -42,6 +43,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
                     this.options.add(new MapOption(new TitleScreenMap()));
                     this.options.add(new MapOption(new moonValleyTitle()));
                     this.options.add(new MapOption(new TestMap()));
+                    this.options.add(new MapOption(new BiomeStart()));
                     this.options.add(new CancelOption());
                 }
             });
