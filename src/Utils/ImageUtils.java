@@ -67,4 +67,19 @@ public class ImageUtils {
 		image = ImageUtils.transformColorToTransparency(image, color);
 		return resizeImage(image, width, height);
 	}
+
+	public static BufferedImage overlay(BufferedImage top, BufferedImage bottom) {
+		if (top.getWidth() != bottom.getWidth() || top.getHeight() != bottom.getHeight()) {
+			throw new IllegalArgumentException("top and bottom images should be the same size");
+		}
+
+		BufferedImage out = new BufferedImage(top.getWidth(), top.getHeight(), top.getType());
+
+		Graphics2D graphics = out.createGraphics();
+
+		graphics.drawImage(bottom, 0, 0, null);
+		graphics.drawImage(top, 0, 0, null);
+
+		return out;
+	}
 }
