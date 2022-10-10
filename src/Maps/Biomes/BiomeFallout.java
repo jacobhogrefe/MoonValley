@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import Level.Map;
 import Maps.AbstractLoopingMap;
 import Tilesets.CommonTileset;
+import Tilesets.Tilesets;
 import Utils.Side;
 
 /**
@@ -22,7 +23,7 @@ import Utils.Side;
  */
 public class BiomeFallout extends AbstractLoopingMap {
     public BiomeFallout() {
-        super("Biomes/fallout.txt", new CommonTileset());
+        super("Biomes/fallout.txt", Tilesets.MINECRAFT_TILESET);
     }
 
     @Override
