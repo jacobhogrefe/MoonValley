@@ -203,7 +203,7 @@ public abstract class Map {
 		MapTile tile = getMapTile(xIndex, yIndex);
 		return new Point(tile.getX(), tile.getY());
 	}
-
+	
 	public Tileset getTileset() {
 		return tileset;
 	}
@@ -314,6 +314,10 @@ public abstract class Map {
 
 	protected ArrayList<Trigger> loadTriggers() {
 		return new ArrayList<>();
+	}
+	
+	protected ArrayList<HouseEntry> loadHouseEntries() {
+		return new ArrayList<>();	
 	}
 
 	// List of collectibles to be apart of the map, should be overridden in a
@@ -649,4 +653,6 @@ public abstract class Map {
 		
 		return itemsToGive;
 	}
+
+	
 }

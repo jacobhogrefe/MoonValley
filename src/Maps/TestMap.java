@@ -3,6 +3,7 @@ package Maps;
 import EnhancedMapTiles.Rock;
 import Level.Collectible;
 import Level.EnhancedMapTile;
+import Level.HouseEntry;
 import Level.Map;
 import Level.NPC;
 import Level.Trigger;
@@ -69,7 +70,14 @@ public class TestMap extends Map {
         collectibles.add(new Collectible("yoshiCoin.png", getMapTile(9,19).getLocation(), "Yoshi Coin", 2, true));
         return collectibles;
     }
-
+    
+    @Override
+    public ArrayList<HouseEntry> loadHouseEntries() {
+    	ArrayList<HouseEntry> entries = new ArrayList<>();
+    	entries.add(new HouseEntry(17, 19));
+    	return entries;
+    }
+    
     @Override
     public void loadScripts() {
         getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));
