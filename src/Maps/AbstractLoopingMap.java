@@ -23,7 +23,7 @@ public abstract class AbstractLoopingMap extends Map {
 
         for (Side edge : Side.values()) {
             Supplier<Map> borderingMap = this.getBorderingMap(edge);
-            if (edge != null) {
+            if (borderingMap != null) {
                 Rectangle bounds = edge.getBorderWithWidth(this.getIntersectRectangle(), 16);
                 Trigger trigger = new Trigger(
                     (int) bounds.getX(),
