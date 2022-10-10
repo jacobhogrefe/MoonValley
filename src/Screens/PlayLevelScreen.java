@@ -60,6 +60,13 @@ public class PlayLevelScreen extends Screen {
 		this.playLevelScreenState = PlayLevelScreenState.RUNNING;
 		this.player.setFacingDirection(Direction.LEFT);
 
+		this.reinitializeMap();
+
+		winScreen = new WinScreen(this);
+		inventoryScreen = new InventoryScreen(this, playerInventory);
+	}
+
+	public void reinitializeMap() {
 		// let pieces of map know which button to listen for as the "interact" button
 		map.getTextbox().setInteractKey(player.getInteractKey());
 
@@ -94,12 +101,7 @@ public class PlayLevelScreen extends Screen {
                 collectibles.getInteractScript().setPlayer(player);
             }
         }
-		
-		winScreen = new WinScreen(this);
-		inventoryScreen = new InventoryScreen(this, playerInventory);
 	}
-
-
 
 	public void update() {
 		// based on screen state, perform specific actions
@@ -224,5 +226,6 @@ public class PlayLevelScreen extends Screen {
 		this.player.setMap(map);
 		this.player.setX(x);
 		this.player.setY(y);
+		this.reinitializeMap();
 	}
 }

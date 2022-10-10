@@ -1,5 +1,7 @@
 package Maps;
 
+import java.util.function.Supplier;
+
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.ImageEffect;
@@ -8,9 +10,10 @@ import Level.Map;
 import Tilesets.TitleTileset;
 import Utils.Colors;
 import Utils.Point;
+import Utils.Side;
 
 // Represents the map that is used as a background for the main menu and credits menu screen
-public class moonValleyTitle extends Map {
+public class moonValleyTitle extends AbstractLoopingMap {
 
 	 private Sprite cat;
 
@@ -27,5 +30,11 @@ public class moonValleyTitle extends Map {
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);
    
+    }
+
+    @Override
+    public Supplier<Map> getBorderingMap(Side edge) {
+        // Loop to the same map
+        return () -> new TestMap();
     }
 }

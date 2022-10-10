@@ -3,6 +3,7 @@ package Level;
 import Engine.Config;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
+import GameObject.IntersectableRectangle;
 import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
@@ -24,7 +25,7 @@ import java.util.Stack;
     5. calculating which tile a game object is currently on based on its x and y location
 */
 
-public abstract class Map {
+public abstract class Map implements IntersectableRectangle {
 	// the tile map (map tiles that make up the entire map image)
 	protected MapTile[] mapTiles;
 
@@ -646,5 +647,10 @@ public abstract class Map {
 		}
 		
 		return itemsToGive;
+	}
+
+	@Override
+	public Rectangle getIntersectRectangle() {
+		return new Rectangle(this.startBoundX, this.endBoundY, this.getWidthPixels(), this.getHeightPixels());
 	}
 }
