@@ -53,6 +53,11 @@ public class ItemRegistry {
                 );
             }
         }
+
+        @Override
+        public String toString() {
+            return "Item " + this.name;
+        }
     }
 
     public Item EMPTY_SLOT = new Item.Builder() // 0

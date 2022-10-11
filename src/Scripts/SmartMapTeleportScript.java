@@ -19,7 +19,7 @@ public class SmartMapTeleportScript extends MapTeleportScript {
     public SmartMapTeleportScript(Supplier<Map> mapCreator, Side side) {
         this(mapCreator, side, null);
     }
-    
+
     public SmartMapTeleportScript(Supplier<Map> mapCreator, Side side, Item requiredItem) {
         super(mapCreator, OptionalDouble.empty(), OptionalDouble.empty());
 
@@ -75,6 +75,7 @@ public class SmartMapTeleportScript extends MapTeleportScript {
                 .containsItem(this.requiredItem)
             ) {
                 // TODO: warn user they don't have required item
+                System.out.println("User lacking " + this.requiredItem.toString());
                 return ScriptState.COMPLETED;
             }
         }

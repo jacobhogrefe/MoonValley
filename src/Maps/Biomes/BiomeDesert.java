@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 
 import Level.Map;
 import Maps.AbstractLoopingMap;
+import Registry.ItemRegistry;
+import Registry.ItemRegistry.Item;
 import Tilesets.CommonTileset;
 import Utils.Side;
 
@@ -21,6 +23,8 @@ import Utils.Side;
  * +------------+------------+------------+
  */
 public class BiomeDesert extends AbstractLoopingMap {
+    public static final Item REQUIRED_ITEM = ItemRegistry.singleton.WATER_CANTEEN;
+
     public BiomeDesert() {
         super("Biomes/desert.txt", new CommonTileset());
     }
@@ -34,6 +38,22 @@ public class BiomeDesert extends AbstractLoopingMap {
                 return null;
             case TOP:
                 return () -> new BiomeMountains();
+            case BOTTOM:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public Item getRequiredItem(Side edge) {
+        switch (edge) {
+            case LEFT:
+                return BiomeStart.REQUIRED_ITEM;
+            case RIGHT:
+                return null;
+            case TOP:
+                return BiomeMountains.REQUIRED_ITEM;
             case BOTTOM:
                 return null;
             default:

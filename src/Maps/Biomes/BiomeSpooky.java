@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 
 import Level.Map;
 import Maps.AbstractLoopingMap;
+import Registry.ItemRegistry;
+import Registry.ItemRegistry.Item;
 import Tilesets.CommonTileset;
 import Utils.Side;
 
@@ -21,6 +23,8 @@ import Utils.Side;
  * +------------+------------+------------+
  */
 public class BiomeSpooky extends AbstractLoopingMap {
+    public static final Item REQUIRED_ITEM = ItemRegistry.singleton.PUMPKIN;
+
     public BiomeSpooky() {
         super("Biomes/spooky.txt", new CommonTileset());
     }
@@ -36,6 +40,22 @@ public class BiomeSpooky extends AbstractLoopingMap {
                 return null;
             case BOTTOM:
                 return () -> new BiomeStart();
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public Item getRequiredItem(Side edge) {
+        switch (edge) {
+            case LEFT:
+                return BiomeFallout.REQUIRED_ITEM;
+            case RIGHT:
+                return BiomeMountains.REQUIRED_ITEM;
+            case TOP:
+                return null;
+            case BOTTOM:
+                return BiomeStart.REQUIRED_ITEM;
             default:
                 return null;
         }
