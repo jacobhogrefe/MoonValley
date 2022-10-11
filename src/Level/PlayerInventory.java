@@ -7,6 +7,9 @@ package Level;
 
 import java.util.Arrays;
 
+import Registry.ItemRegistry;
+import Registry.ItemRegistry.Item;
+
 public class PlayerInventory {
 
 	private int[] inventoryArray = new int[55];
@@ -73,5 +76,9 @@ public class PlayerInventory {
 	// searches the inventory for a specified item and returns true if found
 	public boolean containsItem(int itemNumber) {
 		return Arrays.stream(this.inventoryArray).filter(i -> i == itemNumber).findAny().isPresent();
+	}
+
+	public boolean containsItem(Item item) {
+		return this.containsItem(ItemRegistry.singleton.items.indexOf(item));
 	}
 }

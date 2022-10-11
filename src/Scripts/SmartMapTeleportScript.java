@@ -3,7 +3,10 @@ package Scripts;
 import java.util.OptionalDouble;
 import java.util.function.Supplier;
 
+import Game.Game;
 import Level.Map;
+import Level.ScriptState;
+import Registry.ItemRegistry.Item;
 import Utils.Side;
 
 /**
@@ -11,11 +14,17 @@ import Utils.Side;
  */
 public class SmartMapTeleportScript extends MapTeleportScript {
     public Side side;
+    public Item requiredItem;
 
     public SmartMapTeleportScript(Supplier<Map> mapCreator, Side side) {
+        this(mapCreator, side, null);
+    }
+    
+    public SmartMapTeleportScript(Supplier<Map> mapCreator, Side side, Item requiredItem) {
         super(mapCreator, OptionalDouble.empty(), OptionalDouble.empty());
 
         this.side = side;
+        this.requiredItem = requiredItem;
     }
     
     @Override
@@ -54,5 +63,22 @@ public class SmartMapTeleportScript extends MapTeleportScript {
                 return 0.0f;
             }
         }
+    }
+
+    @Override
+    protected ScriptState execute() {
+        if (this.requiredItem != null) {
+            if (!Game.getRunningInstance()
+                .getScreenCoordinator()
+                .getPlayLevelScreen()
+                .getPlayerInventory()
+                .containsItem(this.requiredItem)
+            ) {
+                // TODO: warn user they don't have required item
+                return ScriptState.COMPLETED;
+            }
+        }
+
+        return super.execute();
     }
 }
