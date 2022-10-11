@@ -18,7 +18,7 @@ public class InventoryGrid {
 	private Point frameCorner = new Point(624, 337);
 	private int lastClickedSlot = 0;
 	private int selectedSlot;
-	private OptionsBox optionsBox = new OptionsBox(0);
+	private int selectedItem;
 	private PlayerInventory playerInventory;
 	//private boolean reported = false; //uncomment for testing (along with other commented things below)
 
@@ -74,6 +74,7 @@ public class InventoryGrid {
 						&& clickedY < yUpperBound) {
 					clickedSlot = ((j * 11) + k);
 					selectedSlot = clickedSlot;
+					selectedItem = playerInventory.getItemInSlot(clickedSlot);
 					System.out.println("You clicked slot: " + index);
 					System.out.println("Slot position: " + (int) slotNumberCorner[index].getX() + ","
 							+ (int) slotNumberCorner[index].getY());
@@ -93,6 +94,7 @@ public class InventoryGrid {
 			GamePanel.clickToProcess = false;
 			
 		}
+		OptionsBox optionsBox = new OptionsBox(selectedItem,selectedSlot);
 		graphicsHandler.highlightSlot(selectedSlot);
 		graphicsHandler.drawOptionsBox(optionsBox);
 		

@@ -181,11 +181,20 @@ public class GraphicsHandler {
 		int x = (int)inventoryGrid.getSlotCorner(slotNumber).getX();
 		int y = (int)inventoryGrid.getSlotCorner(slotNumber).getY();
 		
+
+		
 		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
 	}
 	
 	public void drawOptionsBox( OptionsBox optionsBox) {
+		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
+		Font nameFont = new Font("descriptionFont", Font.PLAIN, 60);
+		
+		
 		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
+		g.drawImage(optionsBox.getItemImage(), 250,420, null);
+		drawString(optionsBox.getItemDescription(), 250, 500, descriptionFont, Color.BLACK);
+		drawString(optionsBox.getItemName(), 320, 430, descriptionFont, Color.BLACK);
 	}
 
 
