@@ -8,6 +8,7 @@ import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
 import java.util.ArrayList;
+import Utils.Sound;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -45,6 +46,9 @@ public abstract class Player extends GameObject {
     protected Key INTERACT_KEY = Key.SPACE;
     protected Key QUICKSAVE_KEY = Key.N;
     protected Key QUICKLOAD_KEY = Key.M;
+
+    //Sound that plays for a player walking
+    protected Sound walkingSound = new Sound("walkingSound.wav", true);
     
     
     //player's inventory. Each holdable item will have an int assigned to it. The player need only have an array of ints and the item information will be held elsewhere,
@@ -101,12 +105,15 @@ public abstract class Player extends GameObject {
         switch (playerState) {
             case STANDING:
                 playerStanding();
+                walkingSound.pause();
                 break;
             case WALKING:
                 playerWalking();
+                walkingSound.play();
                 break;
             case INTERACTING:
                 playerInteracting();
+                walkingSound.pause();
                 break;
         }
 
@@ -231,6 +238,8 @@ public abstract class Player extends GameObject {
     public void hurtPlayer(MapEntity mapEntity) {
 
     }
+
+    public Sound getPlayerSound() {return walkingSound;}
 
     public PlayerState getPlayerState() {
         return playerState;

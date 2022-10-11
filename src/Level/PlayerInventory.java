@@ -7,6 +7,9 @@ package Level;
 
 import java.util.Arrays;
 
+import Registry.ItemRegistry;
+import Registry.ItemRegistry.Item;
+
 public class PlayerInventory {
 
 	private int[] inventoryArray = new int[55];
@@ -55,6 +58,18 @@ public class PlayerInventory {
 			return true;
 		}
 	}
+	
+	public int getItemInSlot(int slotNumber) {
+		return inventoryArray[slotNumber];
+	}
+
+	/**
+	 * add an item.
+	 * returns true if it was added, false if the inventory was full.
+	 */
+	public boolean addItem(Item item) {
+		return this.addItem(item.getItemNumber());
+	}
 
 	//removes item from inventory
 	public void removeItem(int slotNumber) {
@@ -73,5 +88,10 @@ public class PlayerInventory {
 	// searches the inventory for a specified item and returns true if found
 	public boolean containsItem(int itemNumber) {
 		return Arrays.stream(this.inventoryArray).filter(i -> i == itemNumber).findAny().isPresent();
+	}
+
+	// searches the inventory for a specified item and returns true if found
+	public boolean containsItem(Item item) {
+		return this.containsItem(item.getItemNumber());
 	}
 }
