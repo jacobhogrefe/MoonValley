@@ -17,6 +17,7 @@ public class InventoryGrid {
 	private Point frameCorner = new Point(624, 337);
 	private int lastClickedSlot = 0;
 	private int selectedSlot;
+	private boolean reported = false;
 
 	public InventoryGrid() {
 		// assigning corner points to slots
@@ -54,18 +55,18 @@ public class InventoryGrid {
 				int xUpperBound = (int) slotNumberCorner[index].getX() + 48;
 				int yLowerBound = ((int) slotNumberCorner[index].getY());
 				int yUpperBound = (int) slotNumberCorner[index].getY() + 48;
-				
-				
+
 				if (clickedX > xLowerBound && clickedX < xUpperBound && clickedY > yLowerBound
 						&& clickedY < yUpperBound) {
 					clickedSlot = ((j * 11) + k);
 					selectedSlot = clickedSlot;
-					System.out.println("You clicked slot: "+ index);
-					System.out.println("Slot position: "+ (int)slotNumberCorner[index].getX()+","+ (int)slotNumberCorner[index].getY());
-					System.out.println("Click Position: " + lastClick.getX()+","+ lastClick.getY());
-					
-				}
-				else {
+					System.out.println("You clicked slot: " + index);
+					System.out.println("Slot position: " + (int) slotNumberCorner[index].getX() + ","
+							+ (int) slotNumberCorner[index].getY());
+					System.out.println("Click Position: " + lastClick.getX() + "," + lastClick.getY());
+					reported = false;
+
+				} else {
 					System.out.println("You clicked a non-inventory slot");
 				}
 			}
@@ -73,10 +74,15 @@ public class InventoryGrid {
 	}
 
 	public void draw(GraphicsHandler graphicsHandler) {
-		if(GamePanel.clickToProcess) {
+		if (GamePanel.clickToProcess) {
 			assignLastClickSlot(GamePanel.lastClick);
 			GamePanel.clickToProcess = false;
+		}
 		graphicsHandler.highlightSlot(selectedSlot);
+		
+		if(reported == false) {
+		System.out.println(selectedSlot);
+		reported = true;
 		}
 	}
 
