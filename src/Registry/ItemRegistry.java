@@ -14,8 +14,10 @@ public class ItemRegistry {
         public String description;
         public Image texture;
 
-        public void addToRegistry(ItemRegistry registry) {
+        public Item addToRegistry(ItemRegistry registry) {
             registry.items.add(this);
+
+            return this;
         }
 
         public static class Builder {
@@ -53,26 +55,63 @@ public class ItemRegistry {
         }
     }
 
+    public Item EMPTY_SLOT = new Item.Builder() // 0
+        .withName("Empty Slot")
+        .withDescription("Just a plain old empty slot!")
+        .withSubimage(17, 17)
+        .build()
+        .addToRegistry(this);
+    
+    public Item COWBOY_HAT = new Item.Builder() // 1
+        .withName("Cowboy Hat")
+        .withDescription("Ain't 'nuff room in this here valley for the two of us, partner...")
+        .withSubimage(68 + 17 * 0, 0)
+        .build()
+        .addToRegistry(this);
+    
+    public Item YOSHI_COIN = new Item.Builder() // 2
+        .withName("Yoshi Coin")
+        .withDescription("A trademarked coin that we used anyways")
+        .withSubimage(68 + 17 * 1, 0)
+        .build()
+        .addToRegistry(this);
+    
+    public Item WATER_CANTEEN = new Item.Builder() // 3
+        .withName("Canteen")
+        .withDescription("Good for holding water!")
+        .withSubimage(68 + 17 * 2, 0)
+        .build()
+        .addToRegistry(this);
+    
+    public Item PUMPKIN = new Item.Builder() // 4
+        .withName("Pumpkin")
+        .withDescription("A very orange watermelon...")
+        .withSubimage(68 + 17 * 3, 0)
+        .build()
+        .addToRegistry(this);
+    
+    public Item MAGNIFYING_GLASS = new Item.Builder() // 5
+        .withName("Magnifying Glass")
+        .withDescription("Wow! There's a whole 'nother tiny world down here!")
+        .withSubimage(68 + 17 * 4, 0)
+        .build()
+        .addToRegistry(this);
+    
+    public Item GAS_MASK = new Item.Builder() // 6
+        .withName("Gas Mask")
+        .withDescription("Useful for cleaning the bathroom in Irma")
+        .withSubimage(68 + 17 * 5, 0)
+        .build()
+        .addToRegistry(this);
+    
+    public Item GRAPPLING_HOOK = new Item.Builder() // 7
+        .withName("Grappling Hook")
+        .withDescription("It hurts to step on more than LEGOs...")
+        .withSubimage(68 + 17 * 6, 0)
+        .build()
+        .addToRegistry(this);
+
     public ItemRegistry() {
-        new Item.Builder() // 0
-            .withName("Empty Slot")
-            .withDescription("Just a plain old empty slot!")
-            .withSubimage(17, 17)
-            .build()
-            .addToRegistry(this);
         
-        new Item.Builder() // 1
-            .withName("Cowboy Hat")
-            .withDescription("Ain't 'nuff room in this here valley for the two of us, partner...")
-            .withSubimage(68, 0)
-            .build()
-            .addToRegistry(this);
-        
-        new Item.Builder() // 2
-            .withName("Yoshi Coin")
-            .withDescription("A trademarked coin that we used anyways")
-            .withSubimage(85, 0)
-            .build()
-            .addToRegistry(this);
     }
 }
