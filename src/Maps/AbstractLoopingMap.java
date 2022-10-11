@@ -12,8 +12,8 @@ import Scripts.SmartMapTeleportScript;
 import Utils.Side;
 
 public abstract class AbstractLoopingMap extends Map {
-    public AbstractLoopingMap(String mapFileName, Tileset tileset) {
-        super(mapFileName, tileset);
+    public AbstractLoopingMap(String mapFileName, Tileset tileset, String musicFileName) {
+        super(mapFileName, tileset, musicFileName);
     }
 
     public abstract Supplier<Map> getBorderingMap(Side edge);

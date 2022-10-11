@@ -26,17 +26,23 @@ public class BiomeStart extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = null;
 
     public BiomeStart() {
-        super("Biomes/start.txt", new CommonTileset());
+        super("Biomes/start.txt", new CommonTileset(), null);
     }
 
     @Override
     public Supplier<Map> getBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeShrooms();
             case RIGHT:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeDesert();
             case TOP:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeSpooky();
             case BOTTOM:
                 return null;

@@ -10,7 +10,8 @@ public class Sound implements LineListener {
     protected Clip soundClip;
 
     /* ALL SOUNDS SHOULD BE PLACED IN THE SOUND FOLDER
-     * Sound class that does all the heavy work in loading and playing a sound within the game
+     * Sound class that does all the heavy work in loading and playing a sound within the game.
+     * Contains methods to play, pause, close, and restart the current sound
      */
     public Sound(String soundFileName, boolean doesSoundLoop) {
         this.doesSoundLoop = doesSoundLoop;
@@ -27,6 +28,7 @@ public class Sound implements LineListener {
         }
     }
 
+    //checks if the current sound playing has stopped
     @Override
     public void update(LineEvent event) {
         LineEvent.Type type = event.getType();
@@ -39,7 +41,7 @@ public class Sound implements LineListener {
     public void play() {
         if (soundClip != null && !doesSoundLoop) {
             soundClip.start();
-        } else if (doesSoundLoop) {
+        } else if (soundClip != null && doesSoundLoop) {
             soundClip.loop(Clip.LOOP_CONTINUOUSLY);
             soundClip.start();
         }
@@ -56,6 +58,13 @@ public class Sound implements LineListener {
     public void pause() {
         if (soundClip != null) {
             soundClip.stop();
+        }
+    }
+
+    //sets the position of the sound to the beginning (useful for looping sounds that need to be restarted)
+    public void restart() {
+        if (soundClip != null) {
+            soundClip.setMicrosecondPosition(0);
         }
     }
 

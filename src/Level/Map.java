@@ -7,6 +7,8 @@ import GameObject.IntersectableRectangle;
 import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
+import Utils.Sound;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -78,15 +80,18 @@ public abstract class Map implements IntersectableRectangle {
 	// map's textbox instance
 	protected Textbox textbox;
 
+	protected Sound levelMusic;
+
 	// Items that have been collected or given to the player that need to be placed
 	// into inventory. This is where items "go" for a brief moment while being
 	// passed between the camera to the map, to the playlevelscreen, to, ultimately the inventory screen. This is a stack to
 	// Accommodate the player receiving multiple items at once
 	protected Stack<Integer> itemsForInventory = new Stack<Integer>();
 
-	public Map(String mapFileName, Tileset tileset) {
+	public Map(String mapFileName, Tileset tileset, String musicFileName) {
 		this.mapFileName = mapFileName;
 		this.tileset = tileset;
+		this.levelMusic = new Sound(musicFileName, true);
 		setupMap();
 		this.startBoundX = 0;
 		this.startBoundY = 0;
@@ -129,6 +134,7 @@ public abstract class Map implements IntersectableRectangle {
 
 		this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
 		this.textbox = new Textbox(this);
+		levelMusic.play();
 	}
 
 	// reads in a map file to create the map's tilemap
@@ -633,6 +639,10 @@ public abstract class Map implements IntersectableRectangle {
 
 	public int getEndBoundY() {
 		return endBoundY;
+	}
+
+	public Sound getLevelMusic() {
+		return levelMusic;
 	}
 	
 	//adds item to the stack of items to be sent to inventory, intended to be called by the camera class

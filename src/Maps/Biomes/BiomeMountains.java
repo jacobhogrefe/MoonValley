@@ -26,19 +26,23 @@ public class BiomeMountains extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GRAPPLING_HOOK;
 
     public BiomeMountains() {
-        super("Biomes/mountains.txt", new CommonTileset());
+        super("Biomes/mountains.txt", new CommonTileset(), null);
     }
 
     @Override
     public Supplier<Map> getBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeSpooky();
             case RIGHT:
                 return null;
             case TOP:
                 return null;
             case BOTTOM:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeDesert();
             default:
                 return null;

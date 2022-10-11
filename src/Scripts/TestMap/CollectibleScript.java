@@ -26,4 +26,12 @@ public class CollectibleScript extends SimpleTextScript {
         addTextToTextboxQueue(textItem);
         sound.play();
     }
+
+    @Override
+    protected void cleanup() {
+        unlockPlayer();
+        hideTextbox();
+        sound.pause();
+        sound.close();
+    }
 }

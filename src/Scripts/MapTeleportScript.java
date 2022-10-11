@@ -1,8 +1,6 @@
 package Scripts;
-
 import java.util.OptionalDouble;
 import java.util.function.Supplier;
-
 import Game.Game;
 import Level.Map;
 import Level.Script;
