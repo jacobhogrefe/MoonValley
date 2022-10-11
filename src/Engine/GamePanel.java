@@ -65,7 +65,7 @@ public class GamePanel extends JPanel {
 		timer.setRepeats(true);
 	
 		addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
+			public void mousePressed(MouseEvent evt) {
 				if(InventoryScreen.inventoryOpen) {
 				lastClick = evt.getPoint();
 				clickToProcess = true;
