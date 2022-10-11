@@ -18,7 +18,6 @@ public class InventoryScreen extends JPanel {
 	protected KeyLocker keyLocker = new KeyLocker();
 	private PlayerInventory playerInventory;
 	private InventoryGrid inventoryGrid = new InventoryGrid();
-
 	protected Key Inventory_Key = Key.I;
 	protected boolean inventoryIsOpen = false;
 
@@ -53,11 +52,15 @@ public class InventoryScreen extends JPanel {
 		if (!inventoryIsOpen) {
 			playLevelScreen.resumeLevel();
 		}
+		if(GamePanel.clickToProcess) {
+			
+		}
 
 	}
 
 	public void draw(GraphicsHandler graphicsHandler) {
 		graphicsHandler.drawInventory(playerInventory.getInventoryArray());
+//		graphicsHandler.highlightSlot(10);
 		inventoryGrid.draw(graphicsHandler);
 	}
 }

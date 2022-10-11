@@ -2,6 +2,8 @@ package Engine;
 
 import GameObject.Rectangle;
 import Utils.Colors;
+import Utils.Stopwatch;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,6 +33,7 @@ public class GamePanel extends JPanel {
 	private KeyLocker keyLocker = new KeyLocker();
 	private static final Key inventoryKey = Key.I;
 	public int Clock;
+	public static boolean clickToProcess = false;
 	public static Point lastClick;
 	public static Point mousePosition;
 
@@ -59,11 +62,12 @@ public class GamePanel extends JPanel {
 			}
 		});
 		timer.setRepeats(true);
-
+	
 		addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent evt) {
+			public void mouseClicked(MouseEvent evt) {
 				
 				lastClick = evt.getPoint();
+				clickToProcess = true;
 				// System.out.println("Plz work");
 				// System.out.println(evt.getX()+","+evt.getY());
 			}
