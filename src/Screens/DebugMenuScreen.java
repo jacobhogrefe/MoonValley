@@ -1,11 +1,14 @@
 package Screens;
 
+import Game.Game;
 import Game.ScreenCoordinator;
 import Level.Map;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.moonValleyTitle;
 import Maps.Biomes.BiomeStart;
+import Registry.ItemRegistry;
+import Registry.ItemRegistry.Item;
 
 public class DebugMenuScreen extends AbstractMenuScreen {
     public static final boolean DEBUG_ENABLED = true;
@@ -48,7 +51,53 @@ public class DebugMenuScreen extends AbstractMenuScreen {
                 }
             });
         }
+    }
 
+    public static class GiveItemOption extends Option {
+        @Override
+        public String getText() {
+            return "give item";
+        }
+
+        @Override
+        public void select(AbstractMenuScreen parent) {
+            parent.screenCoordinator.push(new AbstractMenuScreen(parent.screenCoordinator) {
+                class ItemOption extends Option {
+                    Item item;
+
+                    public ItemOption(Item item) {
+                        this.item = item;
+                    }
+
+                    @Override
+                    public String getText() {
+                        return this.item.toString();
+                    }
+
+                    @Override
+                    public void select(AbstractMenuScreen parent) {
+                        parent.screenCoordinator
+                            .getPlayLevelScreen()
+                            .getPlayerInventory()
+                            .addItem(this.item);
+
+                        parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
+                    }
+                }
+                
+                @Override
+                public void addOptions() {
+                    for (Item item : ItemRegistry.singleton.items) {
+                        if (item != ItemRegistry.singleton.EMPTY_SLOT) {
+                            this.options.add(new ItemOption(item));
+                        }
+                    }
+
+                    this.options.add(new CancelOption());
+                }
+            });
+        }
+        
     }
 
     public DebugMenuScreen(ScreenCoordinator screenCoordinator) {
@@ -72,6 +121,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
     @Override
     public void addOptions() {
         this.options.add(new SwitchMapOption());
+        this.options.add(new GiveItemOption());
         this.options.add(new CancelOption());
     }
 }

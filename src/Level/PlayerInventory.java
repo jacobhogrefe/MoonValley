@@ -59,6 +59,14 @@ public class PlayerInventory {
 		}
 	}
 
+	/**
+	 * add an item.
+	 * returns true if it was added, false if the inventory was full.
+	 */
+	public boolean addItem(Item item) {
+		return this.addItem(item.getItemNumber());
+	}
+
 	//removes item from inventory
 	public void removeItem(int slotNumber) {
 		inventoryArray[slotNumber] = 0;
@@ -78,7 +86,8 @@ public class PlayerInventory {
 		return Arrays.stream(this.inventoryArray).filter(i -> i == itemNumber).findAny().isPresent();
 	}
 
+	// searches the inventory for a specified item and returns true if found
 	public boolean containsItem(Item item) {
-		return this.containsItem(ItemRegistry.singleton.items.indexOf(item));
+		return this.containsItem(item.getItemNumber());
 	}
 }

@@ -20,6 +20,10 @@ public class ItemRegistry {
             return this;
         }
 
+        public int getItemNumber() {
+            return ItemRegistry.singleton.items.indexOf(this);
+        }
+
         public static class Builder {
             protected Item item = new Item();
 
