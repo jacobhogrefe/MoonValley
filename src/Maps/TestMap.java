@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class TestMap extends Map {
 
     public TestMap() {
-        super("test_map.txt", new CommonTileset());
+        super("test_map.txt", new CommonTileset(), null);
         this.playerStartPosition = getMapTile(17, 20).getLocation();
     }
 

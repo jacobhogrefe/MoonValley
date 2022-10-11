@@ -15,7 +15,7 @@ public class TitleScreenMap extends Map {
 	 private Sprite cat;
 
     public TitleScreenMap() {
-        super("moon_screen_map.txt", new TitleTileset());
+        super("moon_screen_map.txt", new TitleTileset(), null);
         Point catLocation = getMapTile(8, 5).getLocation().subtractX(6).subtractY(7);
         cat = new Sprite(ImageLoader.loadSubImage("Cat.png", Colors.MAGENTA, 0, 0, 24, 24));
         cat.setScale(3);

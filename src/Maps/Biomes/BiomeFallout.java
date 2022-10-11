@@ -27,7 +27,7 @@ public class BiomeFallout extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GAS_MASK;
 
     public BiomeFallout() {
-        super("Biomes/fallout.txt", Tilesets.MINECRAFT_TILESET);
+        super("Biomes/fallout.txt", Tilesets.MINECRAFT_TILESET, null);
     }
 
     @Override
@@ -36,10 +36,14 @@ public class BiomeFallout extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeSpooky();
             case TOP:
+                this.getLevelMusic().pause();
                 return null;
             case BOTTOM:
+                this.getLevelMusic().restart();
                 return () -> new BiomeShrooms();
             default:
                 return null;

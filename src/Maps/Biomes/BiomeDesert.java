@@ -26,17 +26,21 @@ public class BiomeDesert extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.WATER_CANTEEN;
 
     public BiomeDesert() {
-        super("Biomes/desert.txt", new CommonTileset());
+        super("Biomes/desert.txt", new CommonTileset(), null);
     }
 
     @Override
     public Supplier<Map> getBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeStart();
             case RIGHT:
                 return null;
             case TOP:
+                this.getLevelMusic().pause();
+                this.getLevelMusic().restart();
                 return () -> new BiomeMountains();
             case BOTTOM:
                 return null;
