@@ -166,7 +166,7 @@ public class GraphicsHandler {
 		// inventory.
 		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 11; i++) {
-				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 10 + i]).texture, 128 + (i * 48), (168 + (j * 48)), null);
+				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 11 + i]).texture, 128 + (i * 48), (168 + (j * 48)), null);
 
 			}
 		}

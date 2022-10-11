@@ -18,9 +18,9 @@ public class InventoryScreen extends JPanel {
 	protected KeyLocker keyLocker = new KeyLocker();
 	private PlayerInventory playerInventory;
 	private InventoryGrid inventoryGrid = new InventoryGrid();
-
 	protected Key Inventory_Key = Key.I;
 	protected boolean inventoryIsOpen = false;
+	public static boolean inventoryOpen = false; //The boolean above is used for the keylocker, this one talks to the gamepanel
 
 	public InventoryScreen(PlayLevelScreen playLevelScreen, PlayerInventory playerInventory) {
 		this.playLevelScreen = playLevelScreen;
@@ -37,7 +37,7 @@ public class InventoryScreen extends JPanel {
 	}
 
 	public void initialize() {
-		
+		inventoryOpen = true;
 	}
 	
 	public void update() {
@@ -51,13 +51,18 @@ public class InventoryScreen extends JPanel {
 		}
 
 		if (!inventoryIsOpen) {
+			inventoryOpen = false;
 			playLevelScreen.resumeLevel();
+		}
+		if(GamePanel.clickToProcess) {
+			
 		}
 
 	}
 
 	public void draw(GraphicsHandler graphicsHandler) {
 		graphicsHandler.drawInventory(playerInventory.getInventoryArray());
+//		graphicsHandler.highlightSlot(10);
 		inventoryGrid.draw(graphicsHandler);
 	}
 }
