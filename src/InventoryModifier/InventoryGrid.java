@@ -10,7 +10,7 @@ import Engine.GraphicsHandler;
 
 //A grid that returns the corner of square taken up on the screen for each inventory slot on the screen
 
-public class InventoryGrid implements MouseListener{
+public class InventoryGrid {
 
 	private Point[] slotNumberCorner = new Point[55];
 	private Point frameCorner = new Point(624, 337);
@@ -45,35 +45,7 @@ public class InventoryGrid implements MouseListener{
 		graphicsHandler.highlightSlot(hoveredSlot);
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

@@ -16,7 +16,8 @@ import java.awt.event.MouseListener;
  */
 public class GamePanel extends JPanel {
 	// loads Screens on to the JPanel
-	// each screen has its own update and draw methods defined to handle a "section" of the game.
+	// each screen has its own update and draw methods defined to handle a "section"
+	// of the game.
 	private ScreenManager screenManager;
 
 	// used to create the game loop and cycle between update and draw calls
@@ -30,12 +31,13 @@ public class GamePanel extends JPanel {
 	private KeyLocker keyLocker = new KeyLocker();
 	private static final Key inventoryKey = Key.I;
 	public int Clock;
+	public static Point lastClick;
 	public static Point mousePosition;
-	
+
 	/*
 	 * The JPanel and various important class instances are setup here
 	 */
-	public GamePanel(){
+	public GamePanel() {
 		super();
 		this.setDoubleBuffered(true);
 
@@ -44,9 +46,12 @@ public class GamePanel extends JPanel {
 		graphicsHandler = new GraphicsHandler();
 		screenManager = new ScreenManager();
 
-		// Every timer "tick" will call the update method as well as tell the JPanel to repaint
-		// Remember that repaint "schedules" a paint rather than carries it out immediately
-		// If the game is really laggy/slow, I would consider upping the FPS in the Config file.
+		// Every timer "tick" will call the update method as well as tell the JPanel to
+		// repaint
+		// Remember that repaint "schedules" a paint rather than carries it out
+		// immediately
+		// If the game is really laggy/slow, I would consider upping the FPS in the
+		// Config file.
 		timer = new Timer(1000 / Config.FPS, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				update();
@@ -54,28 +59,23 @@ public class GamePanel extends JPanel {
 			}
 		});
 		timer.setRepeats(true);
-		
-		addMouseListener(new MouseAdapter(){
+
+		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
-	//			System.out.println("Plz work");
-	//				System.out.println(evt.getX()+","+evt.getY());
+				
+				lastClick = evt.getPoint();
+				// System.out.println("Plz work");
+				// System.out.println(evt.getX()+","+evt.getY());
 			}
 		});
-			
-		
-		
-		
-		
-		
-		
-	
-		
-	
+
 	}
-	
+
 	Clock clock1 = new Clock();
+
 	// this is called later after instantiation, and will initialize screenManager
-	// this had to be done outside of the constructor because it needed to know the JPanel's width and height, which aren't available in the constructor
+	// this had to be done outside of the constructor because it needed to know the
+	// JPanel's width and height, which aren't available in the constructor
 	public void setupGame() {
 		setBackground(Colors.CORNFLOWER_BLUE);
 		screenManager.initialize(new Rectangle(getX(), getY(), getWidth(), getHeight()));
@@ -96,32 +96,31 @@ public class GamePanel extends JPanel {
 		screenManager.update();
 	}
 
-
 	public void draw() {
 		screenManager.draw(graphicsHandler);
 
 	}
-		@Override
+
+	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// every repaint call will schedule this method to be called
-		// when called, it will setup the graphics handler and then call this class's draw method
+		// when called, it will setup the graphics handler and then call this class's
+		// draw method
 		graphicsHandler.setGraphics((Graphics2D) g);
 		if (doPaint) {
 			draw();
-			String theTime = new String("Time: " +clock1.getTimeOfDay()+":00");
+			String theTime = new String("Time: " + clock1.getTimeOfDay() + ":00");
 			Font font = new Font("timeFont", Font.PLAIN, 30);
-			graphicsHandler.drawString(theTime, 0, 25,font, Color.BLACK);
-			
-			if(clock1.getTimeOfDay() >= 12) {
-				graphicsHandler.drawFilledRectangle(0,0,ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight(), new Color(0,0,0,150));
-				
-				}
+			graphicsHandler.drawString(theTime, 0, 25, font, Color.BLACK);
+
+			if (clock1.getTimeOfDay() >= 12) {
+				graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(),
+						ScreenManager.getScreenHeight(), new Color(0, 0, 0, 150));
+
+			}
 
 		}
 	}
-
-
-
 
 }

@@ -37,12 +37,6 @@ public class InventoryScreen extends JPanel {
 	}
 
 	public void initialize() {
-		addMouseListener(new MouseAdapter(){
-			public void mousePressed(MouseEvent evt) {
-			System.out.println("Plz work");
-	//				System.out.println(evt.getX()+","+evt.getY());
-			}
-		});
 		
 	}
 	
