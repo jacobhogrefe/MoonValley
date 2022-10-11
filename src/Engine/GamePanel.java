@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /*
  * This is where the game loop starts
@@ -27,11 +30,12 @@ public class GamePanel extends JPanel {
 	private KeyLocker keyLocker = new KeyLocker();
 	private static final Key inventoryKey = Key.I;
 	public int Clock;
+	public static Point mousePosition;
 	
 	/*
 	 * The JPanel and various important class instances are setup here
 	 */
-	public GamePanel() {
+	public GamePanel(){
 		super();
 		this.setDoubleBuffered(true);
 
@@ -50,6 +54,23 @@ public class GamePanel extends JPanel {
 			}
 		});
 		timer.setRepeats(true);
+		
+		addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent evt) {
+	//			System.out.println("Plz work");
+	//				System.out.println(evt.getX()+","+evt.getY());
+			}
+		});
+			
+		
+		
+		
+		
+		
+		
+	
+		
+	
 	}
 	
 	Clock clock1 = new Clock();
@@ -71,30 +92,14 @@ public class GamePanel extends JPanel {
 	}
 
 	public void update() {
-		/*/
-		if (Keyboard.isKeyDown(inventoryKey) && !keyLocker.isKeyLocked(inventoryKey)) {
-			isInventoryOpen = !isInventoryOpen;
-			keyLocker.lockKey(inventoryKey);
-		}
-		
-		if (Keyboard.isKeyUp(inventoryKey)) {
-			keyLocker.unlockKey(inventoryKey);
-		}
-/*/
+
 		screenManager.update();
 	}
 
 
 	public void draw() {
 		screenManager.draw(graphicsHandler);
-		/*/
-		if (isInventoryOpen) {
-			graphicsHandler.drawFilledRectangle(90, 120, 600, 300, new Color(13, 171, 181, 255));
-			
-			
-			graphicsHandler.drawInventory();
-		}
-		/*/
+
 	}
 		@Override
 	protected void paintComponent(Graphics g) {
@@ -104,12 +109,19 @@ public class GamePanel extends JPanel {
 		graphicsHandler.setGraphics((Graphics2D) g);
 		if (doPaint) {
 			draw();
-			g.drawString("Time " + clock1.getTimeOfDay()+ ":00", 0, 25);
+			String theTime = new String("Time: " +clock1.getTimeOfDay()+":00");
+			Font font = new Font("timeFont", Font.PLAIN, 30);
+			graphicsHandler.drawString(theTime, 0, 25,font, Color.BLACK);
+			
 			if(clock1.getTimeOfDay() >= 12) {
 				graphicsHandler.drawFilledRectangle(0,0,ScreenManager.getScreenWidth(),ScreenManager.getScreenHeight(), new Color(0,0,0,150));
-
+				
 				}
 
 		}
 	}
+
+
+
+
 }

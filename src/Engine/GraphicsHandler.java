@@ -1,6 +1,7 @@
 package Engine;
 
 import GameObject.ImageEffect;
+import InventoryModifier.InventoryGrid;
 import Registry.ItemRegistry;
 
 import java.awt.*;
@@ -11,7 +12,9 @@ import java.awt.image.BufferedImage;
 public class GraphicsHandler {
 
 	private Graphics2D g;
+	private InventoryGrid inventoryGrid = new InventoryGrid();
 
+	
 	public void setGraphics(Graphics2D g) {
 		this.g = g;
 	}
@@ -68,6 +71,7 @@ public class GraphicsHandler {
 		g.setColor(color);
 		g.drawString(text, x, y);
 	}
+	
 
 	// https://stackoverflow.com/a/35222059 and https://stackoverflow.com/a/31831120
 	public void drawStringWithOutline(String text, int x, int y, Font font, Color textColor, Color outlineColor,
@@ -166,7 +170,19 @@ public class GraphicsHandler {
 
 			}
 		}
+		
+		
+	//	highlightSlot(0);
+		
 
 	}
+	public void highlightSlot(int slotNumber) {
+		int x = (int)inventoryGrid.getSlotCorner(slotNumber).getX();
+		int y = (int)inventoryGrid.getSlotCorner(slotNumber).getY();
+		
+		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
+	}
+
+
 
 }

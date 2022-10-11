@@ -1,16 +1,23 @@
 package Screens;
 
 import Engine.*;
+import InventoryModifier.InventoryGrid;
 import Level.PlayerInventory;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 // This class is for the win level screen
-public class InventoryScreen extends Screen {
+@SuppressWarnings("serial")
+public class InventoryScreen extends JPanel {
 	protected PlayLevelScreen playLevelScreen;
 	protected KeyLocker keyLocker = new KeyLocker();
 	private PlayerInventory playerInventory;
+	private InventoryGrid inventoryGrid = new InventoryGrid();
 
 	protected Key Inventory_Key = Key.I;
 	protected boolean inventoryIsOpen = false;
@@ -29,12 +36,16 @@ public class InventoryScreen extends Screen {
 		this.playerInventory = playerInventory;
 	}
 
-	@Override
 	public void initialize() {
+		addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent evt) {
+			System.out.println("Plz work");
+	//				System.out.println(evt.getX()+","+evt.getY());
+			}
+		});
 		
 	}
 	
-	@Override
 	public void update() {
 		if (Keyboard.isKeyDown(Inventory_Key) && !keyLocker.isKeyLocked(Inventory_Key)) {
 			keyLocker.lockKey(Inventory_Key);
@@ -53,5 +64,6 @@ public class InventoryScreen extends Screen {
 
 	public void draw(GraphicsHandler graphicsHandler) {
 		graphicsHandler.drawInventory(playerInventory.getInventoryArray());
+		inventoryGrid.draw(graphicsHandler);
 	}
 }
