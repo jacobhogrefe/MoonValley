@@ -130,12 +130,9 @@ public class GraphicsHandler {
 		// START Drawing the frame of the inventory, will always load in the same
 		// regardless of what is in inventory
 
-		Font currentFont = g.getFont();
-		Font newFont = currentFont.deriveFont(currentFont.getSize() * 3.0F);
-		g.setFont(newFont);
-		g.setColor(java.awt.Color.black);
-
-		g.drawString("Your Beautiful Possessions", 165, 110);
+		Font inventoryTitleFont = new Font("Font", Font.ITALIC, 40);
+		drawString("Your Beautiful Possessions", 148, 100, inventoryTitleFont, Color.BLACK);
+		
 
 		g.drawImage(inventoryUpLeft, 80, 120, null);
 
@@ -188,13 +185,13 @@ public class GraphicsHandler {
 	
 	public void drawOptionsBox( OptionsBox optionsBox) {
 		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
-		Font nameFont = new Font("descriptionFont", Font.PLAIN, 60);
+		Font nameFont = new Font("descriptionFont", Font.PLAIN, 30);
 		
 		
 		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
 		g.drawImage(optionsBox.getItemImage(), 250,420, null);
 		drawString(optionsBox.getItemDescription(), 250, 500, descriptionFont, Color.BLACK);
-		drawString(optionsBox.getItemName(), 320, 430, descriptionFont, Color.BLACK);
+		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
 
 
