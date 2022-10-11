@@ -188,13 +188,13 @@ public class GraphicsHandler {
 	
 	public void drawOptionsBox( OptionsBox optionsBox) {
 		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
-		Font nameFont = new Font("descriptionFont", Font.PLAIN, 60);
+		Font nameFont = new Font("descriptionFont", Font.PLAIN, 30);
 		
 		
 		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
 		g.drawImage(optionsBox.getItemImage(), 250,420, null);
 		drawString(optionsBox.getItemDescription(), 250, 500, descriptionFont, Color.BLACK);
-		drawString(optionsBox.getItemName(), 320, 430, descriptionFont, Color.BLACK);
+		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
 
 
