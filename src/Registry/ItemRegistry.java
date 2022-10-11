@@ -9,7 +9,7 @@ public class ItemRegistry {
 
     public ArrayList<Item> items = new ArrayList<>();
 
-    public static class Item {
+    public static class Item {	
         public String name;
         public String description;
         public Image texture;

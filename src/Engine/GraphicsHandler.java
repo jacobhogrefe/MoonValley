@@ -2,6 +2,7 @@ package Engine;
 
 import GameObject.ImageEffect;
 import InventoryModifier.InventoryGrid;
+import InventoryModifier.OptionsBox;
 import Registry.ItemRegistry;
 
 import java.awt.*;
@@ -181,6 +182,10 @@ public class GraphicsHandler {
 		int y = (int)inventoryGrid.getSlotCorner(slotNumber).getY();
 		
 		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
+	}
+	
+	public void drawOptionsBox( OptionsBox optionsBox) {
+		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
 	}
 
 

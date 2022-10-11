@@ -17,7 +17,7 @@ public class InventoryScreen extends JPanel {
 	protected PlayLevelScreen playLevelScreen;
 	protected KeyLocker keyLocker = new KeyLocker();
 	private PlayerInventory playerInventory;
-	private InventoryGrid inventoryGrid = new InventoryGrid();
+	private InventoryGrid inventoryGrid;
 	protected Key Inventory_Key = Key.I;
 	protected boolean inventoryIsOpen = false;
 	public static boolean inventoryOpen = false; //The boolean above is used for the keylocker, this one talks to the gamepanel
@@ -25,6 +25,7 @@ public class InventoryScreen extends JPanel {
 	public InventoryScreen(PlayLevelScreen playLevelScreen, PlayerInventory playerInventory) {
 		this.playLevelScreen = playLevelScreen;
 		this.playerInventory = playerInventory;
+		this.inventoryGrid = new InventoryGrid(playerInventory);
 		initialize();
 	}
 

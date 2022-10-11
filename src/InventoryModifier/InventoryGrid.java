@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import Engine.GamePanel;
 import Engine.GraphicsHandler;
+import Level.PlayerInventory;
 
 //A grid that returns the corner of square taken up on the screen for each inventory slot on the screen
 
@@ -17,11 +18,24 @@ public class InventoryGrid {
 	private Point frameCorner = new Point(624, 337);
 	private int lastClickedSlot = 0;
 	private int selectedSlot;
-	private boolean reported = false;
+	private OptionsBox optionsBox = new OptionsBox(0);
+	private PlayerInventory playerInventory;
+	//private boolean reported = false; //uncomment for testing (along with other commented things below)
 
+	public InventoryGrid(PlayerInventory playerInventory) {
+		// assigning corner points to slots
+		this.playerInventory = playerInventory;
+		for (int j = 0; j < 5; j++) {
+			for (int k = 0; k < 11; k++) {
+				slotNumberCorner[(j * 11) + k] = new Point((128 + (k * 48)), (168 + (j * 48)));
+			}
+		}
+
+	}
+	
+	//a constructor without an inventory, used by the graphicshandler to utilize the slot corner information within this class
 	public InventoryGrid() {
 		// assigning corner points to slots
-
 		for (int j = 0; j < 5; j++) {
 			for (int k = 0; k < 11; k++) {
 				slotNumberCorner[(j * 11) + k] = new Point((128 + (k * 48)), (168 + (j * 48)));
@@ -80,6 +94,7 @@ public class InventoryGrid {
 			
 		}
 		graphicsHandler.highlightSlot(selectedSlot);
+		graphicsHandler.drawOptionsBox(optionsBox);
 		
 		
 	//	if(reported == false) {
