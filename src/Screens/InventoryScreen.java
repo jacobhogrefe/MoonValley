@@ -1,23 +1,31 @@
 package Screens;
 
 import Engine.*;
+import InventoryModifier.InventoryGrid;
 import Level.PlayerInventory;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 // This class is for the win level screen
-public class InventoryScreen extends Screen {
+@SuppressWarnings("serial")
+public class InventoryScreen extends JPanel {
 	protected PlayLevelScreen playLevelScreen;
 	protected KeyLocker keyLocker = new KeyLocker();
 	private PlayerInventory playerInventory;
-
+	private InventoryGrid inventoryGrid;
 	protected Key Inventory_Key = Key.I;
 	protected boolean inventoryIsOpen = false;
+	public static boolean inventoryOpen = false; //The boolean above is used for the keylocker, this one talks to the gamepanel
 
 	public InventoryScreen(PlayLevelScreen playLevelScreen, PlayerInventory playerInventory) {
 		this.playLevelScreen = playLevelScreen;
 		this.playerInventory = playerInventory;
+		this.inventoryGrid = new InventoryGrid(playerInventory);
 		initialize();
 	}
 
@@ -29,12 +37,10 @@ public class InventoryScreen extends Screen {
 		this.playerInventory = playerInventory;
 	}
 
-	@Override
 	public void initialize() {
-		
+		inventoryOpen = true;
 	}
 	
-	@Override
 	public void update() {
 		if (Keyboard.isKeyDown(Inventory_Key) && !keyLocker.isKeyLocked(Inventory_Key)) {
 			keyLocker.lockKey(Inventory_Key);
@@ -46,12 +52,18 @@ public class InventoryScreen extends Screen {
 		}
 
 		if (!inventoryIsOpen) {
+			inventoryOpen = false;
 			playLevelScreen.resumeLevel();
+		}
+		if(GamePanel.clickToProcess) {
+			
 		}
 
 	}
 
 	public void draw(GraphicsHandler graphicsHandler) {
 		graphicsHandler.drawInventory(playerInventory.getInventoryArray());
+//		graphicsHandler.highlightSlot(10);
+		inventoryGrid.draw(graphicsHandler);
 	}
 }

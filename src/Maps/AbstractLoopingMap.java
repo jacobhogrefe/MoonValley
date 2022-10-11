@@ -7,6 +7,7 @@ import GameObject.Rectangle;
 import Level.Map;
 import Level.Tileset;
 import Level.Trigger;
+import Registry.ItemRegistry.Item;
 import Scripts.SmartMapTeleportScript;
 import Utils.Side;
 
@@ -17,20 +18,24 @@ public abstract class AbstractLoopingMap extends Map {
 
     public abstract Supplier<Map> getBorderingMap(Side edge);
 
+    public Item getRequiredItem(Side edge) {
+        return null;
+    }
+
     @Override
     protected ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = super.loadTriggers();
 
         for (Side edge : Side.values()) {
             Supplier<Map> borderingMap = this.getBorderingMap(edge);
-            if (edge != null) {
+            if (borderingMap != null) {
                 Rectangle bounds = edge.getBorderWithWidth(this.getIntersectRectangle(), 16);
                 Trigger trigger = new Trigger(
                     (int) bounds.getX(),
                     (int) bounds.getY(),
                     bounds.getWidth(),
                     bounds.getHeight(),
-                    new SmartMapTeleportScript(borderingMap, edge)
+                    new SmartMapTeleportScript(borderingMap, edge, this.getRequiredItem(edge))
                 );
 
                 triggers.add(trigger);

@@ -7,6 +7,8 @@ import Engine.ImageLoader;
 import GameObject.ImageEffect;
 import GameObject.Sprite;
 import Level.Map;
+import Registry.ItemRegistry;
+import Registry.ItemRegistry.Item;
 import Tilesets.TitleTileset;
 import Utils.Colors;
 import Utils.Point;
@@ -36,5 +38,10 @@ public class moonValleyTitle extends AbstractLoopingMap {
     public Supplier<Map> getBorderingMap(Side edge) {
         // Loop to the same map
         return () -> new TestMap();
+    }
+
+    @Override
+    public Item getRequiredItem(Side edge) {
+        return ItemRegistry.singleton.YOSHI_COIN;
     }
 }

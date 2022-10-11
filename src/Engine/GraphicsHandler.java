@@ -1,6 +1,8 @@
 package Engine;
 
 import GameObject.ImageEffect;
+import InventoryModifier.InventoryGrid;
+import InventoryModifier.OptionsBox;
 import Registry.ItemRegistry;
 
 import java.awt.*;
@@ -11,7 +13,9 @@ import java.awt.image.BufferedImage;
 public class GraphicsHandler {
 
 	private Graphics2D g;
+	private InventoryGrid inventoryGrid = new InventoryGrid();
 
+	
 	public void setGraphics(Graphics2D g) {
 		this.g = g;
 	}
@@ -68,6 +72,7 @@ public class GraphicsHandler {
 		g.setColor(color);
 		g.drawString(text, x, y);
 	}
+	
 
 	// https://stackoverflow.com/a/35222059 and https://stackoverflow.com/a/31831120
 	public void drawStringWithOutline(String text, int x, int y, Font font, Color textColor, Color outlineColor,
@@ -162,11 +167,27 @@ public class GraphicsHandler {
 		// inventory.
 		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 11; i++) {
-				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 10 + i]).texture, 128 + (i * 48), (168 + (j * 48)), null);
+				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 11 + i]).texture, 128 + (i * 48), (168 + (j * 48)), null);
 
 			}
 		}
+		
+		
+	//	highlightSlot(0);
+		
 
 	}
+	public void highlightSlot(int slotNumber) {
+		int x = (int)inventoryGrid.getSlotCorner(slotNumber).getX();
+		int y = (int)inventoryGrid.getSlotCorner(slotNumber).getY();
+		
+		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
+	}
+	
+	public void drawOptionsBox( OptionsBox optionsBox) {
+		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
+	}
+
+
 
 }

@@ -169,6 +169,7 @@ public class PlayLevelScreen extends Screen {
 			winScreen.draw(graphicsHandler);
 			break;
 		case INVENTORY_OPEN:
+			InventoryScreen.inventoryOpen = true;
 			inventoryScreen.draw(graphicsHandler);
 			break;
 		}
