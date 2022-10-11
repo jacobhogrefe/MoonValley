@@ -120,7 +120,7 @@ public class GamePanel extends JPanel {
 			Font font = new Font("timeFont", Font.PLAIN, 30);
 			graphicsHandler.drawString(theTime, 0, 25, font, Color.BLACK);
 
-			if (clock1.getTimeOfDay() >= 12) {
+			if (clock1.getTimeOfDay() >= 12 && !InventoryScreen.inventoryOpen) {
 				graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(),
 						ScreenManager.getScreenHeight(), new Color(0, 0, 0, 150));
 
