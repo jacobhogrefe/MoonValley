@@ -116,17 +116,6 @@ public class GamePanel extends JPanel {
 		graphicsHandler.setGraphics((Graphics2D) g);
 		if (doPaint) {
 			draw();
-			String theTime = new String("Time: " + clock1.getTimeOfDay() + ":00");
-			Font font = new Font("timeFont", Font.PLAIN, 30);
-			graphicsHandler.drawString(theTime, 0, 25, font, Color.BLACK);
-
-			if (clock1.getTimeOfDay() >= 12) {
-				graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(),
-						ScreenManager.getScreenHeight(), new Color(0, 0, 0, 150));
-
-			}
-
 		}
 	}
-
 }
