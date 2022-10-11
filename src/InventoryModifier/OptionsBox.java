@@ -6,17 +6,17 @@ import java.awt.Point;
 import Engine.GraphicsHandler;
 import Registry.ItemRegistry;
 
-
 //Takes in itemNumber and draws a box containing the item info/options
 
-public class OptionsBox{
-	
+public class OptionsBox {
+
 	int boxHeight = 150;
 	int boxWidth = 300;
 	int itemNumber;
 	int slotNumber;
 	Image itemImage;
 	String itemDescription;
+
 	public String getItemName() {
 		return itemName;
 	}
@@ -26,15 +26,26 @@ public class OptionsBox{
 	}
 
 	String itemName;
-	//corner of box is at 240,410 (set in graphicshandler)
-	
+	// corner of box is at 240,410 (set in graphicshandler)
+
 	public OptionsBox(int itemNumber, int slotNumber) {
 		this.itemNumber = itemNumber;
 		this.slotNumber = slotNumber;
 		itemImage = ItemRegistry.singleton.items.get(itemNumber).texture;
-		itemDescription = ItemRegistry.singleton.items.get(itemNumber).description;
+
+		if (ItemRegistry.singleton.items.get(itemNumber).description.length() > 40) {
+			String tempString = ItemRegistry.singleton.items.get(itemNumber).description;
+
+			String half1 = tempString.substring(0, 40);
+			String half2 = tempString.substring(40, tempString.length());
+			
+			itemDescription = (half1 + "\n" + half2);
+
+		} else {
+			itemDescription = ItemRegistry.singleton.items.get(itemNumber).description;
+		}
 		itemName = ItemRegistry.singleton.items.get(itemNumber).name;
-		
+
 	}
 
 	public String getItemDescription() {
@@ -84,6 +95,5 @@ public class OptionsBox{
 	public void setItemNumber(int itemNumber) {
 		this.itemNumber = itemNumber;
 	}
-	
 
 }

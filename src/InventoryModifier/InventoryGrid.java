@@ -82,7 +82,7 @@ public class InventoryGrid {
 				//	reported = false;	//uncomment for troubleshooting
 
 				} else {
-					System.out.println("You clicked a non-inventory slot");
+	//				System.out.println("You clicked a non-inventory slot");
 				}
 			}
 		}
