@@ -29,7 +29,7 @@ public class InventoryGrid {
 		}
 
 	}
-
+	//Returns slot corner which was found by the nested for statements in the constructor, images are drawn from this point at 48x48 pixels
 	public Point getSlotCorner(int slot) {
 		return slotNumberCorner[slot];
 	}
@@ -64,7 +64,7 @@ public class InventoryGrid {
 					System.out.println("Slot position: " + (int) slotNumberCorner[index].getX() + ","
 							+ (int) slotNumberCorner[index].getY());
 					System.out.println("Click Position: " + lastClick.getX() + "," + lastClick.getY());
-					reported = false;
+				//	reported = false;	//uncomment for troubleshooting
 
 				} else {
 					System.out.println("You clicked a non-inventory slot");
@@ -77,13 +77,15 @@ public class InventoryGrid {
 		if (GamePanel.clickToProcess) {
 			assignLastClickSlot(GamePanel.lastClick);
 			GamePanel.clickToProcess = false;
+			
 		}
 		graphicsHandler.highlightSlot(selectedSlot);
 		
-		if(reported == false) {
-		System.out.println(selectedSlot);
-		reported = true;
-		}
+		
+	//	if(reported == false) {
+	//	System.out.println(selectedSlot); //uncomment for troubleshooting
+	//	reported = true;
+	//	}
 	}
 
 }

@@ -1,6 +1,7 @@
 package Engine;
 
 import GameObject.Rectangle;
+import Screens.InventoryScreen;
 import Utils.Colors;
 import Utils.Stopwatch;
 
@@ -65,11 +66,12 @@ public class GamePanel extends JPanel {
 	
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				
+				if(InventoryScreen.inventoryOpen) {
 				lastClick = evt.getPoint();
 				clickToProcess = true;
 				// System.out.println("Plz work");
 				// System.out.println(evt.getX()+","+evt.getY());
+			}
 			}
 		});
 
