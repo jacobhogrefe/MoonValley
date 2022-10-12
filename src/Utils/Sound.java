@@ -50,6 +50,7 @@ public class Sound implements LineListener {
     //closes the soundclip freeing up memory currently in use by it
     public void close() {
         if (soundClip != null) {
+            soundClip.stop();
             soundClip.close();
         }
     }
