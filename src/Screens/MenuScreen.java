@@ -83,7 +83,9 @@ public class MenuScreen extends AbstractMenuScreen {
     @Override
     public void update() {
         // update background map (to play tile animations)
+    	MenuSound.play();
         background.update(null);
+        
 
         super.update();
     }
