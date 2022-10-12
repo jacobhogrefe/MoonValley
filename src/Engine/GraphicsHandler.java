@@ -190,7 +190,16 @@ public class GraphicsHandler {
 		
 		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
 		g.drawImage(optionsBox.getItemImage(), 250,420, null);
-		drawString(optionsBox.getItemDescription(), 250, 500, descriptionFont, Color.BLACK);
+		
+		if(optionsBox.getItemDescription().length() >45) {
+			
+			drawString(optionsBox.getHalf1(), 250, 500, descriptionFont, Color.BLACK);
+			drawString(optionsBox.getHalf2(), 248, 520, descriptionFont, Color.BLACK);
+		}
+		else {
+			drawString(optionsBox.getItemDescription(), 250, 500, descriptionFont, Color.BLACK);
+		}
+		
 		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
 
