@@ -15,7 +15,6 @@ public class GraphicsHandler {
 	private Graphics2D g;
 	private InventoryGrid inventoryGrid = new InventoryGrid();
 
-	
 	public void setGraphics(Graphics2D g) {
 		this.g = g;
 	}
@@ -72,7 +71,6 @@ public class GraphicsHandler {
 		g.setColor(color);
 		g.drawString(text, x, y);
 	}
-	
 
 	// https://stackoverflow.com/a/35222059 and https://stackoverflow.com/a/31831120
 	public void drawStringWithOutline(String text, int x, int y, Font font, Color textColor, Color outlineColor,
@@ -132,7 +130,6 @@ public class GraphicsHandler {
 
 		Font inventoryTitleFont = new Font("Font", Font.ITALIC, 40);
 		drawString("Your Beautiful Possessions", 148, 100, inventoryTitleFont, Color.BLACK);
-		
 
 		g.drawImage(inventoryUpLeft, 80, 120, null);
 
@@ -164,45 +161,42 @@ public class GraphicsHandler {
 		// inventory.
 		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 11; i++) {
-				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 11 + i]).texture, 128 + (i * 48), (168 + (j * 48)), null);
+				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 11 + i]).texture, 128 + (i * 48),
+						(168 + (j * 48)), null);
 
 			}
 		}
-		
-		
-	//	highlightSlot(0);
-		
+
+		// highlightSlot(0);
 
 	}
+	
+	//draws an orange square over the inventory slot that has been clicked
 	public void highlightSlot(int slotNumber) {
-		int x = (int)inventoryGrid.getSlotCorner(slotNumber).getX();
-		int y = (int)inventoryGrid.getSlotCorner(slotNumber).getY();
-		
+		int x = (int) inventoryGrid.getSlotCorner(slotNumber).getX();
+		int y = (int) inventoryGrid.getSlotCorner(slotNumber).getY();
 
-		
 		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
 	}
 	
-	public void drawOptionsBox( OptionsBox optionsBox) {
+	// draws item information to an optionsbox, will also draw "buttons" in the future
+	public void drawOptionsBox(OptionsBox optionsBox) {
 		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
-		Font nameFont = new Font("descriptionFont", Font.PLAIN, 30);
-		
-		
-		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
-		g.drawImage(optionsBox.getItemImage(), 250,420, null);
-		
-		if(optionsBox.getItemDescription().length() >45) {
-			
+		Font nameFont = new Font("descriptionFont", Font.PLAIN, 25);
+
+		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY,
+				Color.BLACK, 2);
+		g.drawImage(optionsBox.getItemImage(), 250, 420, null);
+
+		if (optionsBox.getItemDescription().length() > 45) {
+
 			drawString(optionsBox.getHalf1(), 250, 500, descriptionFont, Color.BLACK);
 			drawString(optionsBox.getHalf2(), 248, 520, descriptionFont, Color.BLACK);
-		}
-		else {
+		} else {
 			drawString(optionsBox.getItemDescription(), 250, 500, descriptionFont, Color.BLACK);
 		}
-		
+
 		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
-
-
 
 }

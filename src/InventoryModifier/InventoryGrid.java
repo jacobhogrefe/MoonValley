@@ -10,7 +10,8 @@ import Engine.GamePanel;
 import Engine.GraphicsHandler;
 import Level.PlayerInventory;
 
-//A grid that returns the corner of square taken up on the screen for each inventory slot on the screen
+//A grid that interprets mouse clicks to determine selected inventory slots, moved items etc. 
+//Draw method contains the draw order for inventory components and inventory logic is executed based on clicks
 
 public class InventoryGrid {
 
@@ -20,7 +21,8 @@ public class InventoryGrid {
 	private int selectedSlot;
 	private int selectedItem;
 	private PlayerInventory playerInventory;
-	//private boolean reported = false; //uncomment for testing (along with other commented things below)
+	// private boolean reported = false; //uncomment for testing (along with other
+	// commented things below)
 
 	public InventoryGrid(PlayerInventory playerInventory) {
 		// assigning corner points to slots
@@ -32,8 +34,9 @@ public class InventoryGrid {
 		}
 
 	}
-	
-	//a constructor without an inventory, used by the graphicshandler to utilize the slot corner information within this class
+
+	// a constructor without an inventory, used by the graphicshandler to utilize
+	// the slot corner information within this class
 	public InventoryGrid() {
 		// assigning corner points to slots
 		for (int j = 0; j < 5; j++) {
@@ -43,7 +46,9 @@ public class InventoryGrid {
 		}
 
 	}
-	//Returns slot corner which was found by the nested for statements in the constructor, images are drawn from this point at 48x48 pixels
+
+	// Returns slot corner which was found by the nested for statements in the
+	// constructor, images are drawn from this point at 48x48 pixels
 	public Point getSlotCorner(int slot) {
 		return slotNumberCorner[slot];
 	}
@@ -79,10 +84,10 @@ public class InventoryGrid {
 					System.out.println("Slot position: " + (int) slotNumberCorner[index].getX() + ","
 							+ (int) slotNumberCorner[index].getY());
 					System.out.println("Click Position: " + lastClick.getX() + "," + lastClick.getY());
-				//	reported = false;	//uncomment for troubleshooting
+					// reported = false; //uncomment for troubleshooting
 
 				} else {
-	//				System.out.println("You clicked a non-inventory slot");
+					// System.out.println("You clicked a non-inventory slot");
 				}
 			}
 		}
@@ -92,17 +97,16 @@ public class InventoryGrid {
 		if (GamePanel.clickToProcess) {
 			assignLastClickSlot(GamePanel.lastClick);
 			GamePanel.clickToProcess = false;
-			
+
 		}
-		OptionsBox optionsBox = new OptionsBox(selectedItem,selectedSlot);
+		OptionsBox optionsBox = new OptionsBox(selectedItem, selectedSlot);
 		graphicsHandler.highlightSlot(selectedSlot);
 		graphicsHandler.drawOptionsBox(optionsBox);
-		
-		
-	//	if(reported == false) {
-	//	System.out.println(selectedSlot); //uncomment for troubleshooting
-	//	reported = true;
-	//	}
+
+		// if(reported == false) {
+		// System.out.println(selectedSlot); //uncomment for troubleshooting
+		// reported = true;
+		// }
 	}
 
 }

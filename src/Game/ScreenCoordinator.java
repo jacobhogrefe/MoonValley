@@ -28,6 +28,9 @@ public class ScreenCoordinator extends Screen {
 
 	@Override
 	public void update() {
+		if(currentScreen != mainMenuScreen) {
+			MenuScreen.MenuSound.close();
+		}
 		currentScreen.update();
 	}
 
