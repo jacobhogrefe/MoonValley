@@ -68,6 +68,14 @@ public class Sound implements LineListener {
         }
     }
 
+    //pauses and retsarts the current sound
+    public void stop() {
+        if (soundClip != null) {
+            soundClip.stop();
+            soundClip.setMicrosecondPosition(0);
+        }
+    }
+
     //checks if the soundclip is currently playing using the LineListener update method
     public boolean isPlayComplete() {
         return playCompleted;
