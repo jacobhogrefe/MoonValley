@@ -134,7 +134,7 @@ public abstract class Map implements IntersectableRectangle {
 
 		this.camera = new Camera(0, 0, tileset.getScaledSpriteWidth(), tileset.getScaledSpriteHeight(), this);
 		this.textbox = new Textbox(this);
-		levelMusic.play();
+	//	levelMusic.play();
 	}
 
 	// reads in a map file to create the map's tilemap

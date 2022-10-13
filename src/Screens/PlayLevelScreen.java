@@ -115,6 +115,7 @@ public class PlayLevelScreen extends Screen {
 		// if level is "running" update player and map to keep game logic for the
 		// platformer level going
 		case RUNNING:
+			playerInventory = inventoryScreen.getPlayerInventory();
 			player.update();
 			map.update(player);
 			break;

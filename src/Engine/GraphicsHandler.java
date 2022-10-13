@@ -4,11 +4,16 @@ import GameObject.ImageEffect;
 import InventoryModifier.InventoryGrid;
 import InventoryModifier.OptionsBox;
 import Registry.ItemRegistry;
+import Utils.Stopwatch;
 
 import java.awt.*;
+import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+
+import javax.swing.Timer;
 
 public class GraphicsHandler {
 
@@ -182,7 +187,8 @@ public class GraphicsHandler {
 	// draws item information to an optionsbox, will also draw "buttons" in the future
 	public void drawOptionsBox(OptionsBox optionsBox) {
 		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
-		Font nameFont = new Font("descriptionFont", Font.PLAIN, 25);
+		Font nameFont = new Font("descriptionFont", Font.BOLD, 25);
+	
 
 		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY,
 				Color.BLACK, 2);
@@ -198,5 +204,45 @@ public class GraphicsHandler {
 
 		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
+	
+	public void drawOptionsBoxButtons(OptionsBox optionsBox) {
+		
+		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
+		
+		//move button
+		drawFilledRectangleWithBorder(250,520,60,25,Color.GRAY,Color.BLACK,2);
+		
+		drawString("MOVE", 253, 540, buttonFont, Color.BLACK);
+		
+		
+		
+		//remove button
+		drawFilledRectangleWithBorder(325,520,88,25,Color.GRAY,Color.BLACK,2);
+		drawString("REMOVE", 328, 540, buttonFont, Color.BLACK);
+		
+	
+		
+	}
+	
+	public void highlightMove() {
+		
+		drawRectangle(250, 520, 60, 25, Color.ORANGE, 3);
+	}
+	
+	public void highlightRemoveButton() {
+		
+		
+		drawRectangle(325, 520, 88, 25, Color.ORANGE, 3);
+	
+	}
+	
+	public void unhighlightRemoveButton() {
+		
+		
+		drawFilledRectangleWithBorder(325,520,88,25,Color.GRAY,Color.BLACK,2);
+	
+	}
+	
+	
 
 }

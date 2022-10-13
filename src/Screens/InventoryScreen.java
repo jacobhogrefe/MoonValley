@@ -53,6 +53,7 @@ public class InventoryScreen extends JPanel {
 
 		if (!inventoryIsOpen) {
 			inventoryOpen = false;
+			playerInventory = inventoryGrid.getPlayerInventory();
 			playLevelScreen.resumeLevel();
 		}
 		if(GamePanel.clickToProcess) {

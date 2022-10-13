@@ -17,6 +17,7 @@ public class ScreenCoordinator extends Screen {
 	protected Screen currentScreen = new DefaultScreen();
 	protected PlayLevelScreen playLevelScreen;
 	public MenuScreen mainMenuScreen;
+	private Screen previousScreen;
 
 	@Override
 	public void initialize() {
@@ -54,6 +55,7 @@ public class ScreenCoordinator extends Screen {
 	 */
     public void push(Screen screen) {
         this.stack.addLast(this.currentScreen);
+        previousScreen = currentScreen;
 
         this.currentScreen = screen;
 		this.currentScreen.initialize();
