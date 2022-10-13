@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -27,7 +28,7 @@ public class BiomeFallout extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GAS_MASK;
 
     public BiomeFallout() {
-        super("Biomes/fallout.txt", Tilesets.MINECRAFT_TILESET, null);
+        super("Biomes/fallout.txt", Tilesets.MINECRAFT_TILESET);
     }
 
     @Override
@@ -36,14 +37,10 @@ public class BiomeFallout extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
-                this.getLevelMusic().pause();
-                this.getLevelMusic().restart();
                 return () -> new BiomeSpooky();
             case TOP:
-                this.getLevelMusic().pause();
                 return null;
             case BOTTOM:
-                this.getLevelMusic().restart();
                 return () -> new BiomeShrooms();
             default:
                 return null;
@@ -64,5 +61,9 @@ public class BiomeFallout extends AbstractLoopingMap {
             default:
                 return null;
         }
+    }
+
+    public MusicState getMusicState() {
+        return MusicState.TOXIC;
     }
 }

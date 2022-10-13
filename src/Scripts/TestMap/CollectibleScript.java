@@ -7,7 +7,6 @@ public class CollectibleScript extends SimpleTextScript {
 
     protected Sound sound;
     protected String textItem;
-    protected boolean playCompleted;
 
     public CollectibleScript(String text, boolean isKeyCollectible) {
         super("You have found a " + text + "!");
@@ -24,7 +23,7 @@ public class CollectibleScript extends SimpleTextScript {
         lockPlayer();
         showTextbox();
         addTextToTextboxQueue(textItem);
-        getMap().getLevelMusic().pause();
+        getMap().getMusicManager().pauseActiveMusic();
         sound.play();
     }
 
@@ -33,6 +32,6 @@ public class CollectibleScript extends SimpleTextScript {
         unlockPlayer();
         hideTextbox();
         sound.close();
-        getMap().getLevelMusic().play();
+        getMap().getMusicManager().playActiveMusic();
     }
 }

@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -26,23 +27,19 @@ public class BiomeMountains extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GRAPPLING_HOOK;
 
     public BiomeMountains() {
-        super("Biomes/mountains.txt", new CommonTileset(), null);
+        super("Biomes/mountains.txt", new CommonTileset());
     }
 
     @Override
     public Supplier<Map> getBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                this.getLevelMusic().pause();
-                this.getLevelMusic().restart();
                 return () -> new BiomeSpooky();
             case RIGHT:
                 return null;
             case TOP:
                 return null;
             case BOTTOM:
-                this.getLevelMusic().pause();
-                this.getLevelMusic().restart();
                 return () -> new BiomeDesert();
             default:
                 return null;
@@ -63,5 +60,9 @@ public class BiomeMountains extends AbstractLoopingMap {
             default:
                 return null;
         }
+    }
+
+    public MusicState getMusicState() {
+        return MusicState.MOUNTAINS;
     }
 }

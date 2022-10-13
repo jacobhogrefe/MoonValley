@@ -3,7 +3,6 @@ package Screens;
 import Engine.*;
 import Game.ScreenCoordinator;
 import SpriteFont.SpriteFont;
-
 import java.awt.*;
 import java.util.ArrayList;
 

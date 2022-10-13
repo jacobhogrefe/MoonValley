@@ -7,7 +7,7 @@ import Tilesets.HouseTileset;
 public class HouseMap extends Map {
 
     public HouseMap() {
-        super("house_map.txt", new HouseTileset(), null);
+        super("house_map.txt", new HouseTileset());
         this.playerStartPosition = getMapTile(5, 9).getLocation();
     }
 

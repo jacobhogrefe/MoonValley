@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -26,7 +27,7 @@ public class BiomeShrooms extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.MAGNIFYING_GLASS;
 
     public BiomeShrooms() {
-        super("Biomes/shrooms.txt", new CommonTileset(), null);
+        super("Biomes/shrooms.txt", new CommonTileset());
     }
 
     @Override
@@ -35,12 +36,8 @@ public class BiomeShrooms extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
-                this.getLevelMusic().pause();
-                this.getLevelMusic().restart();
                 return () -> new BiomeStart();
             case TOP:
-                this.getLevelMusic().pause();
-                this.getLevelMusic().restart();
                 return () -> new BiomeFallout();
             case BOTTOM:
                 return null;
@@ -64,4 +61,8 @@ public class BiomeShrooms extends AbstractLoopingMap {
                 return null;
         }
     }   
+
+    public MusicState getMusicState() {
+        return MusicState.MUSHROOM;
+    }
 }
