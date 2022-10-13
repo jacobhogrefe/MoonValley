@@ -33,8 +33,7 @@ public class PlayLevelScreen extends Screen {
 	protected PlayerInventory playerInventory = new PlayerInventory();
 	protected Clock clock = new Clock();
 	protected SpriteFont time = new SpriteFont("Time: " + clock.getTimeOfDay() + ":00", 10, 30, "Comic Sans", 30, Color.BLACK);
-	
-
+	protected MusicManager musicManager;
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
@@ -70,6 +69,8 @@ public class PlayLevelScreen extends Screen {
 
 		winScreen = new WinScreen(this);
 		inventoryScreen = new InventoryScreen(this, playerInventory);
+		musicManager = map.getMusicManager();
+		musicManager.setMusicState(MusicState.START);
 	}
 
 	public void reinitializeMap() {
@@ -110,6 +111,8 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void update() {
+		//updates the music based on location
+		musicManager.updateMusic();
 		// based on screen state, perform specific actions
 		switch (playLevelScreenState) {
 		// if level is "running" update player and map to keep game logic for the
@@ -182,6 +185,16 @@ public class PlayLevelScreen extends Screen {
 			inventoryScreen.draw(graphicsHandler);
 			break;
 		}
+	}
+
+	//empty method for setting the current map to one of the biomes based on where the player goes on the map
+	public void updateCurrentMap() {
+		/*
+		 * determine where player is on map
+		 * check if those bounds line up w one of the maps (for loop for array of biomes)
+		 * set the music state of the music manager using the getMusicState() method within each biome
+		 * set the map equal to the biome the player was determined to be in
+		 */
 	}
 
 	//times can be altered from their original values
