@@ -157,6 +157,9 @@ public class InventoryGrid {
 		System.out.println("itemIsBeingMoved: "+ itemIsBeingMoved);
 		System.out.println("shouldHighlightMove "+shouldHighlightMove);
 		System.out.println("shouldHighlightRemove "+shouldHighlightRemove);
+		System.out.println(" ");
+		System.out.println(" ");
+		
 	}
 
 
