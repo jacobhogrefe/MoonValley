@@ -86,4 +86,3 @@ public class TestMap extends Map {
         getMapTile(17, 4).setInteractScript(new SimpleTextScript("Would you like to enter Dino's house?"));
     }
 }
-

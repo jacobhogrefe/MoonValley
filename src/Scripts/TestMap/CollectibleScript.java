@@ -1,3 +1,4 @@
+
 package Scripts.TestMap;
 
 import Scripts.SimpleTextScript;

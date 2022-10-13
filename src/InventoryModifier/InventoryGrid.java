@@ -182,6 +182,7 @@ public class InventoryGrid {
 			itemIsBeingMoved = true;
 		}
 		
+		//This one speaks for itself
 		if (shouldHighlightRemove) {
 			graphicsHandler.highlightRemoveButton();
 			playerInventory.removeItem(selectedSlot);
