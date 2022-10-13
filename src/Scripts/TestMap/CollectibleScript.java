@@ -24,7 +24,7 @@ public class CollectibleScript extends SimpleTextScript {
         lockPlayer();
         showTextbox();
         addTextToTextboxQueue(textItem);
-        getMap().getMusicManager().pauseActiveMusic();
+        getMap().getMusicManager().getCurrentSound().pause();
         sound.play();
     }
 
@@ -33,6 +33,6 @@ public class CollectibleScript extends SimpleTextScript {
         unlockPlayer();
         hideTextbox();
         sound.close();
-        getMap().getMusicManager().playActiveMusic();
+        getMap().getMusicManager().getCurrentSound().play();
     }
 }
