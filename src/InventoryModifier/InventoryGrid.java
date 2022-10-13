@@ -26,8 +26,6 @@ public class InventoryGrid {
 	private int selectedSlot;
 	private int selectedItem;
 	private PlayerInventory playerInventory;
-	private boolean erroneousClick = false; // VERY IMPORTANT: if a click occurs where there is nothing to click this
-											// prevents logic from executing
 
 	// start variables for moving items
 	private int arrowSlot;
@@ -101,18 +99,14 @@ public class InventoryGrid {
 						&& clickedY < yUpperBound) {
 					clickedSlot = ((j * 11) + k);
 					selectedSlot = clickedSlot;
-					erroneousClick = false;
 
 					// if an item move is not underway, updates selected item
 					if (!shouldHighlightMove && !itemIsBeingMoved) {
 						selectedItem = playerInventory.getItemInSlot(clickedSlot);
-						erroneousClick = false;
+
 					}
 
-					else {
-				//		erroneousClick = true;
 			
-					}
 					System.out.println("You clicked slot: " + index);
 					System.out.println("Slot position: " + (int) slotNumberCorner[index].getX() + ","
 							+ (int) slotNumberCorner[index].getY());
@@ -131,9 +125,9 @@ public class InventoryGrid {
 		if (!shouldHighlightMove && selectedItem != 0 && clickedX > 250 && clickedX < 310 && clickedY > 520
 				&& clickedY < 608) {
 			shouldHighlightMove = true;
-			erroneousClick = false;
+
 		}
-		
+
 		// If an item is in the currently selected slot, checks if the REMOVE button has
 		// been clicked
 		// button X (lowerBound,upperBound) = (325,413)
@@ -141,13 +135,10 @@ public class InventoryGrid {
 		if (!shouldHighlightMove && selectedItem != 0 && clickedX > 325 && clickedX < 413 && clickedY > 520
 				&& clickedY < 608) {
 			shouldHighlightRemove = true;
-			erroneousClick = false;
+
 		}
 
-		else {
-	//		erroneousClick = true;
-			
-		}
+
 
 	}
 
@@ -158,7 +149,7 @@ public class InventoryGrid {
 	// read
 	public void draw(GraphicsHandler graphicsHandler) {
 
-		if (GamePanel.clickToProcess && !itemIsBeingMoved && !erroneousClick) {
+		if (GamePanel.clickToProcess && !itemIsBeingMoved) {
 			assignLastClickSlot(GamePanel.lastClick);
 
 			GamePanel.clickToProcess = false;
@@ -181,17 +172,20 @@ public class InventoryGrid {
 			arrowSlot = selectedSlot;
 			itemIsBeingMoved = true;
 		}
-		
-		//This one speaks for itself
+
+		// This one speaks for itself
 		if (shouldHighlightRemove) {
 			graphicsHandler.highlightRemoveButton();
 			playerInventory.removeItem(selectedSlot);
 			graphicsHandler.unhighlightRemoveButton();
+			shouldHighlightRemove = false;
 			
+
 		}
 
-		// if another click has occurred, and booleans indicate a move is taking place, move item
-		if (GamePanel.clickToProcess && itemIsBeingMoved && shouldHighlightMove && !erroneousClick) {
+		// if another click has occurred, and booleans indicate a move is taking place,
+		// move item
+		if (GamePanel.clickToProcess && itemIsBeingMoved && shouldHighlightMove) {
 			assignLastClickSlot(GamePanel.lastClick);
 			targetSlot = selectedSlot; // unnecessary variable but more readable
 			playerInventory.moveItem(arrowSlot, targetSlot);
@@ -201,9 +195,7 @@ public class InventoryGrid {
 					playerInventory.getItemInSlot(arrowSlot) + ", " + playerInventory.getItemInSlot(targetSlot));
 		}
 
-		else {
-
-		}
+		
 
 		// if(reported == false) {
 		// System.out.println(selectedSlot); //uncomment for troubleshooting
