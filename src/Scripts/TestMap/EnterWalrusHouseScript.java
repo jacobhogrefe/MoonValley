@@ -3,10 +3,10 @@ package Scripts.TestMap;
 import Game.Game;
 import Level.Script;
 import Level.ScriptState;
-import Maps.HouseMap;
+import Maps.WalrusMap;
 
 // trigger script at beginning of game to set that heavy emotional plot
-public class EnterHouseScript extends Script {
+public class EnterWalrusHouseScript extends Script {
 	@Override
 	protected void setup() {
 		lockPlayer();
@@ -22,7 +22,7 @@ public class EnterHouseScript extends Script {
 
 	@Override
 	public ScriptState execute() {
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new HouseMap(), 350, 450);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new WalrusMap(), 350, 450);
 		return ScriptState.COMPLETED;
 	}
 }

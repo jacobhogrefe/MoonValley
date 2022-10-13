@@ -3,15 +3,14 @@ package Scripts.TestMap;
 import Game.Game;
 import Level.Script;
 import Level.ScriptState;
-import Maps.HouseMap;
+import Maps.TestMap;
 
 // trigger script at beginning of game to set that heavy emotional plot
-public class EnterHouseScript extends Script {
+public class ExitHouseScript extends Script {
 	@Override
 	protected void setup() {
 		lockPlayer();
 		showTextbox();
-		addTextToTextboxQueue("Entering house...");
 	}
 
 	@Override
@@ -22,7 +21,7 @@ public class EnterHouseScript extends Script {
 
 	@Override
 	public ScriptState execute() {
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new HouseMap(), 350, 450);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new TestMap(), 550, 1000);
 		return ScriptState.COMPLETED;
 	}
 }

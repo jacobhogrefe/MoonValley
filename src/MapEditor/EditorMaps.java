@@ -56,7 +56,7 @@ public class EditorMaps {
                 return new BiomeSpooky();
             case "BiomeStart":
                 return new BiomeStart();
-            case "WarlusMap":
+            case "WalrusMap":
             	return new WalrusMap();
             case "DinoMap":
             	return new DinoMap(); 

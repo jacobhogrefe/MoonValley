@@ -12,7 +12,9 @@ import NPCs.Walrus;
 import Scripts.MapTeleportScript;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.EnterDinoHouseScript;
 import Scripts.TestMap.EnterHouseScript;
+import Scripts.TestMap.EnterWalrusHouseScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
@@ -92,8 +94,8 @@ public class TestMap extends Map {
         //added house entering scripts    
         getMapTile(17, 19).setInteractScript(new EnterHouseScript());
         
-        getMapTile(4, 26).setInteractScript(new SimpleTextScript("Would you like to enter Walrus's house?"));
+        getMapTile(4, 26).setInteractScript(new EnterWalrusHouseScript());
         
-        getMapTile(17, 4).setInteractScript(new SimpleTextScript("Would you like to enter Dino's house?"));
+        getMapTile(17, 4).setInteractScript(new EnterDinoHouseScript());
     }
 }
