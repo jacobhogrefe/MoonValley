@@ -203,17 +203,17 @@ public class PlayLevelScreen extends Screen {
 		time.draw(graphicsHandler);
 		int timeOfDay = clock.getTimeOfDay();
 
-		if (timeOfDay == 7|| timeOfDay == 17) {
+		if (timeOfDay == 5 || timeOfDay == 19) {
 			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 25));	
-		} else if (timeOfDay == 8|| timeOfDay == 16) {
+		} else if (timeOfDay == 4|| timeOfDay == 20) {
 			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 50));	
-		} else if (timeOfDay == 9|| timeOfDay == 15) {
+		} else if (timeOfDay == 3|| timeOfDay == 21) {
 			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 75));	
-		} else if (timeOfDay == 10|| timeOfDay == 14) {
+		} else if (timeOfDay == 2|| timeOfDay == 22) {
 			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 100));	
-		} else if (timeOfDay == 11|| timeOfDay == 13) {
+		} else if (timeOfDay == 1|| timeOfDay == 23) {
 			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 125));	
-		} else if (timeOfDay == 12) {
+		} else if (timeOfDay == 24) {
 			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 150));	
 		} else {
 			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 0));	
