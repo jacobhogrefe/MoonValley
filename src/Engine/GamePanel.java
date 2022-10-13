@@ -4,7 +4,6 @@ import GameObject.Rectangle;
 import Screens.InventoryScreen;
 import Utils.Colors;
 import Utils.Stopwatch;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +32,6 @@ public class GamePanel extends JPanel {
 	private boolean isInventoryOpen = false;
 	private KeyLocker keyLocker = new KeyLocker();
 	private static final Key inventoryKey = Key.I;
-	public int Clock;
 	public static boolean clickToProcess = false;
 	public static Point lastClick;
 	public static Point mousePosition;
@@ -76,8 +74,6 @@ public class GamePanel extends JPanel {
 		});
 
 	}
-
-	Clock clock1 = new Clock();
 
 	// this is called later after instantiation, and will initialize screenManager
 	// this had to be done outside of the constructor because it needed to know the
