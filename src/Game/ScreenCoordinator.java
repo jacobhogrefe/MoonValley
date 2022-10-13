@@ -1,7 +1,6 @@
 package Game;
 
 import java.util.ArrayDeque;
-
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
@@ -16,7 +15,7 @@ public class ScreenCoordinator extends Screen {
 	// currently shown Screen
 	protected Screen currentScreen = new DefaultScreen();
 	protected PlayLevelScreen playLevelScreen;
-	public MenuScreen mainMenuScreen;
+	protected MenuScreen mainMenuScreen;
 
 	@Override
 	public void initialize() {
