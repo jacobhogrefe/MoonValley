@@ -70,6 +70,7 @@ public class PlayLevelScreen extends Screen {
 		inventoryScreen = new InventoryScreen(this, playerInventory);
 		musicManager = map.getMusicManager();
 		musicManager.setMusicState(MusicState.START);
+		musicManager.getCurrentSound().play();
 	}
 
 	public void reinitializeMap() {
@@ -233,6 +234,7 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void pause() {
+		musicManager.getCurrentSound().pause();
 		screenCoordinator.push(new PauseScreen(this, screenCoordinator));
 	}
 
@@ -242,6 +244,7 @@ public class PlayLevelScreen extends Screen {
 
 	public void resumeLevel() {
 		this.screenCoordinator.resumeLevel();
+		musicManager.getCurrentSound().play();
 		playLevelScreenState = PlayLevelScreenState.RUNNING;
 	}
 
@@ -250,6 +253,7 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void goBackToMenu() {
+		musicManager.getCurrentSound().stop();
 		screenCoordinator.pop(this);
 	}
 

@@ -85,12 +85,7 @@ public class MusicManager {
     }
 
     //pauses the current music
-    public void pauseActiveMusic() {
-        currentSound.pause();
-    }
-
-    //plays the current music
-    public void playActiveMusic() {
-        currentSound.play();
+    public Sound getCurrentSound() {
+        return currentSound;
     }
 }
