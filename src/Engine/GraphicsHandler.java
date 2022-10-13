@@ -210,15 +210,15 @@ public class GraphicsHandler {
 		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
 		
 		//move button
-		drawFilledRectangleWithBorder(250,520,60,25,Color.GRAY,Color.BLACK,2);
+		drawFilledRectangleWithBorder(250,530,60,25,Color.GRAY,Color.BLACK,2);
 		
-		drawString("MOVE", 253, 540, buttonFont, Color.BLACK);
+		drawString("MOVE", 253, 550, buttonFont, Color.BLACK);
 		
 		
 		
 		//remove button
-		drawFilledRectangleWithBorder(325,520,88,25,Color.GRAY,Color.BLACK,2);
-		drawString("REMOVE", 328, 540, buttonFont, Color.BLACK);
+		drawFilledRectangleWithBorder(325,530,88,25,Color.GRAY,Color.BLACK,2);
+		drawString("REMOVE", 328, 550, buttonFont, Color.BLACK);
 		
 	
 		
@@ -226,20 +226,20 @@ public class GraphicsHandler {
 	
 	public void highlightMove() {
 		
-		drawRectangle(250, 520, 60, 25, Color.ORANGE, 3);
+		drawRectangle(250, 530, 60, 25, Color.ORANGE, 3);
 	}
 	
 	public void highlightRemoveButton() {
 		
 		
-		drawRectangle(325, 520, 88, 25, Color.ORANGE, 3);
+		drawRectangle(325, 530, 88, 25, Color.ORANGE, 3);
 	
 	}
 	
 	public void unhighlightRemoveButton() {
 		
 		
-		drawFilledRectangleWithBorder(325,520,88,25,Color.GRAY,Color.BLACK,2);
+		drawFilledRectangleWithBorder(325,530,88,25,Color.GRAY,Color.BLACK,2);
 	
 	}
 	
