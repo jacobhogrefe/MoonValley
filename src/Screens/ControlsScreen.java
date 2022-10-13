@@ -18,7 +18,6 @@ public class ControlsScreen extends Screen {
 
     public ControlsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
-        //this.playLevelScreen = screenCoordinator.getPlayLevelScreen();
         initialize();
     }
 
@@ -54,7 +53,7 @@ public class ControlsScreen extends Screen {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        if (playLevelScreen != null) {
+        if (screenCoordinator.playLevelScreen != null) {
             graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(0, 0, 0, 200));
         } else {
             background.draw(graphicsHandler);

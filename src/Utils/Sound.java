@@ -24,7 +24,7 @@ public class Sound implements LineListener {
             soundClip.addLineListener(this);
             soundClip.open(soundStream);
         } catch (Exception e) {
-            System.out.println("Sound file: " + "\"" + soundFileName + "\" was not found!");
+            //System.out.println("Sound file: " + "\"" + soundFileName + "\" was not found!");
         }
     }
 
