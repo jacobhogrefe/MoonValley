@@ -4,7 +4,6 @@ import GameObject.Rectangle;
 import Screens.InventoryScreen;
 import Utils.Colors;
 import Utils.Stopwatch;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +32,6 @@ public class GamePanel extends JPanel {
 	private boolean isInventoryOpen = false;
 	private KeyLocker keyLocker = new KeyLocker();
 	private static final Key inventoryKey = Key.I;
-	public int Clock;
 	public static boolean clickToProcess = false;
 	public static Point lastClick;
 	public static Point mousePosition;
@@ -77,8 +75,6 @@ public class GamePanel extends JPanel {
 
 	}
 
-	Clock clock1 = new Clock();
-
 	// this is called later after instantiation, and will initialize screenManager
 	// this had to be done outside of the constructor because it needed to know the
 	// JPanel's width and height, which aren't available in the constructor
@@ -116,17 +112,6 @@ public class GamePanel extends JPanel {
 		graphicsHandler.setGraphics((Graphics2D) g);
 		if (doPaint) {
 			draw();
-			String theTime = new String("Time: " + clock1.getTimeOfDay() + ":00");
-			Font font = new Font("timeFont", Font.PLAIN, 30);
-			graphicsHandler.drawString(theTime, 0, 25, font, Color.BLACK);
-
-			if (clock1.getTimeOfDay() >= 12) {
-				graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(),
-						ScreenManager.getScreenHeight(), new Color(0, 0, 0, 150));
-
-			}
-
 		}
 	}
-
 }

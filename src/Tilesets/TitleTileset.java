@@ -26,10 +26,10 @@ public class TitleTileset extends Tileset {
 
 		mapTiles.add(letterM);
 
-		// moon part 7 (I started doing these in this confusing order because its the
-		// order the coordinates were done in the common file.
-		// that was my reference, maybe Ill put these in a more logical order when I'm
-		// done, but it is much more likely that I will not.)
+		// moon part 8 (I started doing these in this confusing order because its the
+		// order the coordinates were done in the common file
+		// that was my reference. maybe Ill put these in a more logical order when I'm
+		// done, but it is much more likely that I will not.
 		// Furthermore, if Star Wars can start on episode 4, I can start coding my moon
 		// tiles at 8.
 		Frame moon8Frame = new FrameBuilder(getSubImage(3, 0)).withScale(tileScale).build();
@@ -206,7 +206,6 @@ public class TitleTileset extends Tileset {
 		// but I couldn't figure it out so I went with this lazy solution.
 
 		Frame[] twinkleStarFrame = new Frame[] {
-				
 
 				new FrameBuilder(getSubImage(4, 2), (int) 300).withScale(tileScale).build(),
 				new FrameBuilder(getSubImage(4, 3), (int) 200).withScale(tileScale).build(),
@@ -217,7 +216,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder twinkleStarTile = new MapTileBuilder(twinkleStarFrame);
 
 		mapTiles.add(twinkleStarTile);
-		
+
 		// Twinkling star/planet?
 
 		// I wanted to make it so these don't all blink at the same time. I'm sure there
@@ -235,7 +234,7 @@ public class TitleTileset extends Tileset {
 		MapTileBuilder twinkleStarTile2 = new MapTileBuilder(twinkleStarFrame2);
 
 		mapTiles.add(twinkleStarTile2);
-		
+
 		// Twinkling star/planet?
 
 		// I wanted to make it so these don't all blink at the same time. I'm sure there
@@ -243,9 +242,6 @@ public class TitleTileset extends Tileset {
 		// but I couldn't figure it out so I went with this lazy solution.
 
 		Frame[] twinkleStarFrame3 = new Frame[] {
-			
-				
-				
 
 				new FrameBuilder(getSubImage(4, 2), (int) 400).withScale(tileScale).build(),
 				new FrameBuilder(getSubImage(4, 3), (int) 200).withScale(tileScale).build(),

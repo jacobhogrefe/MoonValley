@@ -72,12 +72,12 @@ public class TestMap extends Map {
         return collectibles;
     }
     
-    @Override
-    public ArrayList<HouseEntry> loadHouseEntries() {
-    	ArrayList<HouseEntry> entries = new ArrayList<>();
-    	entries.add(new HouseEntry(17, 19));
-    	return entries;
-    }
+//    @Override
+//    public ArrayList<HouseEntry> loadHouseEntries() {
+//    	ArrayList<HouseEntry> entries = new ArrayList<>();
+//    	entries.add(new HouseEntry(17, 19));
+//    	return entries;
+//    }
     
     @Override
     public void loadScripts() {
@@ -97,4 +97,3 @@ public class TestMap extends Map {
         getMapTile(17, 4).setInteractScript(new SimpleTextScript("Would you like to enter Dino's house?"));
     }
 }
-

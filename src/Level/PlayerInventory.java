@@ -58,6 +58,10 @@ public class PlayerInventory {
 			return true;
 		}
 	}
+	
+	public int getItemInSlot(int slotNumber) {
+		return inventoryArray[slotNumber];
+	}
 
 	/**
 	 * add an item.

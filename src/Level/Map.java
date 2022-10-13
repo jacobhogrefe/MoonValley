@@ -78,6 +78,9 @@ public abstract class Map implements IntersectableRectangle {
 	// map's textbox instance
 	protected Textbox textbox;
 
+	//music manager for the different maps
+	protected MusicManager musicManager = new MusicManager();
+
 	// Items that have been collected or given to the player that need to be placed
 	// into inventory. This is where items "go" for a brief moment while being
 	// passed between the camera to the map, to the playlevelscreen, to, ultimately the inventory screen. This is a stack to
@@ -629,6 +632,10 @@ public abstract class Map implements IntersectableRectangle {
 
 	public Textbox getTextbox() {
 		return textbox;
+	}
+
+	public MusicManager getMusicManager() {
+		return musicManager;
 	}
 
 	public int getEndBoundX() {

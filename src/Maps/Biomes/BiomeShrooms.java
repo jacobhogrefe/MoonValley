@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -60,4 +61,8 @@ public class BiomeShrooms extends AbstractLoopingMap {
                 return null;
         }
     }   
+
+    public MusicState getMusicState() {
+        return MusicState.MUSHROOM;
+    }
 }

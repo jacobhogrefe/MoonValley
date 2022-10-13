@@ -18,13 +18,7 @@ public class ControlsScreen extends Screen {
 
     public ControlsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
-        this.playLevelScreen = screenCoordinator.getPlayLevelScreen();
-        initialize();
-    }
-
-    public ControlsScreen(PlayLevelScreen playLevelScreen) {
-        this.playLevelScreen = playLevelScreen;
-        this.screenCoordinator = playLevelScreen.screenCoordinator;
+        //this.playLevelScreen = screenCoordinator.getPlayLevelScreen();
         initialize();
     }
 

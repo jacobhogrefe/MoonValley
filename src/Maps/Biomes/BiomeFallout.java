@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -60,5 +61,9 @@ public class BiomeFallout extends AbstractLoopingMap {
             default:
                 return null;
         }
+    }
+
+    public MusicState getMusicState() {
+        return MusicState.TOXIC;
     }
 }

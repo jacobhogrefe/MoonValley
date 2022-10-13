@@ -1,7 +1,7 @@
 package Screens;
 
 import java.util.Stack;
-
+import java.awt.Color;
 import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
 import Engine.Key;
@@ -12,8 +12,12 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.TestMap;
 import Players.Cat;
+import SpriteFont.SpriteFont;
+import Utils.Colors;
 import Utils.Direction;
 import Utils.Point;
+import Engine.Clock;
+import Engine.Config;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -27,7 +31,9 @@ public class PlayLevelScreen extends Screen {
 	protected KeyLocker keyLocker = new KeyLocker();
 	protected boolean isInventoryOpen = false;
 	protected PlayerInventory playerInventory = new PlayerInventory();
-
+	protected Clock clock = new Clock();
+	protected SpriteFont time = new SpriteFont("Time: " + clock.getTimeOfDay() + ":00", 10, 30, "Comic Sans", 30, Color.BLACK);
+	protected MusicManager musicManager;
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
@@ -62,6 +68,8 @@ public class PlayLevelScreen extends Screen {
 
 		winScreen = new WinScreen(this);
 		inventoryScreen = new InventoryScreen(this, playerInventory);
+		musicManager = map.getMusicManager();
+		musicManager.setMusicState(MusicState.START);
 	}
 
 	public void reinitializeMap() {
@@ -102,6 +110,8 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void update() {
+		//updates the music based on location
+		musicManager.updateMusic();
 		// based on screen state, perform specific actions
 		switch (playLevelScreenState) {
 		// if level is "running" update player and map to keep game logic for the
@@ -164,6 +174,7 @@ public class PlayLevelScreen extends Screen {
 		case RUNNING:
 			playerInventory = inventoryScreen.getPlayerInventory();
 			map.draw(player, graphicsHandler);
+			drawTimeAndNight(graphicsHandler);
 			break;
 		case LEVEL_COMPLETED:
 			winScreen.draw(graphicsHandler);
@@ -172,6 +183,40 @@ public class PlayLevelScreen extends Screen {
 			InventoryScreen.inventoryOpen = true;
 			inventoryScreen.draw(graphicsHandler);
 			break;
+		}
+	}
+
+	//empty method for setting the current map to one of the biomes based on where the player goes on the map
+	public void updateCurrentMap() {
+		/*
+		 * determine where player is on map
+		 * check if those bounds line up w one of the maps (for loop for array of biomes)
+		 * set the music state of the music manager using the getMusicState() method within each biome
+		 * set the map equal to the biome the player was determined to be in
+		 */
+	}
+
+	//times can be altered from their original values
+	//lauren will update with clouds
+	public void drawTimeAndNight(GraphicsHandler graphicsHandler) {
+		time.setText("Time: " + clock.getTimeOfDay() + ":00");
+		time.draw(graphicsHandler);
+		int timeOfDay = clock.getTimeOfDay();
+
+		if (timeOfDay == 7|| timeOfDay == 17) {
+			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 25));	
+		} else if (timeOfDay == 8|| timeOfDay == 16) {
+			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 50));	
+		} else if (timeOfDay == 9|| timeOfDay == 15) {
+			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 75));	
+		} else if (timeOfDay == 10|| timeOfDay == 14) {
+			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 100));	
+		} else if (timeOfDay == 11|| timeOfDay == 13) {
+			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 125));	
+		} else if (timeOfDay == 12) {
+			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 150));	
+		} else {
+			graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 0));	
 		}
 	}
 

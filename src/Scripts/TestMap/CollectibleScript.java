@@ -1,3 +1,4 @@
+
 package Scripts.TestMap;
 
 import Scripts.SimpleTextScript;
@@ -7,7 +8,6 @@ public class CollectibleScript extends SimpleTextScript {
 
     protected Sound sound;
     protected String textItem;
-    protected boolean playCompleted;
 
     public CollectibleScript(String text, boolean isKeyCollectible) {
         super("You have found a " + text + "!");
@@ -24,6 +24,15 @@ public class CollectibleScript extends SimpleTextScript {
         lockPlayer();
         showTextbox();
         addTextToTextboxQueue(textItem);
+        getMap().getMusicManager().pauseActiveMusic();
         sound.play();
+    }
+
+    @Override
+    protected void cleanup() {
+        unlockPlayer();
+        hideTextbox();
+        sound.close();
+        getMap().getMusicManager().playActiveMusic();
     }
 }

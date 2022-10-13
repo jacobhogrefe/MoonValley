@@ -261,6 +261,10 @@ public abstract class Player extends GameObject {
         listeners.add(listener);
     }
 
+    public void setWalkingSound(String soundFileName) {
+        this.walkingSound = new Sound(soundFileName, true);
+    }
+
     public Rectangle getInteractionRange() {
         return new Rectangle(
                 getBounds().getX1() - interactionRange,

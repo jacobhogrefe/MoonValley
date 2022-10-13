@@ -4,10 +4,12 @@ import Engine.*;
 import Game.ScreenCoordinator;
 import Level.Map;
 import Maps.TitleScreenMap;
+import Utils.Sound;
 
 // This is the class for the main menu screen
 public class MenuScreen extends AbstractMenuScreen {
-    protected Map background;
+    protected Map background = new TitleScreenMap();
+    public static Sound MenuSound = new Sound("blueMoon.wav", true);
 
     public static class PlayGameOption extends Option {
         @Override
@@ -63,9 +65,7 @@ public class MenuScreen extends AbstractMenuScreen {
 
     @Override
     public void initialize() {
-        background = new TitleScreenMap();
         background.setAdjustCamera(false);
-
         super.initialize();
     }
 
@@ -80,8 +80,8 @@ public class MenuScreen extends AbstractMenuScreen {
     @Override
     public void update() {
         // update background map (to play tile animations)
+        MenuSound.play();
         background.update(null);
-
         super.update();
     }
 

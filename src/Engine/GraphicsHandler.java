@@ -4,18 +4,22 @@ import GameObject.ImageEffect;
 import InventoryModifier.InventoryGrid;
 import InventoryModifier.OptionsBox;
 import Registry.ItemRegistry;
+import Utils.Stopwatch;
 
 import java.awt.*;
+import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+
+import javax.swing.Timer;
 
 public class GraphicsHandler {
 
 	private Graphics2D g;
 	private InventoryGrid inventoryGrid = new InventoryGrid();
 
-	
 	public void setGraphics(Graphics2D g) {
 		this.g = g;
 	}
@@ -72,7 +76,6 @@ public class GraphicsHandler {
 		g.setColor(color);
 		g.drawString(text, x, y);
 	}
-	
 
 	// https://stackoverflow.com/a/35222059 and https://stackoverflow.com/a/31831120
 	public void drawStringWithOutline(String text, int x, int y, Font font, Color textColor, Color outlineColor,
@@ -130,12 +133,8 @@ public class GraphicsHandler {
 		// START Drawing the frame of the inventory, will always load in the same
 		// regardless of what is in inventory
 
-		Font currentFont = g.getFont();
-		Font newFont = currentFont.deriveFont(currentFont.getSize() * 3.0F);
-		g.setFont(newFont);
-		g.setColor(java.awt.Color.black);
-
-		g.drawString("Your Beautiful Possessions", 165, 110);
+		Font inventoryTitleFont = new Font("Font", Font.ITALIC, 40);
+		drawString("Your Beautiful Possessions", 148, 100, inventoryTitleFont, Color.BLACK);
 
 		g.drawImage(inventoryUpLeft, 80, 120, null);
 
@@ -167,27 +166,83 @@ public class GraphicsHandler {
 		// inventory.
 		for (int j = 0; j < 5; j++) {
 			for (int i = 0; i < 11; i++) {
-				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 11 + i]).texture, 128 + (i * 48), (168 + (j * 48)), null);
+				g.drawImage(ItemRegistry.singleton.items.get(playerInventory[j * 11 + i]).texture, 128 + (i * 48),
+						(168 + (j * 48)), null);
 
 			}
 		}
-		
-		
-	//	highlightSlot(0);
-		
+
+		// highlightSlot(0);
 
 	}
+	
+	//draws an orange square over the inventory slot that has been clicked
 	public void highlightSlot(int slotNumber) {
-		int x = (int)inventoryGrid.getSlotCorner(slotNumber).getX();
-		int y = (int)inventoryGrid.getSlotCorner(slotNumber).getY();
-		
+		int x = (int) inventoryGrid.getSlotCorner(slotNumber).getX();
+		int y = (int) inventoryGrid.getSlotCorner(slotNumber).getY();
+
 		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
 	}
 	
-	public void drawOptionsBox( OptionsBox optionsBox) {
-		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY, Color.BLACK, 2);
+	// draws item information to an optionsbox, will also draw "buttons" in the future
+	public void drawOptionsBox(OptionsBox optionsBox) {
+		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
+		Font nameFont = new Font("descriptionFont", Font.BOLD, 25);
+	
+
+		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY,
+				Color.BLACK, 2);
+		g.drawImage(optionsBox.getItemImage(), 250, 420, null);
+
+		if (optionsBox.getItemDescription().length() > 45) {
+
+			drawString(optionsBox.getHalf1(), 250, 500, descriptionFont, Color.BLACK);
+			drawString(optionsBox.getHalf2(), 248, 520, descriptionFont, Color.BLACK);
+		} else {
+			drawString(optionsBox.getItemDescription(), 250, 500, descriptionFont, Color.BLACK);
+		}
+
+		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
-
-
+	
+	public void drawOptionsBoxButtons(OptionsBox optionsBox) {
+		
+		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
+		
+		//move button
+		drawFilledRectangleWithBorder(250,520,60,25,Color.GRAY,Color.BLACK,2);
+		
+		drawString("MOVE", 253, 540, buttonFont, Color.BLACK);
+		
+		
+		
+		//remove button
+		drawFilledRectangleWithBorder(325,520,88,25,Color.GRAY,Color.BLACK,2);
+		drawString("REMOVE", 328, 540, buttonFont, Color.BLACK);
+		
+	
+		
+	}
+	
+	public void highlightMove() {
+		
+		drawRectangle(250, 520, 60, 25, Color.ORANGE, 3);
+	}
+	
+	public void highlightRemoveButton() {
+		
+		
+		drawRectangle(325, 520, 88, 25, Color.ORANGE, 3);
+	
+	}
+	
+	public void unhighlightRemoveButton() {
+		
+		
+		drawFilledRectangleWithBorder(325,520,88,25,Color.GRAY,Color.BLACK,2);
+	
+	}
+	
+	
 
 }
