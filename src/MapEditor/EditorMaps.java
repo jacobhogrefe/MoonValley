@@ -11,6 +11,8 @@ import Maps.Biomes.BiomeMountains;
 import Maps.Biomes.BiomeShrooms;
 import Maps.Biomes.BiomeSpooky;
 import Maps.Biomes.BiomeStart;
+import Maps.DinoMap;
+import Maps.WalrusMap;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,8 @@ public class EditorMaps {
             add("BiomeShrooms");
             add("BiomeSpooky");
             add("BiomeStart");
+            add("WalrusMap");
+            add("DinoMap");
         }};
     }
 
@@ -52,6 +56,10 @@ public class EditorMaps {
                 return new BiomeSpooky();
             case "BiomeStart":
                 return new BiomeStart();
+            case "WarlusMap":
+            	return new WalrusMap();
+            case "DinoMap":
+            	return new DinoMap(); 
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

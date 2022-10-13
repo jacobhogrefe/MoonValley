@@ -10,7 +10,7 @@ public class HouseEntry {
 		this.y = y;
 		this.mapFileName = mapFileName;
 		this.tileset = tileset;
-		Map newMap = new Map(mapFileName, tileset);
+//		Map newMap = new Map(mapFileName, tileset);
 	}
 	
 	public int getX() {

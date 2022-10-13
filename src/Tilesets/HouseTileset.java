@@ -52,6 +52,25 @@ public class HouseTileset extends Tileset {
 
         mapTiles.add(baseBoardTile);
 
+        //wall w baseboard dino
+        Frame dinoBaseBoardFrame = new FrameBuilder(getSubImage(0, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder dinoBaseBoardTile = new MapTileBuilder(dinoBaseBoardFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(dinoBaseBoardTile);
+        
+        //bed 1
+        Frame bed1Frame = new FrameBuilder(getSubImage(0, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bed1Tile = new MapTileBuilder(bed1Frame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(bed1Tile);
         
         // window
         Frame windowFrame = new FrameBuilder(getSubImage(1, 0))
@@ -75,7 +94,7 @@ public class HouseTileset extends Tileset {
         mapTiles.add(logWallTile);
         
         
-     // outside wall
+        // outside wall
         Frame outsideWallFrame = new FrameBuilder(getSubImage(1, 2))
                 .withScale(tileScale)
                 .build();
@@ -85,6 +104,25 @@ public class HouseTileset extends Tileset {
 
         mapTiles.add(outsideWallTile);
         
+        //dino wall
+        Frame dinoWallFrame = new FrameBuilder(getSubImage(1, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder dinoWallTile = new MapTileBuilder(dinoWallFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(dinoWallTile);
+        
+        //bed 2
+        Frame bed2Frame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bed2Tile = new MapTileBuilder(bed2Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(bed2Tile);
         
         //rug
         Frame rugFrame = new FrameBuilder(getSubImage(2, 0))
@@ -105,8 +143,67 @@ public class HouseTileset extends Tileset {
         		.withTileType(TileType.NOT_PASSABLE);;
 
         mapTiles.add(doorTile);
+        
+        //filler
+        Frame fillerFrame = new FrameBuilder(getSubImage(2, 2))
+                .withScale(tileScale)
+                .build();
 
-      
+        MapTileBuilder fillerTile = new MapTileBuilder(fillerFrame)
+        		.withTileType(TileType.NOT_PASSABLE);;
+
+        mapTiles.add(fillerTile);
+        
+        //walrus wall w baseboard
+        Frame walrusBaseBoardFrame = new FrameBuilder(getSubImage(2, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder walrusBaseBoardTile = new MapTileBuilder(walrusBaseBoardFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(walrusBaseBoardTile);
+        
+        //walrus wall
+        Frame walrusWallFrame = new FrameBuilder(getSubImage(3, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder walrusWallTile = new MapTileBuilder(walrusWallFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(walrusWallTile);
+        
+        //chair
+        Frame chairFrame = new FrameBuilder(getSubImage(3, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder chairTile = new MapTileBuilder(chairFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(chairTile);
+        
+        //sofa 1
+        Frame sofa1Frame = new FrameBuilder(getSubImage(3, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder sofa1Tile = new MapTileBuilder(sofa1Frame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(sofa1Tile);
+        
+        //sofa 2
+        Frame sofa2Frame = new FrameBuilder(getSubImage(3, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder sofa2Tile = new MapTileBuilder(sofa2Frame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(sofa2Tile);
+        
         return mapTiles;
     }
 }

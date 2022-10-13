@@ -9,18 +9,23 @@ import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
+import Scripts.MapTeleportScript;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.EnterHouseScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
 
-    public TestMap() {
+    private static final Supplier<Map> HouseMap = null;
+
+	public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
     }
@@ -84,10 +89,8 @@ public class TestMap extends Map {
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
         
-        //added house entering scripts
-//        getMapTile(17, 19).setInteractScript(new SimpleTextScript("Would you like to enter Cat's house?"));
-        
-//        getMapTile(17, 19).setInteractScript(new EnterHouseScript());
+        //added house entering scripts    
+        getMapTile(17, 19).setInteractScript(new EnterHouseScript());
         
         getMapTile(4, 26).setInteractScript(new SimpleTextScript("Would you like to enter Walrus's house?"));
         

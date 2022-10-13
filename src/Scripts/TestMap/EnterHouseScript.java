@@ -1,7 +1,9 @@
 package Scripts.TestMap;
 
+import Game.Game;
 import Level.Script;
 import Level.ScriptState;
+import Maps.HouseMap;
 
 // trigger script at beginning of game to set that heavy emotional plot
 public class EnterHouseScript extends Script {
@@ -15,19 +17,13 @@ public class EnterHouseScript extends Script {
     @Override
     protected void cleanup() {
     	hideTextbox();
-//		screenCoordinator.setGameState(GameState.HOUSE);
         unlockPlayer();
     }
 
     @Override
     public ScriptState execute() {
-        if (!isFlagSet("hasLostBall")) {
-            start();
-            if (!isTextboxQueueEmpty()) {
-                return ScriptState.RUNNING;
-            }
-            end();
-        }
+    	
+    	Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new HouseMap(), 250, 400);
         return ScriptState.COMPLETED;
     }
 }

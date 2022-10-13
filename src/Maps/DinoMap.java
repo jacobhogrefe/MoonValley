@@ -21,11 +21,10 @@ import Tilesets.CommonTileset;
 import Level.Map;
 import Tilesets.HouseTileset;
 
-// Represents a test map to be used in a level
-public class HouseMap extends Map {
+public class DinoMap extends Map {
 
-    public HouseMap() {
-        super("house_map.txt", new HouseTileset());
+    public DinoMap() {
+        super("dino_house_map.txt", new HouseTileset());
         this.playerStartPosition = getMapTile(12, 10).getLocation();
     }
 }
