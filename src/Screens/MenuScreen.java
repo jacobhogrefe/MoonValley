@@ -8,7 +8,7 @@ import Utils.Sound;
 
 // This is the class for the main menu screen
 public class MenuScreen extends AbstractMenuScreen {
-    protected Map background;
+    protected Map background = new TitleScreenMap();
     public static Sound MenuSound = new Sound("blueMoon.wav", true);
 
     public static class PlayGameOption extends Option {
@@ -65,10 +65,7 @@ public class MenuScreen extends AbstractMenuScreen {
 
     @Override
     public void initialize() {
-        background = new TitleScreenMap();
         background.setAdjustCamera(false);
-        MenuSound.play();
-
         super.initialize();
     }
 
@@ -83,10 +80,8 @@ public class MenuScreen extends AbstractMenuScreen {
     @Override
     public void update() {
         // update background map (to play tile animations)
-    	MenuSound.play();
+        MenuSound.play();
         background.update(null);
-        
-
         super.update();
     }
 
