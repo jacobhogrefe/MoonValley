@@ -47,8 +47,7 @@ public class PlayerInventory {
 	}
 
 	/**
-	 * add an item.
-	 * returns true if it was added, false if the inventory was full.
+	 * add an item. returns true if it was added, false if the inventory was full.
 	 */
 	public boolean addItem(int itemNumber) {
 		if (this.getCurrentEmptySlots() == 0) {
@@ -58,35 +57,34 @@ public class PlayerInventory {
 			return true;
 		}
 	}
-	
+
 	public int getItemInSlot(int slotNumber) {
 		return inventoryArray[slotNumber];
 	}
 
 	/**
-	 * add an item.
-	 * returns true if it was added, false if the inventory was full.
+	 * add an item. returns true if it was added, false if the inventory was full.
 	 */
 	public boolean addItem(Item item) {
 		return this.addItem(item.getItemNumber());
 	}
 
-	//removes item from inventory
+	// removes item from inventory
 	public void removeItem(int slotNumber) {
 		inventoryArray[slotNumber] = 0;
 	}
 
 	// swaps the location of two items. For the sake of the game logic, an empty
-	// slot is also considered an item
+	// slot is also considered an item. The if else structure prevents items from
+	// being deleted if a non-inventory slot is clicked during move
 	public void moveItem(int slotA, int slotB) {
 		// https://en.wikipedia.org/wiki/XOR_swap_algorithm
-		if(slotA != slotB) {
-		inventoryArray[slotA] ^= inventoryArray[slotB];
-		inventoryArray[slotB] ^= inventoryArray[slotA];
-		inventoryArray[slotA] ^= inventoryArray[slotB];
-		}
-		else {
-			
+		if (slotA != slotB) {
+			inventoryArray[slotA] ^= inventoryArray[slotB];
+			inventoryArray[slotB] ^= inventoryArray[slotA];
+			inventoryArray[slotA] ^= inventoryArray[slotB];
+		} else {
+
 		}
 	}
 
