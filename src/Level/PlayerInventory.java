@@ -80,9 +80,14 @@ public class PlayerInventory {
 	// slot is also considered an item
 	public void moveItem(int slotA, int slotB) {
 		// https://en.wikipedia.org/wiki/XOR_swap_algorithm
+		if(slotA != slotB) {
 		inventoryArray[slotA] ^= inventoryArray[slotB];
 		inventoryArray[slotB] ^= inventoryArray[slotA];
 		inventoryArray[slotA] ^= inventoryArray[slotB];
+		}
+		else {
+			
+		}
 	}
 
 	// searches the inventory for a specified item and returns true if found

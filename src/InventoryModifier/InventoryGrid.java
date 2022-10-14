@@ -199,6 +199,7 @@ public class InventoryGrid {
 			graphicsHandler.highlightRemoveButton();
 			playerInventory.removeItem(selectedSlot);
 			graphicsHandler.unhighlightRemoveButton();
+			selectedItem = 0;
 			shouldHighlightRemove = false;
 			goodClick = false;
 
@@ -214,7 +215,10 @@ public class InventoryGrid {
 				assignLastClickSlot(GamePanel.lastClick);
 				targetSlot = selectedSlot; // unnecessary variable but more readable
 				playerInventory.moveItem(arrowSlot, targetSlot);
-				System.out.println("Move Excuted. Arrow: "+arrowSlot+"Target: "+targetSlot);
+				selectedSlot = targetSlot;
+				selectedItem = playerInventory.getItemInSlot(selectedSlot);
+				System.out.println("Move Executed. Arrow: "+arrowSlot+", Target: "+targetSlot);
+				System.out.println(" ");
 				shouldHighlightMove = false;
 				itemIsBeingMoved = false;
 				GamePanel.clickToProcess = false;
