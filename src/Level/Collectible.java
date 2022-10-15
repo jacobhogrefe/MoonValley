@@ -8,6 +8,7 @@ import GameObject.Rectangle;
 import Utils.Point;
 import Scripts.TestMap.CollectibleScript;
 
+
 /* 
  * Basic collectible class that contains a few methods which draw the collectible, register
  * that it has been collected, if it has intersected with the player, and if
@@ -23,6 +24,7 @@ public class Collectible extends MapEntity {
     protected CollectibleScript collectibleScript;
     protected int itemNumber;
 
+
     public Collectible(String imageName, Point location, String nameOfItem, int itemNumber, boolean isKeyCollectible) {
         super(location.x, location.y, new Frame(ImageLoader.load(imageName)));
         this.image = ImageLoader.load(imageName);
@@ -31,6 +33,7 @@ public class Collectible extends MapEntity {
         this.y = location.y;
         this.itemNumber = itemNumber;
         this.collectibleScript = new CollectibleScript(nameOfItem, isKeyCollectible);
+
     }
 
     public int getItemNumber() {
@@ -45,6 +48,8 @@ public class Collectible extends MapEntity {
     public CollectibleScript getInteractScript() {
         return collectibleScript; 
     }
+    
+
     
     //Draws the item based on if it has been collected or not
     @Override

@@ -11,7 +11,7 @@ import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 
 public class PlayerInventory {
-
+	public static boolean isInventoryFull = false;
 	private int[] inventoryArray = new int[55];
 
 	public PlayerInventory() {
@@ -51,9 +51,13 @@ public class PlayerInventory {
 	 */
 	public boolean addItem(int itemNumber) {
 		if (this.getCurrentEmptySlots() == 0) {
+			isInventoryFull = true;
 			return false;
 		} else {
 			inventoryArray[this.getFirstEmptySlot()] = itemNumber;
+			if (this.getCurrentEmptySlots() == 0) {
+				isInventoryFull = true;
+			}
 			return true;
 		}
 	}
@@ -71,6 +75,7 @@ public class PlayerInventory {
 
 	// removes item from inventory
 	public void removeItem(int slotNumber) {
+		isInventoryFull = false;
 		inventoryArray[slotNumber] = 0;
 	}
 
