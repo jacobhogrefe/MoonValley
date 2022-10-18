@@ -6,6 +6,7 @@ import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.HouseEntry;
 import Level.Map;
+import Level.MusicState;
 import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
@@ -36,6 +37,10 @@ public class HouseMap extends Map {
     @Override
     public void loadScripts() { 
         getMapTile(8, 11).setInteractScript(new ExitHouseScript());
+    }
+
+    public MusicState getMusicState() {
+        return MusicState.START_HOME;
     }
 }
 

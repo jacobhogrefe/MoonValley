@@ -26,6 +26,5 @@ public class TitleScreenMap extends Map {
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);
-   
     }
 }

@@ -5,6 +5,7 @@ import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.HouseEntry;
 import Level.Map;
+import Level.MusicState;
 import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
@@ -97,5 +98,9 @@ public class TestMap extends Map {
         getMapTile(4, 26).setInteractScript(new EnterWalrusHouseScript());
         
         getMapTile(17, 4).setInteractScript(new EnterDinoHouseScript());
+    }
+
+    public MusicState getMusicState() {
+        return MusicState.START;
     }
 }
