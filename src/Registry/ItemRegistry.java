@@ -119,6 +119,13 @@ public class ItemRegistry {
         .withSubimage(68 + 17 * 6, 0)
         .build()
         .addToRegistry(this);
+    
+    public Item BUG = new Item.Builder() // 8
+            .withName("Pesky Insect")
+            .withDescription("I break things!")
+            .withSubimage(68 + 17 * 1, 17)
+            .build()
+            .addToRegistry(this);
 
     public ItemRegistry() {
         

@@ -16,7 +16,8 @@ public class OptionsBox {
 	int slotNumber;
 	Image itemImage;
 	String itemDescription;
-	// If the item description is over 40 charatcers, the optionsbox breaks it in
+	
+	// If the item description is over 40 characters, the optionsbox breaks it in
 	// to substrings and graphicshandler will ask for those instead to draw differently
 	String half1;
 
@@ -55,6 +56,8 @@ public class OptionsBox {
 		itemName = ItemRegistry.singleton.items.get(itemNumber).name;
 
 	}
+	
+	//Getters/setters
 
 	public String getItemDescription() {
 		return itemDescription;
