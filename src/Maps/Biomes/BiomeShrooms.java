@@ -62,6 +62,7 @@ public class BiomeShrooms extends AbstractLoopingMap {
         }
     }   
 
+    @Override
     public MusicState getMusicState() {
         return MusicState.MUSHROOM;
     }

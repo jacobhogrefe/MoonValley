@@ -7,7 +7,7 @@ import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
-import Tilesets.CommonTileset;
+import Tilesets.MountainsTileset;
 import Utils.Side;
 
 /**
@@ -27,7 +27,7 @@ public class BiomeMountains extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GRAPPLING_HOOK;
 
     public BiomeMountains() {
-        super("Biomes/mountains.txt", new CommonTileset());
+        super("Biomes/mountains.txt", new MountainsTileset());
     }
 
     @Override
@@ -62,6 +62,7 @@ public class BiomeMountains extends AbstractLoopingMap {
         }
     }
 
+    @Override
     public MusicState getMusicState() {
         return MusicState.MOUNTAINS;
     }

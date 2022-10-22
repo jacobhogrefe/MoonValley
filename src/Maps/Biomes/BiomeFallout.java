@@ -63,6 +63,7 @@ public class BiomeFallout extends AbstractLoopingMap {
         }
     }
 
+    @Override
     public MusicState getMusicState() {
         return MusicState.TOXIC;
     }

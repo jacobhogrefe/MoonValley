@@ -62,6 +62,7 @@ public class BiomeSpooky extends AbstractLoopingMap {
         }
     }
 
+    @Override
     public MusicState getMusicState() {
         return MusicState.SPOOKY;
     }
