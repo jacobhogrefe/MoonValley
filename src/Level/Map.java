@@ -78,8 +78,8 @@ public abstract class Map implements IntersectableRectangle {
 	// map's textbox instance
 	protected Textbox textbox;
 
-	//music manager for the different maps
-	protected MusicManager musicManager = new MusicManager();
+	//music state for each map
+	protected MusicState musicState;
 
 	// Items that have been collected or given to the player that need to be placed
 	// into inventory. This is where items "go" for a brief moment while being
@@ -634,8 +634,8 @@ public abstract class Map implements IntersectableRectangle {
 		return textbox;
 	}
 
-	public MusicManager getMusicManager() {
-		return musicManager;
+	public MusicState getMusicState() {
+		return musicState;
 	}
 
 	public int getEndBoundX() {
