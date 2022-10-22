@@ -38,7 +38,7 @@ public class HouseMap extends Map {
     public void loadScripts() { 
         getMapTile(8, 11).setInteractScript(new ExitHouseScript());
     }
-
+    @Override
     public MusicState getMusicState() {
         return MusicState.START_HOME;
     }

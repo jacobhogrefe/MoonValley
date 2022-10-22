@@ -100,6 +100,7 @@ public class TestMap extends Map {
         getMapTile(17, 4).setInteractScript(new EnterDinoHouseScript());
     }
 
+    @Override
     public MusicState getMusicState() {
         return MusicState.START;
     }
