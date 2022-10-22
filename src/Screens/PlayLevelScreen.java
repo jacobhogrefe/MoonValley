@@ -11,6 +11,7 @@ import Engine.Screen;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.TestMap;
+import Maps.Biomes.BiomeStart;
 import Players.Cat;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
@@ -33,7 +34,7 @@ public class PlayLevelScreen extends Screen {
 	protected PlayerInventory playerInventory = new PlayerInventory();
 	protected Clock clock = new Clock();
 	protected SpriteFont time = new SpriteFont("Time: " + clock.getTimeOfDay() + ":00", 10, 30, "Comic Sans", 30, Color.BLACK);
-	protected MusicManager musicManager;
+	protected MusicManager musicManager = new MusicManager();
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
@@ -52,7 +53,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("itemCollected", false);
 
 		// define/setup map
-		this.map = new TestMap();
+		this.map = new BiomeStart();
 		map.reset();
 		map.setFlagManager(flagManager);
 
@@ -68,7 +69,6 @@ public class PlayLevelScreen extends Screen {
 
 		winScreen = new WinScreen(this);
 		inventoryScreen = new InventoryScreen(this, playerInventory);
-		musicManager = map.getMusicManager();
 		musicManager.setMusicState(MusicState.START);
 		musicManager.getCurrentSound().play();
 	}
@@ -103,7 +103,8 @@ public class PlayLevelScreen extends Screen {
 			}
 		}
 		for (Collectible collectibles : map.getCollectables()) {
-			if (collectibles.getInteractScript() != null) {
+			if (collectibles.getInteractScript() == null) {
+				collectibles.setScriptMusicManager(musicManager);
 				collectibles.getInteractScript().setMap(map);
 				collectibles.getInteractScript().setPlayer(player);
 			}
@@ -114,9 +115,9 @@ public class PlayLevelScreen extends Screen {
 		//updates the music based on location
 		musicManager.updateMusic();
 		// based on screen state, perform specific actions
-		switch (playLevelScreenState) {
 		// if level is "running" update player and map to keep game logic for the
 		// platformer level going
+		switch (playLevelScreenState) {
 		case RUNNING:
 			player.update();
 			map.update(player);
@@ -275,6 +276,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setMap(map);
 		this.player.setX(x);
 		this.player.setY(y);
+		this.musicManager.setMusicState(map.getMusicState());
 		this.reinitializeMap();
 	}
 }
