@@ -23,17 +23,19 @@ public class Collectible extends MapEntity {
     protected float y;
     protected CollectibleScript collectibleScript;
     protected int itemNumber;
+    protected String nameOfItem;
+    protected boolean isKeyCollectible;
 
 
     public Collectible(String imageName, Point location, String nameOfItem, int itemNumber, boolean isKeyCollectible) {
         super(location.x, location.y, new Frame(ImageLoader.load(imageName)));
+        this.nameOfItem = nameOfItem;
+        this.isKeyCollectible = isKeyCollectible;
         this.image = ImageLoader.load(imageName);
         this.bounds = new Rectangle(0,0, image.getWidth(), image.getHeight());
         this.x = location.x;
         this.y = location.y;
         this.itemNumber = itemNumber;
-        this.collectibleScript = new CollectibleScript(nameOfItem, isKeyCollectible);
-
     }
 
     public int getItemNumber() {
@@ -43,6 +45,10 @@ public class Collectible extends MapEntity {
 	public void setItemNumber(int itemNumber) {
 		this.itemNumber = itemNumber;
 	}
+
+    public void setScriptMusicManager(MusicManager musicManager) {
+        this.collectibleScript = new CollectibleScript(nameOfItem, isKeyCollectible, musicManager);
+    }
 
 	//Gets the interact script of the collectible (just a simple text script)
     public CollectibleScript getInteractScript() {
