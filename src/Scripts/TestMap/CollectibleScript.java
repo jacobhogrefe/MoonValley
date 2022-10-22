@@ -1,6 +1,7 @@
 
 package Scripts.TestMap;
 
+import Level.MusicManager;
 import Scripts.SimpleTextScript;
 import Utils.Sound;
 
@@ -8,10 +9,12 @@ public class CollectibleScript extends SimpleTextScript {
 
     protected Sound sound;
     protected String textItem;
+    protected MusicManager musicManager;
 
-    public CollectibleScript(String text, boolean isKeyCollectible) {
+    public CollectibleScript(String text, boolean isKeyCollectible, MusicManager musicManager) {
         super("You have found a " + text + "!");
         textItem = "You have found a " + text + "!";
+        this.musicManager = musicManager;
         if (isKeyCollectible) {
             sound = new Sound("keyCollectible.wav", false);
         } else {
@@ -24,7 +27,7 @@ public class CollectibleScript extends SimpleTextScript {
         lockPlayer();
         showTextbox();
         addTextToTextboxQueue(textItem);
-        getMap().getMusicManager().getCurrentSound().pause();
+        musicManager.getCurrentSound().pause();
         sound.play();
     }
 
@@ -33,6 +36,6 @@ public class CollectibleScript extends SimpleTextScript {
         unlockPlayer();
         hideTextbox();
         sound.close();
-        getMap().getMusicManager().getCurrentSound().play();
+        musicManager.getCurrentSound().play();
     }
 }
