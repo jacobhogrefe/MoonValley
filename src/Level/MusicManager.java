@@ -12,7 +12,7 @@ public class MusicManager {
     protected Sound toxic = new Sound(null, true);
     protected Sound mushroom = new Sound("mushroom.wav", true);
     protected Sound mountains = new Sound(null, true);
-    protected Sound startHome = new Sound(null, true);
+    protected Sound startHome = new Sound("ariaMath.wav", true);
     protected Sound desertHome = new Sound(null, true);
     protected Sound spookyHome = new Sound(null, true);
     protected Sound toxicHome = new Sound(null, true);

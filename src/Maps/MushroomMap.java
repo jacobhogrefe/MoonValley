@@ -2,11 +2,12 @@ package Maps;
 
 import Level.Map;
 import Level.MusicState;
-import Scripts.TestMap.ExitHouseScript;
 import Tilesets.MushroomTileset;
+import Utils.Sound;
 
 // Represents a test map to be used in a level
 public class MushroomMap extends Map {
+//    public static Sound mushroomSound = new Sound("mushroom.wav", true);
 
     public MushroomMap() {
         super("mushroom_map.txt", new MushroomTileset());
@@ -15,7 +16,6 @@ public class MushroomMap extends Map {
     
     @Override
     public void loadScripts() {  
-//        getMapTile(8, 11).setInteractScript(new ExitHouseScript()); 
     } 
     @Override
     public MusicState getMusicState() {
