@@ -2,6 +2,7 @@ package MapEditor;
 
 import Level.Map;
 import Maps.HouseMap;
+import Maps.MushroomMap;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.moonValleyTitle;
@@ -31,6 +32,7 @@ public class EditorMaps {
             add("BiomeStart");
             add("WalrusMap");
             add("DinoMap");
+            add("MushroomMap");
         }};
     }
 
@@ -60,6 +62,8 @@ public class EditorMaps {
             	return new WalrusMap();
             case "DinoMap":
             	return new DinoMap(); 
+            case "MushroomMap":
+            	return new MushroomMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }
