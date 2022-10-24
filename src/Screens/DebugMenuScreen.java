@@ -3,6 +3,7 @@ package Screens;
 import Game.Game;
 import Game.ScreenCoordinator;
 import Level.Map;
+import Maps.MushroomHomeMap;
 import Maps.MushroomMap;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
@@ -49,6 +50,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 					//this.options.add(new MapOption(new TestMap()));
 					this.options.add(new MapOption(new BiomeStart()));
 					this.options.add(new MapOption(new MushroomMap()));
+					this.options.add(new MapOption(new MushroomHomeMap()));
 					this.options.add(new CancelOption());
 				}
 			});
