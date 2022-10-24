@@ -58,14 +58,14 @@ public abstract class Player extends GameObject {
    
     
 
-    public  int[] getPlayerInventory() {
-    	playerInventory[1] = 1;
-		return playerInventory;
-	}
+  //  public  int[] getPlayerInventory() {
+  //  	playerInventory[1] = 1;
+	//	return playerInventory;
+	//}
 
-	public void setPlayerInventory(int[] playerInventory) {
-		this.playerInventory = playerInventory;
-	}
+	//public void setPlayerInventory(int[] playerInventory) {
+//		this.playerInventory = playerInventory;
+	//}
 
 	public Player(SpriteSheet spriteSheet, float x, float y, String startingAnimationName) {
         super(spriteSheet, x, y, startingAnimationName);

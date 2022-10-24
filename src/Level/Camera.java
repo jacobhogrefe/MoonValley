@@ -27,6 +27,8 @@ public class Camera extends Rectangle {
 	// coordinates, not screen coordinates)
 	private int leftoverSpaceX, leftoverSpaceY;
 
+	private boolean tetherSet = false;
+
 	// current map entities that are to be included in this frame's update/draw
 	// cycle
 	private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
@@ -319,12 +321,41 @@ public class Camera extends Rectangle {
 		}
 
 		for (Furniture furniture : activeFurniture) {
-			if (containsDraw(furniture)) {
+
+			if (furniture.overlaps(player) && !tetherSet) {
+				System.out.println("setting tether...");
+				furniture.setTether(true, player);
+				tetherSet = true;
+			}
+
+			if (containsDraw(furniture) && !furniture.isTethered()) {
 				if (furniture.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
 					furniture.draw(graphicsHandler);
 				} else {
 					drawFurnitureAfterPlayer.add(furniture);
 				}
+			}
+
+			if (containsDraw(furniture) && furniture.isTethered()) {
+				
+		
+				float beginX = furniture.getX();
+				float beginY = furniture.getY();
+
+				float changeInX = (furniture.getTetherStartX() - player.getX());
+				float changeInY = (furniture.getTetherStartY() - player.getY());
+
+			//	furniture.setX(beginX + changeInX);
+			//	furniture.setY(beginY + changeInY);
+				if(player.getPlayerState() == PlayerState.WALKING) {
+				furniture.setX(player.getX());
+				furniture.setY(player.getY() - 50);
+				}
+				
+				
+
+				furniture.draw(graphicsHandler);
+
 			}
 		}
 
@@ -335,8 +366,8 @@ public class Camera extends Rectangle {
 		for (NPC npc : drawNpcsAfterPlayer) {
 			npc.draw(graphicsHandler);
 		}
-		
-		for(Furniture furniture : drawFurnitureAfterPlayer) {
+
+		for (Furniture furniture : drawFurnitureAfterPlayer) {
 			furniture.draw(graphicsHandler);
 		}
 
