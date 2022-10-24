@@ -48,15 +48,11 @@ public abstract class Player extends GameObject {
     protected Key QUICKLOAD_KEY = Key.M;
 
     //Sound that plays for a player walking
-    protected Sound walkingSound = new Sound("walkingSound.wav", true);
-    
+    protected Sound walkingSound;
     
     //player's inventory. Each holdable item will have an int assigned to it. The player need only have an array of ints and the item information will be held elsewhere,
     //retrievable with its associated int.
     private int[] playerInventory = new int[55];
-    
-   
-    
 
     public  int[] getPlayerInventory() {
     	playerInventory[1] = 1;
@@ -261,8 +257,8 @@ public abstract class Player extends GameObject {
         listeners.add(listener);
     }
 
-    public void setWalkingSound(String soundFileName) {
-        this.walkingSound = new Sound(soundFileName, true);
+    public void setWalkingSound(Sound walkingSound) {
+        this.walkingSound = walkingSound;
     }
 
     public Rectangle getInteractionRange() {
