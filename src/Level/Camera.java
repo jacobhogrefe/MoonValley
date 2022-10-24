@@ -2,10 +2,10 @@ package Level;
 
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
+import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import Scripts.SimpleTextScript;
-
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -33,6 +33,7 @@ public class Camera extends Rectangle {
 	private ArrayList<NPC> activeNPCs = new ArrayList<>();
 	private ArrayList<Trigger> activeTriggers = new ArrayList<>();
 	private ArrayList<Collectible> activeCollectables = new ArrayList<>();
+	private ArrayList<Furniture> activeFurniture = new ArrayList<>();
 	private ArrayList<HouseEntry> activeHouseEntries = new ArrayList<>();
 
 	// determines how many tiles off screen an entity can be before it will be
@@ -79,6 +80,7 @@ public class Camera extends Rectangle {
 		activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
 		activeNPCs = loadActiveNPCs();
 		activeCollectables = loadActiveCollectables();
+		activeFurniture = loadActiveFurniture();
 
 		for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
 			enhancedMapTile.update(player);
@@ -189,6 +191,27 @@ public class Camera extends Rectangle {
 		return activeCollectables;
 	}
 
+	// Draws the active furniture on the map (when they exist and are within
+	// range of the camera)
+	private ArrayList<Furniture> loadActiveFurniture() {
+		ArrayList<Furniture> activeFurniture = new ArrayList<>();
+		for (int i = map.getFurniture().size() - 1; i >= 0; i--) {
+			Furniture furniture = map.getFurniture().get(i);
+
+			if (isMapEntityActive(furniture)) {
+				activeFurniture.add(furniture);
+				if (furniture.mapEntityStatus == MapEntityStatus.INACTIVE) {
+					furniture.setMapEntityStatus(MapEntityStatus.ACTIVE);
+				}
+			} else if (furniture.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
+				furniture.setMapEntityStatus(MapEntityStatus.INACTIVE);
+			} else if (furniture.getMapEntityStatus() == MapEntityStatus.REMOVED) {
+				map.getCollectables().remove(i);
+			}
+		}
+		return activeFurniture;
+	}
+
 	/*
 	 * determines if map entity (enemy, enhanced map tile, or npc) is active by the
 	 * camera's standards 1. if entity's status is REMOVED, it is not active, no
@@ -259,6 +282,7 @@ public class Camera extends Rectangle {
 	// draws active map entities to the screen
 	public void drawMapEntities(Player player, GraphicsHandler graphicsHandler) {
 		ArrayList<NPC> drawNpcsAfterPlayer = new ArrayList<>();
+		ArrayList<Furniture> drawFurnitureAfterPlayer = new ArrayList<>();
 
 		// goes through each active npc and determines if it should be drawn at this
 		// time based on their location relative to the player
@@ -284,12 +308,22 @@ public class Camera extends Rectangle {
 				}
 
 				if (collectibles.intersects(player) && PlayerInventory.isInventoryFull) {
-				//	map.setActiveInteractScript(new SimpleTextScript("Your inventory is full!"));
+					// map.setActiveInteractScript(new SimpleTextScript("Your inventory is full!"));
 					collectibles.draw(graphicsHandler);
 				}
 
 				else {
 					collectibles.draw(graphicsHandler);
+				}
+			}
+		}
+
+		for (Furniture furniture : activeFurniture) {
+			if (containsDraw(furniture)) {
+				if (furniture.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
+					furniture.draw(graphicsHandler);
+				} else {
+					drawFurnitureAfterPlayer.add(furniture);
 				}
 			}
 		}
@@ -300,6 +334,10 @@ public class Camera extends Rectangle {
 		// npcs determined to be drawn after player from the above step are drawn here
 		for (NPC npc : drawNpcsAfterPlayer) {
 			npc.draw(graphicsHandler);
+		}
+		
+		for(Furniture furniture : drawFurnitureAfterPlayer) {
+			furniture.draw(graphicsHandler);
 		}
 
 		// Uncomment this to see triggers drawn on screen
@@ -342,6 +380,10 @@ public class Camera extends Rectangle {
 
 	public ArrayList<Collectible> getActiveCollectables() {
 		return activeCollectables;
+	}
+
+	public ArrayList<Furniture> getActiveFurniture() {
+		return activeFurniture;
 	}
 
 	// gets end bound X position of the camera (start position is always 0)
