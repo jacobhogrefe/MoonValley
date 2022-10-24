@@ -17,11 +17,13 @@ public class MusicManager {
     protected Sound toxic = new Sound(null, true);
     protected Sound toxicHome = new Sound(null, true);
     protected Sound mushroom = new Sound("mushroom.wav", true);
-    protected Sound mushroomHome = new Sound(null, true);
+    protected Sound mushroomHome = new Sound("mushroomHome.wav", true);
     protected Sound mountains = new Sound("mountainsBiome.wav", true);
     protected Sound mountainsHome = new Sound(null, true);
 
     //If each biome would like a different walking sound add them here, and set the walking sound in the appropriate switch statement
+    protected Sound grassWalking = new Sound("walkingGrass.wav", true);
+    //protected Sound stoneWalking = new Sound("walkingStone.wav", true);
 
     //sets the previous and current sounds to the same thing on creation (this makes it easier to check when the music state has changed)
     public MusicManager() {
@@ -29,6 +31,7 @@ public class MusicManager {
         musicState = MusicState.START;
         previousSound = start;
         currentSound = start;
+        walkingSound = grassWalking;
     }
 
     //checks if the current music state is different from the previous music state
@@ -38,39 +41,51 @@ public class MusicManager {
             switch (musicState) {
                 case DESERT:
                     currentSound = desert;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case DESERT_HOME:
                     currentSound = desertHome;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case MOUNTAINS:
                     currentSound = mountains;
+                    //walkingSound = stoneWalking;
                     break;
                 case MOUNTAINS_HOME:
                     currentSound = mountainsHome;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case MUSHROOM:
                     currentSound = mushroom;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case MUSHROOM_HOME:
                     currentSound = mushroomHome;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case SPOOKY:
                     currentSound = spooky;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case SPOOKY_HOME:
                     currentSound = spookyHome;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case START:
                     currentSound = start;
+                    //walkingSound = grassWalking;
                     break;
                 case START_HOME:
                     currentSound = startHome;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case TOXIC:
                     currentSound = toxic;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 case TOXIC_HOME:
                     currentSound = toxicHome;
+                    //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
                 default:
                     break;
