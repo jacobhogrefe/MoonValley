@@ -16,7 +16,7 @@ public class MusicManager {
     protected Sound desertHome = new Sound(null, true);
     protected Sound spookyHome = new Sound(null, true);
     protected Sound toxicHome = new Sound(null, true);
-    protected Sound mushroomHome = new Sound(null, true);
+    protected Sound mushroomHome = new Sound("mushroomHome.wav", true);
     protected Sound mountainsHome = new Sound(null, true);
     protected Sound previousSound, currentSound;
 
