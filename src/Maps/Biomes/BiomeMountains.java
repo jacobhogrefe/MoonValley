@@ -1,9 +1,14 @@
 package Maps.Biomes;
 
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
+import Level.Collectible;
+import Level.EnhancedMapTile;
 import Level.Map;
 import Level.MusicState;
+import Level.NPC;
+import Level.Trigger;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -60,6 +65,30 @@ public class BiomeMountains extends AbstractLoopingMap {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
+        ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
+        return enhancedMapTiles;
+    }
+
+    @Override
+    public ArrayList<NPC> loadNPCs() {
+        ArrayList<NPC> npcs = new ArrayList<>();
+        return npcs;
+    }
+
+    @Override
+    public ArrayList<Trigger> loadTriggers() {
+        ArrayList<Trigger> triggers = new ArrayList<>();
+        return triggers;
+    }
+
+    @Override
+    public ArrayList<Collectible> loadCollectables() {
+        ArrayList<Collectible> collectibles = new ArrayList<>();
+        return collectibles;
     }
 
     @Override
