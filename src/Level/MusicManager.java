@@ -5,20 +5,23 @@ import Utils.Sound;
 public class MusicManager {
 
     protected MusicState musicState, previousMusicState;
-    protected Sound mainMenu = new Sound("blueMoon.wav", true);
+    protected Sound previousSound, currentSound, walkingSound;
+
+    //All sounds the different biomes
     protected Sound start = new Sound("biomeStart.wav", true);
-    protected Sound desert = new Sound(null, true);
-    protected Sound spooky = new Sound(null, true);
-    protected Sound toxic = new Sound(null, true);
-    protected Sound mushroom = new Sound("mushroom.wav", true);
-    protected Sound mountains = new Sound(null, true);
     protected Sound startHome = new Sound("ariaMath.wav", true);
+    protected Sound desert = new Sound(null, true);
     protected Sound desertHome = new Sound(null, true);
+    protected Sound spooky = new Sound(null, true);
     protected Sound spookyHome = new Sound(null, true);
+    protected Sound toxic = new Sound(null, true);
     protected Sound toxicHome = new Sound(null, true);
+    protected Sound mushroom = new Sound("mushroom.wav", true);
     protected Sound mushroomHome = new Sound(null, true);
+    protected Sound mountains = new Sound("mountainsBiome.wav", true);
     protected Sound mountainsHome = new Sound(null, true);
-    protected Sound previousSound, currentSound;
+
+    //If each biome would like a different walking sound add them here, and set the walking sound in the appropriate switch statement
 
     //sets the previous and current sounds to the same thing on creation (this makes it easier to check when the music state has changed)
     public MusicManager() {
@@ -87,5 +90,9 @@ public class MusicManager {
     //pauses the current music
     public Sound getCurrentSound() {
         return currentSound;
+    }
+
+    public Sound getPlayerWalkingSound() {
+        return walkingSound;
     }
 }
