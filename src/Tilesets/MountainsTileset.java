@@ -18,7 +18,7 @@ public class MountainsTileset extends Tileset {
     @Override
     public ArrayList<MapTileBuilder> defineTiles() {
         ArrayList<MapTileBuilder> mapTiles = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 3; j++) {
                 Frame currentTileFrame = new FrameBuilder(getSubImage(i, j))
                 .withScale(tileScale)
