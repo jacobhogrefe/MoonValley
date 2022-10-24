@@ -10,8 +10,8 @@ import Engine.Keyboard;
 import Engine.Screen;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.TestMap;
-import Maps.Biomes.BiomeStart;
+import Maps.*;
+import Maps.Biomes.*;
 import Players.Cat;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
@@ -38,6 +38,7 @@ public class PlayLevelScreen extends Screen {
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
+	protected Map[] biomeMaps = new Map[6];
 
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
@@ -52,13 +53,22 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
 
-		// define/setup map
-		this.map = new BiomeStart();
+		//all biome maps are loaded here
+		biomeMaps[0] = new BiomeStart();
+		biomeMaps[1] = new BiomeShrooms();
+		biomeMaps[2] = new BiomeSpooky();
+		biomeMaps[3] = new BiomeDesert();
+		biomeMaps[4] = new BiomeMountains();
+		biomeMaps[5] = new BiomeFallout();
+
+		//define/setup map
+		this.map = biomeMaps[0];
 		map.reset();
 		map.setFlagManager(flagManager);
 
-		// setup player
+		//setup player
 		this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+		this.player.setWalkingSound(musicManager.getPlayerWalkingSound());
 		this.player.setMap(map);
 		Point playerStartPosition = map.getPlayerStartPosition();
 		this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
@@ -277,6 +287,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setX(x);
 		this.player.setY(y);
 		this.musicManager.setMusicState(map.getMusicState());
+		this.player.setWalkingSound(musicManager.getPlayerWalkingSound());
 		this.reinitializeMap();
 	}
 }
