@@ -63,7 +63,7 @@ public class ItemRegistry {
 				return this;
 			}
 			public Builder withOutdoorPlacement() {
-				this.item.indoorPlacement = true;
+				this.item.outdoorPlacement = true;
 
 				return this;
 			}
@@ -156,6 +156,15 @@ public class ItemRegistry {
 			.withSubimage(68 + 17 * 2, 17)
 			.withIndoorPlacement()
 			.withFurnitureNumber(0)
+			.build()
+			.addToRegistry(this);
+	
+	public Item ROSEBUSH = new Item.Builder() //10
+			.withName("Rose Bush")
+			.withDescription("A rose does not lose sleep because it   was mocked by weeds.")
+			.withSubimage(68 + 17 * 3, 17)
+			.withOutdoorPlacement()
+			.withFurnitureNumber(1)
 			.build()
 			.addToRegistry(this);
 

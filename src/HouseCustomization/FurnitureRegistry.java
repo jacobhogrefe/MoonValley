@@ -21,6 +21,7 @@ public class FurnitureRegistry {
 		Point defaultPoint = new Point(375, 250); // center of house (approximately)
 
 		catalog.add(new Furniture("RetroJukeBox.png", defaultPoint, "Retro Jukebox", true, false, 9)); // index 0
+		catalog.add(new Furniture("RoseBush.png", defaultPoint, "Rose Bush", false, true, 10));		   // index 1
 
 	}
 
