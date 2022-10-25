@@ -1,5 +1,10 @@
 package Maps;
 
+import java.util.ArrayList;
+
+import GameObject.Furniture;
+import HouseCustomization.FurnitureRegistry;
+import Level.Collectible;
 import Level.Map;
 import Level.MusicState;
 import Scripts.TestMap.ExitHouseScript;
@@ -17,7 +22,12 @@ public class HouseMap extends Map {
 	public void loadScripts() {
 		getMapTile(8, 11).setInteractScript(new ExitHouseScript());
 	}
-
+	
+    public ArrayList<Furniture> loadFurniture() {
+        ArrayList<Furniture> furniture = new ArrayList<>();   
+     
+        return furniture;
+    }
 	@Override
 	public MusicState getMusicState() {
 		return MusicState.START_HOME;

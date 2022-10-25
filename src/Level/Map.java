@@ -3,8 +3,11 @@ package Level;
 import Engine.Config;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
+import GameObject.Furniture;
 import GameObject.IntersectableRectangle;
 import GameObject.Rectangle;
+import HouseCustomization.FurnitureRegistry;
+import InventoryModifier.InventoryGrid;
 import Utils.Direction;
 import Utils.Point;
 import java.io.File;
@@ -63,6 +66,7 @@ public abstract class Map implements IntersectableRectangle {
 	protected ArrayList<NPC> npcs;
 	protected ArrayList<Trigger> triggers;
 	protected ArrayList<Collectible> collectibles;
+	protected ArrayList<Furniture> furniture;
 
 	protected Script activeInteractScript;
 
@@ -78,14 +82,18 @@ public abstract class Map implements IntersectableRectangle {
 	// map's textbox instance
 	protected Textbox textbox;
 
-	//music state for each map
+	// music state for each map
 	protected MusicState musicState;
 
 	// Items that have been collected or given to the player that need to be placed
 	// into inventory. This is where items "go" for a brief moment while being
-	// passed between the camera to the map, to the playlevelscreen, to, ultimately the inventory screen. This is a stack to
-	// Accommodate the player receiving multiple items at once
+	// passed between the camera to the map, to the playlevelscreen, to, ultimately
+	// the inventory screen. This is a stack to
+	// Accommodate the player receiving multiple items at once such as during a
+	// quest completion
 	protected Stack<Integer> itemsForInventory = new Stack<Integer>();
+	
+	public static boolean furnitureplacerequested = false;
 
 	public Map(String mapFileName, Tileset tileset) {
 		this.mapFileName = mapFileName;
@@ -126,6 +134,11 @@ public abstract class Map implements IntersectableRectangle {
 		this.collectibles = loadCollectables();
 		for (Collectible collectibles : this.collectibles) {
 			collectibles.setMap(this);
+		}
+
+		this.furniture = loadFurniture();
+		for (Furniture furniture : this.furniture) {
+			furniture.setMap(this);
 		}
 
 		this.loadScripts();
@@ -205,7 +218,7 @@ public abstract class Map implements IntersectableRectangle {
 		MapTile tile = getMapTile(xIndex, yIndex);
 		return new Point(tile.getX(), tile.getY());
 	}
-	
+
 	public Tileset getTileset() {
 		return tileset;
 	}
@@ -317,9 +330,9 @@ public abstract class Map implements IntersectableRectangle {
 	protected ArrayList<Trigger> loadTriggers() {
 		return new ArrayList<>();
 	}
-	
+
 	protected ArrayList<HouseEntry> loadHouseEntries() {
-		return new ArrayList<>();	
+		return new ArrayList<>();
 	}
 
 	// List of collectibles to be apart of the map, should be overridden in a
@@ -327,6 +340,13 @@ public abstract class Map implements IntersectableRectangle {
 	protected ArrayList<Collectible> loadCollectables() {
 		return new ArrayList<>();
 	}
+
+	// List of furniture to be apart of the map, should be overridden in a
+	// subclass (idk what that means, i'm just copying what everyone else said)
+	protected ArrayList<Furniture> loadFurniture() {
+		return new ArrayList<>();
+	}
+
 
 	public Camera getCamera() {
 		return camera;
@@ -346,6 +366,10 @@ public abstract class Map implements IntersectableRectangle {
 
 	public ArrayList<Collectible> getCollectables() {
 		return collectibles;
+	}
+	
+	public ArrayList<Furniture> getFurniture(){
+		return furniture;
 	}
 
 	public ArrayList<MapTile> getAnimatedMapTiles() {
@@ -390,6 +414,10 @@ public abstract class Map implements IntersectableRectangle {
 	public ArrayList<Collectible> getActiveCollectables() {
 		return camera.getActiveCollectables();
 	}
+	
+	public ArrayList<Furniture> getActiveFurniture(){
+		return camera.getActiveFurniture();
+	}
 
 	// add an enhanced map tile to the map's list of enhanced map tiles
 	public void addEnhancedMapTile(EnhancedMapTile enhancedMapTile) {
@@ -414,6 +442,11 @@ public abstract class Map implements IntersectableRectangle {
 		collectible.setMap(this);
 		this.collectibles.add(collectible);
 	}
+	
+	public void addFurniture(Furniture furniture) {
+		furniture.setMap(this);
+		this.furniture.add(furniture);
+	}
 
 	public void setAdjustCamera(boolean adjustCamera) {
 		this.adjustCamera = adjustCamera;
@@ -436,6 +469,7 @@ public abstract class Map implements IntersectableRectangle {
 		surroundingMapEntities.addAll(getActiveNPCs());
 		surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
 		surroundingMapEntities.addAll(getActiveCollectables());
+		surroundingMapEntities.addAll(getActiveFurniture());
 		return surroundingMapEntities;
 	}
 
@@ -531,6 +565,18 @@ public abstract class Map implements IntersectableRectangle {
 	}
 
 	public void update(Player player) {
+		camera.update(player);
+		if(furnitureplacerequested) {
+			System.out.println("Map recognizes place request");
+			furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(InventoryGrid.furnituretoplace));
+			furniture.get(furniture.size()-1).setX(player.getX());
+			furniture.get(furniture.size()-1).setY(player.getY()-40);
+			furniture.get(furniture.size()-1).setMap(this);
+			//furniture.get(furniture.size()-1).setLocation(player.getCalibratedXLocation(), player.getCalibratedYLocation()-40);
+
+			furnitureplacerequested = false;
+		}
+		
 		if (adjustCamera) {
 			adjustMovementY(player);
 			adjustMovementX(player);
@@ -645,18 +691,21 @@ public abstract class Map implements IntersectableRectangle {
 	public int getEndBoundY() {
 		return endBoundY;
 	}
-	
-	//adds item to the stack of items to be sent to inventory, intended to be called by the camera class
+
+	// adds item to the stack of items to be sent to inventory, intended to be
+	// called by the camera class
 	public void giveItem(int itemNumber) {
 		itemsForInventory.push(itemNumber);
 	}
-	//Takes items from the stack of items to go to inventory, intended to be called by the playlevelscreen class
+
+	// Takes items from the stack of items to go to inventory, intended to be called
+	// by the playlevelscreen class
 	public Stack<Integer> takeItems() {
 		Stack<Integer> itemsToGive = new Stack<Integer>();
-		while(!itemsForInventory.empty()) {
+		while (!itemsForInventory.empty()) {
 			itemsToGive.push(itemsForInventory.pop());
 		}
-		
+
 		return itemsToGive;
 	}
 
@@ -665,6 +714,5 @@ public abstract class Map implements IntersectableRectangle {
 		return new Rectangle(this.startBoundX, this.endBoundY, this.getWidthPixels(), this.getHeightPixels());
 	}
 	
-    public void setMusic() {
-    }
+
 }

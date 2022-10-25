@@ -1,16 +1,14 @@
 package InventoryModifier;
 
-import java.awt.Color;
+
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.JPanel;
-
 import Engine.GamePanel;
 import Engine.GraphicsHandler;
+import Level.Map;
 import Level.PlayerInventory;
-import Utils.Stopwatch;
+import Registry.ItemRegistry;
+import Screens.PlayLevelScreen;
+
 
 //A grid that interprets mouse clicks to determine selected inventory slots, moved items etc. 
 //Draw method contains the draw order for inventory components and inventory logic is executed based on clicks
@@ -43,6 +41,17 @@ public class InventoryGrid {
 
 	// private boolean reported = false; //uncomment for testing (along with other
 	// commented things below)
+
+	// Used to determine whether the "place" button should be drawn
+	private boolean inHouse = false;
+	private boolean indoorItem = false;
+	private boolean outdoorItem = false;
+	private boolean placeable = false;
+
+	public static boolean itemPlaceRequested = false;
+	public static int itemToBePlaced;
+	
+	public static int furnituretoplace;
 
 	public InventoryGrid(PlayerInventory playerInventory) {
 		// assigning corner points to slots
@@ -101,6 +110,7 @@ public class InventoryGrid {
 					clickedSlot = ((j * 11) + k);
 					previousSelectedSlot = selectedSlot;
 					selectedSlot = clickedSlot;
+
 					goodClick = true;
 
 					// if an item move is not underway, updates selected item
@@ -134,9 +144,6 @@ public class InventoryGrid {
 
 		}
 
-
-
-
 		// If an item is in the currently selected slot, checks if the REMOVE button has
 		// been clicked
 		// button X (lowerBound,upperBound) = (325,413)
@@ -145,23 +152,31 @@ public class InventoryGrid {
 				&& clickedY < 618) {
 			shouldHighlightRemove = true;
 		}
-	
+
+		// If a placeable furniture item is in slot, checks if place button has been
+		// clicked
+
+		if (!shouldHighlightMove && placeable && clickedX > 427 && clickedX < 499 && clickedY > 530 && clickedY < 618) {
+			System.out.println("You clicked Place!");
+			furnituretoplace = ItemRegistry.singleton.items.get(selectedItem).furnitureNumber;
+			Map.furnitureplacerequested = true;
+			
+		}
 
 	}
-	
+
 	public void troubleshoot() {
-		System.out.println("Selected slot: "+selectedSlot);
-		System.out.println("arrow slot: "+arrowSlot);
-		System.out.println("target slot: "+targetSlot);
-		System.out.println("goodClick: "+ goodClick);
-		System.out.println("itemIsBeingMoved: "+ itemIsBeingMoved);
-		System.out.println("shouldHighlightMove "+shouldHighlightMove);
-		System.out.println("shouldHighlightRemove "+shouldHighlightRemove);
+		System.out.println("Selected slot: " + selectedSlot);
+		System.out.println("arrow slot: " + arrowSlot);
+		System.out.println("target slot: " + targetSlot);
+		System.out.println("goodClick: " + goodClick);
+		System.out.println("itemIsBeingMoved: " + itemIsBeingMoved);
+		System.out.println("shouldHighlightMove " + shouldHighlightMove);
+		System.out.println("shouldHighlightRemove " + shouldHighlightRemove);
 		System.out.println(" ");
 		System.out.println(" ");
-		
-	}
 
+	}
 
 	// Really a lot more than a draw method, does most of the work
 	// calling the right methods to execute item moves after clicks are interpreted
@@ -170,19 +185,56 @@ public class InventoryGrid {
 	// read
 	public void draw(GraphicsHandler graphicsHandler) {
 
+		// used to determine which buttons to draw (place button won't appear if not in
+		// placeable area)
+		inHouse = PlayLevelScreen.isInHouse;
+		indoorItem = ItemRegistry.singleton.items.get(selectedItem).indoorPlacement;
+		outdoorItem = ItemRegistry.singleton.items.get(selectedItem).outdoorPlacement;
+
 		if (GamePanel.clickToProcess && !shouldHighlightMove) {
 			assignLastClickSlot(GamePanel.lastClick);
 			GamePanel.clickToProcess = false;
-		//	goodClick = false;
+			// goodClick = false;
 		}
 
 		graphicsHandler.highlightSlot(selectedSlot);
 		OptionsBox optionsBox = new OptionsBox(selectedItem, selectedSlot);
 		graphicsHandler.drawOptionsBox(optionsBox);
 
-		// if there is an item in the slot, draw the move and remove buttons
-		if (selectedItem != 0) {
+		// if there is a non-furniture item in the slot, draw the move and remove
+		// buttons
+		if (selectedItem != 0 && !indoorItem && !outdoorItem) {
 			graphicsHandler.drawOptionsBoxButtons(optionsBox);
+			// System.out.println("1");
+		}
+
+		// if indoor furniture, and indoors
+		if (selectedItem != 0 && indoorItem && inHouse) {
+			// System.out.println("2");
+			placeable = true;
+			graphicsHandler.drawOptionsBoxButtonsWithPlace(optionsBox);
+
+		}
+
+		// if indoor item, but outdoors
+		if (selectedItem != 0 && indoorItem && !outdoorItem && !inHouse) {
+			placeable = false;
+			// System.out.println("3");
+			graphicsHandler.drawOptionsBoxButtons(optionsBox);
+		}
+
+		// if outdoor item, and outdoors
+		if (selectedItem != 0 && outdoorItem && !inHouse) {
+			placeable = true;
+			graphicsHandler.drawOptionsBoxButtonsWithPlace(optionsBox);
+			// System.out.println("4");
+		}
+
+		// if outdoor item, but indoors
+		if (selectedItem != 0 && outdoorItem && inHouse && !indoorItem) {
+			placeable = false;
+			graphicsHandler.drawOptionsBoxButtons(optionsBox);
+			// System.out.println("5");
 		}
 
 		// if the move button has been clicked (assignClick logic only flags
@@ -191,7 +243,7 @@ public class InventoryGrid {
 			graphicsHandler.highlightMove();
 			arrowSlot = selectedSlot;
 			itemIsBeingMoved = true;
-		//	goodClick = false;
+			// goodClick = false;
 		}
 
 		// This one speaks for itself
@@ -208,7 +260,7 @@ public class InventoryGrid {
 		// if another click has occurred, and booleans indicate a move is taking place,
 		// move item
 		if (GamePanel.clickToProcess && itemIsBeingMoved && shouldHighlightMove) {
-			
+
 			troubleshoot();
 
 			if (goodClick) {
@@ -217,8 +269,9 @@ public class InventoryGrid {
 				playerInventory.moveItem(arrowSlot, targetSlot);
 				selectedSlot = targetSlot;
 				selectedItem = playerInventory.getItemInSlot(selectedSlot);
-				System.out.println("Move Executed. Arrow: "+arrowSlot+", Target: "+targetSlot);
-				System.out.println(" ");
+				// System.out.println("Move Executed. Arrow: "+arrowSlot+", Target:
+				// "+targetSlot);
+				// System.out.println(" ");
 				shouldHighlightMove = false;
 				itemIsBeingMoved = false;
 				GamePanel.clickToProcess = false;
@@ -230,8 +283,8 @@ public class InventoryGrid {
 				itemIsBeingMoved = false;
 			}
 		}
-		
-		//goodClick = false;
+
+		// goodClick = false;
 
 		// if(reported == false) {
 		// System.out.println(selectedSlot); //uncomment for troubleshooting

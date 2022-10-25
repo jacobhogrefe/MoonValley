@@ -1,6 +1,7 @@
 package Maps;
 
 import EnhancedMapTiles.Rock;
+import GameObject.Furniture;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.HouseEntry;
@@ -55,6 +56,7 @@ public class TestMap extends Map {
 
         return npcs;
     }
+    
 
     @Override
     public ArrayList<Trigger> loadTriggers() {
@@ -76,11 +78,11 @@ public class TestMap extends Map {
     }
     
 //    @Override
-//    public ArrayList<HouseEntry> loadHouseEntries() {
-//    	ArrayList<HouseEntry> entries = new ArrayList<>();
-//    	entries.add(new HouseEntry(17, 19));
-//    	return entries;
-//    }
+    public ArrayList<Furniture> loadFurniture() {
+        ArrayList<Furniture> furniture = new ArrayList<>();   
+     
+        return furniture;
+    }
     
     @Override
     public void loadScripts() {

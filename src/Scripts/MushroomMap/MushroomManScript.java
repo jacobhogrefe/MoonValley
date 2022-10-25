@@ -16,17 +16,48 @@ public class MushroomManScript extends Script<NPC> {
 
 	@Override
 	protected void setup() {
+//		lockPlayer();
+//		
+//		if (sequence == 0) {
+//			showTextbox();
+//			addTextToTextboxQueue("Sup, want a house tour?");
+//			addTextToTextboxQueue("Well you're getting one.");
+//		} else if (sequence == 2) {
+//			entity.stand(Direction.RIGHT);
+//			amountMoved = 0;
+//		}
 	}
 
 	@Override
 	protected void cleanup() {
-		// TODO Auto-generated method stub
+//		if (sequence == 0) {
+//			hideTextbox();
+//			sequence++;
+//		} else if (sequence == 1) {
+//			sequence++;
+//		}
 		
 	}
 
 	@Override
 	protected ScriptState execute() {
-		// TODO Auto-generated method stub
-		return null;
+//		//tells u youre getting a house tour
+//		if (sequence == 0) {
+//			start();
+//			if (isTextboxQueueEmpty()) {
+//				end();
+//			}
+//		} 
+//		// walk right
+//		else if (sequence == 1) {
+//			start();
+//			entity.walk(Direction.RIGHT, 2);
+//			amountMoved += 2;
+//			if (amountMoved == 196) {
+//				end();
+//			}
+//		}
+//		return ScriptState.RUNNING;
+        return ScriptState.COMPLETED;
 	}
 }
