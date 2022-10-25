@@ -1,5 +1,6 @@
 package Level;
 
+import GameObject.Furniture;
 import GameObject.GameObject;
 import Utils.Direction;
 import Utils.Point;
@@ -58,7 +59,21 @@ public class MapCollisionHandler {
                 }
             }
         }
-
+        
+        for (Furniture furniture : map.getActiveFurniture()) {
+            if (!gameObject.equals(furniture) && hasCollidedWithMapEntity(gameObject, furniture, direction)) {
+                entityCollidedWith = furniture;
+                if (direction == Direction.RIGHT) {
+                    float boundsDifference = gameObject.getX2() - gameObject.getBoundsX2();
+                    float adjustedPosition = furniture.getBoundsX1() - gameObject.getWidth() + boundsDifference;
+                    return new MapCollisionCheckResult(adjustedPosition, entityCollidedWith);
+                } else if (direction == Direction.LEFT) {
+                    float boundsDifference = gameObject.getBoundsX1() - gameObject.getX();
+                    float adjustedPosition = furniture.getBoundsX2() - boundsDifference;
+                    return new MapCollisionCheckResult(adjustedPosition, entityCollidedWith);
+                }
+            }
+        }
         if (gameObject.isAffectedByTriggers()) {
             for (Trigger trigger : map.getActiveTriggers()) {
                 if (!gameObject.equals(trigger) && trigger.exists() && hasCollidedWithMapEntity(gameObject, trigger, direction)) {
@@ -126,6 +141,21 @@ public class MapCollisionHandler {
                 } else if (direction == Direction.UP) {
                     float boundsDifference = gameObject.getBoundsY1() - gameObject.getY();
                     float adjustedPosition = npc.getBoundsY2() - boundsDifference;
+                    return new MapCollisionCheckResult(adjustedPosition, entityCollidedWith);
+                }
+            }
+        }
+        
+        for (Furniture furniture : map.getActiveFurniture()) {
+            if (!gameObject.equals(furniture) && hasCollidedWithMapEntity(gameObject, furniture, direction)) {
+                entityCollidedWith = furniture;
+                if (direction == Direction.DOWN) {
+                    float boundsDifference = gameObject.getY2() - gameObject.getBoundsY2();
+                    float adjustedPosition = furniture.getBoundsY1() - gameObject.getHeight() + boundsDifference;
+                    return new MapCollisionCheckResult(adjustedPosition, entityCollidedWith);
+                } else if (direction == Direction.UP) {
+                    float boundsDifference = gameObject.getBoundsY1() - gameObject.getY();
+                    float adjustedPosition = furniture.getBoundsY2() - boundsDifference;
                     return new MapCollisionCheckResult(adjustedPosition, entityCollidedWith);
                 }
             }

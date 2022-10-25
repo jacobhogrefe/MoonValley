@@ -184,7 +184,7 @@ public class GraphicsHandler {
 		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
 	}
 	
-	// draws item information to an optionsbox, will also draw "buttons" in the future
+	// draws item information to an optionsbox
 	public void drawOptionsBox(OptionsBox optionsBox) {
 		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
 		Font nameFont = new Font("descriptionFont", Font.BOLD, 25);
@@ -205,6 +205,7 @@ public class GraphicsHandler {
 		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
 	
+	//draws buttons to optionsbox, only called when items are selected, not empty slots
 	public void drawOptionsBoxButtons(OptionsBox optionsBox) {
 		
 		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
