@@ -78,11 +78,11 @@ public class TestMap extends Map {
     }
     
 //    @Override
-//    public ArrayList<HouseEntry> loadHouseEntries() {
-//    	ArrayList<HouseEntry> entries = new ArrayList<>();
-//    	entries.add(new HouseEntry(17, 19));
-//    	return entries;
-//    }
+    public ArrayList<Furniture> loadFurniture() {
+        ArrayList<Furniture> furniture = new ArrayList<>();   
+     
+        return furniture;
+    }
     
     @Override
     public void loadScripts() {

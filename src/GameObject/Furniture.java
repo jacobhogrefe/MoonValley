@@ -51,8 +51,8 @@ public class Furniture extends MapEntity {
 	public void setTether(boolean isTethered, Player player) {
 		if (isTethered) {
 			this.isTethered = true;
-			this.setX(player.getX());
-			this.setY(player.getY());
+		//	this.setX(player.getX());
+		//	this.setY(player.getY());
 		}
 
 		if (!isTethered) {

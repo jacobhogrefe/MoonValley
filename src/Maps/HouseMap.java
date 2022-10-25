@@ -24,9 +24,7 @@ public class HouseMap extends Map {
 	}
 	
     public ArrayList<Furniture> loadFurniture() {
-        ArrayList<Furniture> furniture = new ArrayList<>();
-    //    furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
-      
+        ArrayList<Furniture> furniture = new ArrayList<>();   
      
         return furniture;
     }
