@@ -57,16 +57,6 @@ public class TestMap extends Map {
         return npcs;
     }
     
-    @Override
-    public ArrayList<Furniture> loadFurniture() {
-        ArrayList<Furniture> furniture = new ArrayList<>();
-  //      furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
-      
-      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,5).getLocation(), "Retro Jukebox", 0));
-      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,6).getLocation(), "Retro Jukebox", 0));
-     
-        return furniture;
-    }
 
     @Override
     public ArrayList<Trigger> loadTriggers() {

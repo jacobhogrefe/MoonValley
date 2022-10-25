@@ -569,7 +569,11 @@ public abstract class Map implements IntersectableRectangle {
 		if(furnitureplacerequested) {
 			System.out.println("Map recognizes place request");
 			furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(InventoryGrid.furnituretoplace));
-			furniture.get(furniture.size()-1).setTether(true,player);
+			furniture.get(furniture.size()-1).setX(player.getCalibratedXLocation());
+			furniture.get(furniture.size()-1).setY(player.getCalibratedYLocation()-40);
+			furniture.get(furniture.size()-1).setMap(this);
+			//furniture.get(furniture.size()-1).setLocation(player.getCalibratedXLocation(), player.getCalibratedYLocation()-40);
+
 			furnitureplacerequested = false;
 		}
 		
