@@ -327,6 +327,8 @@ public class Camera extends Rectangle {
 				tetherSet = true;
 				
 			}
+			
+
 
 			if (containsDraw(furniture) && !furniture.isTethered()) {
 				if (furniture.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
@@ -340,7 +342,7 @@ public class Camera extends Rectangle {
 
 				if (player.getPlayerState() == PlayerState.WALKING) {
 					furniture.setX(player.getX());
-					furniture.setY(player.getY() - 30);
+					furniture.setY(player.getY() - 40);
 				}
 				
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {

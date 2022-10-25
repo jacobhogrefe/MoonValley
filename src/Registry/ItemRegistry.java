@@ -152,7 +152,7 @@ public class ItemRegistry {
 
 	public Item JUKEBOX = new Item.Builder() // 9
 			.withName("Retro Jukebox")
-			.withDescription("What wonderful tunes must exist within this lovely contraption!")
+			.withDescription("A box containing jukes")
 			.withSubimage(68 + 17 * 2, 17)
 			.withIndoorPlacement()
 			.withFurnitureNumber(0)

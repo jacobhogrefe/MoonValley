@@ -1,18 +1,14 @@
 package InventoryModifier;
 
-import java.awt.Color;
+
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.JPanel;
-
 import Engine.GamePanel;
 import Engine.GraphicsHandler;
+import Level.Map;
 import Level.PlayerInventory;
 import Registry.ItemRegistry;
 import Screens.PlayLevelScreen;
-import Utils.Stopwatch;
+
 
 //A grid that interprets mouse clicks to determine selected inventory slots, moved items etc. 
 //Draw method contains the draw order for inventory components and inventory logic is executed based on clicks
@@ -54,6 +50,8 @@ public class InventoryGrid {
 
 	public static boolean itemPlaceRequested = false;
 	public static int itemToBePlaced;
+	
+	public static int furnituretoplace;
 
 	public InventoryGrid(PlayerInventory playerInventory) {
 		// assigning corner points to slots
@@ -160,6 +158,9 @@ public class InventoryGrid {
 
 		if (!shouldHighlightMove && placeable && clickedX > 427 && clickedX < 499 && clickedY > 530 && clickedY < 618) {
 			System.out.println("You clicked Place!");
+			furnituretoplace = ItemRegistry.singleton.items.get(selectedItem).furnitureNumber;
+			Map.furnitureplacerequested = true;
+			
 		}
 
 	}
@@ -184,7 +185,8 @@ public class InventoryGrid {
 	// read
 	public void draw(GraphicsHandler graphicsHandler) {
 
-		// used to determine which buttons to draw
+		// used to determine which buttons to draw (place button won't appear if not in
+		// placeable area)
 		inHouse = PlayLevelScreen.isInHouse;
 		indoorItem = ItemRegistry.singleton.items.get(selectedItem).indoorPlacement;
 		outdoorItem = ItemRegistry.singleton.items.get(selectedItem).outdoorPlacement;

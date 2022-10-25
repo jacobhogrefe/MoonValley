@@ -1,6 +1,7 @@
 package Maps;
 
 import EnhancedMapTiles.Rock;
+import GameObject.Furniture;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.HouseEntry;
@@ -54,6 +55,17 @@ public class TestMap extends Map {
         npcs.add(dinosaur);
 
         return npcs;
+    }
+    
+    @Override
+    public ArrayList<Furniture> loadFurniture() {
+        ArrayList<Furniture> furniture = new ArrayList<>();
+  //      furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
+      
+      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,5).getLocation(), "Retro Jukebox", 0));
+      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,6).getLocation(), "Retro Jukebox", 0));
+     
+        return furniture;
     }
 
     @Override

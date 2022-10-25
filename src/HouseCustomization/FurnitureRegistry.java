@@ -19,13 +19,14 @@ public class FurnitureRegistry {
 	public FurnitureRegistry() {
 
 		Point defaultPoint = new Point(375, 250); // center of house (approximately)
+		
+		//To add a new furniture item, just add a new one to the catalog with format below:
+		// Furniture( IMAGE_FILE, defaultPoint (always the same), NAME, Placeable_indoors, Placeable_outdoors, itemNumber (must match what is in ItemRegistry))
 
 		catalog.add(new Furniture("RetroJukeBox.png", defaultPoint, "Retro Jukebox", true, false, 9)); // index 0
 		catalog.add(new Furniture("RoseBush.png", defaultPoint, "Rose Bush", false, true, 10));		   // index 1
 
 	}
 
-	// retroJukeBox = new Furniture()
-	// catalog.add(retroJukeBox);
 
 }

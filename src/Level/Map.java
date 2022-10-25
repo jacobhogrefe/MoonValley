@@ -6,6 +6,8 @@ import Engine.ScreenManager;
 import GameObject.Furniture;
 import GameObject.IntersectableRectangle;
 import GameObject.Rectangle;
+import HouseCustomization.FurnitureRegistry;
+import InventoryModifier.InventoryGrid;
 import Utils.Direction;
 import Utils.Point;
 import java.io.File;
@@ -90,6 +92,8 @@ public abstract class Map implements IntersectableRectangle {
 	// Accommodate the player receiving multiple items at once such as during a
 	// quest completion
 	protected Stack<Integer> itemsForInventory = new Stack<Integer>();
+	
+	public static boolean furnitureplacerequested = false;
 
 	public Map(String mapFileName, Tileset tileset) {
 		this.mapFileName = mapFileName;
@@ -343,6 +347,7 @@ public abstract class Map implements IntersectableRectangle {
 		return new ArrayList<>();
 	}
 
+
 	public Camera getCamera() {
 		return camera;
 	}
@@ -560,6 +565,14 @@ public abstract class Map implements IntersectableRectangle {
 	}
 
 	public void update(Player player) {
+		camera.update(player);
+		if(furnitureplacerequested) {
+			System.out.println("Map recognizes place request");
+			furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(InventoryGrid.furnituretoplace));
+			furniture.get(furniture.size()-1).setTether(true,player);
+			furnitureplacerequested = false;
+		}
+		
 		if (adjustCamera) {
 			adjustMovementY(player);
 			adjustMovementX(player);
@@ -696,4 +709,6 @@ public abstract class Map implements IntersectableRectangle {
 	public Rectangle getIntersectRectangle() {
 		return new Rectangle(this.startBoundX, this.endBoundY, this.getWidthPixels(), this.getHeightPixels());
 	}
+	
+
 }

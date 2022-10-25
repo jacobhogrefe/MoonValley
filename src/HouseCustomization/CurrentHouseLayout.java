@@ -15,4 +15,14 @@ public class CurrentHouseLayout {
 	public CurrentHouseLayout() {
 
 	}
+
+	public ArrayList<Point> getTakenPoints() {
+		return takenPoints;
+	}
+
+	public void setTakenPoints(ArrayList<Point> takenPoints) {
+		this.takenPoints = takenPoints;
+	}
+	
+
 }
