@@ -24,11 +24,7 @@ public class HouseMap extends Map {
 	}
 	
     public ArrayList<Furniture> loadFurniture() {
-        ArrayList<Furniture> furniture = new ArrayList<>();
-  //      furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
-      
-      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,5).getLocation(), "Retro Jukebox", 0));
-      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,6).getLocation(), "Retro Jukebox", 0));
+        ArrayList<Furniture> furniture = new ArrayList<>();   
      
         return furniture;
     }

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 * Used to make sure new furniture gets loaded into an unused point  (it would override other
 *  furniture if it loaded in where something already was)
 */
+
+
+// 10/25: Doesn't currently do anything, just something I might implement in the future
 public class CurrentHouseLayout {
 
 	public static CurrentHouseLayout currenthouselayout = new CurrentHouseLayout();
