@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import Engine.GamePanel;
 import Engine.GraphicsHandler;
 import Level.PlayerInventory;
+import Registry.ItemRegistry;
+import Screens.PlayLevelScreen;
 import Utils.Stopwatch;
 
 //A grid that interprets mouse clicks to determine selected inventory slots, moved items etc. 
@@ -43,6 +45,15 @@ public class InventoryGrid {
 
 	// private boolean reported = false; //uncomment for testing (along with other
 	// commented things below)
+	
+	//Used to determine whether the "place" button should be drawn
+	private boolean inHouse = false;
+	private boolean indoorItem = false;
+	private boolean outdoorItem = false;
+	private boolean placeable = false;
+	
+	public static boolean itemPlaceRequested = false;
+	public static int itemToBePlaced;
 
 	public InventoryGrid(PlayerInventory playerInventory) {
 		// assigning corner points to slots
@@ -101,6 +112,7 @@ public class InventoryGrid {
 					clickedSlot = ((j * 11) + k);
 					previousSelectedSlot = selectedSlot;
 					selectedSlot = clickedSlot;
+
 					goodClick = true;
 
 					// if an item move is not underway, updates selected item
@@ -145,6 +157,12 @@ public class InventoryGrid {
 				&& clickedY < 618) {
 			shouldHighlightRemove = true;
 		}
+		
+		//If a placeable furniture item is in slot, checks if place button has been clicked
+		
+		if(!shouldHighlightMove && placeable && clickedX > 427 && clickedX < 499 && clickedY >530 && clickedY <618) {
+			System.out.println("You clicked Place!");
+		}
 	
 
 	}
@@ -169,6 +187,12 @@ public class InventoryGrid {
 	// inventory logic at the same time as the graphics, and hopefully easier to
 	// read
 	public void draw(GraphicsHandler graphicsHandler) {
+		
+		//used to determine which buttons to draw
+		inHouse = PlayLevelScreen.isInHouse;
+		indoorItem = ItemRegistry.singleton.items.get(selectedItem).indoorPlacement;
+		outdoorItem = ItemRegistry.singleton.items.get(selectedItem).outdoorPlacement;
+
 
 		if (GamePanel.clickToProcess && !shouldHighlightMove) {
 			assignLastClickSlot(GamePanel.lastClick);
@@ -180,9 +204,37 @@ public class InventoryGrid {
 		OptionsBox optionsBox = new OptionsBox(selectedItem, selectedSlot);
 		graphicsHandler.drawOptionsBox(optionsBox);
 
-		// if there is an item in the slot, draw the move and remove buttons
-		if (selectedItem != 0) {
+		// if there is a non-furniture item in the slot, draw the move and remove buttons
+		if (selectedItem != 0 && !indoorItem && !outdoorItem) {
 			graphicsHandler.drawOptionsBoxButtons(optionsBox);
+	//		System.out.println("1");
+		}
+		
+		//if indoor furniture, and indoors
+		if (selectedItem != 0 && indoorItem && inHouse) {
+	//		System.out.println("2");
+			placeable = true;
+			graphicsHandler.drawOptionsBoxButtonsWithPlace(optionsBox);
+			
+		}
+		
+		//if indoor item, but outdoors
+		if (selectedItem != 0 && indoorItem && !outdoorItem && !inHouse) {
+	//		System.out.println("3");
+			graphicsHandler.drawOptionsBoxButtons(optionsBox);
+		}
+		
+		//if outdoor item, and outdoors
+		if (selectedItem != 0 && outdoorItem && !inHouse) {
+			placeable = true;
+			graphicsHandler.drawOptionsBoxButtonsWithPlace(optionsBox);
+	//		System.out.println("4");
+		}
+		
+		//if outdoor item, but indoors
+		if (selectedItem != 0 && outdoorItem && inHouse && !indoorItem) {
+			graphicsHandler.drawOptionsBoxButtons(optionsBox);
+	//		System.out.println("5");
 		}
 
 		// if the move button has been clicked (assignClick logic only flags
@@ -217,8 +269,8 @@ public class InventoryGrid {
 				playerInventory.moveItem(arrowSlot, targetSlot);
 				selectedSlot = targetSlot;
 				selectedItem = playerInventory.getItemInSlot(selectedSlot);
-				System.out.println("Move Executed. Arrow: "+arrowSlot+", Target: "+targetSlot);
-				System.out.println(" ");
+	//			System.out.println("Move Executed. Arrow: "+arrowSlot+", Target: "+targetSlot);
+	//			System.out.println(" ");
 				shouldHighlightMove = false;
 				itemIsBeingMoved = false;
 				GamePanel.clickToProcess = false;

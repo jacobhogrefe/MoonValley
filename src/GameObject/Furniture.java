@@ -15,17 +15,21 @@ public class Furniture extends MapEntity {
 	public MapEntityStatus mapEntityStatus = MapEntityStatus.ACTIVE;
 	protected float x;
 	protected float y;
-	protected int furnitureNumber;
+	protected int itemNumber;
 	protected boolean isTethered = false;
 	protected float tetherStartX;
 	protected float tetherStartY;
+	protected boolean indoorItem;
+	protected boolean outdoorItem;
 
-	public Furniture(String imageName, Point location, String nameOfItem, int furnitureNumber) {
+	public Furniture(String imageName, Point location, String nameOfItem, boolean indoorItem, boolean outdoorItem, int itemNumber) {
 		super(location.x, location.y, new Frame(ImageLoader.load(imageName)));
 		this.image = ImageLoader.load(imageName);
 		this.x = location.x;
 		this.y = location.y;
-		this.furnitureNumber = furnitureNumber;
+		this.itemNumber = itemNumber;
+		this.indoorItem = indoorItem;
+		this.outdoorItem = outdoorItem;
 		
 	}
 

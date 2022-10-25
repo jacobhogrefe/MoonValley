@@ -205,6 +205,7 @@ public class GraphicsHandler {
 		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
 	
+	
 	//draws buttons to optionsbox, only called when items are selected, not empty slots
 	public void drawOptionsBoxButtons(OptionsBox optionsBox) {
 		
@@ -222,6 +223,24 @@ public class GraphicsHandler {
 		drawString("REMOVE", 328, 550, buttonFont, Color.BLACK);
 		
 	
+		
+	}
+	public void drawOptionsBoxButtonsWithPlace(OptionsBox optionsBox) {
+		
+		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
+		
+		//move button
+		drawFilledRectangleWithBorder(250,530,60,25,Color.GRAY,Color.BLACK,2);
+		
+		drawString("MOVE", 253, 550, buttonFont, Color.BLACK);	
+		
+		//remove button
+		drawFilledRectangleWithBorder(325,530,88,25,Color.GRAY,Color.BLACK,2);
+		drawString("REMOVE", 328, 550, buttonFont, Color.BLACK);
+		
+		//Place button
+		drawFilledRectangleWithBorder(427,530,72,25,Color.GRAY,Color.BLACK,2);
+		drawString("PLACE", 432, 550, buttonFont, Color.BLACK);
 		
 	}
 	
