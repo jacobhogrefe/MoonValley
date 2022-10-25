@@ -39,6 +39,8 @@ public class PlayLevelScreen extends Screen {
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
 	protected Map[] biomeMaps = new Map[6];
+	
+	public static boolean isInHouse = false;
 
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;

@@ -3,6 +3,7 @@ package Maps;
 import java.util.ArrayList;
 
 import GameObject.Furniture;
+import HouseCustomization.FurnitureRegistry;
 import Level.Collectible;
 import Level.Map;
 import Level.MusicState;
@@ -24,7 +25,10 @@ public class HouseMap extends Map {
 	
     public ArrayList<Furniture> loadFurniture() {
         ArrayList<Furniture> furniture = new ArrayList<>();
-        furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,5).getLocation(), "Retro Jukebox", 0));
+  //      furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
+      
+      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,5).getLocation(), "Retro Jukebox", 0));
+      //  furniture.add(new Furniture("RetroJukeBox.png", getMapTile(5,6).getLocation(), "Retro Jukebox", 0));
      
         return furniture;
     }
