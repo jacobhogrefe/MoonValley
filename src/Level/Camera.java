@@ -1,12 +1,11 @@
 package Level;
 
+import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
 import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
-import Scripts.SimpleTextScript;
-
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -322,10 +321,11 @@ public class Camera extends Rectangle {
 
 		for (Furniture furniture : activeFurniture) {
 
-			if (furniture.overlaps(player) && !tetherSet) {
+			if (furniture.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown()) {
 				System.out.println("setting tether...");
 				furniture.setTether(true, player);
 				tetherSet = true;
+				
 			}
 
 			if (containsDraw(furniture) && !furniture.isTethered()) {
@@ -337,22 +337,16 @@ public class Camera extends Rectangle {
 			}
 
 			if (containsDraw(furniture) && furniture.isTethered()) {
-				
-		
-				float beginX = furniture.getX();
-				float beginY = furniture.getY();
 
-				float changeInX = (furniture.getTetherStartX() - player.getX());
-				float changeInY = (furniture.getTetherStartY() - player.getY());
-
-			//	furniture.setX(beginX + changeInX);
-			//	furniture.setY(beginY + changeInY);
-				if(player.getPlayerState() == PlayerState.WALKING) {
-				furniture.setX(player.getX());
-				furniture.setY(player.getY() - 50);
+				if (player.getPlayerState() == PlayerState.WALKING) {
+					furniture.setX(player.getX());
+					furniture.setY(player.getY() - 30);
 				}
 				
-				
+				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {
+					furniture.setTether(false,player);
+					tetherSet = false;
+				}
 
 				furniture.draw(graphicsHandler);
 

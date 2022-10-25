@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import GameObject.Furniture;
 
 //Similar to ItemRegistry for inventory.
-//Contains all INTERIOR decorations (not limited to literal furniture)
+//Contains all decorations (not limited to literal furniture)
 
 public class FurnitureRegistry {
 	
@@ -13,7 +13,7 @@ public class FurnitureRegistry {
     
     private ArrayList<Furniture> catalog = new ArrayList<Furniture>();
     
-    Furniture retroJukebox = new Furniture("RetroJukebox.png", , "Retro Jukebox", 0);
+
     
     
     

@@ -1,6 +1,4 @@
 package GameObject;
-
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import Engine.GraphicsHandler;
@@ -10,6 +8,7 @@ import Level.MapEntityStatus;
 import Level.Player;
 import Utils.Point;
 
+//essentially a MapEntity that allows you to move it around when you interact with it
 public class Furniture extends MapEntity {
 
 	protected BufferedImage image;

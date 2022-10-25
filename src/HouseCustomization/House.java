@@ -1,1 +1,0 @@
-//The exterior representation/logic of a house
