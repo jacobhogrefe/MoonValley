@@ -14,13 +14,7 @@ public class NPC extends MapEntity {
 
 	protected boolean isWalrus = false;
 
-	public boolean isWalrus() {
-		return isWalrus;
-	}
 
-	public void setWalrus(boolean isWalrus) {
-		this.isWalrus = isWalrus;
-	}
 
 	public NPC(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation) {
 		super(x, y, spriteSheet, startingAnimation);
@@ -100,6 +94,5 @@ public class NPC extends MapEntity {
 		super.draw(graphicsHandler);
 	}
 
-	public void censor() {
-	}
+	
 }
