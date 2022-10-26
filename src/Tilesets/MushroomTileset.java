@@ -472,6 +472,36 @@ public class MushroomTileset extends Tileset {
 
         mapTiles.add(sideRock2Tile);
         
+        //flipped upside down rock wall
+        Frame sideRock3Frame = new FrameBuilder(getSubImage(4, 5))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+
+        MapTileBuilder sideRock3Tile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(sideRock3Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(sideRock3Tile);
+        
+        //transition to fallout
+        Frame floorFrame4 = new FrameBuilder(getSubImage(0, 6))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder floorTile4 = new MapTileBuilder(floorFrame4);
+
+        mapTiles.add(floorTile4);
+        
+        //rocks
+        Frame rockFrame = new FrameBuilder(getSubImage(1, 6))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder rockTile = new MapTileBuilder(rockFrame);
+
+        mapTiles.add(rockTile);
+        
         //lighting bugs
         Frame[] bugJarFrames = new Frame[] {
                 new FrameBuilder(getSubImage(5, 5), 500)
