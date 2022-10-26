@@ -35,9 +35,9 @@ public class moonValleyTitle extends AbstractLoopingMap {
     }
 
     @Override
-    public Supplier<Map> getBorderingMap(Side edge) {
+    public Map createBorderingMap(Side edge) {
         // Loop to the same map
-        return () -> new TestMap();
+        return new moonValleyTitle();
     }
 
     @Override

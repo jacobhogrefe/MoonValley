@@ -31,16 +31,16 @@ public class BiomeMountains extends AbstractLoopingMap {
     }
 
     @Override
-    public Supplier<Map> getBorderingMap(Side edge) {
+    public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return () -> new BiomeSpooky();
+                return new BiomeSpooky();
             case RIGHT:
                 return null;
             case TOP:
                 return null;
             case BOTTOM:
-                return () -> new BiomeDesert();
+                return new BiomeDesert();
             default:
                 return null;
         }

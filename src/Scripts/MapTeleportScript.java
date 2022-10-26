@@ -47,6 +47,9 @@ public class MapTeleportScript extends Script {
     @Override
     protected ScriptState execute() {
         this.toMap = this.mapCreator.get();
+
+        if (this.toMap == null)
+            return ScriptState.COMPLETED;
         
         Game.getRunningInstance()
             .getScreenCoordinator()
