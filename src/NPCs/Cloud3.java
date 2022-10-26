@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class Cloud3 extends NPC {
 
     public Cloud3(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cloud3.png"), 48, 48), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cloud6.png"), 48, 48), "STAND_LEFT");
     }
 
     @Override
