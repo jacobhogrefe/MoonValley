@@ -1,5 +1,8 @@
 package Scripts.TestMap;
 
+import java.awt.Color;
+
+import Engine.Config;
 import Game.Game;
 import Level.Script;
 import Level.ScriptState;
