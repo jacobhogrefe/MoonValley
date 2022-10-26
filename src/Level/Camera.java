@@ -6,6 +6,8 @@ import Engine.ScreenManager;
 import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
+import NPCs.Walrus;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -291,6 +293,7 @@ public class Camera extends Rectangle {
 		// if drawn later, npc will "cover" player
 		for (NPC npc : activeNPCs) {
 			if (containsDraw(npc)) {
+			
 				if (npc.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
 					npc.draw(graphicsHandler);
 				} else {
