@@ -10,6 +10,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * FlagManager stores a list of flags - Strings which are either present or not.
+ * 
+ * For example, one might set a flag called "walrusGone" when the walrus is no
+ * longer on the map. Then, when the map is loaded, "walrusGone" is checked,
+ * and if the flag is there, we don't spawn the walrus. This persists across
+ * loads and saves.
+ */
 public class FlagManager {
     protected HashMap<String, Boolean> flags = new HashMap<>();
     

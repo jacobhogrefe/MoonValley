@@ -11,6 +11,10 @@ import Registry.ItemRegistry.Item;
 import Scripts.SmartMapTeleportScript;
 import Utils.Side;
 
+/**
+ * An extension of Map that "loops" at the edges - the player is teleported to
+ * a new map when they reach the edge, with some caveats.
+ */
 public abstract class AbstractLoopingMap extends Map {
     public AbstractLoopingMap(String mapFileName, Tileset tileset) {
         super(mapFileName, tileset);
