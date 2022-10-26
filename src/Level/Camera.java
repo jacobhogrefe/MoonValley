@@ -293,9 +293,7 @@ public class Camera extends Rectangle {
 		// if drawn later, npc will "cover" player
 		for (NPC npc : activeNPCs) {
 			if (containsDraw(npc)) {
-				if(npc.isWalrus) {
-					npc.censor();
-				}
+			
 				if (npc.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
 					npc.draw(graphicsHandler);
 				} else {

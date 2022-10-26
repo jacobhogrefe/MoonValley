@@ -1,7 +1,10 @@
 package Maps;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
+import Engine.Config;
+import Engine.GraphicsHandler;
 import GameObject.Furniture;
 import HouseCustomization.FurnitureRegistry;
 import Level.Collectible;
@@ -31,6 +34,10 @@ public class HouseMap extends Map {
 	@Override
 	public MusicState getMusicState() {
 		return MusicState.START_HOME;
+	}
+	
+	public void Dayinhouse(GraphicsHandler graphicsHandler) {
+		graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT, new Color(0, 0, 0, 0));	
 	}
 
 }
