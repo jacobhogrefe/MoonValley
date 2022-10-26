@@ -56,9 +56,17 @@ public class FlagManager {
         return false;
     }
 
+    /**
+     * Anything that isn't a flag but needs to be saved should go in here.
+     * 
+     * See updateFrom and updateTo.
+     */
     public static class ExtraSaveData implements Serializable {
+        // The player's x position on the current map
         public float x;
+        // The player's y position on the current map
         public float y;
+        // The player's inventory
         public int[] inventory;
     }
 
@@ -90,12 +98,26 @@ public class FlagManager {
         }
     }
 
+    /**
+     * Load the ExtraSaveData structure with the data that will need to be saved.
+     * 
+     * For example, this updates this.extraSaveData with player position and inventory.
+     * 
+     * @param player the player object
+     */
     public void updateFrom(Player player) {
         this.extraSaveData.x = player.getX();
         this.extraSaveData.y = player.getY();
         this.extraSaveData.inventory = player.getPlayerInventory();
     }
 
+    /**
+     * Update the player with the extra save data in this.extraSaveData.
+     * 
+     * For example, this updates the player position and inventory.
+     * 
+     * @param player the player object
+     */
     public void updateTo(Player player) {
         player.setX(this.extraSaveData.x);
         player.setY(this.extraSaveData.y);
