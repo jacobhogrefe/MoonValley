@@ -102,6 +102,18 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 		}
 
 	}
+	
+	public static class CensorWalrusOption extends Option {
+		@Override
+		
+		public String getText() {
+			return "Censor Ugly Walrus";
+		}
+		
+		public void select(AbstractMenuScreen parent) {
+			PlayLevelScreen.shouldcensorwalrus = true;
+		}
+	}
 
 	public static class FillInventoryOption extends Option {
 		@Override
@@ -174,6 +186,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 		this.options.add(new SwitchMapOption());
 		this.options.add(new GiveItemOption());
 		this.options.add(new FillInventoryOption());
+		this.options.add(new CensorWalrusOption());
 		this.options.add(new CancelOption());
 
 	}

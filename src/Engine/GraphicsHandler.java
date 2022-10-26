@@ -3,6 +3,7 @@ package Engine;
 import GameObject.ImageEffect;
 import InventoryModifier.InventoryGrid;
 import InventoryModifier.OptionsBox;
+import NPCs.Walrus;
 import Registry.ItemRegistry;
 import Utils.Stopwatch;
 
@@ -261,6 +262,10 @@ public class GraphicsHandler {
 		
 		drawFilledRectangleWithBorder(325,530,88,25,Color.GRAY,Color.BLACK,2);
 	
+	}
+	
+	public void censorWalrus(Walrus walrus) {
+		drawFilledRectangleWithBorder((int)walrus.getX(),(int)walrus.getY(),88,25,Color.BLACK,Color.BLACK,2);
 	}
 	
 	
