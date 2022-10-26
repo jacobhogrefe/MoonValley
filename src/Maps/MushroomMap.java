@@ -2,18 +2,21 @@ package Maps;
 
 import Level.Map;
 import Level.MusicState;
+import Scripts.MushroomMap.EnterMushroomHouseScript;
+import Scripts.TestMap.EnterHouseScript;
 import Tilesets.MushroomTileset;
 
-// Represents a test map to be used in a level
+//Mushroom Biome map
 public class MushroomMap extends Map {
 
     public MushroomMap() {
         super("mushroom_map.txt", new MushroomTileset());
-        this.playerStartPosition = getMapTile(2, 2).getLocation();
+//        this.playerStartPosition = getMapTile(2, 2).getLocation();
     }
     
     @Override
     public void loadScripts() {  
+        getMapTile(15, 7).setInteractScript(new EnterMushroomHouseScript());
     } 
     @Override
     public MusicState getMusicState() {
