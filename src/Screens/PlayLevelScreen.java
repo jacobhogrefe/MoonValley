@@ -38,8 +38,6 @@ public class PlayLevelScreen extends Screen {
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
-	protected Map[] biomeMaps = new Map[6];
-	
 	public static boolean isInHouse = false;
 
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -55,16 +53,8 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
 
-		//all biome maps are loaded here
-		biomeMaps[0] = new BiomeStart();
-		biomeMaps[1] = new BiomeShrooms();
-		biomeMaps[2] = new BiomeSpooky();
-		biomeMaps[3] = new BiomeDesert();
-		biomeMaps[4] = new BiomeMountains();
-		biomeMaps[5] = new BiomeFallout();
-
 		//define/setup map
-		this.map = biomeMaps[0];
+		this.map = new BiomeStart();
 		map.reset();
 		map.setFlagManager(flagManager);
 
