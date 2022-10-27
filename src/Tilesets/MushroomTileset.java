@@ -390,8 +390,7 @@ public class MushroomTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder houseSide1Tile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(houseSide1Frame)
+        MapTileBuilder houseSide1Tile = new MapTileBuilder(houseSide1Frame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(houseSide1Tile);
@@ -402,8 +401,7 @@ public class MushroomTileset extends Tileset {
                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
-        MapTileBuilder houseSide2Tile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(houseSide2Frame)
+        MapTileBuilder houseSide2Tile = new MapTileBuilder(houseSide2Frame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(houseSide2Tile);
@@ -517,6 +515,100 @@ public class MushroomTileset extends Tileset {
                 .withTileType(TileType.PASSABLE);
 
         mapTiles.add(bugJarTile);
+        
+      //soil 
+        Frame soilFrame = new FrameBuilder(getSubImage(1, 6))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder soilTile = new MapTileBuilder(soilFrame);
+
+        mapTiles.add(soilTile);
+        
+        //purple soil 
+        Frame soil1Frame = new FrameBuilder(getSubImage(2, 7))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder soil1Tile = new MapTileBuilder(soil1Frame);
+
+        mapTiles.add(soil1Tile);
+        
+        //spinny soil 1
+        Frame spinnySoil1Frame = new FrameBuilder(getSubImage(2, 6))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder spinnySoil1Tile = new MapTileBuilder(spinnySoil1Frame);
+
+        mapTiles.add(spinnySoil1Tile);
+        
+        //spinny soil 2
+        Frame spinnySoil2Frame = new FrameBuilder(getSubImage(2, 6))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_H_AND_V)
+                .build();
+
+        MapTileBuilder spinnySoil2Tile = new MapTileBuilder(spinnySoil2Frame);
+
+        mapTiles.add(spinnySoil2Tile);
+        
+        //spinny soil 3
+        Frame spinnySoil3Frame = new FrameBuilder(getSubImage(2, 6))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_VERTICAL)
+                .build();
+
+        MapTileBuilder spinnySoil3Tile = new MapTileBuilder(spinnySoil3Frame);
+
+        mapTiles.add(spinnySoil3Tile);
+        
+        //spinny soil 4
+        Frame spinnySoil4Frame = new FrameBuilder(getSubImage(2, 6))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder spinnySoil4Tile = new MapTileBuilder(spinnySoil4Frame);
+
+        mapTiles.add(spinnySoil4Tile);
+        
+        //dancing mushrooms
+        Frame[] danceFrame = new Frame[] {
+                new FrameBuilder(getSubImage(3, 6), 500)
+                    .withScale(tileScale)
+                    .build(),
+                new FrameBuilder(getSubImage(4, 6), 500)
+                        .withScale(tileScale)
+                        .build(),
+                new FrameBuilder(getSubImage(0, 7), 500)
+                        .withScale(tileScale)
+                        .build()
+        };
+
+        MapTileBuilder danceTile = new MapTileBuilder(danceFrame);
+
+        mapTiles.add(danceTile);
+        
+        //sign
+        Frame signFrame = new FrameBuilder(getSubImage(3, 7))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder signTile = new MapTileBuilder(signFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(signTile);
+        
+        //fence
+        Frame fenceFrame = new FrameBuilder(getSubImage(4, 7))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder fenceTile = new MapTileBuilder(fenceFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(fenceTile);
         
         return mapTiles;
     }

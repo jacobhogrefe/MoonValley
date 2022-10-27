@@ -64,7 +64,7 @@ public class MusicManager {
                     break;
                 case MUSHROOM_HOME:
                     currentSound = mushroomHome;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = stoneWalking;
                     break;
                 case SPOOKY:
                     currentSound = spooky;
