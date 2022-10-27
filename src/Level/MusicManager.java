@@ -4,8 +4,9 @@ import Utils.Sound;
 
 public class MusicManager {
 
+    protected Player player;
     protected MusicState musicState, previousMusicState;
-    protected Sound previousSound, currentSound, walkingSound;
+    protected Sound previousSound, currentSound, previousWalkingSound, walkingSound;
 
     //All sounds the different biomes
     protected Sound start = new Sound("biomeStart.wav", true);
@@ -23,7 +24,7 @@ public class MusicManager {
 
     //If each biome would like a different walking sound add them here, and set the walking sound in the appropriate switch statement
     protected Sound grassWalking = new Sound("walkingGrass.wav", true);
-    //protected Sound stoneWalking = new Sound("walkingStone.wav", true);
+    protected Sound stoneWalking = new Sound("walkingStone.wav", true);
 
     //sets the previous and current sounds to the same thing on creation (this makes it easier to check when the music state has changed)
     public MusicManager() {
@@ -31,11 +32,13 @@ public class MusicManager {
         musicState = MusicState.START;
         previousSound = start;
         currentSound = start;
+        previousWalkingSound = grassWalking;
         walkingSound = grassWalking;
     }
 
     //checks if the current music state is different from the previous music state
     //will play the appropriate music depending on the case, and will pause and restart the previous music 
+    //if desired, will change the player's walking sound depending on the location
     public void updateMusic() {
         if (previousMusicState != musicState) {
             switch (musicState) {
@@ -49,7 +52,7 @@ public class MusicManager {
                     break;
                 case MOUNTAINS:
                     currentSound = mountains;
-                    //walkingSound = stoneWalking;
+                    walkingSound = stoneWalking;
                     break;
                 case MOUNTAINS_HOME:
                     currentSound = mountainsHome;
@@ -73,7 +76,7 @@ public class MusicManager {
                     break;
                 case START:
                     currentSound = start;
-                    //walkingSound = grassWalking;
+                    walkingSound = grassWalking;
                     break;
                 case START_HOME:
                     currentSound = startHome;
@@ -92,6 +95,9 @@ public class MusicManager {
             }
             previousSound.stop();
             currentSound.play();
+            player.getWalkingSound().stop();
+            player.setWalkingSound(walkingSound);
+            previousWalkingSound = walkingSound;
             previousSound = currentSound;
             previousMusicState = musicState;
         }
@@ -107,7 +113,11 @@ public class MusicManager {
         return currentSound;
     }
 
-    public Sound getPlayerWalkingSound() {
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Sound getWalkingSound() {
         return walkingSound;
     }
 }
