@@ -33,9 +33,9 @@ public class MountainsTileset extends Tileset {
         mapTiles.add(doubleLayeredTile(6, 1, buildFrame(5, 4)));
         mapTiles.add(doubleLayeredTile(6, 2, buildFrame(5, 4)));
         mapTiles.add(buildTile(buildFrame(6, 3)));
-        mapTiles.add(buildTile(buildFrame(6, 4)));
-        mapTiles.add(buildTile(buildFrame(7, 0)));
-        mapTiles.add(buildTile(buildFrame(7, 1)));
+        mapTiles.add(doubleLayeredTile(6, 4, buildFrame(5, 4)));
+        mapTiles.add(doubleLayeredTile(7, 0, buildFrame(5, 4)));
+        mapTiles.add(doubleLayeredTile(7, 1, buildFrame(5, 4)));
         Frame[] lanternAnimation = new Frame[] {
             new FrameBuilder(getSubImage(7, 2), 200)
                 .withScale(tileScale)
@@ -47,7 +47,7 @@ public class MountainsTileset extends Tileset {
                 .withScale(tileScale)
                 .build()
         };
-        MapTileBuilder lantern = new MapTileBuilder(buildFrame(6,4))
+        MapTileBuilder lantern = new MapTileBuilder(buildFrame(5,4))
             .withTopLayer(lanternAnimation)
             .withTileType(TileType.PASSABLE);
         mapTiles.add(lantern);
@@ -66,7 +66,13 @@ public class MountainsTileset extends Tileset {
 
     protected MapTileBuilder impassableTile(Frame frame) {
         return new MapTileBuilder(frame)
+            .withTopLayer(frame)
             .withTileType(TileType.NOT_PASSABLE);
+    }
+
+    protected MapTileBuilder passableTile(Frame frame) {
+        return new MapTileBuilder(frame)
+            .withTileType(TileType.PASSABLE);
     }
     
     protected MapTileBuilder doubleLayeredTile(int i, int j, Frame bottomLayer) {
