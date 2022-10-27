@@ -40,7 +40,7 @@ public class PlayLevelScreen extends Screen {
 	protected Clock clock = new Clock();
 	protected SpriteFont time = new SpriteFont("Time: " + clock.getTimeOfDay() + ":00", 10, 30, "Comic Sans", 30,
 			Color.BLACK);
-	protected Cloud cloud = new Cloud(0, new Point(550, 0));
+	protected Cloud cloud = new Cloud(0, new Point(570, 4));
 	protected Cloud2 cloud2 = new Cloud2(0, new Point(235, 10));
 	protected Cloud3 cloud3 = new Cloud3(0, new Point(0, 35));
 	protected MusicManager musicManager = new MusicManager();
@@ -199,14 +199,6 @@ public class PlayLevelScreen extends Screen {
 			inventoryScreen.draw(graphicsHandler);
 			break;
 		}
-
-		if (clock.getTimeOfDay() >= 19 || clock.getTimeOfDay() <= 5) {
-			if (map.getMapFileName().equals("Biomes/start.txt")) {
-				cloud.draw(graphicsHandler);
-				cloud2.draw(graphicsHandler);
-				cloud3.draw(graphicsHandler);
-			} 		
-		}
 	}
 
 	// empty method for setting the current map to one of the biomes based on where
@@ -249,6 +241,13 @@ public class PlayLevelScreen extends Screen {
 				graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT,
 						new Color(0, 0, 0, 0));
 			}
+		}
+		if (clock.getTimeOfDay() >= 19 || clock.getTimeOfDay() <= 5) {
+			if (map.getMapFileName().equals("Biomes/start.txt")) {
+				cloud.draw(graphicsHandler);
+				cloud2.draw(graphicsHandler);
+				cloud3.draw(graphicsHandler);
+			} 		
 		}
 
 	}
