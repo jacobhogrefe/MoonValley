@@ -81,7 +81,7 @@ public class BiomeMountains extends AbstractLoopingMap {
 
     @Override
     public ArrayList<Trigger> loadTriggers() {
-        ArrayList<Trigger> triggers = new ArrayList<>();
+        ArrayList<Trigger> triggers = super.loadTriggers();
         return triggers;
     }
 
