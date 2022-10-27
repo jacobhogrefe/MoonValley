@@ -10,6 +10,8 @@ import Level.ScriptState;
  * @author hle0
  * 
  * A Script that teleports a player to another map, optionally at a different X or Y coordinate on another map.
+ * 
+ * You probably want to use SmartMapTeleport or teleport the player directly instead.
  */
 public class MapTeleportScript extends Script {
     public Supplier<Map> mapCreator;
@@ -47,6 +49,9 @@ public class MapTeleportScript extends Script {
     @Override
     protected ScriptState execute() {
         this.toMap = this.mapCreator.get();
+
+        if (this.toMap == null)
+            return ScriptState.COMPLETED;
         
         Game.getRunningInstance()
             .getScreenCoordinator()

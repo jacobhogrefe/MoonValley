@@ -33,14 +33,14 @@ public class BiomeShrooms extends AbstractLoopingMap {
     }
 
     @Override
-    public Supplier<Map> getBorderingMap(Side edge) {
+    public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
                 return null;
             case RIGHT:
-                return () -> new BiomeStart();
+                return new BiomeStart();
             case TOP:
-                return () -> new BiomeFallout();
+                return new BiomeFallout();
             case BOTTOM:
                 return null;
             default:

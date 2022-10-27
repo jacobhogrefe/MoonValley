@@ -27,6 +27,7 @@ public class PlayerInventory {
 			}
 		}
 
+		// no empty slot
 		return -1;
 	}
 
@@ -39,11 +40,27 @@ public class PlayerInventory {
 	}
 
 	public int getCurrentFilledSlots() {
-		return (int) Arrays.stream(this.inventoryArray).filter(i -> i != 0).count();
+		int filled = 0;
+
+		for (int i = 0; i < this.inventoryArray.length; i++) {
+			if (this.inventoryArray[i] != 0) {
+				filled = filled + 1;
+			}
+		}
+
+		return filled;
 	}
 
 	public int getCurrentEmptySlots() {
-		return (int) Arrays.stream(this.inventoryArray).filter(i -> i == 0).count();
+		int empty = 0;
+
+		for (int i = 0; i < this.inventoryArray.length; i++) {
+			if (this.inventoryArray[i] == 0) {
+				empty = empty + 1;
+			}
+		}
+
+		return empty;
 	}
 
 	/**
@@ -52,12 +69,15 @@ public class PlayerInventory {
 	public boolean addItem(int itemNumber) {
 		if (this.getCurrentEmptySlots() == 0) {
 			isInventoryFull = true;
+
 			return false;
 		} else {
 			inventoryArray[this.getFirstEmptySlot()] = itemNumber;
+
 			if (this.getCurrentEmptySlots() == 0) {
 				isInventoryFull = true;
 			}
+			
 			return true;
 		}
 	}
@@ -83,19 +103,26 @@ public class PlayerInventory {
 	// slot is also considered an item. The if else structure prevents items from
 	// being deleted if a non-inventory slot is clicked during move
 	public void moveItem(int slotA, int slotB) {
-		// https://en.wikipedia.org/wiki/XOR_swap_algorithm
 		if (slotA != slotB) {
-			inventoryArray[slotA] ^= inventoryArray[slotB];
-			inventoryArray[slotB] ^= inventoryArray[slotA];
-			inventoryArray[slotA] ^= inventoryArray[slotB];
-		} else {
+			int itemA = inventoryArray[slotA];
+			int itemB = inventoryArray[slotB];
 
+			inventoryArray[slotA] = itemB;
+			inventoryArray[slotB] = itemA;
+		} else {
+			// do nothing
 		}
 	}
 
 	// searches the inventory for a specified item and returns true if found
 	public boolean containsItem(int itemNumber) {
-		return Arrays.stream(this.inventoryArray).filter(i -> i == itemNumber).findAny().isPresent();
+		for (int i = 0; i < this.inventoryArray.length; i++) {
+			if (this.inventoryArray[i] == itemNumber) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	// searches the inventory for a specified item and returns true if found

@@ -10,6 +10,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * FlagManager stores a list of flags - Strings which are either present or not.
+ * 
+ * For example, one might set a flag called "walrusGone" when the walrus is no
+ * longer on the map. Then, when the map is loaded, "walrusGone" is checked,
+ * and if the flag is there, we don't spawn the walrus. This persists across
+ * loads and saves.
+ */
 public class FlagManager {
     protected HashMap<String, Boolean> flags = new HashMap<>();
     
@@ -48,9 +56,17 @@ public class FlagManager {
         return false;
     }
 
+    /**
+     * Anything that isn't a flag but needs to be saved should go in here.
+     * 
+     * See updateFrom and updateTo.
+     */
     public static class ExtraSaveData implements Serializable {
+        // The player's x position on the current map
         public float x;
+        // The player's y position on the current map
         public float y;
+        // The player's inventory
         public int[] inventory;
     }
 
@@ -82,12 +98,26 @@ public class FlagManager {
         }
     }
 
+    /**
+     * Load the ExtraSaveData structure with the data that will need to be saved.
+     * 
+     * For example, this updates this.extraSaveData with player position and inventory.
+     * 
+     * @param player the player object
+     */
     public void updateFrom(Player player) {
         this.extraSaveData.x = player.getX();
         this.extraSaveData.y = player.getY();
         this.extraSaveData.inventory = player.getPlayerInventory();
     }
 
+    /**
+     * Update the player with the extra save data in this.extraSaveData.
+     * 
+     * For example, this updates the player position and inventory.
+     * 
+     * @param player the player object
+     */
     public void updateTo(Player player) {
         player.setX(this.extraSaveData.x);
         player.setY(this.extraSaveData.y);
