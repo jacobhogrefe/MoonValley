@@ -7,7 +7,9 @@ import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
-import Tilesets.CommonTileset;
+import Scripts.SimpleTextScript;
+import Scripts.MushroomMap.EnterMushroomHouseScript;
+import Tilesets.MushroomTileset;
 import Utils.Side;
 
 /**
@@ -27,7 +29,7 @@ public class BiomeShrooms extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.MAGNIFYING_GLASS;
 
     public BiomeShrooms() {
-        super("Biomes/shrooms.txt", new CommonTileset());
+        super("mushroom_map.txt", new MushroomTileset());
     }
 
     @Override
@@ -62,6 +64,13 @@ public class BiomeShrooms extends AbstractLoopingMap {
         }
     }   
 
+    @Override
+    public void loadScripts() { 
+        getMapTile(15, 7).setInteractScript(new EnterMushroomHouseScript());
+//        getMapTile(12, 12).setInteractScript(new SimpleTextScript("Shiitake's garden of dancing mushrooms."));
+//        getMapTile(17, 8).setInteractScript(new SimpleTextScript("Shiitake's house"));
+    } 
+    
     @Override
     public MusicState getMusicState() {
         return MusicState.MUSHROOM;

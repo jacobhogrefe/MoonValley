@@ -47,7 +47,6 @@ public class PlayLevelScreen extends Screen {
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
-
 	public static boolean isInHouse = false;
 	public static boolean shouldcensorwalrus = false;
 
@@ -65,13 +64,15 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
 
-		// define/setup map
+		//define/setup map
 		this.map = new BiomeStart();
 		map.reset();
 		map.setFlagManager(flagManager);
 
-		// setup player
+		//setup player
 		this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+		this.musicManager.setPlayer(this.player);
+		this.player.setWalkingSound(musicManager.getWalkingSound());
 		this.player.setMap(map);
 		Point playerStartPosition = map.getPlayerStartPosition();
 		this.player.setLocation(playerStartPosition.x, playerStartPosition.y);

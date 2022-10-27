@@ -5,7 +5,7 @@ import Level.Map;
 import Level.MusicState;
 import Level.NPC;
 import NPCs.MushroomMan;
-import Scripts.MushroomMap.MushroomManScript;
+import Scripts.MushroomMap.ExitMushroomHouseScript;
 import Tilesets.MushroomHomeTileset;
 
 // Represents a test map to be used in a level
@@ -28,7 +28,8 @@ public class MushroomHomeMap extends Map {
     }
     
     @Override
-    public void loadScripts() {  
+    public void loadScripts() { 
+    	 getMapTile(4, 2).setInteractScript(new ExitMushroomHouseScript());
     } 
     @Override
     public MusicState getMusicState() {
