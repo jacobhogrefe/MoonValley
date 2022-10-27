@@ -72,7 +72,8 @@ public class PlayLevelScreen extends Screen {
 
 		//setup player
 		this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
-		this.player.setWalkingSound(musicManager.getPlayerWalkingSound());
+		this.musicManager.setPlayer(this.player);
+		this.player.setWalkingSound(musicManager.getWalkingSound());
 		this.player.setMap(map);
 		Point playerStartPosition = map.getPlayerStartPosition();
 		this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
@@ -302,7 +303,6 @@ public class PlayLevelScreen extends Screen {
 		this.player.setX(x);
 		this.player.setY(y);
 		this.musicManager.setMusicState(map.getMusicState());
-		this.player.setWalkingSound(musicManager.getPlayerWalkingSound());
 		this.reinitializeMap();
 	}
 }
