@@ -47,6 +47,7 @@ public class PlayLevelScreen extends Screen {
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
+
 	public static boolean isInHouse = false;
 	public static boolean shouldcensorwalrus = false;
 
@@ -64,12 +65,12 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
 
-		//define/setup map
+		// define/setup map
 		this.map = new BiomeStart();
 		map.reset();
 		map.setFlagManager(flagManager);
 
-		//setup player
+		// setup player
 		this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
 		this.musicManager.setPlayer(this.player);
 		this.player.setWalkingSound(musicManager.getWalkingSound());
@@ -127,6 +128,7 @@ public class PlayLevelScreen extends Screen {
 
 	public void update() {
 		// updates the music based on location
+		
 		musicManager.updateMusic();
 		// based on screen state, perform specific actions
 		// if level is "running" update player and map to keep game logic for the
@@ -214,7 +216,6 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	// times can be altered from their original values
-	// lauren will update with clouds
 	public void drawTimeAndNight(GraphicsHandler graphicsHandler) {
 		time.setText("Time: " + clock.getTimeOfDay() + ":00");
 		time.draw(graphicsHandler);
