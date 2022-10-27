@@ -6,6 +6,7 @@ import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
 import Engine.ImageLoader;
 import GameObject.Frame;
+import Level.MapTile;
 import Level.TileType;
 import Level.Tileset;
 
@@ -19,7 +20,37 @@ public class MountainsTileset extends Tileset {
     @Override
     public ArrayList<MapTileBuilder> defineTiles() {
         ArrayList<MapTileBuilder> mapTiles = new ArrayList<>();
-
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 5; j++) {
+                Frame currentFrame = new FrameBuilder(getSubImage(i, j))
+                    .withScale(tileScale)
+                    .build();
+                MapTileBuilder tile = new MapTileBuilder(currentFrame);
+                mapTiles.add(tile);
+            }
+        }
+        mapTiles.add(doubleLayeredTile(6, 0, buildFrame(5, 4)));
+        mapTiles.add(doubleLayeredTile(6, 1, buildFrame(5, 4)));
+        mapTiles.add(doubleLayeredTile(6, 2, buildFrame(5, 4)));
+        mapTiles.add(buildTile(buildFrame(6, 3)));
+        mapTiles.add(buildTile(buildFrame(6, 4)));
+        mapTiles.add(buildTile(buildFrame(7, 0)));
+        mapTiles.add(buildTile(buildFrame(7, 1)));
+        Frame[] lanternAnimation = new Frame[] {
+            new FrameBuilder(getSubImage(7, 2), 200)
+                .withScale(tileScale)
+                .build(),
+            new FrameBuilder(getSubImage(7, 3), 200)
+                .withScale(tileScale)
+                .build(),
+            new FrameBuilder(getSubImage(7, 4), 200)
+                .withScale(tileScale)
+                .build()
+        };
+        MapTileBuilder lantern = new MapTileBuilder(buildFrame(6,4))
+            .withTopLayer(lanternAnimation)
+            .withTileType(TileType.PASSABLE);
+        mapTiles.add(lantern);
         return mapTiles;
     }
 
