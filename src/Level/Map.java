@@ -594,7 +594,8 @@ public abstract class Map implements IntersectableRectangle {
 	private void adjustMovementX(Player player) {
 		// if player goes past center screen (on the right side) and there is more map
 		// to show on the right side, push player back to center and move camera forward
-		if (player.getCalibratedXLocation() > xMidPoint && camera.getEndBoundX() < endBoundX) {
+		if (player.getCalibratedXLocation() > xMidPoint 
+				 & camera.getEndBoundX() < endBoundX) {
 			float xMidPointDifference = xMidPoint - player.getCalibratedXLocation();
 			camera.moveX(-xMidPointDifference);
 
