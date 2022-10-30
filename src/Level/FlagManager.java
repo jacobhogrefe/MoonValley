@@ -2,6 +2,9 @@ package Level;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import Game.Game;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -68,6 +71,51 @@ public class FlagManager {
         public float y;
         // The player's inventory
         public int[] inventory;
+        // The class name for the Map
+        public String map;
+
+        /**
+         * Store the class of Map the player is in.
+         * 
+         * This doesn't store any actual Map data; you'll have to save it yourself.
+         * 
+         * This uses reflection, which you probably haven't learned yet;
+         * in simple terms, this gets the name of the class, e.g. Maps.Biomes.BiomeStart,
+         * and stores it in this.map.
+         * 
+         * @param map An instance of the Map class to store.
+         */
+        public void storeMap(Map map) {
+            Class<? extends Map> clazz = map.getClass();
+
+            this.map = clazz.getName();
+        }
+
+        /**
+         * Create a new instance of the Map class saved in this.map.
+         * 
+         * This doesn't load any actual Map data; you'll have to load it yourself.
+         * 
+         * This uses reflection, which you probably haven't learned yet;
+         * in simple terms, this uses the name of the class, e.g. Maps.Biomes.BiomeStart,
+         * to make a new instance of that Map. This doesn't work if your Map has
+         * constructor parameters.
+         * 
+         * @return a new instance of the saved Map class
+         */
+        public Map createMap() {
+            ClassLoader loader = getClass().getClassLoader();
+
+            try {
+                Class<?> clazz = loader.loadClass(this.map);
+
+                return (Map) clazz.getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                return null;
+            }
+        }
     }
 
     public ExtraSaveData extraSaveData = new ExtraSaveData();
@@ -109,6 +157,7 @@ public class FlagManager {
         this.extraSaveData.x = player.getX();
         this.extraSaveData.y = player.getY();
         this.extraSaveData.inventory = player.getPlayerInventory();
+        this.extraSaveData.storeMap(player.getMap());
     }
 
     /**
@@ -119,8 +168,14 @@ public class FlagManager {
      * @param player the player object
      */
     public void updateTo(Player player) {
-        player.setX(this.extraSaveData.x);
-        player.setY(this.extraSaveData.y);
         player.setPlayerInventory(this.extraSaveData.inventory);
+        Game.getRunningInstance()
+            .getScreenCoordinator()
+            .getPlayLevelScreen()
+            .teleport(
+                this.extraSaveData.createMap(),
+                this.extraSaveData.x,
+                this.extraSaveData.y
+            );
     }
 }
