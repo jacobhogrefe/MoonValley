@@ -6,6 +6,9 @@ import java.awt.Image;
 
 //for items that can be present in inventory
 
+/**
+ * All of the items in the game. Use ItemRegistry.singleton to access.
+ */
 public class ItemRegistry {
 	public static final ItemRegistry singleton = new ItemRegistry();
 
@@ -168,7 +171,7 @@ public class ItemRegistry {
 			.build()
 			.addToRegistry(this);
 
-	public ItemRegistry() {
+	private ItemRegistry() {
 
 	}
 }

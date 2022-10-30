@@ -25,9 +25,11 @@ import Tilesets.HouseTileset;
 
 public class WalrusMap extends Map {
 
+	private boolean isInHouse;
     public WalrusMap() {
         super("walrus_house_map.txt", new HouseTileset());
         this.playerStartPosition = getMapTile(12, 10).getLocation();
+        isInHouse=true;
     }
        
     @Override
@@ -38,5 +40,9 @@ public class WalrusMap extends Map {
     @Override
     public MusicState getMusicState() {
         return MusicState.START_HOME;
+    }
+    public boolean getIsInHouse()
+    {
+    	return isInHouse;
     }
 }

@@ -327,6 +327,17 @@ public abstract class Map implements IntersectableRectangle {
 		return new ArrayList<>();
 	}
 
+	/**
+	 * Return a list of triggers for this map.
+	 * 
+	 * All implementations MUST CALL SUPER. The array returned by
+	 * super.loadTriggers() should be included in the array returned.
+	 * 
+	 * Otherwise, things like AbstractLoopingMap will break as the borders
+	 * will be missing triggers.
+	 * 
+	 * @return a list of map triggers to add
+	 */
 	protected ArrayList<Trigger> loadTriggers() {
 		return new ArrayList<>();
 	}
