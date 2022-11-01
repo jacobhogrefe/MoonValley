@@ -8,6 +8,7 @@ import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Tilesets.CommonTileset;
+import Tilesets.FalloutTileset;
 import Tilesets.Tilesets;
 import Utils.Side;
 
@@ -28,7 +29,7 @@ public class BiomeFallout extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GAS_MASK;
 
     public BiomeFallout() {
-        super("Biomes/fallout.txt", Tilesets.MINECRAFT_TILESET);
+        super("Biomes/fallout.txt", new FalloutTileset());
     }
 
     @Override
