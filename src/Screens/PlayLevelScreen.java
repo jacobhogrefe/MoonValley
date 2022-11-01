@@ -310,5 +310,6 @@ public class PlayLevelScreen extends Screen {
 		this.player.setY(y);
 		this.musicManager.setMusicState(map.getMusicState());
 		this.reinitializeMap();
+		this.map.update(this.player);
 	}
 }
