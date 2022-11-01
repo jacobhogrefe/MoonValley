@@ -67,8 +67,8 @@ public class BiomeShrooms extends AbstractLoopingMap {
     @Override
     public void loadScripts() { 
         getMapTile(15, 7).setInteractScript(new EnterMushroomHouseScript());
-//        getMapTile(12, 12).setInteractScript(new SimpleTextScript("Shiitake's garden of dancing mushrooms."));
-//        getMapTile(17, 8).setInteractScript(new SimpleTextScript("Shiitake's house"));
+        getMapTile(12, 12).setInteractScript(new SimpleTextScript("Shiitake's garden of dancing mushrooms."));
+        getMapTile(17, 8).setInteractScript(new SimpleTextScript("Shiitake's house"));
     } 
     
     @Override

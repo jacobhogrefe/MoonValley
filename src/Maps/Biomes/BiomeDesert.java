@@ -8,6 +8,7 @@ import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Tilesets.CommonTileset;
+import Tilesets.DesertTileset;
 import Utils.Side;
 
 /**
@@ -27,7 +28,7 @@ public class BiomeDesert extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.WATER_CANTEEN;
 
     public BiomeDesert() {
-        super("Biomes/desert.txt", new CommonTileset());
+        super("Biomes/desert.txt", new DesertTileset());
     }
 
     @Override

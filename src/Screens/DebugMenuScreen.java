@@ -9,6 +9,7 @@ import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.moonValleyTitle;
 import Maps.Biomes.BiomeMountains;
+import Maps.Biomes.BiomeShrooms;
 import Maps.Biomes.BiomeStart;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -51,7 +52,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 					this.options.add(new MapOption(new BiomeMountains()));
 					//this.options.add(new MapOption(new TestMap()));
 					this.options.add(new MapOption(new BiomeStart()));
-					this.options.add(new MapOption(new MushroomMap()));
+					this.options.add(new MapOption(new BiomeShrooms()));
 					this.options.add(new MapOption(new MushroomHomeMap()));
 					this.options.add(new CancelOption());
 				}
