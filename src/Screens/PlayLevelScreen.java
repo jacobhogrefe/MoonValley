@@ -67,7 +67,7 @@ public class PlayLevelScreen extends Screen {
 
 		// define/setup map
 		this.map = new BiomeStart();
-		map.reset();
+		// map.reset();
 		map.setFlagManager(flagManager);
 
 		// setup player
