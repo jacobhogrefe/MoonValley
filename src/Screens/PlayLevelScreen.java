@@ -10,16 +10,12 @@ import Engine.Keyboard;
 import Engine.Screen;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.TestMap;
 import Maps.Biomes.BiomeStart;
 import NPCs.Cloud;
 import NPCs.Cloud2;
 import NPCs.Cloud3;
 import Players.Cat;
-import Scripts.TestMap.EnterDinoHouseScript;
 import SpriteFont.SpriteFont;
-import Tilesets.TitleTileset;
-import Utils.Colors;
 import Utils.Direction;
 import Utils.Point;
 import Engine.Clock;
@@ -35,7 +31,6 @@ public class PlayLevelScreen extends Screen {
 	protected InventoryScreen inventoryScreen;
 	protected FlagManager flagManager;
 	protected KeyLocker keyLocker = new KeyLocker();
-	protected boolean isInventoryOpen = false;
 	protected PlayerInventory playerInventory = new PlayerInventory();
 	protected Clock clock = new Clock();
 	protected SpriteFont time = new SpriteFont("Time: " + clock.getTimeOfDay() + ":00", 10, 30, "Comic Sans", 30,
@@ -47,7 +42,7 @@ public class PlayLevelScreen extends Screen {
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
-
+	protected boolean isInventoryOpen = false;
 	public static boolean isInHouse = false;
 	public static boolean shouldcensorwalrus = false;
 
@@ -57,13 +52,13 @@ public class PlayLevelScreen extends Screen {
 
 	public void initialize() {
 		// setup state
-
 		flagManager = new FlagManager();
 		flagManager.addFlag("hasLostBall", false);
 		flagManager.addFlag("hasTalkedToWalrus", false);
 		flagManager.addFlag("hasTalkedToDinosaur", false);
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
+		flagManager.addFlag("magicTreeHouse", false);
 
 		// define/setup map
 		this.map = new BiomeStart();
@@ -91,6 +86,9 @@ public class PlayLevelScreen extends Screen {
 	public void reinitializeMap() {
 		// let pieces of map know which button to listen for as the "interact" button
 		map.getTextbox().setInteractKey(player.getInteractKey());
+
+		//sets the new map's flag manager
+		map.setFlagManager(flagManager);
 
 		// setup map scripts to have references to the map and player
 		for (MapTile mapTile : map.getMapTiles()) {
@@ -204,17 +202,6 @@ public class PlayLevelScreen extends Screen {
 		}
 	}
 
-	// empty method for setting the current map to one of the biomes based on where
-	// the player goes on the map
-	public void updateCurrentMap() {
-		/*
-		 * determine where player is on map check if those bounds line up w one of the
-		 * maps (for loop for array of biomes) set the music state of the music manager
-		 * using the getMusicState() method within each biome set the map equal to the
-		 * biome the player was determined to be in
-		 */
-	}
-
 	// times can be altered from their original values
 	public void drawTimeAndNight(GraphicsHandler graphicsHandler) {
 		time.setText("Time: " + clock.getTimeOfDay() + ":00");
@@ -272,6 +259,7 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void controls() {
+		musicManager.getCurrentSound().pause();
 		screenCoordinator.push(new ControlsScreen(screenCoordinator));
 	}
 
@@ -309,6 +297,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setX(x);
 		this.player.setY(y);
 		this.musicManager.setMusicState(map.getMusicState());
-		this.reinitializeMap();
+		reinitializeMap();
+		this.map.update(this.player);
 	}
 }
