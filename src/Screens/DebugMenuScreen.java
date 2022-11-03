@@ -47,8 +47,8 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 
 				@Override
 				public void addOptions() {
-					this.options.add(new MapOption(new TitleScreenMap()));
-					this.options.add(new MapOption(new moonValleyTitle()));
+					// this.options.add(new MapOption(new TitleScreenMap()));
+					// this.options.add(new MapOption(new moonValleyTitle()));
 					this.options.add(new MapOption(new BiomeMountains()));
 					//this.options.add(new MapOption(new TestMap()));
 					this.options.add(new MapOption(new BiomeStart()));
