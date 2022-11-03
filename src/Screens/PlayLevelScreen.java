@@ -62,7 +62,7 @@ public class PlayLevelScreen extends Screen {
 
 		// define/setup map
 		this.map = new BiomeStart();
-		map.reset();
+		// map.reset();
 		map.setFlagManager(flagManager);
 
 		// setup player
@@ -297,7 +297,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setX(x);
 		this.player.setY(y);
 		this.musicManager.setMusicState(map.getMusicState());
-		reinitializeMap();
+		this.reinitializeMap();
 		this.map.update(this.player);
 	}
 }
