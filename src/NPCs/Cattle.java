@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class Cattle extends NPC {
 
     public Cattle(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cattle2.png"), 15, 15), "STAND_RIGHT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cattle2.png"), 29, 29), "STAND_RIGHT");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Cattle extends NPC {
                             .withScale(1)
                             .withBounds(4, 5, 5, 10)
                             .build(),
-                   new FrameBuilder(spriteSheet.getSprite(2, 1), 200)
+                   new FrameBuilder(spriteSheet.getSprite(1, 2), 200)
                             .withScale(1)
                             .withBounds(4, 5, 5, 10)
                             .build()
@@ -62,7 +62,7 @@ public class Cattle extends NPC {
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                     .withBounds(4, 5, 5, 10)
                     .build(),
-                    new FrameBuilder(spriteSheet.getSprite(2, 1), 200)
+                    new FrameBuilder(spriteSheet.getSprite(1, 2), 200)
                     .withScale(1)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                     .withBounds(4, 5, 5, 10)
