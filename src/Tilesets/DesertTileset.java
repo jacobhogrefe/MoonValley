@@ -33,43 +33,29 @@ public class DesertTileset extends Tileset {
         
         
        //cactus stem 1
-        Frame cactusStem1Frame = new FrameBuilder(getSubImage(0, 1))
+        Frame cactusStem1Frame = new FrameBuilder(getSubImage(2, 1))
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder cactusStem1Tile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(cactusStem1Frame)
-        		.withTileType(TileType.PASSABLE);
+        MapTileBuilder cactusStem1Tile = new MapTileBuilder(cactusStem1Frame)
+        		.withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(cactusStem1Tile);
         
       
         //cactus stem 2
-        Frame cactusStem2Frame = new FrameBuilder(getSubImage(0, 2))
+        Frame cactusStem2Frame = new FrameBuilder(getSubImage(2, 2))
                 .withScale(tileScale)
                 .build();
 
         MapTileBuilder cactusStem2Tile = new MapTileBuilder(floorFrame)
         		.withTopLayer(cactusStem2Frame)
-        		.withTileType(TileType.NOT_PASSABLE);
+        		.withTileType(TileType.PASSABLE);
 
         mapTiles.add(cactusStem2Tile);
-
-        
-        //cactus base
-        Frame cactusBaseFrame = new FrameBuilder(getSubImage(0, 7))
-                .withScale(tileScale)
-                .build();
-
-        MapTileBuilder cactusBaseTile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(cactusBaseFrame)
-        		.withTileType(TileType.NOT_PASSABLE);
-
-        mapTiles.add(cactusBaseTile);
-
         
         //cactus with branch
-        Frame branchFrame = new FrameBuilder(getSubImage(0, 3))
+        Frame branchFrame = new FrameBuilder(getSubImage(1, 1))
                 .withScale(tileScale)
                 .build();
 
@@ -79,8 +65,19 @@ public class DesertTileset extends Tileset {
 
         mapTiles.add(branchTile);
         
+        //cactus with branch 2
+        Frame branch2Frame = new FrameBuilder(getSubImage(0, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder branch2Tile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(branch2Frame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(branch2Tile);
+        
         //branch left
-        Frame branchLeftFrame = new FrameBuilder(getSubImage(0, 5))
+        Frame branchLeftFrame = new FrameBuilder(getSubImage(0, 1))
                 .withScale(tileScale)
                 .build();
 
@@ -91,7 +88,7 @@ public class DesertTileset extends Tileset {
         mapTiles.add(branchLeftTile);
         
         //branch right
-        Frame branchRightFrame = new FrameBuilder(getSubImage(0, 4))
+        Frame branchRightFrame = new FrameBuilder(getSubImage(1, 2))
                 .withScale(tileScale)
                 .build();
 
@@ -102,7 +99,7 @@ public class DesertTileset extends Tileset {
         mapTiles.add(branchRightTile);
         
         //cactus top 1
-        Frame cactusTop1Frame = new FrameBuilder(getSubImage(0, 6))
+        Frame cactusTop1Frame = new FrameBuilder(getSubImage(1, 0))
                 .withScale(tileScale)
                 .build();
 
@@ -113,7 +110,7 @@ public class DesertTileset extends Tileset {
         mapTiles.add(cactusTop1Tile);
         
         //cactus top 2
-        Frame cactusTop2Frame = new FrameBuilder(getSubImage(0, 8))
+        Frame cactusTop2Frame = new FrameBuilder(getSubImage(2, 0))
                 .withScale(tileScale)
                 .build();
 
@@ -123,27 +120,33 @@ public class DesertTileset extends Tileset {
 
         mapTiles.add(cactusTop2Tile);
         
-        //cactus top 3
-        Frame cactusTop3Frame = new FrameBuilder(getSubImage(1, 0))
-                .withScale(tileScale)
-                .build();
-
-        MapTileBuilder cactusTop3Tile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(cactusTop3Frame)
-        		.withTileType(TileType.PASSABLE);
-
-        mapTiles.add(cactusTop3Tile);
-        
         //aloe
-        Frame aloeFrame = new FrameBuilder(getSubImage(1, 1))
+        Frame aloeFrame = new FrameBuilder(getSubImage(0, 3))
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder aloeTile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(aloeFrame)
+        MapTileBuilder aloeTile = new MapTileBuilder(aloeFrame)
         		.withTileType(TileType.PASSABLE);
 
         mapTiles.add(aloeTile);
+        
+        //hill 1
+        Frame hill1Frame = new FrameBuilder(getSubImage(3, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder hill1Tile = new MapTileBuilder(hill1Frame);
+
+        mapTiles.add(hill1Tile);
+        
+        //hill 2
+        Frame hill2Frame = new FrameBuilder(getSubImage(3, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder hill2Tile = new MapTileBuilder(hill2Frame);
+
+        mapTiles.add(hill2Tile);
         
         
         return mapTiles;
