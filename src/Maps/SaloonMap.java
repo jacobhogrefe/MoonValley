@@ -1,6 +1,10 @@
 package Maps;
 
 import java.util.ArrayList;
+
+import GameObject.Furniture;
+import HouseCustomization.FurnitureRegistry;
+import InventoryModifier.InventoryGrid;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
@@ -34,6 +38,17 @@ public class SaloonMap extends Map {
 
 
         return npcs;
+    }
+    
+    @Override
+    public ArrayList<Furniture> loadFurniture() {
+        ArrayList<Furniture> furniture = new ArrayList<>();   
+        
+        furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
+        furniture.get(0).setX(600);
+        furniture.get(0).setY(150);
+     
+        return furniture;
     }
     
     @Override

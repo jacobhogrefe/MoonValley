@@ -32,7 +32,7 @@ public class BartenderWalrus extends NPC {
     @Override
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
-        	int idlespeed = 500;
+        	int idlespeed = 700;
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0),idlespeed)
                             .withScale(3)
