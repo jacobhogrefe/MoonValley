@@ -95,7 +95,10 @@ public class Textbox {
             graphicsHandler.drawFilledRectangleWithBorder(x, topY, width, height, Color.white, Color.black, 2);
         }
         if (text != null) {
+    
             text.drawWithParsedNewLines(graphicsHandler, 10);
+        
+            
         }
     }
 

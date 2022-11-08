@@ -13,9 +13,15 @@ import NPCs.RanchOwner;
 import NPCs.Walrus;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
+import Scripts.SimpleTextScript;
 import Scripts.DesertMap.EnterSaloonScript;
+import Scripts.DesertMap.OwnerScript;
 import Scripts.MushroomMap.EnterMushroomHouseScript;
 import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.EnterDinoHouseScript;
+import Scripts.TestMap.EnterHouseScript;
+import Scripts.TestMap.EnterWalrusHouseScript;
+import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 import Tilesets.DesertTileset;
@@ -63,7 +69,7 @@ public class BiomeDesert extends AbstractLoopingMap {
                 return null;
         }
     }
-    
+
     @Override
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
@@ -71,6 +77,7 @@ public class BiomeDesert extends AbstractLoopingMap {
         Cattle cattle1 = new Cattle(3, getMapTile(10, 10).getLocation());
         npcs.add(cattle1);
         RanchOwner doug = new RanchOwner(7,getMapTile(5, 20).getLocation());
+        doug.setInteractScript(new OwnerScript());
         npcs.add(doug);
 
 

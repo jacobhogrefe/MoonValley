@@ -58,7 +58,24 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasTalkedToDinosaur", false);
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
-		flagManager.addFlag("magicTreeHouse", false);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//desert map flags
+		flagManager.addFlag("needsFindBucket",false);
+		flagManager.addFlag("firstBartenderTalk",false);
+		flagManager.addFlag("bucketFound",false);
+		flagManager.addFlag("lassoFound", false);
+		flagManager.addFlag("desertReward",false);
 
 		// define/setup map
 		this.map = new BiomeStart();

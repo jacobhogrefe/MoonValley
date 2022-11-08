@@ -22,7 +22,7 @@ public class ExitSaloonScript extends Script {
 
 	@Override
 	public ScriptState execute() {
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeDesert(), 400, 400);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeDesert(), 825, 1250);
 		return ScriptState.COMPLETED;
 	}
 }

@@ -174,7 +174,7 @@ public class SaloonTileset extends Tileset {
 		// aloe
 		Frame aloeFrame = new FrameBuilder(getSubImage(0, 3)).withScale(tileScale).build();
 
-		MapTileBuilder aloeTile = new MapTileBuilder(aloeFrame).withTileType(TileType.PASSABLE);
+		MapTileBuilder aloeTile = new MapTileBuilder(aloeFrame).withTileType(TileType.NOT_PASSABLE);
 
 		mapTiles.add(aloeTile);
 

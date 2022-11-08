@@ -39,6 +39,8 @@ public class Camera extends Rectangle {
 	private ArrayList<Collectible> activeCollectables = new ArrayList<>();
 	private ArrayList<Furniture> activeFurniture = new ArrayList<>();
 	private ArrayList<HouseEntry> activeHouseEntries = new ArrayList<>();
+	
+	public static boolean CattleInPen = false;
 
 	// determines how many tiles off screen an entity can be before it will be
 	// deemed inactive and not included in the update/draw cycles until it comes
@@ -293,7 +295,7 @@ public class Camera extends Rectangle {
 		// if drawn here, npc will later be "overlapped" by player
 		// if drawn later, npc will "cover" player
 		for (NPC npc : activeNPCs) {
-			if (npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown()) {
+			if (npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown() && npc.isTetherable()) {
 				System.out.println("setting tether...");
 				npc.setTether(true, player);
 				tetherSet = true;
@@ -302,12 +304,13 @@ public class Camera extends Rectangle {
 			
 
 
-			if (containsDraw(npc) && !npc.isTethered()) {
+			if (containsDraw(npc) && !npc.isTethered() ) {
 				if (npc.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
 					npc.stand(Direction.RIGHT);
 					npc.draw(graphicsHandler);
 				} else {
 					drawNpcsAfterPlayer.add(npc);
+					
 				}
 			}
 
@@ -321,6 +324,12 @@ public class Camera extends Rectangle {
 				
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {
 					npc.setTether(false,player);
+					if (npc.getX() > 600 && npc.getX() < 1050 && npc.getY() > 50 && npc.getY()<545) {
+						CattleInPen = true;
+						
+						System.out.println("Cattle penned.");
+					}
+					System.out.println("npc X: "+npc.getX()+"npc Y: "+npc.getY());
 					tetherSet = false;
 				}
 

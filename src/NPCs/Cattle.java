@@ -16,9 +16,11 @@ import java.util.HashMap;
 public class Cattle extends NPC {
 	
 	protected boolean isTethered = false;
+	
 
     public Cattle(int id, Point location) {
         super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Cattle2.png"), 29, 29), "STAND_RIGHT");
+        this.setTetherable(true);
     }
 
     @Override
