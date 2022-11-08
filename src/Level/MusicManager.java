@@ -11,7 +11,7 @@ public class MusicManager {
     //All sounds the different biomes
     protected Sound start = new Sound("biomeStart.wav", true);
     protected Sound startHome = new Sound("ariaMath.wav", true);
-    protected Sound desert = new Sound(null, true);
+    protected Sound desert = new Sound("GhostRiders.wav", true);
     protected Sound desertHome = new Sound(null, true);
     protected Sound spooky = new Sound(null, true);
     protected Sound spookyHome = new Sound(null, true);
@@ -21,6 +21,7 @@ public class MusicManager {
     protected Sound mushroomHome = new Sound("mushroomHome.wav", true);
     protected Sound mountains = new Sound("mountainsBiome.wav", true);
     protected Sound mountainsHome = new Sound(null, true);
+    protected Sound saloon = new Sound("HippiesAndCowboys.wav",true);
 
     //If each biome would like a different walking sound add them here, and set the walking sound in the appropriate switch statement
     protected Sound grassWalking = new Sound("walkingGrass.wav", true);
@@ -90,6 +91,8 @@ public class MusicManager {
                     currentSound = toxicHome;
                     //walkingSound = PREFERRED_WALKING_SOUND;
                     break;
+                case SALOON:
+                	currentSound = saloon;
                 default:
                     break;
             }

@@ -13,6 +13,9 @@ public class NPC extends MapEntity {
 	protected int id = 0;
 
 	protected boolean isWalrus = false;
+	
+	//override methods in subclass
+	protected boolean isTethered = false;
 
 
 
@@ -83,6 +86,17 @@ public class NPC extends MapEntity {
 		} else if (direction == Direction.RIGHT) {
 			moveX(speed);
 		}
+	}
+	
+	
+	//override in subclass
+	public boolean isTethered() {
+		return isTethered;
+	}
+
+	//override in subclass
+	public void setTether(boolean isTethered, Player player) {
+
 	}
 
 	public void update(Player player) {

@@ -7,6 +7,7 @@ import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import NPCs.Walrus;
+import Utils.Direction;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -292,13 +293,39 @@ public class Camera extends Rectangle {
 		// if drawn here, npc will later be "overlapped" by player
 		// if drawn later, npc will "cover" player
 		for (NPC npc : activeNPCs) {
-			if (containsDraw(npc)) {
+			if (npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown()) {
+				System.out.println("setting tether...");
+				npc.setTether(true, player);
+				tetherSet = true;
+				
+			}
 			
+
+
+			if (containsDraw(npc) && !npc.isTethered()) {
 				if (npc.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
+					npc.stand(Direction.RIGHT);
 					npc.draw(graphicsHandler);
 				} else {
 					drawNpcsAfterPlayer.add(npc);
 				}
+			}
+
+			if (containsDraw(npc) && npc.isTethered()) {
+
+				if (player.getPlayerState() == PlayerState.WALKING) {
+					npc.setX(player.getX());
+					npc.setY(player.getY() - 95);
+					npc.walk(player.currentWalkingXDirection,player.walkSpeed);
+				}
+				
+				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {
+					npc.setTether(false,player);
+					tetherSet = false;
+				}
+
+				npc.draw(graphicsHandler);
+
 			}
 		}
 

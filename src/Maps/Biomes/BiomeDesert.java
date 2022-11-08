@@ -1,12 +1,22 @@
 package Maps.Biomes;
 
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
 import Level.Map;
 import Level.MusicState;
+import Level.NPC;
 import Maps.AbstractLoopingMap;
+import NPCs.Cattle;
+import NPCs.Dinosaur;
+import NPCs.RanchOwner;
+import NPCs.Walrus;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
+import Scripts.DesertMap.EnterSaloonScript;
+import Scripts.MushroomMap.EnterMushroomHouseScript;
+import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 import Tilesets.DesertTileset;
 import Utils.Side;
@@ -26,10 +36,17 @@ import Utils.Side;
  */
 public class BiomeDesert extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.WATER_CANTEEN;
+    public static final EnterSaloonScript enterSaloon = new EnterSaloonScript();
 
     public BiomeDesert() {
         super("Biomes/desert.txt", new DesertTileset());
     }
+    
+    @Override
+    public void loadScripts() {  
+        getMapTile(17, 25).setInteractScript(enterSaloon);
+        getMapTile(18, 25).setInteractScript(enterSaloon);
+    } 
 
     @Override
     public Map createBorderingMap(Side edge) {
@@ -45,6 +62,19 @@ public class BiomeDesert extends AbstractLoopingMap {
             default:
                 return null;
         }
+    }
+    
+    @Override
+    public ArrayList<NPC> loadNPCs() {
+        ArrayList<NPC> npcs = new ArrayList<>();
+
+        Cattle cattle1 = new Cattle(3, getMapTile(10, 10).getLocation());
+        npcs.add(cattle1);
+        RanchOwner doug = new RanchOwner(7,getMapTile(5, 20).getLocation());
+        npcs.add(doug);
+
+
+        return npcs;
     }
 
     @Override
