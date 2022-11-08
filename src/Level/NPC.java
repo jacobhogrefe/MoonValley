@@ -16,8 +16,17 @@ public class NPC extends MapEntity {
 	
 	//override methods in subclass
 	protected boolean isTethered = false;
+	protected boolean isTetherable = false;
 
 
+
+	public boolean isTetherable() {
+		return isTetherable;
+	}
+
+	public void setTetherable(boolean isTetherable) {
+		this.isTetherable = isTetherable;
+	}
 
 	public NPC(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation) {
 		super(x, y, spriteSheet, startingAnimation);

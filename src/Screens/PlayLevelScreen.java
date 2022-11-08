@@ -57,13 +57,30 @@ public class PlayLevelScreen extends Screen {
 
 	public void initialize() {
 		// setup state
-
+		
 		flagManager = new FlagManager();
 		flagManager.addFlag("hasLostBall", false);
 		flagManager.addFlag("hasTalkedToWalrus", false);
 		flagManager.addFlag("hasTalkedToDinosaur", false);
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//desert map flags
+		flagManager.addFlag("needsFindBucket",false);
+		flagManager.addFlag("firstBartenderTalk",false);
+		flagManager.addFlag("bucketFound",false);
+		flagManager.addFlag("lassoFound", false);
 
 		// define/setup map
 		this.map = new BiomeStart();

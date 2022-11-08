@@ -11,6 +11,8 @@ import Level.NPC;
 import NPCs.BartenderWalrus;
 import NPCs.Cattle;
 import NPCs.Cowboy;
+import Scripts.DesertMap.BartenderWalrusScript;
+import Scripts.DesertMap.CowboyScript;
 import Scripts.DesertMap.ExitSaloonScript;
 import Tilesets.SaloonTileset;
 
@@ -29,9 +31,11 @@ public class SaloonMap extends Map {
         ArrayList<NPC> npcs = new ArrayList<>();
         
         Cowboy cowboy = new Cowboy(6, getMapTile(4, 7).getLocation());
+        cowboy.setInteractScript(new CowboyScript());
         npcs.add(cowboy);
         
         BartenderWalrus bwalrus = new BartenderWalrus(5,getMapTile(4, 3).getLocation());
+        bwalrus.setInteractScript(new BartenderWalrusScript());
         
         npcs.add(bwalrus);
 

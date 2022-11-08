@@ -293,7 +293,7 @@ public class Camera extends Rectangle {
 		// if drawn here, npc will later be "overlapped" by player
 		// if drawn later, npc will "cover" player
 		for (NPC npc : activeNPCs) {
-			if (npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown()) {
+			if (npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown() && npc.isTetherable()) {
 				System.out.println("setting tether...");
 				npc.setTether(true, player);
 				tetherSet = true;
@@ -302,7 +302,7 @@ public class Camera extends Rectangle {
 			
 
 
-			if (containsDraw(npc) && !npc.isTethered()) {
+			if (containsDraw(npc) && !npc.isTethered() ) {
 				if (npc.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
 					npc.stand(Direction.RIGHT);
 					npc.draw(graphicsHandler);
