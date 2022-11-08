@@ -171,6 +171,27 @@ public class ItemRegistry {
 			.build()
 			.addToRegistry(this);
 
+	public Item TERMINAL = new Item.Builder() // 11
+			.withName("Terminal")
+			.withDescription("Scary, but useful")
+			.withSubimage(68 + 17 * 4, 17)
+			.build()
+			.addToRegistry(this);
+	
+	public Item RAMEN = new Item.Builder() // 12
+			.withName("Ramen")
+			.withDescription("A college student's fuel")
+			.withSubimage(68 + 17 * 5, 17)
+			.build()
+			.addToRegistry(this);
+
+	public Item NINTENDO_SWITCH = new Item.Builder() // 13
+			.withName("Nintendo Switch")
+			.withDescription("The better DS")
+			.withSubimage(68 + 17 * 6, 17)
+			.build()
+			.addToRegistry(this);
+
 	private ItemRegistry() {
 
 	}
