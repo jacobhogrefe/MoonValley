@@ -82,6 +82,20 @@ public class Cattle extends NPC {
                     .withBounds(4, 5, 25, 25)
                     .build()
             });
+            
+            put("EAT_GRASS", new Frame[]{
+            		
+                    new FrameBuilder(spriteSheet.getSprite(0, 1), 200)
+                    .withScale(4)
+                    .withBounds(4, 5, 25, 25)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(0, 2), 200)
+                    .withScale(4)
+                    .withBounds(4, 5, 25, 25)
+                    .build()
+      
+            });
+            
         }};
     }
     
