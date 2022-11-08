@@ -54,6 +54,105 @@ public class DesertTileset extends Tileset {
 
         mapTiles.add(cactusStem2Tile);
         
+        //live vegetation
+        Frame liveVegatationFrame = new FrameBuilder(getSubImage(1, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder liveVegatationTile = new MapTileBuilder(liveVegatationFrame)
+        	
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(liveVegatationTile);
+        
+        //dead vegetation
+        Frame deadVegatationFrame = new FrameBuilder(getSubImage(2, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder deadVegatationTile = new MapTileBuilder(deadVegatationFrame)
+        		
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(deadVegatationTile);
+        
+        //Fence horizontal
+        
+        Frame fenceHFrame = new FrameBuilder(getSubImage(4, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder fenceHTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(fenceHFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(fenceHTile);
+        
+        //fence upper left corner
+        
+        Frame fenceUpLFrame = new FrameBuilder(getSubImage(4, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder fenceUpLTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(fenceUpLFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(fenceUpLTile);
+        
+        //fence upper right corner
+        
+        Frame fenceUpRFrame = new FrameBuilder(getSubImage(4, 1))
+        		.withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder fenceUpRTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(fenceUpRFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(fenceUpRTile);
+        
+        //fence bottom left corner
+        
+        Frame fenceBotLFrame = new FrameBuilder(getSubImage(4, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder fenceBotLTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(fenceBotLFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(fenceBotLTile);
+        
+        //fence bottom right corner
+        
+        Frame fenceBotRFrame = new FrameBuilder(getSubImage(4, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder fenceBotRTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(fenceBotRFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(fenceBotRTile);
+        
+        //fence vertical
+        
+        Frame fenceVFrame = new FrameBuilder(getSubImage(3, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder fenceVTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(fenceVFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(fenceVTile);
+        
+        
+        
+        
         //cactus with branch
         Frame branchFrame = new FrameBuilder(getSubImage(1, 1))
                 .withScale(tileScale)
@@ -147,6 +246,137 @@ public class DesertTileset extends Tileset {
         MapTileBuilder hill2Tile = new MapTileBuilder(hill2Frame);
 
         mapTiles.add(hill2Tile);
+        
+        //Saloon Wall
+        
+        Frame saloonWallFrame = new FrameBuilder(getSubImage(5, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder saloonWallTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(saloonWallFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonWallTile);
+        
+        //Saloon upper left corner
+        
+        Frame saloonUpLFrame = new FrameBuilder(getSubImage(6, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder saloonUpLTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(saloonUpLFrame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(saloonUpLTile);
+        
+       //Saloon upper left corner
+        
+        Frame saloonUpRFrame = new FrameBuilder(getSubImage(6, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder saloonUpRTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(saloonUpRFrame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(saloonUpRTile);
+        
+       //Saloon door right
+        
+        Frame saloonDoorRFrame = new FrameBuilder(getSubImage(5, 2))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder saloonDoorRTile = new MapTileBuilder(saloonDoorRFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonDoorRTile);
+        
+       //Saloon door left
+        
+        Frame saloonDoorLFrame = new FrameBuilder(getSubImage(5, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder saloonDoorLTile = new MapTileBuilder(saloonDoorLFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonDoorLTile);
+        
+       //Saloon sign left
+        
+        Frame saloonSignLFrame = new FrameBuilder(getSubImage(6, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder saloonSignLTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(saloonSignLFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonSignLTile);
+        
+       //Saloon sign right
+        
+        Frame saloonSignRFrame = new FrameBuilder(getSubImage(6, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder saloonSignRTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(saloonSignRFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonSignRTile);
+        
+        
+       //Saloon top
+        
+        Frame saloonUpFrame = new FrameBuilder(getSubImage(7, 1))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder saloonUpTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(saloonUpFrame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(saloonUpTile);
+        
+       //Saloon side left
+        
+        Frame saloonSideLFrame = new FrameBuilder(getSubImage(5, 0))
+                .withScale(tileScale)
+                .build();
+        MapTileBuilder saloonSideLTile = new MapTileBuilder(saloonSideLFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonSideLTile);
+        
+       //Saloon side right
+        
+        Frame saloonSideRFrame = new FrameBuilder(getSubImage(5, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder saloonSideRTile = new MapTileBuilder(saloonSideRFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonSideRTile);
+        
+       //Saloon bottom
+        
+        Frame saloonBotFrame = new FrameBuilder(getSubImage(5, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+        MapTileBuilder saloonBotTile = new MapTileBuilder(saloonBotFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(saloonBotTile);
+        
+        
+        
         
         
         return mapTiles;
