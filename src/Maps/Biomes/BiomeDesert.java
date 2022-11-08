@@ -9,6 +9,7 @@ import Level.NPC;
 import Maps.AbstractLoopingMap;
 import NPCs.Cattle;
 import NPCs.Dinosaur;
+import NPCs.RanchOwner;
 import NPCs.Walrus;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -69,6 +70,8 @@ public class BiomeDesert extends AbstractLoopingMap {
 
         Cattle cattle1 = new Cattle(3, getMapTile(10, 10).getLocation());
         npcs.add(cattle1);
+        RanchOwner doug = new RanchOwner(7,getMapTile(5, 20).getLocation());
+        npcs.add(doug);
 
 
         return npcs;
