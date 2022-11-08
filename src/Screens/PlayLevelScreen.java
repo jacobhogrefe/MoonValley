@@ -81,6 +81,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("firstBartenderTalk",false);
 		flagManager.addFlag("bucketFound",false);
 		flagManager.addFlag("lassoFound", false);
+		flagManager.addFlag("desertReward",false);
 
 		// define/setup map
 		this.map = new BiomeStart();

@@ -1,5 +1,6 @@
 package Scripts.DesertMap;
 
+import Level.Camera;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
@@ -20,6 +21,13 @@ public class OwnerScript extends Script<NPC> {
             addTextToTextboxQueue( "And where might my cowboy be? No where to \nbe found I tell ya! Takin' a French leave!");
             addTextToTextboxQueue( "If you come across that chucklehead, tell him \nhe best be back here in a twinklin' of a bed post!");
         }
+      if(isFlagSet("lassoFound") && Camera.CattleInPen == true && !isFlagSet("desertReward")) {
+    	  addTextToTextboxQueue( "Well I'll be durned! You found my steer!");
+    	  addTextToTextboxQueue( "A deed worthy of a reward!");
+    	  addTextToTextboxQueue( "...Money? Well, not exactly..");
+    	  addTextToTextboxQueue( "Why would you want money when you could have this\nsnazzy Hawaiian shirt!");
+    	  addTextToTextboxQueue( "Thank you kindly for the help my friend!");
+      }
       else {
     	  addTextToTextboxQueue( "Where is that dang ol' cowboy?!");
       }
@@ -32,7 +40,9 @@ public class OwnerScript extends Script<NPC> {
     protected void cleanup() {
         unlockPlayer();
         hideTextbox();
-        System.out.println("Setting flag: needsFindBucket");
+        if(isFlagSet("lassoFound") && Camera.CattleInPen == true) {
+        	setFlag("desertReward");
+        }
         setFlag("needsFindBucket");
     }
 

@@ -39,6 +39,8 @@ public class Camera extends Rectangle {
 	private ArrayList<Collectible> activeCollectables = new ArrayList<>();
 	private ArrayList<Furniture> activeFurniture = new ArrayList<>();
 	private ArrayList<HouseEntry> activeHouseEntries = new ArrayList<>();
+	
+	public static boolean CattleInPen = false;
 
 	// determines how many tiles off screen an entity can be before it will be
 	// deemed inactive and not included in the update/draw cycles until it comes
@@ -308,6 +310,7 @@ public class Camera extends Rectangle {
 					npc.draw(graphicsHandler);
 				} else {
 					drawNpcsAfterPlayer.add(npc);
+					
 				}
 			}
 
@@ -321,6 +324,12 @@ public class Camera extends Rectangle {
 				
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {
 					npc.setTether(false,player);
+					if (npc.getX() > 600 && npc.getX() < 1050 && npc.getY() > 50 && npc.getY()<545) {
+						CattleInPen = true;
+						
+						System.out.println("Cattle penned.");
+					}
+					System.out.println("npc X: "+npc.getX()+"npc Y: "+npc.getY());
 					tetherSet = false;
 				}
 
