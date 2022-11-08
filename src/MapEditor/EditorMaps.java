@@ -4,6 +4,7 @@ import Level.Map;
 import Maps.HouseMap;
 import Maps.MushroomHomeMap;
 import Maps.MushroomMap;
+import Maps.SaloonMap;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.moonValleyTitle;
@@ -35,6 +36,7 @@ public class EditorMaps {
             add("DinoMap");
             add("MushroomMap");
             add("MushroomHomeMap");
+            add("SaloonMap");
         }};
     }
 
@@ -68,6 +70,8 @@ public class EditorMaps {
             	return new MushroomMap();
             case "MushroomHomeMap":
             	return new MushroomHomeMap();
+            case "SaloonMap":
+            	return new SaloonMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

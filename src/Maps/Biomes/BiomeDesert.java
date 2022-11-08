@@ -12,6 +12,8 @@ import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
+import Scripts.DesertMap.EnterSaloonScript;
+import Scripts.MushroomMap.EnterMushroomHouseScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
@@ -33,10 +35,17 @@ import Utils.Side;
  */
 public class BiomeDesert extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.WATER_CANTEEN;
+    public static final EnterSaloonScript enterSaloon = new EnterSaloonScript();
 
     public BiomeDesert() {
         super("Biomes/desert.txt", new DesertTileset());
     }
+    
+    @Override
+    public void loadScripts() {  
+        getMapTile(17, 25).setInteractScript(enterSaloon);
+        getMapTile(18, 25).setInteractScript(enterSaloon);
+    } 
 
     @Override
     public Map createBorderingMap(Side edge) {
