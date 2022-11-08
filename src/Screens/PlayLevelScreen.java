@@ -59,17 +59,6 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		//desert map flags
 		flagManager.addFlag("needsFindBucket",false);
 		flagManager.addFlag("firstBartenderTalk",false);
