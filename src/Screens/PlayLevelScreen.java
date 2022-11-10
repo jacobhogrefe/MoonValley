@@ -12,6 +12,7 @@ import Engine.Screen;
 import Game.ScreenCoordinator;
 import GameObject.SpriteSheet;
 import Level.*;
+import Maps.Biomes.BiomeSpooky;
 import Maps.Biomes.BiomeStart;
 import NPCs.Cloud;
 import NPCs.Cloud2;
@@ -277,6 +278,7 @@ public class PlayLevelScreen extends Screen {
 			map.getMapFileName().equals("Biomes/mountains.txt") || 
 			map.getMapFileName().equals("Biomes/fallout.txt") || 
 			map.getMapFileName().equals("Biomes/shrooms.txt")) {
+		
 			if (timeOfDay == 5 || timeOfDay == 19) {
 				graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT,
 						new Color(0, 0, 0, 25));
@@ -300,11 +302,13 @@ public class PlayLevelScreen extends Screen {
 						new Color(0, 0, 0, 0));
 			}
 		}
+				
 		if (clock.getTimeOfDay() >= 19 || clock.getTimeOfDay() <= 5) {
 			if (map.getMapFileName().equals("Biomes/start.txt")) {
 				cloud.draw(graphicsHandler);
 				cloud2.draw(graphicsHandler);
 				cloud3.draw(graphicsHandler);
+				
 			} 		
 		}
 
