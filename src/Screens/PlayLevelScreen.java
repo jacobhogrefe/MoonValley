@@ -58,6 +58,18 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasTalkedToDinosaur", false);
 		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
+
+		//mountains map flags
+		flagManager.addFlag("removeItem", false);
+		flagManager.addFlag("firstTalkToMario", false);
+		flagManager.addFlag("searchForSwitch", true);
+		flagManager.addFlag("foundSwitch", false);
+		flagManager.addFlag("searchForRamen", true);
+		flagManager.addFlag("foundRamen", false);
+		flagManager.addFlag("searchForTerminal", true);
+		flagManager.addFlag("foundTerminal", false);
+		flagManager.addFlag("searchForYoshiCoin", true);
+		flagManager.addFlag("foundYoshiCoin", false);
 		
 		//desert map flags
 		flagManager.addFlag("needsFindBucket",false);
@@ -85,7 +97,7 @@ public class PlayLevelScreen extends Screen {
 
 		winScreen = new WinScreen(this);
 		inventoryScreen = new InventoryScreen(this, playerInventory);
-		musicManager.setMusicState(MusicState.START);
+		musicManager.setMusicState(map.getMusicState());
 		musicManager.getCurrentSound().play();
 	}
 
@@ -180,6 +192,68 @@ public class PlayLevelScreen extends Screen {
 			map.getFlagManager().unsetFlag("itemCollected");
 
 		}
+
+		if(map.getMapFileName().equals("Biomes/mountains.txt")) {
+			// if (flagManager.isFlagSet("firstTalkToMario")) {
+			// 	flagManager.unsetFlag("searchForSwitch");
+			// } else if (flagManager.isFlagSet("searchForSwitch")) {
+			// 	if (playerInventory.containsItem(13)) {
+			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(13));
+			// 		//playerInventory.addItem(null);
+			// 		flagManager.setFlag("searchForSwitch");
+			// 		flagManager.unsetFlag("searchForRamen");
+			// 	}
+			// } else if (flagManager.isFlagSet("searchForRamen")) {
+			// 	if (playerInventory.containsItem(12)) {
+			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(12));
+			// 		//playerInventory.addItem(null);
+			// 		flagManager.setFlag("searchForRamen");
+			// 		flagManager.unsetFlag("searchForTerminal");
+			// 	}
+			// } else if (flagManager.isFlagSet("searchForTerminal")) {
+			// 	if (playerInventory.containsItem(11)) {
+			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(11));
+			// 		//playerInventory.addItem(null);
+			// 		flagManager.setFlag("searchForTerminal");
+			// 		flagManager.unsetFlag("searchForYoshiCoin");
+			// 	}
+			// } else if (flagManager.isFlagSet("searchForYoshiCoin")) {
+			// 	if (playerInventory.containsItem(2)) {
+			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(2));
+			// 		//playerInventory.addItem(null);
+			// 		flagManager.setFlag("searchForYoshiCoin");
+			// 	}
+			// }
+			if (playerInventory.containsItem(13)) {
+				flagManager.setFlag("foundSwitch");
+				if (flagManager.isFlagSet("removeItem")) {
+					playerInventory.removeItem(playerInventory.getItemSlotNumber(13));
+					playerInventory.addItem(14);
+					flagManager.unsetFlag("removeItem");
+				}
+			} else if (playerInventory.containsItem(12)) {
+				flagManager.setFlag("foundRamen");
+				if (flagManager.isFlagSet("removeItem")) {
+					playerInventory.removeItem(playerInventory.getItemSlotNumber(12));
+					playerInventory.addItem(15);
+					flagManager.unsetFlag("removeItem");
+				}
+			} else if (playerInventory.containsItem(11)) {
+				flagManager.setFlag("foundTerminal");
+				if (flagManager.isFlagSet("removeItem")) {
+					playerInventory.removeItem(playerInventory.getItemSlotNumber(11));
+					playerInventory.addItem(16);
+					flagManager.unsetFlag("removeItem");
+				}
+			} else if (playerInventory.containsItem(2)) {
+				flagManager.setFlag("foundYoshiCoin");
+				if (flagManager.isFlagSet("removeItem")) {
+					playerInventory.removeItem(playerInventory.getItemSlotNumber(2));
+					playerInventory.addItem(17);
+					flagManager.unsetFlag("removeItem");
+				}
+			}
+		}
 	}
 
 	public PlayerInventory getPlayerInventory() {
@@ -213,7 +287,11 @@ public class PlayLevelScreen extends Screen {
 		time.setText("Time: " + clock.getTimeOfDay() + ":00");
 		time.draw(graphicsHandler);
 		int timeOfDay = clock.getTimeOfDay();
-		if (map.getMapFileName().equals("Biomes/start.txt")) {
+		if (map.getMapFileName().equals("Biomes/start.txt") || 
+			map.getMapFileName().equals("Biomes/desert.txt") ||
+			map.getMapFileName().equals("Biomes/mountains.txt") || 
+			map.getMapFileName().equals("Biomes/fallout.txt") || 
+			map.getMapFileName().equals("Biomes/shrooms.txt")) {
 			if (timeOfDay == 5 || timeOfDay == 19) {
 				graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT,
 						new Color(0, 0, 0, 25));
@@ -283,7 +361,7 @@ public class PlayLevelScreen extends Screen {
 		musicManager.getCurrentSound().stop();
 		screenCoordinator.pop(this);
 	}
-
+	
 	// This enum represents the different states this screen can be in
 	private enum PlayLevelScreenState {
 		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN
