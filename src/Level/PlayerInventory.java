@@ -94,9 +94,9 @@ public class PlayerInventory {
 	}
 
 	// removes item from inventory
-	public void removeItem(int slotNumber) {
+	public void removeItem(int itemNumber) {
 		isInventoryFull = false;
-		inventoryArray[slotNumber] = 0;
+		inventoryArray[itemNumber] = 0;
 	}
 
 	// swaps the location of two items. For the sake of the game logic, an empty
@@ -121,8 +121,17 @@ public class PlayerInventory {
 				return true;
 			}
 		}
-
 		return false;
+	}
+
+	//Gets the index of where a perticular itemNumber is in the inventory
+	public int getItemSlotNumber(int itemNumber) {
+		for (int i = 0; i < this.inventoryArray.length; i++) {
+			if (this.inventoryArray[i] == itemNumber) {
+				return i;
+			}
+		}
+		return 0;
 	}
 
 	// searches the inventory for a specified item and returns true if found
