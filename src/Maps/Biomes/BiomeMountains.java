@@ -7,12 +7,11 @@ import Level.EnhancedMapTile;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
-import Level.Trigger;
 import Maps.AbstractLoopingMap;
 import NPCs.Mario;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
-import Scripts.BiomeMountains.MagicTreeHouse;
+import Scripts.BiomeMountains.EnterTreehouseScript;
 import Scripts.BiomeMountains.MarioScript;
 import Tilesets.MountainsTileset;
 import Utils.Side;
@@ -84,12 +83,12 @@ public class BiomeMountains extends AbstractLoopingMap {
         return npcs;
     }
 
-    @Override
-    public ArrayList<Trigger> loadTriggers() {
-        ArrayList<Trigger> triggers = super.loadTriggers();
-        triggers.add(new Trigger(48*5,48*24, 48, 1, new MagicTreeHouse(), "magicTreeHouse"));
-        return triggers;
-    }
+    // @Override
+    // public ArrayList<Trigger> loadTriggers() {
+    //     ArrayList<Trigger> triggers = super.loadTriggers();
+    //     triggers.add(new Trigger(48*5,48*24, 48, 1, new MagicTreeHouse(), "magicTreeHouse"));
+    //     return triggers;
+    // }
 
 
     @Override
@@ -108,6 +107,11 @@ public class BiomeMountains extends AbstractLoopingMap {
         collectibles.add(terminal);
         collectibles.add(yoshiCoin);
         return collectibles;
+    }
+
+    @Override
+    public void loadScripts() {
+        getMapTile(5,23).setInteractScript(new EnterTreehouseScript());
     }
 
     @Override
