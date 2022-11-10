@@ -1,5 +1,7 @@
 package Level;
 
+import java.awt.Color;
+
 import Engine.GraphicsHandler;
 import GameObject.GameObject;
 import GameObject.IntersectableRectangle;
@@ -52,6 +54,10 @@ public class MapTile extends MapEntity {
 
     public TileType getTileType() {
         return tileType;
+    }
+
+    public void setTileType(TileType tileType) {
+        this.tileType = tileType;
     }
 
     public int getTileIndex() {

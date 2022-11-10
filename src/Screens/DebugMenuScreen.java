@@ -1,13 +1,8 @@
 package Screens;
 
-import Game.Game;
 import Game.ScreenCoordinator;
 import Level.Map;
 import Maps.MushroomHomeMap;
-import Maps.MushroomMap;
-import Maps.TestMap;
-import Maps.TitleScreenMap;
-import Maps.moonValleyTitle;
 import Maps.Biomes.BiomeDesert;
 import Maps.Biomes.BiomeMountains;
 import Maps.Biomes.BiomeShrooms;
@@ -48,8 +43,8 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 
 				@Override
 				public void addOptions() {
-					this.options.add(new MapOption(new TitleScreenMap()));
-					this.options.add(new MapOption(new moonValleyTitle()));
+					// this.options.add(new MapOption(new TitleScreenMap()));
+					// this.options.add(new MapOption(new moonValleyTitle()));
 					this.options.add(new MapOption(new BiomeMountains()));
 					//this.options.add(new MapOption(new TestMap()));
 					this.options.add(new MapOption(new BiomeStart()));

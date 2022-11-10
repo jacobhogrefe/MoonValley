@@ -1,7 +1,6 @@
 package Maps.Biomes;
 
 import java.util.ArrayList;
-import java.util.function.Supplier;
 
 import Level.Collectible;
 import Level.EnhancedMapTile;
@@ -10,8 +9,11 @@ import Level.MusicState;
 import Level.NPC;
 import Level.Trigger;
 import Maps.AbstractLoopingMap;
+import NPCs.Mario;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
+import Scripts.BiomeMountains.MagicTreeHouse;
+import Scripts.BiomeMountains.MarioScript;
 import Tilesets.MountainsTileset;
 import Utils.Side;
 
@@ -76,6 +78,9 @@ public class BiomeMountains extends AbstractLoopingMap {
     @Override
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
+        Mario mario = new Mario(42, getMapTile(19,18).getLocation());
+        mario.setInteractScript(new MarioScript());
+        npcs.add(mario);
         return npcs;
     }
 
@@ -85,9 +90,22 @@ public class BiomeMountains extends AbstractLoopingMap {
         return triggers;
     }
 
+
     @Override
     public ArrayList<Collectible> loadCollectables() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
+        Collectible nintendoSwitch = new Collectible("nintendoSwitch.png", getMapTile(6,4).getLocation(), "Nintendo Switch", 13, false);
+        Collectible ramen = new Collectible("ramen.png", getMapTile(22,17).getLocation(), "Ramen", 12, false);
+        Collectible terminal = new Collectible("terminal.png", getMapTile(15,1).getLocation(), "Terminal", 11, false);
+        Collectible yoshiCoin = new Collectible("yoshiCoin.png", getMapTile(9,19).getLocation(), "Yoshi Coin", 2, true);
+        nintendoSwitch.setExistenceFlag("searchForSwitch");
+        ramen.setExistenceFlag("searchForRamen");
+        terminal.setExistenceFlag("searchForTerminal");
+        yoshiCoin.setExistenceFlag("searchForYoshiCoin");
+        collectibles.add(nintendoSwitch);
+        collectibles.add(ramen);
+        collectibles.add(terminal);
+        collectibles.add(yoshiCoin);
         return collectibles;
     }
 

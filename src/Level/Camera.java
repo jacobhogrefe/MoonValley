@@ -307,6 +307,10 @@ public class Camera extends Rectangle {
 			if (containsDraw(npc) && !npc.isTethered() ) {
 				if (npc.getBounds().getY() < player.getBounds().getY1() + (player.getBounds().getHeight() / 2f)) {
 					npc.stand(Direction.RIGHT);
+					
+					if(CattleInPen) {
+						npc.eatGrass();
+					}
 					npc.draw(graphicsHandler);
 				} else {
 					drawNpcsAfterPlayer.add(npc);
@@ -326,6 +330,7 @@ public class Camera extends Rectangle {
 					npc.setTether(false,player);
 					if (npc.getX() > 600 && npc.getX() < 1050 && npc.getY() > 50 && npc.getY()<545) {
 						CattleInPen = true;
+						npc.eatGrass();
 						
 						System.out.println("Cattle penned.");
 					}
@@ -344,6 +349,9 @@ public class Camera extends Rectangle {
 					map.giveItem(collectibles.getItemNumber());
 					map.flagManager.setFlag("itemCollected");
 					map.setActiveInteractScript(collectibles.getInteractScript());
+					if (collectibles.getExistenceFlag() != null) {
+						map.flagManager.setFlag(collectibles.getExistenceFlag());
+					}
 					collectibles.setMapEntityStatus(MapEntityStatus.REMOVED);
 				}
 
@@ -385,7 +393,7 @@ public class Camera extends Rectangle {
 				}
 				
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {
-					furniture.setTether(false,player);
+					furniture.setTether(false, player);
 					tetherSet = false;
 				}
 
@@ -408,10 +416,7 @@ public class Camera extends Rectangle {
 
 		// Uncomment this to see triggers drawn on screen
 		// helps for placing them in the correct spot/debugging
-		/*
-		 * for (Trigger trigger : activeTriggers) { if (containsDraw(trigger)) {
-		 * trigger.draw(graphicsHandler); } }
-		 */
+		// for (Trigger trigger : activeTriggers) { if (containsDraw(trigger)) {trigger.draw(graphicsHandler); } }
 	}
 
 	// checks if a game object's position falls within the camera's current radius

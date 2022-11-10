@@ -86,6 +86,7 @@ public class NPC extends MapEntity {
 				this.currentAnimationName = "WALK_LEFT";
 			}
 		}
+
 		if (direction == Direction.UP) {
 			moveY(-speed);
 		} else if (direction == Direction.DOWN) {
@@ -94,6 +95,15 @@ public class NPC extends MapEntity {
 			moveX(-speed);
 		} else if (direction == Direction.RIGHT) {
 			moveX(speed);
+		}
+	}
+	
+	public void eatGrass() {
+		if(isTetherable()) {
+		this.currentAnimationName = "EAT_GRASS";
+		}
+		else {
+			
 		}
 	}
 	
