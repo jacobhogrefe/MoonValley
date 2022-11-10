@@ -16,12 +16,14 @@ import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.DinoScript2;
 import Scripts.TestMap.EnterDinoHouseScript;
 import Scripts.TestMap.EnterHouseScript;
 import Scripts.TestMap.EnterWalrusHouseScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
+import Scripts.TestMap.foundMagnifying;
 import Tilesets.CommonTileset;
 import Utils.Side;
 
@@ -96,7 +98,7 @@ public class BiomeStart extends AbstractLoopingMap {
 
         Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
         dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        dinosaur.setInteractScript(new DinoScript());
+        dinosaur.setInteractScript(new DinoScript2());
         npcs.add(dinosaur);
 
         return npcs;
@@ -105,19 +107,20 @@ public class BiomeStart extends AbstractLoopingMap {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = super.loadTriggers();
-        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
+        triggers.add(new Trigger(500, 250, 20, 20, new foundMagnifying()));
+//        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
+//        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
+//        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         return triggers;
     }
 
     @Override
     public ArrayList<Collectible> loadCollectables() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
-        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin", 2, false));
-        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(11,19).getLocation(), "Yoshi Coin", 2, false));
-        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(10,19).getLocation(), "Yoshi Coin", 2, true));
-        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(9,19).getLocation(), "Yoshi Coin", 2, true));
+//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin", 2, false));
+//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(11,19).getLocation(), "Yoshi Coin", 2, false));
+//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(10,19).getLocation(), "Yoshi Coin", 2, true));
+//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(9,19).getLocation(), "Yoshi Coin", 2, true));
         return collectibles;
     }
     
