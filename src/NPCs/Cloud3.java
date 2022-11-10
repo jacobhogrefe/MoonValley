@@ -39,6 +39,6 @@ public class Cloud3 extends NPC {
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
-        super.draw(graphicsHandler);
+//        super.draw(graphicsHandler);
     }
 }

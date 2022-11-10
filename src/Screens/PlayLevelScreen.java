@@ -10,6 +10,7 @@ import Engine.Keyboard;
 import Engine.Screen;
 import Game.ScreenCoordinator;
 import Level.*;
+import Maps.HouseMap;
 import Maps.Biomes.BiomeStart;
 import NPCs.Cloud;
 import NPCs.Cloud2;
@@ -53,11 +54,18 @@ public class PlayLevelScreen extends Screen {
 	public void initialize() {
 		// setup state
 		flagManager = new FlagManager();
-		flagManager.addFlag("hasLostBall", false);
+		flagManager.addFlag("hasCrash", false);
 		flagManager.addFlag("hasTalkedToWalrus", false);
-		flagManager.addFlag("hasTalkedToDinosaur", false);
-		flagManager.addFlag("hasFoundBall", false);
 		flagManager.addFlag("itemCollected", false);
+		flagManager.addFlag("hasGlasses", false);
+		flagManager.addFlag("finishGlasses", false);
+		flagManager.addFlag("hasTalkedToDino", false);
+		flagManager.addFlag("hasMagnifying", false);
+		flagManager.addFlag("noMore", false);
+		
+//		flagManager.addFlag("hasLostBall", false);
+//		flagManager.addFlag("hasTalkedToDinosaur", false);
+//		flagManager.addFlag("hasFoundBall", false);
 
 		//mountains map flags
 		flagManager.addFlag("removeItem", false);
@@ -79,7 +87,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("desertReward",false);
 
 		// define/setup map
-		this.map = new BiomeStart();
+		this.map = new HouseMap();
 		// map.reset();
 		map.setFlagManager(flagManager);
 
@@ -192,7 +200,18 @@ public class PlayLevelScreen extends Screen {
 			map.getFlagManager().unsetFlag("itemCollected");
 
 		}
-
+		if (map.getMapFileName().equals("walrus_house_map.txt")) {
+			if (playerInventory.containsItem(18)) {
+				flagManager.setFlag("hasGlasses");
+			}
+		}
+		
+		if (map.getMapFileName().equals("Biomes/start.txt")) {
+			if (flagManager.isFlagSet("hasMagnifying")) {
+				screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(5);
+			}
+		}
+		
 		if(map.getMapFileName().equals("Biomes/mountains.txt")) {
 			if (playerInventory.containsItem(13)) {
 				flagManager.setFlag("foundSwitch");

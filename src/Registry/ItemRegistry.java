@@ -223,6 +223,13 @@ public class ItemRegistry {
 			.withSubimage(68 + 17 * 1, 34)
 			.build()
 			.addToRegistry(this);
+	
+	public Item GLASSES = new Item.Builder() //18
+			.withName("Glasses")
+			.withDescription("Good if you like seeing")
+			.withSubimage(68 + 17 * 7, 0)
+			.build()
+			.addToRegistry(this);
 
 	private ItemRegistry() {
 
