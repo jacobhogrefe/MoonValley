@@ -164,7 +164,7 @@ public class ItemRegistry {
 	
 	public Item ROSEBUSH = new Item.Builder() //10
 			.withName("Rose Bush")
-			.withDescription("A rose does not lose sleep because it   was mocked by weeds.")
+			.withDescription("A rose does not lose sleep because it was mocked by weeds.")
 			.withSubimage(68 + 17 * 3, 17)
 			.withOutdoorPlacement()
 			.withFurnitureNumber(1)
@@ -189,6 +189,38 @@ public class ItemRegistry {
 			.withName("Nintendo Switch")
 			.withDescription("The better DS")
 			.withSubimage(68 + 17 * 6, 17)
+			.build()
+			.addToRegistry(this);
+
+	public Item TV_STAND = new Item.Builder() // 14
+			.withName("TV Stand")
+			.withDescription("Perfect for playing Moonvalley!")
+			.withSubimage(68 + 17 * 7, 17)
+			.withIndoorPlacement()
+			.withFurnitureNumber(2)
+			.build()
+			.addToRegistry(this);
+	public Item FUTON = new Item.Builder() // 15
+			.withName("Futon")
+			.withDescription("The best worst sleeping arrangement")
+			.withSubimage(68 + 17 * 8, 17)
+			.withIndoorPlacement()
+			.withFurnitureNumber(3)
+			.build()
+			.addToRegistry(this);
+	public Item DESK = new Item.Builder() // 16
+			.withName("Desk")
+			.withDescription("The best place to sleep before a test")
+			.withSubimage(68 + 17 * 9, 17)
+			.withIndoorPlacement()
+			.withFurnitureNumber(4)
+			.build()
+			.addToRegistry(this);
+
+	public Item HEADPHONES = new Item.Builder() // 17
+			.withName("Headphones")
+			.withDescription("Great for tuning out your student's crys")
+			.withSubimage(68 + 17 * 1, 34)
 			.build()
 			.addToRegistry(this);
 
