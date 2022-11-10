@@ -17,6 +17,7 @@ public class foundMagnifying extends Script {
 	@Override
 	protected void cleanup() {
 		setFlag("hasMagnifying");
+		setFlag("finesse");
     	System.out.println("Setting flag: hasMagnifying");
 		hideTextbox();
 		unlockPlayer();

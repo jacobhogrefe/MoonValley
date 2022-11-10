@@ -64,6 +64,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("hasTalkedToDino", false);
 		flagManager.addFlag("hasMagnifying", false);
 		flagManager.addFlag("noMore", false);
+		flagManager.addFlag("finesse", false);
 		
 //		flagManager.addFlag("hasLostBall", false);
 //		flagManager.addFlag("hasTalkedToDinosaur", false);
@@ -218,8 +219,9 @@ public class PlayLevelScreen extends Screen {
 		}
 		
 		if (map.getMapFileName().equals("Biomes/start.txt")) {
-			if (flagManager.isFlagSet("hasMagnifying")) {
+			if (flagManager.isFlagSet("finesse")) {
 				screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(5);
+				flagManager.unsetFlag("finesse");
 			}
 		}
 		
