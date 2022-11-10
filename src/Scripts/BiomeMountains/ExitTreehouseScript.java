@@ -23,7 +23,7 @@ public class ExitTreehouseScript extends Script {
     @Override
     protected ScriptState execute() {
         PlayLevelScreen.isInHouse = true;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeMountains(), 208, 144);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeMountains(), 240, 1152);
 		return ScriptState.COMPLETED;
     }
     

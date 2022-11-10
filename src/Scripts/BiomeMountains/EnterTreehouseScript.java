@@ -17,7 +17,7 @@ public class EnterTreehouseScript extends Script {
     @Override
     protected ScriptState execute() {
         PlayLevelScreen.isInHouse = true;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new TreehouseMap(), 96, 384);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new TreehouseMap(), 144, 432);
 		return ScriptState.COMPLETED;
     }
     
