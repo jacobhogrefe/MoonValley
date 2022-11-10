@@ -349,6 +349,9 @@ public class Camera extends Rectangle {
 					map.giveItem(collectibles.getItemNumber());
 					map.flagManager.setFlag("itemCollected");
 					map.setActiveInteractScript(collectibles.getInteractScript());
+					if (collectibles.getExistenceFlag() != null) {
+						map.flagManager.setFlag(collectibles.getExistenceFlag());
+					}
 					collectibles.setMapEntityStatus(MapEntityStatus.REMOVED);
 				}
 
