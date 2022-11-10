@@ -7,6 +7,7 @@ import Maps.MushroomMap;
 import Maps.SaloonMap;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
+import Maps.TreehouseMap;
 import Maps.moonValleyTitle;
 import Maps.Biomes.BiomeDesert;
 import Maps.Biomes.BiomeFallout;
@@ -36,6 +37,7 @@ public class EditorMaps {
             add("DinoMap");
             add("MushroomMap");
             add("MushroomHomeMap");
+            add("Treehouse");
             add("SaloonMap");
         }};
     }
@@ -70,6 +72,8 @@ public class EditorMaps {
             	return new MushroomMap();
             case "MushroomHomeMap":
             	return new MushroomHomeMap();
+            case "Treehouse":
+                return new TreehouseMap();
             case "SaloonMap":
             	return new SaloonMap();
             default:

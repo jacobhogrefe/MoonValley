@@ -2,9 +2,9 @@ package Builders;
 
 import GameObject.Frame;
 import GameObject.GameObject;
+import GameObject.Rectangle;
 import Level.MapTile;
 import Level.TileType;
-
 import java.util.HashMap;
 
 // Builder class to instantiate a MapTile class
@@ -14,6 +14,7 @@ public class MapTileBuilder {
     private int tileIndex = -1;
     private HashMap<String, Frame[]> bottomLayer = new HashMap<>();;
     private HashMap<String, Frame[]> topLayer = new HashMap<>();;
+    private Rectangle bounds;
 
     public MapTileBuilder(Frame bottomLayer) {
         this.bottomLayer.put("DEFAULT", new Frame[] { bottomLayer });
@@ -53,6 +54,11 @@ public class MapTileBuilder {
         return this;
     }
 
+    public MapTileBuilder withBounds(Rectangle bounds) {
+        this.bounds = bounds;
+        return this;
+    }
+
     public HashMap<String, Frame[]> cloneAnimations(HashMap<String, Frame[]> animations) {
         HashMap<String, Frame[]> animationsCopy = new HashMap<>();
         for (String key : animations.keySet()) {
@@ -72,7 +78,10 @@ public class MapTileBuilder {
         if (!topLayer.isEmpty()) {
             topLayerAnimation = new GameObject(x, y, cloneAnimations(topLayer), "DEFAULT");
         }
-
-        return new MapTile(x, y, bottomLayerAnimation, topLayerAnimation, tileType, tileIndex);
+        MapTile mapTile = new MapTile(x, y, bottomLayerAnimation, topLayerAnimation, tileType, tileIndex);
+        if (bounds != null && this.tileType == TileType.NOT_PASSABLE) {
+            mapTile.setBounds(bounds);
+        }
+        return mapTile;
     }
 }

@@ -9,3 +9,4 @@ out/
 TestResources/
 _site
 *.save
+.DS_Store

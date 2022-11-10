@@ -47,11 +47,6 @@ public class BartenderWalrusScript extends Script<NPC> {
         	setFlag("firstBartenderTalk");
         	System.out.println("Setting flag: firstBartenderTalk");
         }
-        
-
-
-        
-      
     }
     
     //troubleshooter method
