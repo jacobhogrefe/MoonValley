@@ -17,13 +17,15 @@ public class MagicTreeHouse extends Script {
     @Override
     protected void setup() {
         initial = tileset.getCoolMapTiles();
-        intoTreehouse = new MapTile[initial.length/2];
-        exitTreehouse = new MapTile[initial.length/2];
+        System.out.println(initial.length);
+        intoTreehouse = new MapTile[20];
+        exitTreehouse = new MapTile[20];
         for (int i = 0; i < initial.length; i++) {
-            if (i < (initial.length/2)) {
+            if (i < 20) {
                 initial[i] = intoTreehouse[i];
+                System.out.println(initial[i].toString());
             } else {
-                initial[i] = exitTreehouse[i];
+                initial[i] = exitTreehouse[i-20];
             }
         }
     }
