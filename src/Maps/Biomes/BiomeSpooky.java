@@ -7,6 +7,7 @@ import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
+import Tilesets.BiomeSpookyTilesets;
 import Tilesets.CommonTileset;
 import Utils.Side;
 
@@ -27,7 +28,7 @@ public class BiomeSpooky extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.PUMPKIN;
 
     public BiomeSpooky() {
-        super("Biomes/spooky.txt", new CommonTileset());
+        super("Biomes/spooky.txt", new BiomeSpookyTilesets());
     }
 
     @Override
