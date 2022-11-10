@@ -104,7 +104,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 	public static class GiveKeyItemsOption extends Option {
 		@Override
 		public String getText() {
-			return "Give Key Item";
+			return "Give Key Items";
 		}
 
 		@Override
