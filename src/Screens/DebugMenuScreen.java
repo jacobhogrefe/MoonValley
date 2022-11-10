@@ -1,6 +1,7 @@
 package Screens;
 
 import Game.ScreenCoordinator;
+import Level.CatWardrobe;
 import Level.Map;
 import Maps.MushroomHomeMap;
 import Maps.Biomes.BiomeDesert;
@@ -122,6 +123,44 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 
 	}
 	
+	public static class EquipCowboyHatOption extends Option {
+		@Override
+		public String getText() {
+			return "Equip Cowboy Hat";
+		}
+
+		@Override
+		public void select(AbstractMenuScreen parent) {
+			
+			CatWardrobe.currentWardrobe = 2;
+			CatWardrobe.wardrobeChange = true;
+
+			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
+			
+
+		}
+
+	}
+	
+	public static class RemoveClothesOption extends Option {
+		@Override
+		public String getText() {
+			return "Remove Clothes";
+		}
+
+		@Override
+		public void select(AbstractMenuScreen parent) {
+			
+			CatWardrobe.currentWardrobe = 0;
+			CatWardrobe.wardrobeChange = true;
+
+			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
+			
+
+		}
+
+	}
+	
 	public static class CensorWalrusOption extends Option {
 		@Override
 		
@@ -207,6 +246,8 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 		this.options.add(new FillInventoryOption());
 		this.options.add(new CensorWalrusOption());
 		this.options.add(new GiveKeyItemsOption());
+		this.options.add(new EquipCowboyHatOption());
+		this.options.add(new RemoveClothesOption());
 		this.options.add(new CancelOption());
 
 	}

@@ -4,11 +4,13 @@ import java.util.Stack;
 import java.awt.Color;
 import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
+import Engine.ImageLoader;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
 import Game.ScreenCoordinator;
+import GameObject.SpriteSheet;
 import Level.*;
 import Maps.Biomes.BiomeStart;
 import NPCs.Cloud;
@@ -144,6 +146,15 @@ public class PlayLevelScreen extends Screen {
 
 	public void update() {
 		// updates the music based on location
+		
+		if (CatWardrobe.wardrobeChange == true) {
+			
+			System.out.println("Changing clothes");
+			CatWardrobe catWardrobe = new CatWardrobe();
+			reloadPlayer(player);
+			
+			CatWardrobe.wardrobeChange = false;
+		}
 		
 		musicManager.updateMusic();
 		// based on screen state, perform specific actions
@@ -329,6 +340,25 @@ public class PlayLevelScreen extends Screen {
 
 	public void resetLevel() {
 		initialize();
+	}
+	
+	public void reloadPlayer(Player currentPlayer) {
+		
+		float currentX = player.getX();
+		float currentY = player.getY();
+		
+		Direction currentDirection = player.getFacingDirection();
+		
+		
+		
+		this.player = new Cat(currentX, currentY);
+		this.musicManager.setPlayer(this.player);
+		this.player.setWalkingSound(musicManager.getWalkingSound());
+		this.player.setMap(map);
+		this.player.setLocation(currentX, currentY);
+		this.playLevelScreenState = PlayLevelScreenState.RUNNING;
+		this.player.setFacingDirection(currentDirection);
+		
 	}
 
 	public void goBackToMenu() {
