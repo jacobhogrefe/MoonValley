@@ -194,41 +194,12 @@ public class PlayLevelScreen extends Screen {
 		}
 
 		if(map.getMapFileName().equals("Biomes/mountains.txt")) {
-			// if (flagManager.isFlagSet("firstTalkToMario")) {
-			// 	flagManager.unsetFlag("searchForSwitch");
-			// } else if (flagManager.isFlagSet("searchForSwitch")) {
-			// 	if (playerInventory.containsItem(13)) {
-			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(13));
-			// 		//playerInventory.addItem(null);
-			// 		flagManager.setFlag("searchForSwitch");
-			// 		flagManager.unsetFlag("searchForRamen");
-			// 	}
-			// } else if (flagManager.isFlagSet("searchForRamen")) {
-			// 	if (playerInventory.containsItem(12)) {
-			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(12));
-			// 		//playerInventory.addItem(null);
-			// 		flagManager.setFlag("searchForRamen");
-			// 		flagManager.unsetFlag("searchForTerminal");
-			// 	}
-			// } else if (flagManager.isFlagSet("searchForTerminal")) {
-			// 	if (playerInventory.containsItem(11)) {
-			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(11));
-			// 		//playerInventory.addItem(null);
-			// 		flagManager.setFlag("searchForTerminal");
-			// 		flagManager.unsetFlag("searchForYoshiCoin");
-			// 	}
-			// } else if (flagManager.isFlagSet("searchForYoshiCoin")) {
-			// 	if (playerInventory.containsItem(2)) {
-			// 		playerInventory.removeItem(playerInventory.getItemSlotNumber(2));
-			// 		//playerInventory.addItem(null);
-			// 		flagManager.setFlag("searchForYoshiCoin");
-			// 	}
-			// }
 			if (playerInventory.containsItem(13)) {
 				flagManager.setFlag("foundSwitch");
 				if (flagManager.isFlagSet("removeItem")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(13));
 					playerInventory.addItem(14);
+					flagManager.unsetFlag("foundSwitch");
 					flagManager.unsetFlag("removeItem");
 				}
 			} else if (playerInventory.containsItem(12)) {
@@ -236,6 +207,7 @@ public class PlayLevelScreen extends Screen {
 				if (flagManager.isFlagSet("removeItem")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(12));
 					playerInventory.addItem(15);
+					flagManager.unsetFlag("foundRamen");
 					flagManager.unsetFlag("removeItem");
 				}
 			} else if (playerInventory.containsItem(11)) {
@@ -243,6 +215,7 @@ public class PlayLevelScreen extends Screen {
 				if (flagManager.isFlagSet("removeItem")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(11));
 					playerInventory.addItem(16);
+					flagManager.unsetFlag("foundTerminal");
 					flagManager.unsetFlag("removeItem");
 				}
 			} else if (playerInventory.containsItem(2)) {
@@ -250,6 +223,7 @@ public class PlayLevelScreen extends Screen {
 				if (flagManager.isFlagSet("removeItem")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(2));
 					playerInventory.addItem(17);
+					flagManager.unsetFlag("foundYoshiCoin");
 					flagManager.unsetFlag("removeItem");
 				}
 			}
@@ -361,7 +335,7 @@ public class PlayLevelScreen extends Screen {
 		musicManager.getCurrentSound().stop();
 		screenCoordinator.pop(this);
 	}
-	
+
 	// This enum represents the different states this screen can be in
 	private enum PlayLevelScreenState {
 		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN
