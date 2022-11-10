@@ -223,6 +223,10 @@ public abstract class Player extends GameObject {
             this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
         }
     }
+    // can be overridden in subclass
+    public void reloadAnimations() {
+    	
+    }
 
     @Override
     public void onEndCollisionCheckX(boolean hasCollided, Direction direction, MapEntity entityCollidedWith) { }

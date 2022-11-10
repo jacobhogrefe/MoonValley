@@ -13,7 +13,7 @@ public class TreehouseMap extends Map {
     
     @Override
     public void loadScripts() {
-        getMapTile(2,8).setInteractScript(new ExitTreehouseScript());
+        getMapTile(3,10).setInteractScript(new ExitTreehouseScript());
     }
 
     @Override

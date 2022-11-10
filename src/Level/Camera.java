@@ -334,6 +334,10 @@ public class Camera extends Rectangle {
 						
 						System.out.println("Cattle penned.");
 					}
+					else {
+						CattleInPen = false;
+						npc.stand(player.facingDirection);
+					}
 					System.out.println("npc X: "+npc.getX()+"npc Y: "+npc.getY());
 					tetherSet = false;
 				}

@@ -1,11 +1,13 @@
 package Screens;
 
 import Game.ScreenCoordinator;
+import Level.CatWardrobe;
 import Level.Map;
 import Maps.MushroomHomeMap;
 import Maps.Biomes.BiomeDesert;
 import Maps.Biomes.BiomeMountains;
 import Maps.Biomes.BiomeShrooms;
+import Maps.Biomes.BiomeSpooky;
 import Maps.Biomes.BiomeStart;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -51,6 +53,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 					this.options.add(new MapOption(new BiomeShrooms()));
 					this.options.add(new MapOption(new MushroomHomeMap()));
 					this.options.add(new MapOption(new BiomeDesert()));
+					this.options.add(new MapOption(new BiomeSpooky()));
 					this.options.add(new CancelOption());
 				}
 			});
@@ -114,6 +117,44 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.MAGNIFYING_GLASS);
 			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.PUMPKIN);
 			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.GRAPPLING_HOOK);
+
+			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
+			
+
+		}
+
+	}
+	
+	public static class EquipCowboyHatOption extends Option {
+		@Override
+		public String getText() {
+			return "Equip Cowboy Hat";
+		}
+
+		@Override
+		public void select(AbstractMenuScreen parent) {
+			
+			CatWardrobe.currentWardrobe = 2;
+			CatWardrobe.wardrobeChange = true;
+
+			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
+			
+
+		}
+
+	}
+	
+	public static class RemoveClothesOption extends Option {
+		@Override
+		public String getText() {
+			return "Remove Clothes";
+		}
+
+		@Override
+		public void select(AbstractMenuScreen parent) {
+			
+			CatWardrobe.currentWardrobe = 0;
+			CatWardrobe.wardrobeChange = true;
 
 			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
 			
@@ -207,6 +248,8 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 		this.options.add(new FillInventoryOption());
 		this.options.add(new CensorWalrusOption());
 		this.options.add(new GiveKeyItemsOption());
+		this.options.add(new EquipCowboyHatOption());
+		this.options.add(new RemoveClothesOption());
 		this.options.add(new CancelOption());
 
 	}
