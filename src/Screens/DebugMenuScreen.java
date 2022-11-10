@@ -7,6 +7,7 @@ import Maps.MushroomHomeMap;
 import Maps.Biomes.BiomeDesert;
 import Maps.Biomes.BiomeMountains;
 import Maps.Biomes.BiomeShrooms;
+import Maps.Biomes.BiomeSpooky;
 import Maps.Biomes.BiomeStart;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -52,6 +53,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 					this.options.add(new MapOption(new BiomeShrooms()));
 					this.options.add(new MapOption(new MushroomHomeMap()));
 					this.options.add(new MapOption(new BiomeDesert()));
+					this.options.add(new MapOption(new BiomeSpooky()));
 					this.options.add(new CancelOption());
 				}
 			});
