@@ -4,6 +4,7 @@ import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
 import Engine.ImageLoader;
 import GameObject.Frame;
+import GameObject.ImageEffect;
 import Level.TileType;
 import Level.Tileset;
 
@@ -203,6 +204,99 @@ public class HouseTileset extends Tileset {
         		.withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(sofa2Tile);
+        
+        //computer
+        Frame computerFrame = new FrameBuilder(getSubImage(2, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder computerTile = new MapTileBuilder(computerFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(computerTile);
+        
+        //desk top
+        Frame deskTopFrame = new FrameBuilder(getSubImage(3, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder deskTopTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(deskTopFrame);
+
+        mapTiles.add(deskTopTile);
+        
+        //desk bottom
+        Frame deskBottomFrame = new FrameBuilder(getSubImage(4, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder deskBottomTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(deskBottomFrame);
+
+        mapTiles.add(deskBottomTile);
+        
+        //desk bottom w foot
+        Frame deskBottomFootFrame = new FrameBuilder(getSubImage(4, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder deskBottomFootTile = new MapTileBuilder(floorFrame)
+        		.withTileType(TileType.NOT_PASSABLE)
+        		.withTopLayer(deskBottomFootFrame);
+
+        mapTiles.add(deskBottomFootTile);
+        
+        //^ flipped
+        Frame deskBottomFoot2Frame = new FrameBuilder(getSubImage(4, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder deskBottomFoot2Tile = new MapTileBuilder(floorFrame)
+        		.withTileType(TileType.NOT_PASSABLE)
+        		.withTopLayer(deskBottomFoot2Frame);
+
+        mapTiles.add(deskBottomFoot2Tile);
+        
+        //swirly
+        Frame swirlyFrame = new FrameBuilder(getSubImage(4, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder swirlyTile = new MapTileBuilder(swirlyFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(swirlyTile);
+        
+        //swirly 2
+        Frame swirly2Frame = new FrameBuilder(getSubImage(5, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder swirly2Tile = new MapTileBuilder(swirly2Frame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(swirly2Tile);
+        
+        //swirly lol
+        Frame swirly3Frame = new FrameBuilder(getSubImage(4, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder swirly3Tile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(swirly3Frame);
+
+        mapTiles.add(swirly3Tile);
+        
+        //HAHAHAHHA
+        Frame HAHAFrame = new FrameBuilder(getSubImage(4, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder HAHATile = new MapTileBuilder(HAHAFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(HAHATile);
         
         return mapTiles;
     }
