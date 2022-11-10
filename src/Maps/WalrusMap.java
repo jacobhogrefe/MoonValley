@@ -16,6 +16,7 @@ import Scripts.SimpleTextScript;
 import Scripts.TestMap.CollectibleScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.ExitHouseScript;
+import Scripts.TestMap.ExitWalrusHouseScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
@@ -34,7 +35,7 @@ public class WalrusMap extends Map {
        
     @Override
     public void loadScripts() { 
-        getMapTile(8, 11).setInteractScript(new ExitHouseScript());
+        getMapTile(8, 11).setInteractScript(new ExitWalrusHouseScript());
     }
 
     @Override

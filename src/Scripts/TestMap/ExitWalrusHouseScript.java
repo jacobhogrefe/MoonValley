@@ -8,7 +8,7 @@ import Maps.Biomes.BiomeStart;
 import Screens.PlayLevelScreen;
 
 // trigger script at beginning of game to set that heavy emotional plot
-public class ExitHouseScript extends Script {
+public class ExitWalrusHouseScript extends Script {
 	@Override
 	protected void setup() {
 		lockPlayer();
@@ -24,7 +24,7 @@ public class ExitHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = false;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeStart(), 825, 950);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeStart(), 200, 1300);
 		return ScriptState.COMPLETED;
 	}
 }
