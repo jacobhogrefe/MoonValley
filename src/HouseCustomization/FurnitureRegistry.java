@@ -25,7 +25,9 @@ public class FurnitureRegistry {
 
 		catalog.add(new Furniture("RetroJukeBox.png", defaultPoint, "Retro Jukebox", true, false, 9)); // index 0
 		catalog.add(new Furniture("RoseBush.png", defaultPoint, "Rose Bush", false, true, 10));		   // index 1
-
+		catalog.add(new Furniture("tvStand.png", defaultPoint, "TV Stand", true, false, 14));
+		catalog.add(new Furniture("futon.png", defaultPoint, "Futon", true, false, 15));
+		catalog.add(new Furniture("desk.png", defaultPoint, "Desk", true, false, 16));
 	}
 
 
