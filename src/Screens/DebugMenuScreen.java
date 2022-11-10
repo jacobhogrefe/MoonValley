@@ -1,13 +1,8 @@
 package Screens;
 
-import Game.Game;
 import Game.ScreenCoordinator;
 import Level.Map;
 import Maps.MushroomHomeMap;
-import Maps.MushroomMap;
-import Maps.TestMap;
-import Maps.TitleScreenMap;
-import Maps.moonValleyTitle;
 import Maps.Biomes.BiomeDesert;
 import Maps.Biomes.BiomeMountains;
 import Maps.Biomes.BiomeShrooms;
