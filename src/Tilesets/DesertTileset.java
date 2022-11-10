@@ -375,6 +375,120 @@ public class DesertTileset extends Tileset {
 
         mapTiles.add(saloonBotTile);
         
+        Frame houseWallFrame = new FrameBuilder(getSubImage(7, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseWallTile = new MapTileBuilder(houseWallFrame)
+        		.withTopLayer(houseWallFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(houseWallTile);
+        
+        Frame houseDoorFrame = new FrameBuilder(getSubImage(7, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseDoorTile = new MapTileBuilder(houseDoorFrame)
+        		.withTopLayer(houseDoorFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(houseDoorTile);
+        
+        Frame houseDoor2Frame = new FrameBuilder(getSubImage(0, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseDoor2Tile = new MapTileBuilder(houseDoor2Frame)
+        		.withTopLayer(houseDoor2Frame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(houseDoor2Tile);
+        
+        Frame houseStepsFrame = new FrameBuilder(getSubImage(1, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseStepsTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseStepsFrame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(houseStepsTile);
+        
+        Frame houseFenceFrame = new FrameBuilder(getSubImage(2, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseFenceTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseFenceFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(houseFenceTile);
+        
+        Frame houseRoofLeftFrame = new FrameBuilder(getSubImage(3, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseRoofLeftTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseRoofLeftFrame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(houseRoofLeftTile);
+        
+        Frame houseRoofRightFrame = new FrameBuilder(getSubImage(4, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseRoofRightTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseRoofRightFrame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(houseRoofRightTile);
+        
+        Frame houseTopFrame = new FrameBuilder(getSubImage(5, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseTopTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseTopFrame)
+        		.withTileType(TileType.PASSABLE);
+
+        mapTiles.add(houseTopTile);
+        
+        Frame houseSideRFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder houseSideRTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseSideRFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+         mapTiles.add(houseSideRTile);
+        
+        Frame houseSideLFrame = new FrameBuilder(getSubImage(6, 4))
+                .withScale(tileScale)
+            	.withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder houseSideLTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseSideLFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(houseSideLTile);
+        
+        Frame houseBorderFrame = new FrameBuilder(getSubImage(7, 4))
+                .withScale(tileScale)
+            	.withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder houseBorderTile = new MapTileBuilder(floorFrame)
+        		.withTopLayer(houseBorderFrame)
+        		.withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(houseBorderTile);
+        
+        
+
         
         
         

@@ -101,6 +101,27 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 
 	}
 	
+	public static class GiveKeyItemsOption extends Option {
+		@Override
+		public String getText() {
+			return "Give Key Items";
+		}
+
+		@Override
+		public void select(AbstractMenuScreen parent) {
+			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.GAS_MASK);
+			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.WATER_CANTEEN);
+			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.MAGNIFYING_GLASS);
+			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.PUMPKIN);
+			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.GRAPPLING_HOOK);
+
+			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
+			
+
+		}
+
+	}
+	
 	public static class CensorWalrusOption extends Option {
 		@Override
 		
@@ -185,6 +206,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 		this.options.add(new GiveItemOption());
 		this.options.add(new FillInventoryOption());
 		this.options.add(new CensorWalrusOption());
+		this.options.add(new GiveKeyItemsOption());
 		this.options.add(new CancelOption());
 
 	}

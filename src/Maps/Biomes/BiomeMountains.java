@@ -87,6 +87,7 @@ public class BiomeMountains extends AbstractLoopingMap {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = super.loadTriggers();
+        triggers.add(new Trigger(48*5,48*24, 48, 1, new MagicTreeHouse(), "magicTreeHouse"));
         return triggers;
     }
 
@@ -95,9 +96,9 @@ public class BiomeMountains extends AbstractLoopingMap {
     public ArrayList<Collectible> loadCollectables() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
         Collectible nintendoSwitch = new Collectible("nintendoSwitch.png", getMapTile(6,4).getLocation(), "Nintendo Switch", 13, false);
-        Collectible ramen = new Collectible("ramen.png", getMapTile(22,17).getLocation(), "Ramen", 12, false);
-        Collectible terminal = new Collectible("terminal.png", getMapTile(15,1).getLocation(), "Terminal", 11, false);
-        Collectible yoshiCoin = new Collectible("yoshiCoin.png", getMapTile(9,19).getLocation(), "Yoshi Coin", 2, true);
+        Collectible ramen = new Collectible("ramen.png", getMapTile(22,17).getLocation(), "bowl of Ramen", 12, false);
+        Collectible terminal = new Collectible("terminal.png", getMapTile(2,13).getLocation(), "Terminal", 11, false);
+        Collectible yoshiCoin = new Collectible("yoshiCoin.png", getMapTile(22,1).getLocation(), "Yoshi Coin", 2, true);
         nintendoSwitch.setExistenceFlag("searchForSwitch");
         ramen.setExistenceFlag("searchForRamen");
         terminal.setExistenceFlag("searchForTerminal");
