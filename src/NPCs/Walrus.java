@@ -34,19 +34,49 @@ public class Walrus extends NPC {
     @Override
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
         return new HashMap<String, Frame[]>() {{
+        	int idlespeed = 1000;
             put("STAND_LEFT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(1, 0))
+                    new FrameBuilder(spriteSheet.getSprite(0, 0),idlespeed)
+                            .withScale(3)
+                            .withBounds(7, 13, 11, 7)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(1, 1),idlespeed)
+                            .withScale(3)
+                            .withBounds(7, 13, 11, 7)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .build(),      
+                    new FrameBuilder(spriteSheet.getSprite(0, 2),idlespeed)
+                            .withScale(3)
+                            .withBounds(7, 13, 11, 7)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                            .build(),
+                    new FrameBuilder(spriteSheet.getSprite(1, 1),idlespeed)
                             .withScale(3)
                             .withBounds(7, 13, 11, 7)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
+                            
             });
             put("STAND_RIGHT", new Frame[] {
-                   new FrameBuilder(spriteSheet.getSprite(1, 0))
-                           .withScale(3)
-                           .withBounds(7, 13, 11, 7)
-                           .build()
-           });
+                    new FrameBuilder(spriteSheet.getSprite(0, 0),idlespeed)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .build(),
+            new FrameBuilder(spriteSheet.getSprite(1, 1),idlespeed)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .build(),      
+            new FrameBuilder(spriteSheet.getSprite(1, 0),idlespeed)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .build(),
+            new FrameBuilder(spriteSheet.getSprite(1, 1),idlespeed)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .build()
+                    
+    });
             put("CENSORED", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 1))
                     .withScale(3)
