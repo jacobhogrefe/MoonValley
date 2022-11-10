@@ -15,6 +15,7 @@ import Screens.PlayLevelScreen;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.CollectibleScript;
 import Scripts.TestMap.DinoScript;
+import Scripts.TestMap.ExitDinoHouseScript;
 import Scripts.TestMap.ExitHouseScript;
 import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
@@ -32,7 +33,7 @@ public class DinoMap extends Map {
     
     @Override
     public void loadScripts() { 
-        getMapTile(8, 11).setInteractScript(new ExitHouseScript());
+        getMapTile(8, 11).setInteractScript(new ExitDinoHouseScript());
     }
 
     @Override

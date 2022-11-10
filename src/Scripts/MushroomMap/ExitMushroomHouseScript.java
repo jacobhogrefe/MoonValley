@@ -4,6 +4,7 @@ import Game.Game;
 import Level.Script;
 import Level.ScriptState;
 import Maps.MushroomMap;
+import Maps.Biomes.BiomeShrooms;
 import Screens.PlayLevelScreen;
 
 // trigger script at beginning of game to set that heavy emotional plot
@@ -24,7 +25,7 @@ public class ExitMushroomHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = true;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new MushroomMap(), 700, 384);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeShrooms(), 700, 384);
 		return ScriptState.COMPLETED;
 	}
 }
