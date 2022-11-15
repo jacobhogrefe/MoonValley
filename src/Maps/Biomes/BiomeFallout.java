@@ -10,7 +10,6 @@ import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Tilesets.CommonTileset;
 import Tilesets.FalloutTileset;
-import Tilesets.Tilesets;
 import Utils.Side;
 
 /**

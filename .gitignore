@@ -10,3 +10,4 @@ TestResources/
 _site
 *.save
 .DS_Store
+.vscode/
