@@ -4,7 +4,7 @@ package Level;
 import Engine.ImageLoader;
 import GameObject.SpriteSheet;
 
-//Used for equipping clothe son cat. the int "currentWardrobe" is used by the cat class to adjust coordinate son spritesheet to clothed sprites
+//Used for equipping clothes on cat. the int "currentWardrobe" is used by the cat class to adjust coordinate son spritesheet to clothed sprites
 //Setting wardrobeChange to "true" will cause PlaylevelScreen to reinitialize the player using the new wardrobe number
 
 
