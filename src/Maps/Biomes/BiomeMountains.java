@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.Map;
+import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
 import Maps.AbstractLoopingMap;
@@ -33,20 +34,20 @@ public class BiomeMountains extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GRAPPLING_HOOK;
 
     public BiomeMountains() {
-        super("Biomes/mountains.txt", new MountainsTileset());
+        super("Biomes/mountains.txt", new MountainsTileset(),2);
     }
 
     @Override
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return new BiomeSpooky();
+                return MapEntityManager.entitymanager.getSavedMap(4);
             case RIGHT:
                 return null;
             case TOP:
                 return null;
             case BOTTOM:
-                return new BiomeDesert();
+                return MapEntityManager.entitymanager.getSavedMap(0);
             default:
                 return null;
         }

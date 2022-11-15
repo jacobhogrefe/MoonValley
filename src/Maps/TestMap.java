@@ -30,7 +30,7 @@ public class TestMap extends Map {
     private static final Supplier<Map> HouseMap = null;
 
 	public TestMap() {
-        super("test_map.txt", new CommonTileset());
+        super("test_map.txt", new CommonTileset(),11);
         this.playerStartPosition = getMapTile(17, 20).getLocation();
     }
 

@@ -6,6 +6,7 @@ import EnhancedMapTiles.Rock;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.Map;
+import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
 import Level.Trigger;
@@ -45,7 +46,7 @@ public class BiomeStart extends AbstractLoopingMap {
     private static final Supplier<Map> HouseMap = null;
 
     public BiomeStart() {
-        super("Biomes/start.txt", new CommonTileset());
+        super("Biomes/start.txt", new CommonTileset(),5);
         this.playerStartPosition = getMapTile(17, 20).getLocation();
     }
 
@@ -53,11 +54,11 @@ public class BiomeStart extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return new BiomeShrooms();
+                return MapEntityManager.entitymanager.getSavedMap(3);
             case RIGHT:
-                return new BiomeDesert();
+                return MapEntityManager.entitymanager.getSavedMap(0);
             case TOP:
-                return new BiomeSpooky();
+                return MapEntityManager.entitymanager.getSavedMap(4);
             case BOTTOM:
                 return null;
             default:

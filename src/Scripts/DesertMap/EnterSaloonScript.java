@@ -1,6 +1,7 @@
 package Scripts.DesertMap;
 
 import Game.Game;
+import Level.MapEntityManager;
 import Level.Script;
 import Level.ScriptState;
 import Maps.MushroomHomeMap;
@@ -25,7 +26,7 @@ public class EnterSaloonScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = false;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new SaloonMap(),350,450);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(MapEntityManager.entitymanager.getSavedMap(10),350,450);
 		return ScriptState.COMPLETED;
 	}
 }

@@ -12,7 +12,7 @@ import Tilesets.MushroomHomeTileset;
 public class MushroomHomeMap extends Map {
 
     public MushroomHomeMap() {
-        super("mushroom_home_map.txt", new MushroomHomeTileset());
+        super("mushroom_home_map.txt", new MushroomHomeTileset(),9);
         this.playerStartPosition = getMapTile(5, 5).getLocation();
     }
     

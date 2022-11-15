@@ -30,7 +30,7 @@ public class WalrusMap extends Map {
 	private boolean isInHouse;
 
 	public WalrusMap() {
-		super("walrus_house_map.txt", new HouseTileset());
+		super("walrus_house_map.txt", new HouseTileset(),14);
 		this.playerStartPosition = getMapTile(12, 10).getLocation();
 		isInHouse = true;
 	}

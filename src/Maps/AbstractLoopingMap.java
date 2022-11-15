@@ -16,8 +16,8 @@ import Utils.Side;
  * a new map when they reach the edge, with some caveats.
  */
 public abstract class AbstractLoopingMap extends Map {
-    public AbstractLoopingMap(String mapFileName, Tileset tileset) {
-        super(mapFileName, tileset);
+    public AbstractLoopingMap(String mapFileName, Tileset tileset, int mapID) {
+        super(mapFileName, tileset, mapID);
     }
 
     /**

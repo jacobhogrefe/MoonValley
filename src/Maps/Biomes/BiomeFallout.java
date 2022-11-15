@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MapEntityManager;
 import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
@@ -29,7 +30,7 @@ public class BiomeFallout extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GAS_MASK;
 
     public BiomeFallout() {
-        super("Biomes/fallout.txt", new FalloutTileset());
+        super("Biomes/fallout.txt", new FalloutTileset(),1);
     }
 
     @Override
@@ -38,11 +39,11 @@ public class BiomeFallout extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
-                return new BiomeSpooky();
+                return MapEntityManager.entitymanager.getSavedMap(4);
             case TOP:
                 return null;
             case BOTTOM:
-                return new BiomeShrooms();
+                return MapEntityManager.entitymanager.getSavedMap(3);
             default:
                 return null;
         }

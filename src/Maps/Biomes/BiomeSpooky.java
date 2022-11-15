@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MapEntityManager;
 import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
@@ -28,20 +29,20 @@ public class BiomeSpooky extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.PUMPKIN;
 
     public BiomeSpooky() {
-        super("Biomes/spooky.txt", new BiomeSpookyTilesets());
+        super("Biomes/spooky.txt", new BiomeSpookyTilesets(),4);
     }
 
     @Override
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return new BiomeFallout();
+                return MapEntityManager.entitymanager.getSavedMap(1);
             case RIGHT:
-                return new BiomeMountains();
+                return MapEntityManager.entitymanager.getSavedMap(2);
             case TOP:
                 return null;
             case BOTTOM:
-                return new BiomeStart();
+                return MapEntityManager.entitymanager.getSavedMap(5);
             default:
                 return null;
         }

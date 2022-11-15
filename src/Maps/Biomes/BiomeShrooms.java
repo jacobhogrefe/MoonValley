@@ -3,6 +3,7 @@ package Maps.Biomes;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MapEntityManager;
 import Level.MusicState;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
@@ -29,7 +30,7 @@ public class BiomeShrooms extends AbstractLoopingMap {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.MAGNIFYING_GLASS;
 
     public BiomeShrooms() {
-        super("mushroom_map.txt", new MushroomTileset());
+        super("mushroom_map.txt", new MushroomTileset(),3);
     }
 
     @Override
@@ -38,9 +39,9 @@ public class BiomeShrooms extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
-                return new BiomeStart();
+                return MapEntityManager.entitymanager.getSavedMap(5);
             case TOP:
-                return new BiomeFallout();
+                return MapEntityManager.entitymanager.getSavedMap(1);
             case BOTTOM:
                 return null;
             default:

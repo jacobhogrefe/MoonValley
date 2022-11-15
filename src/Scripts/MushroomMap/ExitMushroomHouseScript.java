@@ -1,9 +1,9 @@
 package Scripts.MushroomMap;
 
 import Game.Game;
+import Level.MapEntityManager;
 import Level.Script;
 import Level.ScriptState;
-import Maps.MushroomMap;
 import Maps.Biomes.BiomeShrooms;
 import Screens.PlayLevelScreen;
 
@@ -25,7 +25,7 @@ public class ExitMushroomHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = true;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeShrooms(), 700, 384);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(MapEntityManager.entitymanager.getSavedMap(3), 700, 384);
 		return ScriptState.COMPLETED;
 	}
 }

@@ -22,7 +22,7 @@ public class SaloonMap extends Map {
 
 
     public SaloonMap() {
-        super("saloon_map.txt", new SaloonTileset());
+        super("saloon_map.txt", new SaloonTileset(),10);
         this.playerStartPosition = getMapTile(5, 5).getLocation();
     }
     

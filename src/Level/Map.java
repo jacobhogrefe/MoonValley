@@ -36,6 +36,11 @@ public abstract class Map implements IntersectableRectangle {
 	// height-wise
 	protected int width;
 	protected int height;
+	
+	// Map ID, used for pulling saved maps from MapEntityManager
+	// Make sure this is a unique number for newly created maps
+	protected int mapID;
+
 
 	// the tileset this map uses for its map tiles
 	protected Tileset tileset;
@@ -67,6 +72,7 @@ public abstract class Map implements IntersectableRectangle {
 	protected ArrayList<Trigger> triggers;
 	protected ArrayList<Collectible> collectibles;
 	protected ArrayList<Furniture> furniture;
+	
 
 	protected Script activeInteractScript;
 
@@ -95,7 +101,8 @@ public abstract class Map implements IntersectableRectangle {
 	
 	public static boolean furnitureplacerequested = false;
 
-	public Map(String mapFileName, Tileset tileset) {
+	public Map(String mapFileName, Tileset tileset, int mapID) {
+		this.mapID= mapID;
 		this.mapFileName = mapFileName;
 		this.tileset = tileset;
 		setupMap();

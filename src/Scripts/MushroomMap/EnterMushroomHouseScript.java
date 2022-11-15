@@ -1,6 +1,7 @@
 package Scripts.MushroomMap;
 
 import Game.Game;
+import Level.MapEntityManager;
 import Level.Script;
 import Level.ScriptState;
 import Maps.MushroomHomeMap;
@@ -24,7 +25,7 @@ public class EnterMushroomHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = true;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new MushroomHomeMap(), 208, 144);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(MapEntityManager.entitymanager.getSavedMap(9), 208, 144);
 		return ScriptState.COMPLETED;
 	}
 }

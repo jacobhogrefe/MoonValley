@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.function.Supplier;
 
 import Level.Map;
+import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
 import Maps.AbstractLoopingMap;
@@ -45,7 +46,7 @@ public class BiomeDesert extends AbstractLoopingMap {
     public static final EnterSaloonScript enterSaloon = new EnterSaloonScript();
 
     public BiomeDesert() {
-        super("Biomes/desert.txt", new DesertTileset());
+        super("Biomes/desert.txt", new DesertTileset(),0);
     }
     
     @Override
@@ -58,11 +59,11 @@ public class BiomeDesert extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return new BiomeStart();
+                return MapEntityManager.entitymanager.getSavedMap(5);
             case RIGHT:
                 return null;
             case TOP:
-                return new BiomeMountains();
+                return MapEntityManager.entitymanager.getSavedMap(2);
             case BOTTOM:
                 return null;
             default:

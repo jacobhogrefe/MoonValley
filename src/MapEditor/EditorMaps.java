@@ -3,7 +3,6 @@ package MapEditor;
 import Level.Map;
 import Maps.HouseMap;
 import Maps.MushroomHomeMap;
-import Maps.MushroomMap;
 import Maps.SaloonMap;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
@@ -37,7 +36,6 @@ public class EditorMaps {
             add("BiomeStart");
             add("WalrusMap");
             add("DinoMap");
-            add("MushroomMap");
             add("MushroomHomeMap");
             add("Treehouse");
             add("SaloonMap");
@@ -70,8 +68,6 @@ public class EditorMaps {
             	return new WalrusMap();
             case "DinoMap":
             	return new DinoMap(); 
-            case "MushroomMap":
-            	return new MushroomMap();
             case "MushroomHomeMap":
             	return new MushroomHomeMap();
             case "Treehouse":

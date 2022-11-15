@@ -27,7 +27,7 @@ import Tilesets.HouseTileset;
 public class DinoMap extends Map {
 
     public DinoMap() {
-        super("dino_house_map.txt", new HouseTileset());
+        super("dino_house_map.txt", new HouseTileset(),6);
         this.playerStartPosition = getMapTile(12, 10).getLocation();
     }  
     
