@@ -20,7 +20,11 @@ import Maps.Biomes.BiomeSpooky;
 import Maps.Biomes.BiomeStart;
 import Registry.ItemRegistry;
 
-
+/*
+ * Initializes all maps after first map switch. Map switches will pull
+ *  maps from a static instance of this class rather than creating 
+ *  new maps at map switch as was done previously
+ */
 
 /* Map IDS:
  * Desert: 0
@@ -34,20 +38,20 @@ import Registry.ItemRegistry;
  * Title: 8
  * MushroomHouse: 9
  * Saloon: 10
- * Title (There are 2 for some reason): 11
  * MountainHome (treehouse): 12
  * WalrusHome; 13
  */
 
 public class MapEntityManager {
+
 	
 	public static MapEntityManager entitymanager = new MapEntityManager();
-	
+
 	protected ArrayList<Map> savedMaps = new ArrayList<Map>();
 	protected ArrayList<Boolean> initiatedMaps;
-	
-	MapEntityManager(){
-		
+
+	MapEntityManager() {
+
 		savedMaps.add(new BiomeDesert());
 		savedMaps.add(new BiomeFallout());
 		savedMaps.add(new BiomeMountains());
@@ -63,18 +67,16 @@ public class MapEntityManager {
 		savedMaps.add(new TreehouseMap());
 		savedMaps.add(new WalrusMap());
 
-		
 	}
-	
+
 	public ArrayList<Boolean> getInitiatedMaps() {
 		return initiatedMaps;
 	}
 
-
 	public ArrayList<Map> getSavedMaps() {
 		return savedMaps;
 	}
-	
+
 	public Map getSavedMap(int mapID) {
 		return savedMaps.get(mapID);
 	}
@@ -82,6 +84,6 @@ public class MapEntityManager {
 	public void setSavedMaps(ArrayList<Map> savedMaps) {
 		this.savedMaps = savedMaps;
 	}
-
+	
 
 }
