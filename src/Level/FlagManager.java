@@ -156,7 +156,11 @@ public class FlagManager {
     public void updateFrom(Player player) {
         this.extraSaveData.x = player.getX();
         this.extraSaveData.y = player.getY();
-        this.extraSaveData.inventory = player.getPlayerInventory();
+        this.extraSaveData.inventory = Game.getRunningInstance()
+            .getScreenCoordinator()
+            .getPlayLevelScreen()
+            .getPlayerInventory()
+            .getInventoryArray();
         this.extraSaveData.storeMap(player.getMap());
     }
 
@@ -168,7 +172,11 @@ public class FlagManager {
      * @param player the player object
      */
     public void updateTo(Player player) {
-        player.setPlayerInventory(this.extraSaveData.inventory);
+        Game.getRunningInstance()
+            .getScreenCoordinator()
+            .getPlayLevelScreen()
+            .getPlayerInventory()
+            .setInventoryArray(this.extraSaveData.inventory);
         Game.getRunningInstance()
             .getScreenCoordinator()
             .getPlayLevelScreen()
