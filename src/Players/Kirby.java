@@ -41,12 +41,12 @@ public class Kirby extends Player {
             });
 
             put("STAND_LEFT", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(CatWardrobe.currentWardrobe, 0))
+                    new FrameBuilder(spriteSheet.getSprite(0, 0), 3500)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(5, 5, 12, 7)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(CatWardrobe.currentWardrobe, 1))
+                    new FrameBuilder(spriteSheet.getSprite(1, 1), 100)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(5, 5, 12, 7)

@@ -227,6 +227,7 @@ public class PlayLevelScreen extends Screen {
 			}
 		}
 		
+		//mountains collectible quest flags
 		if(map.getMapFileName().equals("Biomes/mountains.txt")) {
 			if (playerInventory.containsItem(13)) {
 				flagManager.setFlag("foundSwitch");
