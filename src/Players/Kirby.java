@@ -32,11 +32,11 @@ public class Kirby extends Player {
             put("STAND_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0), 3500)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0, 1), 100)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build()
             });
 
@@ -44,55 +44,55 @@ public class Kirby extends Player {
                     new FrameBuilder(spriteSheet.getSprite(0, 0), 3500)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 7)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 100)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 7)
+                            .withBounds(6, 12, 12, 7)
                             .build()
             });
 
             put("WALK_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(1, 0), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 2), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 3), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 4), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 5), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 6), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 7), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 8), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 9), 75)
                             .withScale(2)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build()
             });
 
@@ -100,52 +100,52 @@ public class Kirby extends Player {
                     new FrameBuilder(spriteSheet.getSprite(1, 0), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 2), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 3), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 4), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 5), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 6), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 7), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 8), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 9), 75)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(5, 5, 12, 12)
+                            .withBounds(6, 12, 12, 7)
                             .build()
             });
         }};
