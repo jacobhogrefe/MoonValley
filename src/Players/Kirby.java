@@ -46,7 +46,7 @@ public class Kirby extends Player {
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(5, 5, 12, 7)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 100)
+                    new FrameBuilder(spriteSheet.getSprite(0, 1), 100)
                             .withScale(2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(5, 5, 12, 7)
