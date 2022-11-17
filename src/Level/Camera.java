@@ -191,7 +191,7 @@ public class Camera extends Rectangle {
 			} else if (collectible.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
 				collectible.setMapEntityStatus(MapEntityStatus.INACTIVE);
 			} else if (collectible.getMapEntityStatus() == MapEntityStatus.REMOVED) {
-				map.getCollectables().remove(i);
+				map.getFurniture().remove(i);
 			}
 		}
 		return activeCollectables;
@@ -206,7 +206,7 @@ public class Camera extends Rectangle {
 
 			if (isMapEntityActive(furniture)) {
 				activeFurniture.add(furniture);
-				if (furniture.mapEntityStatus == MapEntityStatus.INACTIVE) {
+				if (furniture.mapEntityStatus == MapEntityStatus.INACTIVE ) {
 					furniture.setMapEntityStatus(MapEntityStatus.ACTIVE);
 				}
 			} else if (furniture.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
@@ -392,8 +392,8 @@ public class Camera extends Rectangle {
 			if (containsDraw(furniture) && furniture.isTethered()) {
 
 				if (player.getPlayerState() == PlayerState.WALKING) {
-					furniture.setX(player.getX());
-					furniture.setY(player.getY() - 40);
+					furniture.setX(player.getX()+15);
+					furniture.setY(player.getY() - 45);
 				}
 				
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {

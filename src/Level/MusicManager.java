@@ -13,7 +13,7 @@ public class MusicManager {
     protected Sound startHome = new Sound("ariaMath.wav", true);
     protected Sound desert = new Sound("GhostRiders.wav", true);
     protected Sound desertHome = new Sound(null, true);
-    protected Sound spooky = new Sound(null, true);
+    protected Sound spooky = new Sound("BiomeSpookymusic.wav", true);
     protected Sound spookyHome = new Sound(null, true);
     protected Sound toxic = new Sound(null, true);
     protected Sound toxicHome = new Sound(null, true);
