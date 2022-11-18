@@ -4,17 +4,13 @@ import java.util.Stack;
 import java.awt.Color;
 import Engine.GlobalKeyCooldown;
 import Engine.GraphicsHandler;
-import Engine.ImageLoader;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
 import Engine.Screen;
 import Game.ScreenCoordinator;
-import GameObject.SpriteSheet;
 import Level.*;
-import Maps.Biomes.BiomeSpooky;
 import Maps.HouseMap;
-import Maps.Biomes.BiomeStart;
 import NPCs.Cloud;
 import NPCs.Cloud2;
 import NPCs.Cloud3;
@@ -97,7 +93,7 @@ public class PlayLevelScreen extends Screen {
 		map.setFlagManager(flagManager);
 
 		// setup player
-		this.player = new Kirby(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+		this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
 		this.musicManager.setPlayer(this.player);
 		this.player.setWalkingSound(musicManager.getWalkingSound());
 		this.player.setMap(map);
