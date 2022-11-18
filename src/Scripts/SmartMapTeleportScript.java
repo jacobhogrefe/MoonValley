@@ -93,7 +93,7 @@ public class SmartMapTeleportScript extends MapTeleportScript {
         if (this.requiredItem != null) {
             //checks if the player has the right item
             if (!Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().getPlayerInventory().containsItem(this.requiredItem)) {
-                //shows the textbox indicating the correct item needed
+                //shows the textbox indicating the correct item needed and moves the player
                 start();
                 if (!isTextboxQueueEmpty()) {
                     return ScriptState.RUNNING;
