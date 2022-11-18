@@ -25,6 +25,28 @@ public class SmartMapTeleportScript extends MapTeleportScript {
         this.side = side;
         this.requiredItem = requiredItem;
     }
+
+    @Override
+    protected void setup() {
+        lockPlayer();
+        showTextbox();
+        addTextToTextboxQueue("Hmm, maybe I should find a " + this.requiredItem.toString().replace("Item ", "") + "\nto access this area.");
+        if (side == Side.LEFT) {
+            player.moveRight(1.1f);
+        } else if (side == Side.RIGHT) {
+            player.moveLeft(1.1f);
+        } else if (side == Side.TOP) {
+            player.moveDown(1.1f);
+        } else if (side == Side.BOTTOM) {
+            player.moveUp(1.1f);
+        }
+    }
+
+    @Override
+    protected void cleanup() {
+        unlockPlayer();
+        hideTextbox();
+    }
     
     @Override
     protected float getToX() {
@@ -67,18 +89,18 @@ public class SmartMapTeleportScript extends MapTeleportScript {
     @Override
     protected ScriptState execute() {
         if (this.requiredItem != null) {
-            if (!Game.getRunningInstance()
-                .getScreenCoordinator()
-                .getPlayLevelScreen()
-                .getPlayerInventory()
-                .containsItem(this.requiredItem)
-            ) {
-                // TODO: warn user they don't have required item
-                System.out.println("User lacking " + this.requiredItem.toString());
-                return ScriptState.COMPLETED;
+            if (!Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().getPlayerInventory().containsItem(this.requiredItem)) {
+                start();
+                if (!isTextboxQueueEmpty()) {
+                    return ScriptState.RUNNING;
+                }
+            } else {
+                return super.execute();
             }
+        } else if (this.requiredItem == null) {
+            return super.execute();
         }
-
-        return super.execute();
+        end();
+        return ScriptState.COMPLETED;
     }
 }
