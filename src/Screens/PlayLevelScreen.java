@@ -152,8 +152,6 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void update() {
-		// updates the music based on location
-		
 		if (CatWardrobe.wardrobeChange == true) {
 			
 			System.out.println("Changing clothes");
@@ -162,8 +160,6 @@ public class PlayLevelScreen extends Screen {
 			
 			CatWardrobe.wardrobeChange = false;
 		}
-		
-		musicManager.updateMusic();
 		// based on screen state, perform specific actions
 		// if level is "running" update player and map to keep game logic for the
 		// platformer level going
@@ -408,6 +404,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setX(x);
 		this.player.setY(y);
 		this.musicManager.setMusicState(map.getMusicState());
+		this.musicManager.updateMusic();
 		this.reinitializeMap();
 		this.map.update(this.player);
 	}
