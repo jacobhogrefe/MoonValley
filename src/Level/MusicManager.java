@@ -26,30 +26,34 @@ public class MusicManager {
     //If each biome would like a different walking sound add them here, and set the walking sound in the appropriate switch statement
     protected Sound grassWalking = new Sound("walkingGrass.wav", true);
     protected Sound stoneWalking = new Sound("walkingStone.wav", true);
+    protected Sound woodWalking = new Sound("walkingWood.wav", true);
+    protected Sound sandWalking = new Sound("sandWalking.wav", true);
 
     //sets the previous and current sounds to the same thing on creation (this makes it easier to check when the music state has changed)
     public MusicManager() {
-        previousMusicState = MusicState.START;
-        musicState = MusicState.START;
-        previousSound = start;
-        currentSound = start;
-        previousWalkingSound = grassWalking;
-        walkingSound = grassWalking;
+        previousMusicState = MusicState.START_HOME;
+        musicState = MusicState.START_HOME;
+        previousSound = startHome;
+        currentSound = startHome;
+        previousWalkingSound = woodWalking;
+        walkingSound = woodWalking;
     }
 
-    //checks if the current music state is different from the previous music state
-    //will play the appropriate music depending on the case, and will pause and restart the previous music 
-    //if desired, will change the player's walking sound depending on the location
+    /*
+     * checks if the current music state is different from the previous music state
+     * will play the appropriate music depending on the case, and will pause and restart the previous music.
+     * if desired, it will change the player's walking sound depending on the location
+     */
     public void updateMusic() {
         if (previousMusicState != musicState) {
             switch (musicState) {
                 case DESERT:
                     currentSound = desert;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = sandWalking;
                     break;
                 case DESERT_HOME:
                     currentSound = desertHome;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = woodWalking;
                     break;
                 case MOUNTAINS:
                     currentSound = mountains;
@@ -57,23 +61,23 @@ public class MusicManager {
                     break;
                 case MOUNTAINS_HOME:
                     currentSound = mountainsHome;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = woodWalking;
                     break;
                 case MUSHROOM:
                     currentSound = mushroom;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = grassWalking;
                     break;
                 case MUSHROOM_HOME:
                     currentSound = mushroomHome;
-                    walkingSound = stoneWalking;
+                    walkingSound = woodWalking;
                     break;
                 case SPOOKY:
                     currentSound = spooky;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = grassWalking;
                     break;
                 case SPOOKY_HOME:
                     currentSound = spookyHome;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = stoneWalking;
                     break;
                 case START:
                     currentSound = start;
@@ -81,7 +85,7 @@ public class MusicManager {
                     break;
                 case START_HOME:
                     currentSound = startHome;
-                    //walkingSound = PREFERRED_WALKING_SOUND;
+                    walkingSound = woodWalking;
                     break;
                 case TOXIC:
                     currentSound = toxic;
@@ -93,6 +97,7 @@ public class MusicManager {
                     break;
                 case SALOON:
                 	currentSound = saloon;
+                    walkingSound = woodWalking;
                 default:
                     break;
             }
@@ -106,20 +111,30 @@ public class MusicManager {
         }
     }
 
-    //sets the music state to change the music
+    /*
+     * sets the music state which changes the music
+     */
     public void setMusicState(MusicState musicState) {
         this.musicState = musicState;
     }
 
-    //pauses the current music
+    /*
+     * gets the current sound playing (used in the collectible script)
+     */
     public Sound getCurrentSound() {
         return currentSound;
     }
 
+    /*
+     * sets the player to the musicManager
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /*
+     * gets the walking sound of the current biome
+     */
     public Sound getWalkingSound() {
         return walkingSound;
     }
