@@ -26,6 +26,7 @@ public class SmartMapTeleportScript extends MapTeleportScript {
         this.requiredItem = requiredItem;
     }
 
+    //gets the side of the map the trigger is on and moves the player the opposite direction
     @Override
     protected void setup() {
         lockPlayer();
@@ -86,6 +87,8 @@ public class SmartMapTeleportScript extends MapTeleportScript {
         }
     }
 
+    //checks if the required item is null, if it is it'll teleport to the right map (start map)
+    //if not, it'll check if the player has the item and if they don't it'll show the textbox and if they do it'll teleport them to the right area
     @Override
     protected ScriptState execute() {
         if (this.requiredItem != null) {
