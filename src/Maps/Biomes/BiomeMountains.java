@@ -8,6 +8,7 @@ import Level.Map;
 import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
+import Level.Player;
 import Maps.AbstractLoopingMap;
 import NPCs.Mario;
 import Registry.ItemRegistry;
@@ -41,13 +42,13 @@ public class BiomeMountains extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return MapEntityManager.entitymanager.getSavedMap(4);
+                return Player.MapEntityManager.getSavedMap(4);
             case RIGHT:
                 return null;
             case TOP:
                 return null;
             case BOTTOM:
-                return MapEntityManager.entitymanager.getSavedMap(0);
+                return Player.MapEntityManager.getSavedMap(0);
             default:
                 return null;
         }

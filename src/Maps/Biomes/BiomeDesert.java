@@ -7,6 +7,7 @@ import Level.Map;
 import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
+import Level.Player;
 import Maps.AbstractLoopingMap;
 import NPCs.Cattle;
 import NPCs.Dinosaur;
@@ -59,11 +60,11 @@ public class BiomeDesert extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return MapEntityManager.entitymanager.getSavedMap(5);
+                return Player.MapEntityManager.getSavedMap(5);
             case RIGHT:
                 return null;
             case TOP:
-                return MapEntityManager.entitymanager.getSavedMap(2);
+                return Player.MapEntityManager.getSavedMap(2);
             case BOTTOM:
                 return null;
             default:

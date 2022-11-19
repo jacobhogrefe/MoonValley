@@ -1,6 +1,7 @@
 package Scripts.TestMap;
 
 import Game.Game;
+import Level.Player;
 import Level.Script;
 import Level.ScriptState;
 import Maps.TestMap;
@@ -24,7 +25,7 @@ public class ExitDinoHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = false;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(new BiomeStart(), 800, 220);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(5), 800, 220);
 		return ScriptState.COMPLETED;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import Level.Map;
 import Level.MusicState;
+import Level.Player;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -35,13 +36,13 @@ public class BiomeSpooky extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return new BiomeFallout();
+                return Player.MapEntityManager.getSavedMap(1);
             case RIGHT:
-                return new BiomeMountains();
+                return Player.MapEntityManager.getSavedMap(2);
             case TOP:
                 return null;
             case BOTTOM:
-                return new BiomeStart();
+                return Player.MapEntityManager.getSavedMap(0);
             default:
                 return null;
         }

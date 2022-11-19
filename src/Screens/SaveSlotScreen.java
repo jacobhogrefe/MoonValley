@@ -60,13 +60,11 @@ public class SaveSlotScreen extends AbstractMenuScreen {
             
             try {
                 playLevelScreen.flagManager.loadFromSlot(this.slot);
+                playLevelScreen.flagManager.updateTo(playLevelScreen.player);
             } catch (Exception exception) {
-                exception.printStackTrace();
+                //exception.printStackTrace();
                 // TODO: warn user?
             }
-
-            playLevelScreen.flagManager.updateTo(playLevelScreen.player);
-
             parent.screenCoordinator.pop(parent);
         }
     }

@@ -2,6 +2,7 @@ package Scripts.TestMap;
 
 import Game.Game;
 import Level.MapEntityManager;
+import Level.Player;
 import Level.Script;
 import Level.ScriptState;
 import Maps.TestMap;
@@ -25,7 +26,7 @@ public class ExitHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = false;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(MapEntityManager.entitymanager.getSavedMap(5), 825, 950);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(5), 825, 950);
 		return ScriptState.COMPLETED;
 	}
 }

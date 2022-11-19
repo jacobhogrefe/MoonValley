@@ -1,5 +1,6 @@
 package Maps.Biomes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.function.Supplier;
 import EnhancedMapTiles.Rock;
@@ -9,6 +10,7 @@ import Level.Map;
 import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
+import Level.Player;
 import Level.Trigger;
 import Maps.AbstractLoopingMap;
 import NPCs.Dinosaur;
@@ -41,7 +43,7 @@ import Utils.Side;
  * |            |            |            |
  * +------------+------------+------------+
  */
-public class BiomeStart extends AbstractLoopingMap {
+public class BiomeStart extends AbstractLoopingMap implements Serializable {
     public static final Item REQUIRED_ITEM = null;
     private static final Supplier<Map> HouseMap = null;
 
@@ -54,11 +56,11 @@ public class BiomeStart extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return MapEntityManager.entitymanager.getSavedMap(3);
+                return Player.MapEntityManager.getSavedMap(3);
             case RIGHT:
-                return MapEntityManager.entitymanager.getSavedMap(0);
+                return Player.MapEntityManager.getSavedMap(0);
             case TOP:
-                return MapEntityManager.entitymanager.getSavedMap(4);
+                return Player.MapEntityManager.getSavedMap(4);
             case BOTTOM:
                 return null;
             default:

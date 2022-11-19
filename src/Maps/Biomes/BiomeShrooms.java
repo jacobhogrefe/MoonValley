@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import Level.Map;
 import Level.MapEntityManager;
 import Level.MusicState;
+import Level.Player;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -39,9 +40,9 @@ public class BiomeShrooms extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
-                return MapEntityManager.entitymanager.getSavedMap(5);
+                return Player.MapEntityManager.getSavedMap(5);
             case TOP:
-                return MapEntityManager.entitymanager.getSavedMap(1);
+                return Player.MapEntityManager.getSavedMap(1);
             case BOTTOM:
                 return null;
             default:

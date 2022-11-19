@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import Level.Map;
 import Level.MapEntityManager;
 import Level.MusicState;
+import Level.Player;
 import Maps.AbstractLoopingMap;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
@@ -38,11 +39,11 @@ public class BiomeFallout extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
-                return MapEntityManager.entitymanager.getSavedMap(4);
+                return Player.MapEntityManager.getSavedMap(4);
             case TOP:
                 return null;
             case BOTTOM:
-                return MapEntityManager.entitymanager.getSavedMap(3);
+                return Player.MapEntityManager.getSavedMap(3);
             default:
                 return null;
         }
