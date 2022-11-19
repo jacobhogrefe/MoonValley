@@ -732,6 +732,8 @@ public abstract class Map implements IntersectableRectangle {
 	public Rectangle getIntersectRectangle() {
 		return new Rectangle(this.startBoundX, this.endBoundY, this.getWidthPixels(), this.getHeightPixels());
 	}
-	
 
+    public int getMapID() {
+        return mapID;
+    }
 }
