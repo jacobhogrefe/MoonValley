@@ -2,17 +2,18 @@ package Maps.Biomes;
 
 import java.util.ArrayList;
 
+import GameObject.Rectangle;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.Map;
-import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
 import Level.Player;
-import Maps.AbstractLoopingMap;
+import Level.Trigger;
 import NPCs.Mario;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
+import Scripts.SmartMapTeleportScript;
 import Scripts.BiomeMountains.EnterTreehouseScript;
 import Scripts.BiomeMountains.MarioScript;
 import Tilesets.MountainsTileset;
@@ -31,7 +32,7 @@ import Utils.Side;
  * |            |            |            |
  * +------------+------------+------------+
  */
-public class BiomeMountains extends AbstractLoopingMap {
+public class BiomeMountains extends Map {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GRAPPLING_HOOK;
 
     public BiomeMountains() {
@@ -91,7 +92,23 @@ public class BiomeMountains extends AbstractLoopingMap {
     //     triggers.add(new Trigger(48*5,48*24, 48, 1, new MagicTreeHouse(), "magicTreeHouse"));
     //     return triggers;
     // }
+    @Override
+    public ArrayList<Trigger> loadTriggers() {
+        ArrayList<Trigger> triggers = super.loadTriggers();
+        for (Side edge : Side.values()) {
+            Rectangle bounds = edge.getBorderWithWidth(this.getIntersectRectangle(), 16);
+            Trigger trigger = new Trigger(
+                (int) bounds.getX(),
+                (int) bounds.getY(),
+                bounds.getWidth(),
+                bounds.getHeight(),
+                new SmartMapTeleportScript(() -> this.createBorderingMap(edge), edge, this.getRequiredItem(edge))
+            );
 
+            triggers.add(trigger);
+        }
+        return triggers;
+    }
 
     @Override
     public ArrayList<Collectible> loadCollectables() {

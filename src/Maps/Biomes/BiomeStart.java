@@ -1,23 +1,21 @@
 package Maps.Biomes;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.function.Supplier;
 import EnhancedMapTiles.Rock;
+import GameObject.Rectangle;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.Map;
-import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
 import Level.Player;
 import Level.Trigger;
-import Maps.AbstractLoopingMap;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Scripts.SimpleTextScript;
+import Scripts.SmartMapTeleportScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.DinoScript2;
 import Scripts.TestMap.EnterDinoHouseScript;
@@ -43,9 +41,8 @@ import Utils.Side;
  * |            |            |            |
  * +------------+------------+------------+
  */
-public class BiomeStart extends AbstractLoopingMap implements Serializable {
+public class BiomeStart extends Map {
     public static final Item REQUIRED_ITEM = null;
-    private static final Supplier<Map> HouseMap = null;
 
     public BiomeStart() {
         super("Biomes/start.txt", new CommonTileset(),5);
@@ -108,8 +105,21 @@ public class BiomeStart extends AbstractLoopingMap implements Serializable {
     }
 
     @Override
-    public ArrayList<Trigger> loadTriggers() {
+    protected ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = super.loadTriggers();
+
+        for (Side edge : Side.values()) {
+            Rectangle bounds = edge.getBorderWithWidth(this.getIntersectRectangle(), 16);
+            Trigger trigger = new Trigger(
+                (int) bounds.getX(),
+                (int) bounds.getY(),
+                bounds.getWidth(),
+                bounds.getHeight(),
+                new SmartMapTeleportScript(() -> this.createBorderingMap(edge), edge, this.getRequiredItem(edge))
+            );
+
+            triggers.add(trigger);
+        }
         triggers.add(new Trigger(500, 250, 20, 20, new foundMagnifying()));
 //        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
 //        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
