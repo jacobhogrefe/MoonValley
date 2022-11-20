@@ -30,5 +30,12 @@ public class FurnitureRegistry {
 		catalog.add(new Furniture("desk.png", defaultPoint, "Desk", true, false, 16));
 	}
 
-
+	public Furniture getFurnitureFromID(int id) {
+		for (Furniture furniture : catalog) {
+			if (furniture.getItemNumber() == id) {
+				return furniture;
+			} 
+		}
+		return null;
+	}
 }
