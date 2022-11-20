@@ -2,6 +2,8 @@ package Maps;
 
 import java.util.function.Supplier;
 
+import javax.swing.ImageIcon;
+
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.ImageEffect;
@@ -15,7 +17,7 @@ import Utils.Point;
 import Utils.Side;
 
 // Represents the map that is used as a background for the main menu and credits menu screen
-public class moonValleyTitle extends AbstractLoopingMap {
+public class moonValleyTitle extends Map {
 
 	 private Sprite cat;
 
@@ -32,16 +34,5 @@ public class moonValleyTitle extends AbstractLoopingMap {
     public void draw(GraphicsHandler graphicsHandler) {
         super.draw(graphicsHandler);
    
-    }
-
-    @Override
-    public Map createBorderingMap(Side edge) {
-        // Loop to the same map
-        return new moonValleyTitle();
-    }
-
-    @Override
-    public Item getRequiredItem(Side edge) {
-        return ItemRegistry.singleton.YOSHI_COIN;
     }
 }
