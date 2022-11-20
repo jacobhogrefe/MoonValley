@@ -2,25 +2,17 @@ package Screens;
 
 import java.util.Stack;
 import java.awt.Color;
-import Engine.GlobalKeyCooldown;
-import Engine.GraphicsHandler;
-import Engine.Key;
-import Engine.KeyLocker;
-import Engine.Keyboard;
-import Engine.Screen;
+import Engine.*;
 import Game.ScreenCoordinator;
 import Level.*;
 import Maps.HouseMap;
 import NPCs.Cloud;
 import NPCs.Cloud2;
 import NPCs.Cloud3;
-import Players.Cat;
-import Players.Kirby;
+import Players.*;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import Utils.Point;
-import Engine.Clock;
-import Engine.Config;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -88,8 +80,8 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("desertReward",false);
 
 		// define/setup map
-		this.map = new HouseMap();
-		// map.reset();
+		this.map = Player.MapEntityManager.getSavedMap(7);
+		isInHouse = true;
 		map.setFlagManager(flagManager);
 
 		// setup player
@@ -383,6 +375,14 @@ public class PlayLevelScreen extends Screen {
 	public void goBackToMenu() {
 		musicManager.getCurrentSound().stop();
 		screenCoordinator.pop(this);
+	}
+
+	public MusicManager getMusicManager() {
+		return this.musicManager;
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 
 	// This enum represents the different states this screen can be in
