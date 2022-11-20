@@ -1,11 +1,9 @@
 package Scripts.BiomeMountains;
 
 import Game.Game;
-import Level.MapEntityManager;
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.TreehouseMap;
 import Screens.PlayLevelScreen;
 
 public class EnterTreehouseScript extends Script {

@@ -1,7 +1,7 @@
 package Scripts.BiomeMountains;
 
 import Game.Game;
-import Level.MapEntityManager;
+
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
