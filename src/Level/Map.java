@@ -8,8 +8,11 @@ import GameObject.IntersectableRectangle;
 import GameObject.Rectangle;
 import HouseCustomization.FurnitureRegistry;
 import InventoryModifier.InventoryGrid;
+import Registry.ItemRegistry.Item;
 import Utils.Direction;
 import Utils.Point;
+import Utils.Side;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -90,6 +93,9 @@ public abstract class Map implements IntersectableRectangle {
 
 	// music state for each map
 	protected MusicState musicState;
+
+	// required Item for each map
+	protected Item requiredItem;
 
 	// Items that have been collected or given to the player that need to be placed
 	// into inventory. This is where items "go" for a brief moment while being
@@ -736,4 +742,20 @@ public abstract class Map implements IntersectableRectangle {
     public int getMapID() {
         return mapID;
     }
+
+	public Map getBorderingMap(Side side) {
+		return this;
+	}
+
+	public Map createBorderingMap(Side side) {
+		return this;
+	}
+
+	public Item getRequiredItem(Side side) {
+		return this.requiredItem;
+	}
+
+	public boolean hasFurniture() {
+		return !furniture.isEmpty();
+	}
 }
