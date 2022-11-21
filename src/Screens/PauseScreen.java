@@ -96,7 +96,9 @@ public class PauseScreen extends AbstractMenuScreen {
         this.options.add(new ResumeOption());
         this.options.add(new ControlsOption());
         this.options.add(new SaveOption());
-        this.options.add(new LoadOption());
+        if (SaveSlotScreen.saveSlot || SaveSlotScreen.saveSlot1 || SaveSlotScreen.saveSlot2) {
+            this.options.add(new LoadOption());
+        }
         this.options.add(new QuitOption());
     }
 
