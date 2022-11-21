@@ -27,9 +27,6 @@ public class GamePanel extends JPanel {
 	private GraphicsHandler graphicsHandler;
 
 	private boolean doPaint = false;
-	private boolean isInventoryOpen = false;
-	private KeyLocker keyLocker = new KeyLocker();
-	private static final Key inventoryKey = Key.I;
 	public static boolean clickToProcess = false;
 	public static Point lastClick;
 	public static Point mousePosition;
