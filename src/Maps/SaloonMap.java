@@ -48,10 +48,10 @@ public class SaloonMap extends Map {
     public ArrayList<Furniture> loadFurniture() {
         ArrayList<Furniture> furniture = new ArrayList<>();   
         
-        furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
+        furniture.add(FurnitureRegistry.catalog.get(0));
         furniture.get(0).setX(600);
         furniture.get(0).setY(150);
-     
+        
         return furniture;
     }
     
