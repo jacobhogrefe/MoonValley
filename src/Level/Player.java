@@ -361,14 +361,18 @@ public abstract class Player extends GameObject {
 
         /**
          * Gets the furniture location, ID, and map in which the furniture was placed.
-         * Each string is formatted as mapID,furnitureID,furnitureX,furnitureY.
+         * Each string is formatted as {@code mapID,furnitureID,furnitureX,furnitureY}.
          * @return String representations of all the  furniture within all the maps
          * @author higgins!
          */
         public static ArrayList<String> getFurniture() {
+            //list of all the strings the furniture will be represented as
             ArrayList<String> furnitureLocation = new ArrayList<>();
+            //for each of the maps in the savedMaps it'll loop over
             for (Map map : savedMaps) {
+                //checks if the map has furniture or not
                 if (map.hasFurniture()) {
+                    //loops over the furniture to get the mapID,furnitureID,furnitureX,furnitureY and adds it to the list
                     for (int i = 0; i < map.getFurniture().size(); i++) {
                         furnitureLocation.add(
                             Integer.toString(map.getMapID()) + "," + 
@@ -378,22 +382,27 @@ public abstract class Player extends GameObject {
                     }
                 }
             }
+            //returns list of strings
             return furnitureLocation;
         }
 
         /**
          * Parses through each string to obtain the necessary information of where the current furniture in the maps is located.
-         * Each string is formatted as mapID,furnitureID,furnitureX,furnitureY.
+         * Each string is formatted as {@code mapID,furnitureID,furnitureX,furnitureY}.
          * @param furnitureToSet String representations of all the furniture from a previous save
          * @author higgins!
          */
         public static void setFurniture(ArrayList<String> furnitureToSet) {
+            //loops over the list of strings provided
             for (String lineOfSave : furnitureToSet) {
+                //splits the string at the commas
                 String[] tempLine = lineOfSave.split(",");
+                //parses the information through these methods to return specified values
                 int currentMapNumber = Integer.parseInt(tempLine[0]);
                 int furnitureID = Integer.parseInt(tempLine[1]);
                 float x = Float.parseFloat(tempLine[2]);
                 float y = Float.parseFloat(tempLine[3]);
+                //if the furniture doesn't exist on the map, it'll set the furniture to the map in the specified location
                 if (!getSavedMap(currentMapNumber).getFurniture().contains(FurnitureRegistry.getFurnitureFromID(furnitureID))) {
                     Furniture furnitureToAdd = FurnitureRegistry.getFurnitureFromID(furnitureID);
                     furnitureToAdd.setX(x);

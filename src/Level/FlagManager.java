@@ -66,9 +66,13 @@ public class FlagManager {
      * @author higgins!
      */
     public void overwriteFlags(ArrayList<String> flagsToClear) {
+        //clears the flags currently set in the FlagManager
         flags.clear();
+        //loops over the list to extract the correct data
         for (int i = 0; i < flagsToClear.size(); i++) {
+            //splits at the comma to differentiate between the key and value
             String[] tempString = flagsToClear.get(i).split(",");
+            //adds the parsed flag and boolean value to the FlagManager
             flags.put(tempString[0], Boolean.parseBoolean(tempString[1]));
         }
     }
@@ -79,9 +83,12 @@ public class FlagManager {
      * @author higgins!
      */
     public ArrayList<String> flagsToString() {
+        //list of strings the flags will be represented as
         ArrayList<String> flagsToLoad = new ArrayList<>();
+        //for each flag, it'll set add a string containing the key,value
         flags.forEach(
             (key, value) -> flagsToLoad.add(key + "," + value));
+        //returns the list of strings
         return flagsToLoad;
     }
 
