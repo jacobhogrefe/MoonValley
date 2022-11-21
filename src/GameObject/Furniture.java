@@ -2,6 +2,8 @@ package GameObject;
 
 import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
+
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import Level.MapEntity;
@@ -33,7 +35,6 @@ public class Furniture extends MapEntity {
 		this.itemNumber = itemNumber;
 		this.indoorItem = indoorItem;
 		this.outdoorItem = outdoorItem;
-
 	}
 
 	@Override
@@ -74,6 +75,10 @@ public class Furniture extends MapEntity {
 
 	public void setTetherStartY(float tetherStartY) {
 		this.tetherStartY = tetherStartY;
+	}
+
+	public int getItemNumber() {
+		return this.itemNumber;
 	}
 
 }
