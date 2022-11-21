@@ -23,9 +23,12 @@ public class FurnitureRegistry {
 		new Furniture("desk.png", defaultPoint, "Desk", true, false, 16)
 	));
 
-	public FurnitureRegistry() {}
-
-	//Returns the furniture item of a certain ID
+	/**
+	 * Gets a piece of furniture from the catalog through the ID.
+	 * @param id ID of furniture item
+	 * @return Requested furniture item
+	 * @author higgins!
+	 */
 	public static Furniture getFurnitureFromID(int id) {
 		for (Furniture furniture : catalog) {
 			if (furniture.getItemNumber() == id) {

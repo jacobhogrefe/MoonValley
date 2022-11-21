@@ -299,7 +299,11 @@ public abstract class Player extends GameObject {
             moveX(speed);
         }
     }
-
+    /**
+     * Class that contains all of the intiated maps that will appear within the game.
+     * @author Matt Zingarella
+     * @author higgins!
+     */
     public static class MapEntityManager {
         /* Map IDS:
         * Desert: 0
@@ -330,29 +334,42 @@ public abstract class Player extends GameObject {
             new SaloonMap(),
             new moonValleyTitle(),
             new TreehouseMap(),
-            new WalrusMap()));
-        protected static ArrayList<Boolean> initiatedMaps;
+            new WalrusMap()
+        ));
 
-        MapEntityManager() {}
-
-        public static ArrayList<Boolean> getInitiatedMaps() {
-            return initiatedMaps;
-        }
-
+        /**
+         * Gets the arrayList of all the maps that are in the game.
+         * @author Matt Zingarella
+         */
         public static ArrayList<Map> getSavedMaps() {
             return savedMaps;
         }
 
+        /**
+         * Gets a specific map from the arrayList of all maps in the game.
+         * @param mapID ID of the map needed
+         * @return specified map from ID
+         * @author Matt Zingarella
+         */
         public static Map getSavedMap(int mapID) {
             return savedMaps.get(mapID);
         }
 
+        /**
+         * Sets all the saved maps to a new arrayList of maps.
+         * @param newSavedMaps
+         * @author Matt Zingarella
+         */
         public static void setSavedMaps(ArrayList<Map> newSavedMaps) {
             savedMaps = newSavedMaps;
         }
 
-        //checks if the map has furniture in them, and gets their information in the following format
-        //mapID:furnitureID(furnitureX,furnitureY)
+        /**
+         * Gets the furniture location, ID, and map in which the furniture was placed.
+         * Each string is formatted as mapID:furnitureID(furnitureX,furnitureY).
+         * @return String representations of all the  furniture within all the maps
+         * @author higgins!
+         */
         public static ArrayList<String> getFurniture() {
             ArrayList<String> furnitureLocation = new ArrayList<>();
             for (Map map : savedMaps) {
@@ -369,7 +386,12 @@ public abstract class Player extends GameObject {
             return furnitureLocation;
         }
 
-        //parses through each string to obtain the necessary information of where the current furniture in the maps is located
+        /**
+         * Parses through each string to obtain the necessary information of where the current furniture in the maps is located.
+         * Each string is formatted as mapID:furnitureID(furnitureX,furnitureY).
+         * @param furnitureToSet String representations of all the furniture from a previous save
+         * @author higgins!
+         */
         public static void setFurniture(ArrayList<String> furnitureToSet) {
             for (String lineOfSave : furnitureToSet) {
                 int currentMapNumber = Integer.parseInt(lineOfSave.split(":")[0]);
