@@ -160,7 +160,6 @@ public class InventoryGrid {
 			System.out.println("You clicked Place!");
 			furnituretoplace = ItemRegistry.singleton.items.get(selectedItem).furnitureNumber;
 			Map.furnitureplacerequested = true;
-
 		}
 
 	}
@@ -175,7 +174,6 @@ public class InventoryGrid {
 		System.out.println("shouldHighlightRemove " + shouldHighlightRemove);
 		System.out.println(" ");
 		System.out.println(" ");
-
 	}
 
 	// Really a lot more than a draw method, does most of the work
