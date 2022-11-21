@@ -3,12 +3,22 @@ package Level;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
+import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
+import HouseCustomization.FurnitureRegistry;
 import Utils.Direction;
+import Utils.Point;
+
+import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import Utils.Sound;
+import Maps.Biomes.*;
+import Maps.*;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -44,8 +54,6 @@ public abstract class Player extends GameObject {
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key MOVE_DOWN_KEY_ALT = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
-    protected Key QUICKSAVE_KEY = Key.N;
-    protected Key QUICKLOAD_KEY = Key.M;
 
     //Sound that plays for a player walking
     protected Sound walkingSound;
@@ -98,24 +106,6 @@ public abstract class Player extends GameObject {
                 playerInteracting();
                 walkingSound.pause();
                 break;
-        }
-
-        if (!keyLocker.isKeyLocked(QUICKSAVE_KEY) && Keyboard.isKeyDown(QUICKSAVE_KEY)) {
-            this.map.flagManager.updateFrom(this);
-
-            try {
-                this.map.flagManager.saveToSlot(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (!keyLocker.isKeyLocked(QUICKLOAD_KEY) && Keyboard.isKeyDown(QUICKLOAD_KEY)) {
-            try {
-                this.map.flagManager.loadFromSlot(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            this.map.flagManager.updateTo(this);
         }
     }
 
@@ -308,5 +298,89 @@ public abstract class Player extends GameObject {
         else if (direction == Direction.RIGHT) {
             moveX(speed);
         }
+    }
+
+    public static class MapEntityManager {
+        /* Map IDS:
+        * Desert: 0
+        * Wasteland; 1
+        * Mountains: 2
+        * Mushroom: 3
+        * Halloween: 4
+        * Start: 5
+        * DinoHouse: 6
+        * StartHouse: 7
+        * Title: 8
+        * MushroomHouse: 9
+        * Saloon: 10
+        * MountainHome (treehouse): 12
+        * WalrusHome; 13
+        */
+        protected static ArrayList<Map> savedMaps = new ArrayList<> (Arrays.asList(
+            new BiomeDesert(),
+            new BiomeFallout(),
+            new BiomeMountains(),
+            new BiomeShrooms(),
+            new BiomeSpooky(),
+            new BiomeStart(),
+            new DinoMap(),
+            new HouseMap(),
+            new TitleScreenMap(),
+            new MushroomHomeMap(),
+            new SaloonMap(),
+            new moonValleyTitle(),
+            new TreehouseMap(),
+            new WalrusMap()));
+        protected static ArrayList<Boolean> initiatedMaps;
+
+        MapEntityManager() {}
+
+        public static ArrayList<Boolean> getInitiatedMaps() {
+            return initiatedMaps;
+        }
+
+        public static ArrayList<Map> getSavedMaps() {
+            return savedMaps;
+        }
+
+        public static Map getSavedMap(int mapID) {
+            return savedMaps.get(mapID);
+        }
+
+        public static void setSavedMaps(ArrayList<Map> newSavedMaps) {
+            savedMaps = newSavedMaps;
+        }
+
+        //checks if the map has furniture in them, and gets their information in the following format
+        //mapID:furnitureID(furnitureX,furnitureY)
+        public static ArrayList<String> getFurniture() {
+            ArrayList<String> furnitureLocation = new ArrayList<>();
+            for (Map map : savedMaps) {
+                if (map.hasFurniture()) {
+                    for (int i = 0; i < map.getFurniture().size(); i++) {
+                        furnitureLocation.add(
+                            Integer.toString(map.getMapID()) + ":" + 
+                            map.getFurniture().get(i).getItemNumber() + "(" + 
+                            map.getFurniture().get(i).getX() + "," + 
+                            map.getFurniture().get(i).getY() + ")");
+                    }
+                }
+            }
+            return furnitureLocation;
+        }
+
+        //parses through each string to obtain the necessary information of where the current furniture in the maps is located
+        public static void setFurniture(ArrayList<String> furnitureToSet) {
+            for (String lineOfSave : furnitureToSet) {
+                int currentMapNumber = Integer.parseInt(lineOfSave.split(":")[0]);
+                int furnitureID = Integer.parseInt(lineOfSave.split(":")[1].split("(")[0]);
+                float x = Float.parseFloat(lineOfSave.split(":")[1].split("(")[0].split(",")[0]);
+                float y = Float.parseFloat(lineOfSave.split(":")[1].split("(")[0].split(",")[0]);
+                Furniture furnitureToAdd = FurnitureRegistry.getFurnitureFromID(furnitureID);
+                furnitureToAdd.setX(x);
+                furnitureToAdd.setY(y);
+                getSavedMap(currentMapNumber).addFurniture(furnitureToAdd);
+            }
+        } 
     }
 }
