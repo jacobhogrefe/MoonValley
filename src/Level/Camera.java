@@ -398,7 +398,6 @@ public class Camera extends Rectangle {
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {
 					furniture.setTether(false, player);
 					tetherSet = false;
-					map.addFurniture(furniture);
 				}
 
 				furniture.draw(graphicsHandler);
