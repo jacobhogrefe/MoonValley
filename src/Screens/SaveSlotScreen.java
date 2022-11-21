@@ -39,7 +39,7 @@ public class SaveSlotScreen extends AbstractMenuScreen {
             playLevelScreen.flagManager.updateFrom(playLevelScreen.player);
 
             try {
-                playLevelScreen.flagManager.saveToSlot(this.slot);
+                playLevelScreen.flagManager.betterSave(this.slot);
             } catch (IOException exception) {
                 exception.printStackTrace();
                 // TODO: warn user?
@@ -59,7 +59,7 @@ public class SaveSlotScreen extends AbstractMenuScreen {
             PlayLevelScreen playLevelScreen = parent.screenCoordinator.getPlayLevelScreen();
             
             try {
-                playLevelScreen.flagManager.loadFromSlot(this.slot);
+                playLevelScreen.flagManager.betterLoad(this.slot);
                 playLevelScreen.flagManager.updateTo(playLevelScreen.player);
             } catch (Exception exception) {
                 //exception.printStackTrace();
