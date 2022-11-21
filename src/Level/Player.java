@@ -366,7 +366,7 @@ public abstract class Player extends GameObject {
 
         /**
          * Gets the furniture location, ID, and map in which the furniture was placed.
-         * Each string is formatted as mapID:furnitureID(furnitureX,furnitureY).
+         * Each string is formatted as mapID,furnitureID,furnitureX,furnitureY.
          * @return String representations of all the  furniture within all the maps
          * @author higgins!
          */
@@ -376,10 +376,10 @@ public abstract class Player extends GameObject {
                 if (map.hasFurniture()) {
                     for (int i = 0; i < map.getFurniture().size(); i++) {
                         furnitureLocation.add(
-                            Integer.toString(map.getMapID()) + ":" + 
-                            map.getFurniture().get(i).getItemNumber() + "(" + 
+                            Integer.toString(map.getMapID()) + "," + 
+                            map.getFurniture().get(i).getItemNumber() + "," + 
                             map.getFurniture().get(i).getX() + "," + 
-                            map.getFurniture().get(i).getY() + ")");
+                            map.getFurniture().get(i).getY());
                     }
                 }
             }
@@ -388,20 +388,23 @@ public abstract class Player extends GameObject {
 
         /**
          * Parses through each string to obtain the necessary information of where the current furniture in the maps is located.
-         * Each string is formatted as mapID:furnitureID(furnitureX,furnitureY).
+         * Each string is formatted as mapID,furnitureID,furnitureX,furnitureY.
          * @param furnitureToSet String representations of all the furniture from a previous save
          * @author higgins!
          */
         public static void setFurniture(ArrayList<String> furnitureToSet) {
             for (String lineOfSave : furnitureToSet) {
-                int currentMapNumber = Integer.parseInt(lineOfSave.split(":")[0]);
-                int furnitureID = Integer.parseInt(lineOfSave.split(":")[1].split("(")[0]);
-                float x = Float.parseFloat(lineOfSave.split(":")[1].split("(")[0].split(",")[0]);
-                float y = Float.parseFloat(lineOfSave.split(":")[1].split("(")[0].split(",")[0]);
-                Furniture furnitureToAdd = FurnitureRegistry.getFurnitureFromID(furnitureID);
-                furnitureToAdd.setX(x);
-                furnitureToAdd.setY(y);
-                getSavedMap(currentMapNumber).addFurniture(furnitureToAdd);
+                String[] tempLine = lineOfSave.split(",");
+                int currentMapNumber = Integer.parseInt(tempLine[0]);
+                int furnitureID = Integer.parseInt(tempLine[1]);
+                float x = Float.parseFloat(tempLine[2]);
+                float y = Float.parseFloat(tempLine[3]);
+                if (!getSavedMap(currentMapNumber).getFurniture().contains(FurnitureRegistry.getFurnitureFromID(furnitureID))) {
+                    Furniture furnitureToAdd = FurnitureRegistry.getFurnitureFromID(furnitureID);
+                    furnitureToAdd.setX(x);
+                    furnitureToAdd.setY(y);
+                    getSavedMap(currentMapNumber).addFurniture(furnitureToAdd);
+                }
             }
         } 
     }
