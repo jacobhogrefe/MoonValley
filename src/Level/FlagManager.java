@@ -1,25 +1,15 @@
 package Level;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map.Entry;
-
 import Game.Game;
 import Screens.PlayLevelScreen;
-
+import Screens.SaveSlotScreen;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.io.Serializable;
-//import Level.Player;
 
 /**
  * FlagManager stores a list of flags - Strings which are either present or not.
@@ -64,11 +54,18 @@ public class FlagManager {
         if (flags.containsKey(flagName)) {
             return flags.get(flagName);
         }
+
         return false;
     }
 
     //clears the current list of set flags and sets new ones from an ArrayList
-    public static void overwriteFlags(ArrayList<String> flagsToClear, HashMap<String, Boolean> flags) {
+    /**
+     * Takes in a previously saved representation of all the flags and loads them in as the current flags.
+     * The current flags are cleared and the new ones are parsed into the HashMap.
+     * @param flagsToClear takes in the String representations of flags
+     * @author higgins!
+     */
+    public void overwriteFlags(ArrayList<String> flagsToClear) {
         flags.clear();
         for (int i = 0; i < flagsToClear.size(); i++) {
             String[] tempString = flagsToClear.get(i).split(",");
@@ -76,8 +73,12 @@ public class FlagManager {
         }
     }
 
-    //gets the current flags set and converts them into string representations
-    public static ArrayList<String> flagsToString(HashMap<String, Boolean> flags) {
+    /**
+     * Gets the current flags set and converts them into string representations in {@code key,value} format.
+     * @return The list of flags as Strings
+     * @author higgins!
+     */
+    public ArrayList<String> flagsToString() {
         ArrayList<String> flagsToLoad = new ArrayList<>();
         flags.forEach(
             (key, value) -> flagsToLoad.add(key + "," + value));
@@ -103,51 +104,52 @@ public class FlagManager {
     public ExtraSaveData extraSaveData = new ExtraSaveData();
 
     /**
-     * This method took me far too long to understood why certain items we're being printed numerous times and not 
+     * This method took me far too long to understand why certain items we're being printed numerous times and not 
      * every unique item. Turns out it was just me putting i instead of j in all the for loops. Fucking hell.
      * 
      * @param i Save slot number
      * @author higgins!
      */
-    public void betterSave(int i) throws FileNotFoundException {
-        //creates/overwrites save file
-        PrintWriter saveFile = new PrintWriter(new File("save" + i + ".txt"));
-        //prints the mapID, playerX, and playerY in that format
-        saveFile.println(this.extraSaveData.map + "," + this.extraSaveData.x + "," + this.extraSaveData.y);
-        //turns the inventory array into a string and prints
-        for (int j = 0; j < this.extraSaveData.inventory.length; j++) {
-            if (j != this.extraSaveData.inventory.length - 1) {
-                saveFile.print(this.extraSaveData.inventory[j] + ",");
-            } else {
-                saveFile.print(this.extraSaveData.inventory[j] + "\n");
+    public void betterSave(int i) {
+        //sets the saveSlot in SaveSlotScreen to true if save data was saved to that slot
+        if (i == 0) {
+            SaveSlotScreen.saveSlot = true;
+        } else if (i == 1) {
+            SaveSlotScreen.saveSlot1 = true;
+        } else if (i == 2) {
+            SaveSlotScreen.saveSlot2 = true;
+        }
+        try {
+            // creates/overwrites save file
+            PrintWriter saveFile = new PrintWriter(new File("save" + i + ".txt"));
+            //prints the mapID, playerX, and playerY in that format
+            saveFile.println(this.extraSaveData.map + "," + this.extraSaveData.x + "," + this.extraSaveData.y);
+            //turns the inventory array into a string and prints
+            for (int j = 0; j < this.extraSaveData.inventory.length; j++) {
+                if (j != this.extraSaveData.inventory.length - 1) {
+                    saveFile.print(this.extraSaveData.inventory[j] + ",");
+                } else {
+                    saveFile.print(this.extraSaveData.inventory[j] + "\n");
+                }
             }
-        }
-        //gets the current flags and turns them into strings and prints
-        ArrayList<String> flagsToSave = FlagManager.flagsToString(this.flags);
-        //loops over previously aquired strings and prints
-        for (int j = 0; j < flagsToSave.size(); j++) {
-            saveFile.println(flagsToSave.get(j));
-        }
-        //label for load feature to know when to stop looping over flags (unknown size)
-        saveFile.println("FURNITURE_INFO");
-        //gets the current furniture arrangements from each map and turns them into strings
-        ArrayList<String> furnitureToSave = Player.MapEntityManager.getFurniture();
-        //loops over previously aquired strings and prints
-        for (int j = 0; j < furnitureToSave.size(); j++) {
-            saveFile.println(furnitureToSave.get(j));
-        }
-        //closes the printWriter
-        saveFile.close();
+            //gets the current flags and turns them into strings and prints
+            ArrayList<String> flagsToSave = flagsToString();
+            //loops over previously aquired strings and prints
+            for (int j = 0; j < flagsToSave.size(); j++) {
+                saveFile.println(flagsToSave.get(j));
+            }
+            //label for load feature to know when to stop looping over flags (unknown size)
+            saveFile.println("FURNITURE_INFO");
+            //gets the current furniture arrangements from each map and turns them into strings
+            ArrayList<String> furnitureToSave = Player.MapEntityManager.getFurniture();
+            //loops over previously aquired strings and prints
+            for (int j = 0; j < furnitureToSave.size(); j++) {
+                saveFile.println(furnitureToSave.get(j));
+            }
+            //closes the printWriter
+            saveFile.close();
+        } catch (FileNotFoundException e) {}
     }
-    /*
-     * load method:
-     * search for NUM_SAVE.txt that corresponds to that save slot
-     * read in the file with a while (file.hasNextLine()) {} loop
-     * read PLAYER LOCATION tag: use stringObject.split(",")) to get an array and set the corresponding values
-     * read PLAYER INVENTORY tag: set the slots with the corresponding values (use stringObject.split(",")) to get an array)
-     * read FLAGS: create arrayList of Strings containing flags (format: key,value) use overWrite flags
-     * read FURNITURE INFO: if the line has one integer, obtain the map it's from, and set furniture based on id and x,y
-     */
 
      /**
       * The load method for setting all the right data in the right places from a text file.
@@ -175,10 +177,16 @@ public class FlagManager {
             this.extraSaveData.inventory = newInventory;
             //reads in the flags and adds them to an ArrayList in key,value format
             ArrayList<String> loadedFlags = new ArrayList<>();
-            while (!scanner.nextLine().equalsIgnoreCase("FURNITURE_INFO")) {
-                loadedFlags.add(scanner.nextLine());
+            boolean noMoreFlags = false;
+            while (!noMoreFlags) {
+                String tempLine = scanner.nextLine();
+                if (tempLine.equalsIgnoreCase("FURNITURE_INFO")) {
+                    noMoreFlags = true;
+                } else {
+                    loadedFlags.add(tempLine);
+                }
             }
-            FlagManager.overwriteFlags(loadedFlags, this.flags);
+            overwriteFlags(loadedFlags);
             //reads in the furniture information with mapID:furnitureID(furnitureX,furnitureY) format
             ArrayList<String> furnitureInfo = new ArrayList<>();
             while (scanner.hasNextLine()) {
