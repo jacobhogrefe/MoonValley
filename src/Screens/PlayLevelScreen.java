@@ -5,7 +5,6 @@ import java.awt.Color;
 import Engine.*;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.HouseMap;
 import NPCs.Cloud;
 import NPCs.Cloud2;
 import NPCs.Cloud3;
