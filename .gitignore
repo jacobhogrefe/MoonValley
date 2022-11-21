@@ -8,6 +8,8 @@ classes/
 out/
 TestResources/
 _site
-*.save
 .DS_Store
 .vscode/
+save0.txt
+save1.txt
+save2.txt
