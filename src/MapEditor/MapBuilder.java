@@ -12,7 +12,6 @@ public class MapBuilder extends JPanel {
     private JLabel mapWidthLabel;
     private JLabel mapHeightLabel;
     private JLabel hoveredTileIndexLabel;
-    private JLabel hoveredTileTypeLabel;
 
     public MapBuilder(SelectedTileIndexHolder controlPanelHolder) {
         setBackground(Colors.CORNFLOWER_BLUE);
