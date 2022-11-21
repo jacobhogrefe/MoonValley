@@ -6,7 +6,6 @@ import Engine.ImageLoader;
 import GameObject.Frame;
 import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
-import Level.CatWardrobe;
 import Level.Player;
 import java.util.HashMap;
 

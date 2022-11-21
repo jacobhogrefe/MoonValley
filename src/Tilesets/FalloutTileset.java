@@ -1,9 +1,6 @@
 package Tilesets;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.awt.image.BufferedImage;
-
 import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
 import Engine.ImageLoader;

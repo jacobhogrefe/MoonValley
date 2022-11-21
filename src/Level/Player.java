@@ -9,13 +9,8 @@ import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import HouseCustomization.FurnitureRegistry;
 import Utils.Direction;
-import Utils.Point;
-
-import java.awt.image.BufferedImage;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import Utils.Sound;
 import Maps.Biomes.*;
 import Maps.*;

@@ -18,8 +18,6 @@ import Maps.DinoMap;
 import Maps.WalrusMap;
 
 import java.util.ArrayList;
-import Builders.MapTileBuilder;
-import GameObject.Frame;
 
 public class EditorMaps {
     public static ArrayList<String> getMapNames() {

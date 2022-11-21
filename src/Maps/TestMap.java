@@ -4,14 +4,12 @@ import EnhancedMapTiles.Rock;
 import GameObject.Furniture;
 import Level.Collectible;
 import Level.EnhancedMapTile;
-import Level.HouseEntry;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
 import Level.Trigger;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
-import Scripts.MapTeleportScript;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.DinoScript;
 import Scripts.TestMap.EnterDinoHouseScript;
@@ -22,12 +20,9 @@ import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Tilesets.CommonTileset;
 import java.util.ArrayList;
-import java.util.function.Supplier;
 
 // Represents a test map to be used in a level
 public class TestMap extends Map {
-
-    private static final Supplier<Map> HouseMap = null;
 
 	public TestMap() {
         super("test_map.txt", new CommonTileset(),11);

@@ -1,9 +1,6 @@
 package InventoryModifier;
 
-import java.awt.Color;
 import java.awt.Image;
-import java.awt.Point;
-import Engine.GraphicsHandler;
 import Registry.ItemRegistry;
 
 //Takes in itemNumber and draws a box containing the item info/options

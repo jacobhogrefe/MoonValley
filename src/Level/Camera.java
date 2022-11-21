@@ -6,9 +6,7 @@ import Engine.ScreenManager;
 import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
-import NPCs.Walrus;
 import Utils.Direction;
-
 import java.awt.*;
 import java.util.ArrayList;
 

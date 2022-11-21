@@ -6,14 +6,11 @@ import java.util.ArrayList;
 import Engine.Config;
 import Engine.GraphicsHandler;
 import GameObject.Furniture;
-import HouseCustomization.FurnitureRegistry;
-import Level.Collectible;
 import Level.Map;
 import Level.MusicState;
 import Level.Trigger;
 import Scripts.TestMap.CrashScript;
 import Scripts.TestMap.ExitHouseScript;
-import Scripts.TestMap.LostBallScript;
 import Tilesets.HouseTileset;
 
 // Represents a test map to be used in a level

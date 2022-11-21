@@ -3,7 +3,6 @@ package Level;
 import Engine.GraphicsHandler;
 import GameObject.Frame;
 import GameObject.SpriteSheet;
-import Screens.PlayLevelScreen;
 import Utils.Direction;
 
 import java.util.HashMap;

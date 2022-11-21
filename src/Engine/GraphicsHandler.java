@@ -5,16 +5,10 @@ import InventoryModifier.InventoryGrid;
 import InventoryModifier.OptionsBox;
 import NPCs.Walrus;
 import Registry.ItemRegistry;
-import Utils.Stopwatch;
-
 import java.awt.*;
-import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-
-import javax.swing.Timer;
 
 public class GraphicsHandler {
 

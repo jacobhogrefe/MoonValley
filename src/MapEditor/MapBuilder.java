@@ -2,8 +2,6 @@ package MapEditor;
 
 import Level.Map;
 import Utils.Colors;
-import Utils.Direction;
-
 import javax.swing.*;
 import java.awt.*;
 

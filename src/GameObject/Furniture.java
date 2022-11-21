@@ -1,9 +1,6 @@
 package GameObject;
 
 import java.awt.image.BufferedImage;
-
-import javax.swing.ImageIcon;
-
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import Level.MapEntity;

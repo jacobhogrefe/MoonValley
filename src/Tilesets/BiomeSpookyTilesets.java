@@ -2,14 +2,10 @@ package Tilesets;
 
 import Builders.FrameBuilder;
 import Builders.MapTileBuilder;
-import Engine.Config;
 import Engine.ImageLoader;
 import GameObject.Frame;
-import GameObject.ImageEffect;
 import Level.TileType;
 import Level.Tileset;
-
-import java.awt.Color;
 import java.util.ArrayList;
 
 public class BiomeSpookyTilesets extends Tileset {

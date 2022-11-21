@@ -160,7 +160,7 @@ public class InventoryGrid {
 			System.out.println("You clicked Place!");
 			furnituretoplace = ItemRegistry.singleton.items.get(selectedItem).furnitureNumber;
 			Map.furnitureplacerequested = true;
-			
+
 		}
 
 	}

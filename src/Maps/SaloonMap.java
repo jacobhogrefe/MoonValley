@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 import GameObject.Furniture;
 import HouseCustomization.FurnitureRegistry;
-import InventoryModifier.InventoryGrid;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
 import NPCs.BartenderWalrus;
-import NPCs.Cattle;
 import NPCs.Cowboy;
 import Scripts.DesertMap.BartenderWalrusScript;
 import Scripts.DesertMap.CowboyScript;

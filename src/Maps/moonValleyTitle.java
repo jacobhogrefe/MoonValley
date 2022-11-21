@@ -1,20 +1,13 @@
 package Maps;
 
-import java.util.function.Supplier;
-
-import javax.swing.ImageIcon;
-
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.ImageEffect;
 import GameObject.Sprite;
 import Level.Map;
-import Registry.ItemRegistry;
-import Registry.ItemRegistry.Item;
 import Tilesets.TitleTileset;
 import Utils.Colors;
 import Utils.Point;
-import Utils.Side;
 
 // Represents the map that is used as a background for the main menu and credits menu screen
 public class moonValleyTitle extends Map {

@@ -5,9 +5,7 @@ package Level;
  * screens we might add that manage the main game).
  */
 
-import java.util.Arrays;
 
-import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 
 public class PlayerInventory {
