@@ -300,36 +300,20 @@ public abstract class Player extends GameObject {
      * @author higgins!
      */
     public static class MapEntityManager {
-        /* Map IDS:
-        * Desert: 0
-        * Wasteland; 1
-        * Mountains: 2
-        * Mushroom: 3
-        * Halloween: 4
-        * Start: 5
-        * DinoHouse: 6
-        * StartHouse: 7
-        * Title: 8
-        * MushroomHouse: 9
-        * Saloon: 10
-        * MountainHome (treehouse): 12
-        * WalrusHome; 13
-        */
+        
         protected static ArrayList<Map> savedMaps = new ArrayList<> (Arrays.asList(
-            new BiomeDesert(),
-            new BiomeFallout(),
-            new BiomeMountains(),
-            new BiomeShrooms(),
-            new BiomeSpooky(),
-            new BiomeStart(),
-            new DinoMap(),
-            new HouseMap(),
-            new TitleScreenMap(),
-            new MushroomHomeMap(),
-            new SaloonMap(),
-            new moonValleyTitle(),
-            new TreehouseMap(),
-            new WalrusMap()
+            new BiomeDesert(), //0
+            new BiomeFallout(), //1
+            new BiomeMountains(), //2
+            new BiomeShrooms(), //3
+            new BiomeSpooky(), //4
+            new BiomeStart(), //5
+            new DinoMap(), //6
+            new HouseMap(), //7
+            new MushroomHomeMap(), //8
+            new SaloonMap(), //9
+            new TreehouseMap(), //10
+            new WalrusMap() //11
         ));
 
         /**
@@ -365,7 +349,7 @@ public abstract class Player extends GameObject {
          * @return String representations of all the  furniture within all the maps
          * @author higgins!
          */
-        public static ArrayList<String> getFurniture() {
+        public static ArrayList<String> getFurnitureToSave() {
             //list of all the strings the furniture will be represented as
             ArrayList<String> furnitureLocation = new ArrayList<>();
             //for each of the maps in the savedMaps it'll loop over
@@ -392,7 +376,7 @@ public abstract class Player extends GameObject {
          * @param furnitureToSet String representations of all the furniture from a previous save
          * @author higgins!
          */
-        public static void setFurniture(ArrayList<String> furnitureToSet) {
+        public static void loadSavedFurniture(ArrayList<String> furnitureToSet) {
             //loops over the list of strings provided
             for (String lineOfSave : furnitureToSet) {
                 //splits the string at the commas
@@ -410,6 +394,56 @@ public abstract class Player extends GameObject {
                     getSavedMap(currentMapNumber).addFurniture(furnitureToAdd);
                 }
             }
-        } 
+        }
+        
+        /**
+         * A method used for saving certain NPC data within a save file. 
+         * Each string is formatted as {@code mapID,npcID,npcX,npcY}.
+         * @return String representations of the NPC data
+         * @author higgins!
+         */
+        public static ArrayList<String> getNPCsToSave() {
+            //the list of strings containing the desired NPC data
+            ArrayList<String> npcsToSave = new ArrayList<>();
+            //loops over the saved maps and the NPCs contained in those maps
+            for (Map map : savedMaps) {
+                for (int i = 0; i < map.getNPCs().size(); i++) {
+                    //gets the NPCId from the current NPC
+                    int npcID = map.getNPCs().get(i).getId();
+                    //if the NPC that's desired to be saved is any of numbers it'll save the data
+                    //add new NPCIds separated by || operator
+                    if (npcID == 3) {
+                        npcsToSave.add(
+                            Integer.toString(map.getMapID()) + "," + 
+                            npcID + "," + 
+                            map.getNPCs().get(i).getX() + "," + 
+                            map.getNPCs().get(i).getY());
+                    }
+                }
+            }
+            return npcsToSave;
+        }
+
+        /**
+         * Parses through each string to obtain the necessary information of where the current NPCs in the save 
+         * data is located. Each string is formatted as {@code mapID,npcID,npcX,npcY}.
+         * @param npcsToSave The list of strings of the updates NPCs
+         * @author higgins!
+         */
+        public static void loadSavedNPCs(ArrayList<String> npcsToSave) {
+            for (String lineOfSave : npcsToSave) {
+                //splits the string at the commas
+                String[] tempLine = lineOfSave.split(",");
+                //parses the information through these methods to return specified values
+                int currentMapNumber = Integer.parseInt(tempLine[0]);
+                int npcID = Integer.parseInt(tempLine[1]);
+                float x = Float.parseFloat(tempLine[2]);
+                float y = Float.parseFloat(tempLine[3]);
+                //gets the NPC from the save data, and alters the x and y positions of the NPC
+                NPC npcToChange = getSavedMap(currentMapNumber).getNPCById(npcID);
+                npcToChange.setX(x);
+                npcToChange.setY(y);
+            }
+        }
     }
 }
