@@ -58,7 +58,6 @@ public class FlagManager {
         return false;
     }
 
-    //clears the current list of set flags and sets new ones from an ArrayList
     /**
      * Takes in a previously saved representation of all the flags and loads them in as the current flags.
      * The current flags are cleared and the new ones are parsed into the HashMap.
@@ -93,9 +92,8 @@ public class FlagManager {
     }
 
     /**
-     * Anything that isn't a flag but needs to be saved should go in here.
-     * 
-     * See updateFrom and updateTo.
+     * Save data being read in is temporarily stored in this class. Stored information is the
+     * playerX, playerY, inventory, and the mapID the player was in.
      */
     public static class ExtraSaveData {
         // The player's x position on the current map
@@ -111,8 +109,7 @@ public class FlagManager {
     public ExtraSaveData extraSaveData = new ExtraSaveData();
 
     /**
-     * This method took me far too long to understand why certain items we're being printed numerous times and not 
-     * every unique item. Turns out it was just me putting i instead of j in all the for loops. Fucking hell.
+     * The save method to save relevant data to a text file to be read in at another point. 
      * 
      * @param i Save slot number
      * @author higgins!
@@ -148,10 +145,18 @@ public class FlagManager {
             //label for load feature to know when to stop looping over flags (unknown size)
             saveFile.println("FURNITURE_INFO");
             //gets the current furniture arrangements from each map and turns them into strings
-            ArrayList<String> furnitureToSave = Player.MapEntityManager.getFurniture();
+            ArrayList<String> furnitureToSave = Player.MapEntityManager.getFurnitureToSave();
             //loops over previously aquired strings and prints
             for (int j = 0; j < furnitureToSave.size(); j++) {
                 saveFile.println(furnitureToSave.get(j));
+            }
+            //label for load feature to know when to stop looping over npc data (unknown size)
+            saveFile.println("NPC_INFO");
+            //gets the current specific NPC arrangements from each map and turns them into strings
+            ArrayList<String> npcsToSave = Player.MapEntityManager.getNPCsToSave();
+            //loops over previously acquired strings and prints
+            for (int j = 0; j < npcsToSave.size(); j++) {
+                saveFile.println(npcsToSave.get(j));
             }
             //closes the printWriter
             saveFile.close();
@@ -180,10 +185,10 @@ public class FlagManager {
             for (int j = 0; j < inventoryData.length; j++) {
                 newInventory[j] = Integer.parseInt(inventoryData[j]);
             }
-            //sets the inventory of the saveData to newInventory
             this.extraSaveData.inventory = newInventory;
             //reads in the flags and adds them to an ArrayList in key,value format
             ArrayList<String> loadedFlags = new ArrayList<>();
+            //loops until a specified label is reached
             boolean noMoreFlags = false;
             while (!noMoreFlags) {
                 String tempLine = scanner.nextLine();
@@ -194,12 +199,25 @@ public class FlagManager {
                 }
             }
             overwriteFlags(loadedFlags);
-            //reads in the furniture information with mapID:furnitureID(furnitureX,furnitureY) format
+            //reads in the furniture information with mapID,furnitureID,furnitureX,furnitureY format
             ArrayList<String> furnitureInfo = new ArrayList<>();
-            while (scanner.hasNextLine()) {
-                furnitureInfo.add(scanner.nextLine());
+            //loops until a specified label is reached
+            boolean noMoreFurniture = false;
+            while (!noMoreFurniture) {
+                String tempLine = scanner.nextLine();
+                if (tempLine.equalsIgnoreCase("NPC_INFO")) {
+                    noMoreFurniture = true;
+                } else {
+                    furnitureInfo.add(tempLine);
+                }
             }
-            Player.MapEntityManager.setFurniture(furnitureInfo);
+            Player.MapEntityManager.loadSavedFurniture(furnitureInfo);
+            //reads in the furniture information with mapID,furnitureID,furnitureX,furnitureY format
+            ArrayList<String> npcInfo = new ArrayList<>();
+            while (scanner.hasNextLine()) {
+                npcInfo.add(scanner.nextLine());
+            }
+            Player.MapEntityManager.loadSavedNPCs(npcInfo);
             //closes the scanner
             scanner.close();
         } catch (Exception e) {}
@@ -239,9 +257,9 @@ public class FlagManager {
         //if the mapID from the sava data corresponds to a house, sets isInHouse to true
         if (this.extraSaveData.map == 6 || 
             this.extraSaveData.map == 7 || 
-            this.extraSaveData.map == 9 || 
-            this.extraSaveData.map == 12 || 
-            this.extraSaveData.map == 13) {
+            this.extraSaveData.map == 8 || 
+            this.extraSaveData.map == 10 || 
+            this.extraSaveData.map == 11) {
             PlayLevelScreen.isInHouse = true;
         }
         //sets player to map from save data

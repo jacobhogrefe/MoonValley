@@ -144,7 +144,7 @@ public abstract class Map implements IntersectableRectangle {
 			trigger.setMap(this);
 		}
 
-		this.collectibles = loadCollectables();
+		this.collectibles = loadCollectibles();
 		for (Collectible collectibles : this.collectibles) {
 			collectibles.setMap(this);
 		}
@@ -361,7 +361,7 @@ public abstract class Map implements IntersectableRectangle {
 
 	// List of collectibles to be apart of the map, should be overridden in a
 	// subclass
-	protected ArrayList<Collectible> loadCollectables() {
+	protected ArrayList<Collectible> loadCollectibles() {
 		return new ArrayList<>();
 	}
 
@@ -388,7 +388,7 @@ public abstract class Map implements IntersectableRectangle {
 		return triggers;
 	}
 
-	public ArrayList<Collectible> getCollectables() {
+	public ArrayList<Collectible> getCollectibles() {
 		return collectibles;
 	}
 	
@@ -435,8 +435,8 @@ public abstract class Map implements IntersectableRectangle {
 		return camera.getActiveTriggers();
 	}
 
-	public ArrayList<Collectible> getActiveCollectables() {
-		return camera.getActiveCollectables();
+	public ArrayList<Collectible> getActiveCollectibles() {
+		return camera.getActiveCollectibles();
 	}
 	
 	public ArrayList<Furniture> getActiveFurniture(){
@@ -462,7 +462,7 @@ public abstract class Map implements IntersectableRectangle {
 	}
 
 	// add a collectible to the map's list of collectibles
-	public void addCollectable(Collectible collectible) {
+	public void addCollectible(Collectible collectible) {
 		collectible.setMap(this);
 		this.collectibles.add(collectible);
 	}
@@ -492,7 +492,7 @@ public abstract class Map implements IntersectableRectangle {
 		// gets active surrounding npcs
 		surroundingMapEntities.addAll(getActiveNPCs());
 		surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
-		surroundingMapEntities.addAll(getActiveCollectables());
+		surroundingMapEntities.addAll(getActiveCollectibles());
 		surroundingMapEntities.addAll(getActiveFurniture());
 		return surroundingMapEntities;
 	}

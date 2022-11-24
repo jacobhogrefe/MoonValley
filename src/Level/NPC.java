@@ -12,6 +12,7 @@ public class NPC extends MapEntity {
 	protected int id = 0;
 
 	protected boolean isWalrus = false;
+	protected boolean isEatingGrass = false;
 	
 	//override methods in subclass
 	protected boolean isTethered = false;
@@ -99,11 +100,20 @@ public class NPC extends MapEntity {
 	
 	public void eatGrass() {
 		if(isTetherable()) {
-		this.currentAnimationName = "EAT_GRASS";
+			this.currentAnimationName = "EAT_GRASS";
+			this.isEatingGrass = true;
 		}
 		else {
 			
 		}
+	}
+
+	public void setEatGrass(boolean isEatingGrass) {
+		this.isEatingGrass = isEatingGrass;
+	}
+
+	public boolean isEatingGrass() {
+		return this.isEatingGrass;
 	}
 	
 	

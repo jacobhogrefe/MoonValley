@@ -300,7 +300,7 @@ public abstract class Player extends GameObject {
      * @author higgins!
      */
     public static class MapEntityManager {
-        
+
         protected static ArrayList<Map> savedMaps = new ArrayList<> (Arrays.asList(
             new BiomeDesert(), //0
             new BiomeFallout(), //1
@@ -415,9 +415,11 @@ public abstract class Player extends GameObject {
                     if (npcID == 3) {
                         npcsToSave.add(
                             Integer.toString(map.getMapID()) + "," + 
+                            map.getNPCs().get(i).isEatingGrass() + "," + 
                             npcID + "," + 
                             map.getNPCs().get(i).getX() + "," + 
-                            map.getNPCs().get(i).getY());
+                            map.getNPCs().get(i).getY() + "," + 
+                            map.getNPCs().get(i).getCurrentAnimationName());
                     }
                 }
             }
@@ -436,13 +438,18 @@ public abstract class Player extends GameObject {
                 String[] tempLine = lineOfSave.split(",");
                 //parses the information through these methods to return specified values
                 int currentMapNumber = Integer.parseInt(tempLine[0]);
-                int npcID = Integer.parseInt(tempLine[1]);
-                float x = Float.parseFloat(tempLine[2]);
-                float y = Float.parseFloat(tempLine[3]);
+                boolean isEatingGrass = Boolean.parseBoolean(tempLine[1]);
+                int npcID = Integer.parseInt(tempLine[2]);
+                float x = Float.parseFloat(tempLine[3]);
+                float y = Float.parseFloat(tempLine[4]);
+                String animation = tempLine[5];
                 //gets the NPC from the save data, and alters the x and y positions of the NPC
                 NPC npcToChange = getSavedMap(currentMapNumber).getNPCById(npcID);
+                npcToChange.setEatGrass(isEatingGrass);
+                npcToChange.setCurrentAnimationName(animation);
                 npcToChange.setX(x);
                 npcToChange.setY(y);
+                npcToChange.update();
             }
         }
     }
