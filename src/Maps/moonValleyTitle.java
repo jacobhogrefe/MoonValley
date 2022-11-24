@@ -15,7 +15,7 @@ public class moonValleyTitle extends Map {
 	 private Sprite cat;
 
     public moonValleyTitle() {
-        super("moon_screen_map.txt", new TitleTileset(),8);
+        super("moon_screen_map.txt", new TitleTileset(),69420);
         Point catLocation = getMapTile(8, 5).getLocation().subtractX(6).subtractY(7);
         cat = new Sprite(ImageLoader.loadSubImage("Cat.png", Colors.MAGENTA, 0, 0, 24, 24));
         cat.setScale(3);
