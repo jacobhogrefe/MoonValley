@@ -20,7 +20,7 @@ public class SaloonMap extends Map {
 
 
     public SaloonMap() {
-        super("saloon_map.txt", new SaloonTileset(),10);
+        super("saloon_map.txt", new SaloonTileset(),9);
         this.playerStartPosition = getMapTile(5, 5).getLocation();
     }
     
@@ -57,7 +57,6 @@ public class SaloonMap extends Map {
     public void loadScripts() { 
     	 getMapTile(7, 11).setInteractScript(new ExitSaloonScript());
     	 getMapTile(8, 11).setInteractScript(new ExitSaloonScript());
-    	 System.out.println("Setting");
     } 
     @Override
     public MusicState getMusicState() {

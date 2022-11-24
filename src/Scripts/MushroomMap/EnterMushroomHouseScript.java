@@ -26,7 +26,7 @@ public class EnterMushroomHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = true;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(9), 208, 144);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(8), 208, 144);
 		return ScriptState.COMPLETED;
 	}
 }

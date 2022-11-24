@@ -24,7 +24,7 @@ public class ExitTreehouseScript extends Script {
 
     @Override
     protected ScriptState execute() {
-        PlayLevelScreen.isInHouse = true;
+        PlayLevelScreen.isInHouse = false;
 		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(2), 240, 1152);
 		return ScriptState.COMPLETED;
     }

@@ -133,7 +133,7 @@ public class PlayLevelScreen extends Screen {
 				trigger.getTriggerScript().setPlayer(player);
 			}
 		}
-		for (Collectible collectibles : map.getCollectables()) {
+		for (Collectible collectibles : map.getCollectibles()) {
 			if (collectibles.getInteractScript() == null) {
 				collectibles.setScriptMusicManager(musicManager);
 				collectibles.getInteractScript().setMap(map);
@@ -283,7 +283,8 @@ public class PlayLevelScreen extends Screen {
 			map.getMapFileName().equals("Biomes/desert.txt") ||
 			map.getMapFileName().equals("Biomes/mountains.txt") || 
 			map.getMapFileName().equals("Biomes/fallout.txt") || 
-			map.getMapFileName().equals("Biomes/shrooms.txt")) {
+			map.getMapFileName().equals("Biomes/shrooms.txt") || 
+			map.getMapFileName().equals("Biomes/spooky.txt")) {
 		
 			if (timeOfDay == 5 || timeOfDay == 19) {
 				graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT,

@@ -8,7 +8,7 @@ import Tilesets.TreehouseTileset;
 public class TreehouseMap extends Map {
 
     public TreehouseMap() {
-        super("mountains_home_map.txt", new TreehouseTileset(),13);
+        super("mountains_home_map.txt", new TreehouseTileset(),10);
     }
     
     @Override

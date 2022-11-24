@@ -42,8 +42,9 @@ public class BiomeSpooky extends Map {
             case TOP:
                 return null;
             case BOTTOM:
-                return Player.MapEntityManager.getSavedMap(0);
+                return Player.MapEntityManager.getSavedMap(5);
             default:
+
                 return null;
         }
     }

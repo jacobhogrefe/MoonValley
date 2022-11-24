@@ -13,7 +13,7 @@ public class WalrusMap extends Map {
 	private boolean isInHouse;
 
 	public WalrusMap() {
-		super("walrus_house_map.txt", new HouseTileset(),14);
+		super("walrus_house_map.txt", new HouseTileset(),11);
 		this.playerStartPosition = getMapTile(12, 10).getLocation();
 		isInHouse = true;
 	}
@@ -24,7 +24,7 @@ public class WalrusMap extends Map {
 	}
 
 	@Override
-	public ArrayList<Collectible> loadCollectables() {
+	public ArrayList<Collectible> loadCollectibles() {
 		ArrayList<Collectible> collectibles = new ArrayList<>();
         collectibles.add(new Collectible("Glasses.png", getMapTile(6, 6).getLocation(), "Glasses", 18, false));
 

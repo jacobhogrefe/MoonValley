@@ -5,8 +5,6 @@ import Game.Game;
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.TestMap;
-import Maps.Biomes.BiomeStart;
 import Screens.PlayLevelScreen;
 
 // trigger script at beginning of game to set that heavy emotional plot

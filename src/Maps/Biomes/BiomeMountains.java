@@ -111,7 +111,7 @@ public class BiomeMountains extends Map {
     }
 
     @Override
-    public ArrayList<Collectible> loadCollectables() {
+    public ArrayList<Collectible> loadCollectibles() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
         Collectible nintendoSwitch = new Collectible("nintendoSwitch.png", getMapTile(6,4).getLocation(), "Nintendo Switch", 13, false);
         Collectible ramen = new Collectible("ramen.png", getMapTile(22,17).getLocation(), "bowl of Ramen", 12, false);

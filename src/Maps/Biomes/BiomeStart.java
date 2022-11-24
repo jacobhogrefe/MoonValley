@@ -125,7 +125,7 @@ public class BiomeStart extends Map {
     }
 
     @Override
-    public ArrayList<Collectible> loadCollectables() {
+    public ArrayList<Collectible> loadCollectibles() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
 //        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin", 2, false));
 //        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(11,19).getLocation(), "Yoshi Coin", 2, false));
