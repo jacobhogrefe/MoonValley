@@ -4,8 +4,6 @@ import Level.Map;
 import Maps.HouseMap;
 import Maps.MushroomHomeMap;
 import Maps.SaloonMap;
-import Maps.TestMap;
-import Maps.TitleScreenMap;
 import Maps.TreehouseMap;
 import Maps.moonValleyTitle;
 import Maps.Biomes.BiomeDesert;
@@ -22,8 +20,6 @@ import java.util.ArrayList;
 public class EditorMaps {
     public static ArrayList<String> getMapNames() {
         return new ArrayList<String>() {{
-            add("TestMap");
-            add("TitleScreen");
             add("moonValleyTitle");
             add("HouseMap");
             add("BiomeDesert");
@@ -42,10 +38,6 @@ public class EditorMaps {
 
     public static Map getMapByName(String mapName) {
         switch(mapName) {
-            case "TestMap":
-                return new TestMap();
-            case "TitleScreen":
-                return new TitleScreenMap();
             case "moonValleyTitle":
             	return new moonValleyTitle();
             case "HouseMap":
