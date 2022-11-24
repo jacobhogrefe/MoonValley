@@ -3,7 +3,7 @@ package Screens;
 import Engine.*;
 import Game.*;
 import Level.Map;
-import Maps.TitleScreenMap;
+import Maps.moonValleyTitle;
 import SpriteFont.SpriteFont;
 
 import java.awt.*;
@@ -23,7 +23,7 @@ public class ControlsScreen extends Screen {
 
     @Override
     public void initialize() {
-        background = new TitleScreenMap();
+        background = new moonValleyTitle();
         background.setAdjustCamera(false);
         controls[0] = new SpriteFont("Controls", 20, 50, "Comic Sans", 30, Color.white);
         controls[1] = new SpriteFont("W/Up arrow: Move player up", 50, 90, "Comic Sans", 30, Color.white);
