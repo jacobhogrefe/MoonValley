@@ -106,6 +106,8 @@ public abstract class Map implements IntersectableRectangle {
 	protected Stack<Integer> itemsForInventory = new Stack<Integer>();
 	
 	public static boolean furnitureplacerequested = false;
+	public static boolean removefurniture = false;
+	public static boolean furniturereturnrequested = false;
 
 	public Map(String mapFileName, Tileset tileset, int mapID) {
 		this.mapID= mapID;
@@ -471,6 +473,20 @@ public abstract class Map implements IntersectableRectangle {
 		furniture.setMap(this);
 		this.furniture.add(furniture);
 	}
+	
+	public void returnFurniture() {
+		
+		for (int i = 0; i < furniture.size();i++) {
+			itemsForInventory.push(furniture.get(i).getItemNumber());
+		}
+		
+		this.furniture.removeAll(furniture);
+		
+		furniturereturnrequested = true;
+		
+	
+		
+	}
 
 	public void setAdjustCamera(boolean adjustCamera) {
 		this.adjustCamera = adjustCamera;
@@ -598,6 +614,10 @@ public abstract class Map implements IntersectableRectangle {
 			furniture.get(furniture.size()-1).setMap(this);
 			//furniture.get(furniture.size()-1).setLocation(player.getCalibratedXLocation(), player.getCalibratedYLocation()-40);
 			furnitureplacerequested = false;
+		}
+		if(removefurniture) {
+			returnFurniture();
+			removefurniture = false;
 		}
 		
 		if (adjustCamera) {

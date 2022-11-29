@@ -125,6 +125,22 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 
 	}
 	
+	public static class ReturnFurnitureOption extends Option {
+		@Override
+		public String getText() {
+			return "Return Furniture";
+		}
+
+		@Override
+		public void select(AbstractMenuScreen parent) {
+			
+			Map.removefurniture = true;
+			
+
+		}
+
+	}
+	
 	public static class EquipCowboyHatOption extends Option {
 		@Override
 		public String getText() {
@@ -245,6 +261,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 	public void addOptions() {
 		this.options.add(new SwitchMapOption());
 		this.options.add(new GiveItemOption());
+		this.options.add(new ReturnFurnitureOption());
 		this.options.add(new FillInventoryOption());
 		this.options.add(new CensorWalrusOption());
 		this.options.add(new GiveKeyItemsOption());
