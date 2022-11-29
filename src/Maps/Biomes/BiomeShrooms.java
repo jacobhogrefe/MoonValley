@@ -42,7 +42,7 @@ public class BiomeShrooms extends Map {
             case RIGHT:
                 return Player.MapEntityManager.getSavedMap(5);
             case TOP:
-                return Player.MapEntityManager.getSavedMap(1);
+                return null;
             case BOTTOM:
                 return null;
             default:
@@ -58,7 +58,7 @@ public class BiomeShrooms extends Map {
             case RIGHT:
                 return BiomeStart.REQUIRED_ITEM;
             case TOP:
-                return BiomeFallout.REQUIRED_ITEM;
+                return null;
             case BOTTOM:
                 return null;
             default:

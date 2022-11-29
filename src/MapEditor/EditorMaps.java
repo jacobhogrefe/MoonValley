@@ -7,7 +7,6 @@ import Maps.SaloonMap;
 import Maps.TreehouseMap;
 import Maps.moonValleyTitle;
 import Maps.Biomes.BiomeDesert;
-import Maps.Biomes.BiomeFallout;
 import Maps.Biomes.BiomeMountains;
 import Maps.Biomes.BiomeShrooms;
 import Maps.Biomes.BiomeSpooky;
@@ -23,7 +22,6 @@ public class EditorMaps {
             add("moonValleyTitle");
             add("HouseMap");
             add("BiomeDesert");
-            add("BiomeFallout");
             add("BiomeMountains");
             add("BiomeShrooms");
             add("BiomeSpooky");
@@ -44,8 +42,6 @@ public class EditorMaps {
                 return new HouseMap();
             case "BiomeDesert":
                 return new BiomeDesert();
-            case "BiomeFallout":
-                return new BiomeFallout();
             case "BiomeMountains":
                 return new BiomeMountains();
             case "BiomeShrooms":

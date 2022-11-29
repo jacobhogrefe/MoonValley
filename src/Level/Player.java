@@ -303,7 +303,6 @@ public abstract class Player extends GameObject {
 
         protected static ArrayList<Map> savedMaps = new ArrayList<> (Arrays.asList(
             new BiomeDesert(), //0
-            new BiomeFallout(), //1
             new BiomeMountains(), //2
             new BiomeShrooms(), //3
             new BiomeSpooky(), //4

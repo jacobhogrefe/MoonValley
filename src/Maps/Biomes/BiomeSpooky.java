@@ -36,7 +36,7 @@ public class BiomeSpooky extends Map {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return Player.MapEntityManager.getSavedMap(1);
+                return null;
             case RIGHT:
                 return Player.MapEntityManager.getSavedMap(2);
             case TOP:
@@ -44,7 +44,6 @@ public class BiomeSpooky extends Map {
             case BOTTOM:
                 return Player.MapEntityManager.getSavedMap(5);
             default:
-
                 return null;
         }
     }
@@ -53,7 +52,7 @@ public class BiomeSpooky extends Map {
     public Item getRequiredItem(Side edge) {
         switch (edge) {
             case LEFT:
-                return BiomeFallout.REQUIRED_ITEM;
+                return null;
             case RIGHT:
                 return BiomeMountains.REQUIRED_ITEM;
             case TOP:
