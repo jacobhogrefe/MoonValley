@@ -449,5 +449,15 @@ public abstract class Player extends GameObject {
                 npcToChange.update();
             }
         }
+
+        /**
+         * Clears the list of furniture currently in a map.
+         * @author higgins!
+         */
+        public static void clearAllFurniture() {
+            for (Map map : savedMaps) {
+                map.getFurniture().clear();
+            }
+        }
     }
 }
