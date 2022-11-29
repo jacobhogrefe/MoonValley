@@ -2,8 +2,9 @@ package Scripts.BiomeMountains;
 
 import Level.Script;
 import Level.ScriptState;
+import Level.Trigger;
 
-public class FlagScript extends Script {
+public class FlagScript extends Script<Trigger> {
 
     protected String flagToSet;
     protected boolean setFlag;

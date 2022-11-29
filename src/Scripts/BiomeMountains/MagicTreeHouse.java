@@ -3,11 +3,11 @@ package Scripts.BiomeMountains;
 import Level.MapTile;
 import Level.Script;
 import Level.ScriptState;
-import Level.TileType;
+import Level.Trigger;
 import Tilesets.MountainsTileset;
 import Utils.Point;
 
-public class MagicTreeHouse extends Script {
+public class MagicTreeHouse extends Script<Trigger> {
 
     protected MountainsTileset tileset = new MountainsTileset();
     protected MapTile[] initial;

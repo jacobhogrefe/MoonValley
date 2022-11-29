@@ -1,6 +1,5 @@
 package Scripts.BiomeMountains;
 
-import Level.Collectible;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;

@@ -8,9 +8,9 @@ import java.awt.*;
 // This class represents a trigger script that can be placed on a map
 // upon the player colliding with the trigger, it will play out the attached script
 public class Trigger extends MapEntity {
-    protected Script triggerScript;
+    protected Script<Trigger> triggerScript;
 
-    public Trigger(int x, int y, int width, int height, Script triggerScript) {
+    public Trigger(int x, int y, int width, int height, Script<Trigger> triggerScript) {
         super(x, y);
         this.triggerScript = triggerScript;
         this.setX(x);
@@ -20,7 +20,7 @@ public class Trigger extends MapEntity {
         this.setBounds(new Rectangle(0, 0, width, height));
     }
 
-    public Trigger(int x, int y, int width, int height, Script triggerScript, String existenceFlag) {
+    public Trigger(int x, int y, int width, int height, Script<Trigger> triggerScript, String existenceFlag) {
         super(x, y);
         this.triggerScript = triggerScript;
         this.setX(x);
@@ -31,10 +31,10 @@ public class Trigger extends MapEntity {
         this.existenceFlag = existenceFlag;
     }
 
-    protected Script loadTriggerScript() { return null; }
+    protected Script<Trigger> loadTriggerScript() { return null; }
 
-    public Script getTriggerScript() { return triggerScript; }
-    public void setTriggerScript(Script triggerScript) {
+    public Script<Trigger> getTriggerScript() { return triggerScript; }
+    public void setTriggerScript(Script<Trigger> triggerScript) {
         this.triggerScript = triggerScript;
     }
 

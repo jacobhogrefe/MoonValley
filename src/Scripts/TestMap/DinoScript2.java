@@ -1,9 +1,10 @@
 package Scripts.TestMap;
 
+import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
 
-public class DinoScript2 extends Script {
+public class DinoScript2 extends Script<NPC> {
 
 	@Override
 	protected void setup() {

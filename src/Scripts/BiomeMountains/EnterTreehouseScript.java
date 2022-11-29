@@ -4,9 +4,10 @@ import Game.Game;
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
+import Level.Trigger;
 import Screens.PlayLevelScreen;
 
-public class EnterTreehouseScript extends Script {
+public class EnterTreehouseScript extends Script<Trigger> {
 
     @Override
     protected void setup() {}

@@ -5,11 +5,11 @@ import Game.Game;
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.Biomes.BiomeDesert;
+import Level.Trigger;
 
 
 
-public class ExitSaloonScript extends Script {
+public class ExitSaloonScript extends Script<Trigger> {
 	@Override
 	protected void setup() {
 		lockPlayer();

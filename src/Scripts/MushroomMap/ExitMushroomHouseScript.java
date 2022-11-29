@@ -5,11 +5,11 @@ import Game.Game;
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.Biomes.BiomeShrooms;
+import Level.Trigger;
 import Screens.PlayLevelScreen;
 
 // trigger script at beginning of game to set that heavy emotional plot
-public class ExitMushroomHouseScript extends Script {
+public class ExitMushroomHouseScript extends Script<Trigger> {
 	@Override
 	protected void setup() {
 		lockPlayer();

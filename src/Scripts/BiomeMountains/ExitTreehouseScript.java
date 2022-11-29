@@ -5,10 +5,10 @@ import Game.Game;
 import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.Biomes.BiomeMountains;
+import Level.Trigger;
 import Screens.PlayLevelScreen;
 
-public class ExitTreehouseScript extends Script {
+public class ExitTreehouseScript extends Script<Trigger> {
 
     @Override
     protected void setup() {
