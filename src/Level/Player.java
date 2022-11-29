@@ -415,7 +415,6 @@ public abstract class Player extends GameObject {
                     if (npcID == 3) {
                         npcsToSave.add(
                             Integer.toString(map.getMapID()) + "," + 
-                            map.getNPCs().get(i).isEatingGrass() + "," + 
                             npcID + "," + 
                             map.getNPCs().get(i).getX() + "," + 
                             map.getNPCs().get(i).getY() + "," + 
@@ -438,14 +437,12 @@ public abstract class Player extends GameObject {
                 String[] tempLine = lineOfSave.split(",");
                 //parses the information through these methods to return specified values
                 int currentMapNumber = Integer.parseInt(tempLine[0]);
-                boolean isEatingGrass = Boolean.parseBoolean(tempLine[1]);
-                int npcID = Integer.parseInt(tempLine[2]);
-                float x = Float.parseFloat(tempLine[3]);
-                float y = Float.parseFloat(tempLine[4]);
-                String animation = tempLine[5];
+                int npcID = Integer.parseInt(tempLine[1]);
+                float x = Float.parseFloat(tempLine[2]);
+                float y = Float.parseFloat(tempLine[3]);
+                String animation = tempLine[4];
                 //gets the NPC from the save data, and alters the x and y positions of the NPC
                 NPC npcToChange = getSavedMap(currentMapNumber).getNPCById(npcID);
-                npcToChange.setEatGrass(isEatingGrass);
                 npcToChange.setCurrentAnimationName(animation);
                 npcToChange.setX(x);
                 npcToChange.setY(y);
