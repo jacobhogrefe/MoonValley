@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 public class InventoryScreen extends JPanel {
 	protected PlayLevelScreen playLevelScreen;
 	protected KeyLocker keyLocker = new KeyLocker();
+	public static boolean ItemWasPlaced = false;
+	public static int SlotToEmpty = 0;
 	private PlayerInventory playerInventory;
 	private InventoryGrid inventoryGrid;
 	protected Key Inventory_Key = Key.I;
@@ -51,6 +53,16 @@ public class InventoryScreen extends JPanel {
 			playLevelScreen.resumeLevel();
 		}
 		if(GamePanel.clickToProcess) {
+			
+		}
+		if(ItemWasPlaced) {
+			
+			playerInventory.removeItem(SlotToEmpty);
+			ItemWasPlaced = false;
+			inventoryOpen = false;
+			inventoryIsOpen = false;
+			playerInventory = inventoryGrid.getPlayerInventory();
+			playLevelScreen.resumeLevel();	
 			
 		}
 
