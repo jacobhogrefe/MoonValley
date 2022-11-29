@@ -38,6 +38,7 @@ import Registry.ItemRegistry;
  * Title: 8
  * MushroomHouse: 9
  * Saloon: 10
+ * OtherTitle: 11
  * MountainHome (treehouse): 12
  * WalrusHome; 13
  */
