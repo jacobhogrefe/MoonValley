@@ -143,11 +143,8 @@ public class PlayLevelScreen extends Screen {
 
 	public void update() {
 		if (CatWardrobe.wardrobeChange == true) {
-			
 			System.out.println("Changing clothes");
-			CatWardrobe catWardrobe = new CatWardrobe();
 			reloadPlayer(player);
-			
 			CatWardrobe.wardrobeChange = false;
 		}
 		
