@@ -389,8 +389,8 @@ public class Camera extends Rectangle {
 			if (containsDraw(furniture) && furniture.isTethered()) {
 
 				if (player.getPlayerState() == PlayerState.WALKING) {
-					furniture.setX(player.getX()+15);
-					furniture.setY(player.getY() - 45);
+					furniture.setX(player.getX());
+					furniture.setY(player.getY() - 40);
 				}
 				
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {
