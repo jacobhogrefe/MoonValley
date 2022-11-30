@@ -151,6 +151,19 @@ public class PlayLevelScreen extends Screen {
 			
 			CatWardrobe.wardrobeChange = false;
 		}
+		
+		if(Map.furniturereturnrequested) {
+			Stack<Integer> itemsReceived = new Stack<Integer>();
+
+			itemsReceived = map.takeItems();
+
+			while (!itemsReceived.empty()) {
+				playerInventory.addItem(itemsReceived.pop());
+			}
+			inventoryScreen.setPlayerInventory(playerInventory);
+			Map.furniturereturnrequested = false;
+		}
+
 		// based on screen state, perform specific actions
 		// if level is "running" update player and map to keep game logic for the
 		// platformer level going
@@ -198,10 +211,7 @@ public class PlayLevelScreen extends Screen {
 
 		}
 		
-		if(Map.furniturereturnrequested) {
-			map.takeItems();
-			Map.furniturereturnrequested = false;
-		}
+
 		if (map.getMapFileName().equals("walrus_house_map.txt")) {
 			if (playerInventory.containsItem(18)) {
 				flagManager.setFlag("hasGlasses");

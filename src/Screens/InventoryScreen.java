@@ -17,6 +17,7 @@ public class InventoryScreen extends JPanel {
 	protected Key Inventory_Key = Key.I;
 	protected boolean inventoryIsOpen = false;
 	public static boolean inventoryOpen = false; //The boolean above is used for the keylocker, this one talks to the gamepanel
+	public static boolean ShouldCloseInventory = false;
 
 	public InventoryScreen(PlayLevelScreen playLevelScreen, PlayerInventory playerInventory) {
 		this.playLevelScreen = playLevelScreen;
@@ -61,6 +62,15 @@ public class InventoryScreen extends JPanel {
 			ItemWasPlaced = false;
 			inventoryOpen = false;
 			inventoryIsOpen = false;
+			playerInventory = inventoryGrid.getPlayerInventory();
+			playLevelScreen.resumeLevel();	
+			
+		}
+		if(ShouldCloseInventory) {
+			
+			inventoryOpen = false;
+			inventoryIsOpen = false;
+			ShouldCloseInventory = false;
 			playerInventory = inventoryGrid.getPlayerInventory();
 			playLevelScreen.resumeLevel();	
 			
