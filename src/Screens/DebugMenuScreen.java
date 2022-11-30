@@ -3,6 +3,7 @@ package Screens;
 import Game.ScreenCoordinator;
 import Level.CatWardrobe;
 import Level.Map;
+import Maps.BiomeSpookyHome;
 import Maps.MushroomHomeMap;
 import Maps.Biomes.BiomeDesert;
 import Maps.Biomes.BiomeMountains;
@@ -54,6 +55,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 					this.options.add(new MapOption(new MushroomHomeMap()));
 					this.options.add(new MapOption(new BiomeDesert()));
 					this.options.add(new MapOption(new BiomeSpooky()));
+					this.options.add(new MapOption(new BiomeSpookyHome()));
 					this.options.add(new CancelOption());
 				}
 			});
