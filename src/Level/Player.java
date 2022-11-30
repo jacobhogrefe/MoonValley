@@ -303,7 +303,6 @@ public abstract class Player extends GameObject {
 
         protected static ArrayList<Map> savedMaps = new ArrayList<> (Arrays.asList(
             new BiomeDesert(), //0
-            new moonValleyTitle(), //01   *****Placeholder map, not used but indexes were messed up after wasteland removal
             new BiomeMountains(), //2
             new BiomeShrooms(), //3
             new BiomeSpooky(), //4
@@ -325,13 +324,23 @@ public abstract class Player extends GameObject {
         }
 
         /**
-         * Gets a specific map from the arrayList of all maps in the game.
+         * Gets a specific map by the mapID from the arrayList of all maps in the game.
          * @param mapID ID of the map needed
          * @return specified map from ID
          * @author Matt Zingarella
+         * @author higgins!
          */
         public static Map getSavedMap(int mapID) {
-            return savedMaps.get(mapID);
+            //loops through maps
+            for (Map map : savedMaps) {
+                //checks if the IDs match up
+                if (map.getMapID() == mapID) {
+                    //returns the map if they do
+                    return map;
+                }
+            }
+            //if it doesn't match this will return null
+            return null;
         }
 
         /**
