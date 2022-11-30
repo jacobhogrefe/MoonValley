@@ -169,7 +169,7 @@ public class InventoryGrid {
 		
 		if(!shouldHighlightMove && clickedX>565 && clickedX<775 && clickedY > 500 && clickedY < 540) {
 			Map.removefurniture = true;
-			InventoryScreen.ItemWasPlaced = true;
+			InventoryScreen.ShouldCloseInventory = true;
 			
 		}
 		

@@ -211,10 +211,7 @@ public class PlayLevelScreen extends Screen {
 
 		}
 		
-		if(Map.furniturereturnrequested) {
-			map.takeItems();
-			Map.furniturereturnrequested = false;
-		}
+
 		if (map.getMapFileName().equals("walrus_house_map.txt")) {
 			if (playerInventory.containsItem(18)) {
 				flagManager.setFlag("hasGlasses");
