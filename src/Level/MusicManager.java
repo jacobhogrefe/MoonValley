@@ -8,46 +8,36 @@ import Utils.Sound;
  */
 public class MusicManager {
 
-    protected Player player;
-    protected MusicState musicState, previousMusicState;
-    protected Sound previousSound, currentSound, previousWalkingSound, walkingSound;
+    protected static Player thePlayer;
 
     //All sounds the different biomes
-    protected Sound start = new Sound("biomeStart.wav", true);
-    protected Sound startHome = new Sound("ariaMath.wav", true);
-    protected Sound desert = new Sound("GhostRiders.wav", true);
-    protected Sound desertHome = new Sound(null, true);
-    protected Sound spooky = new Sound("BiomeSpookymusic.wav", true);
-    protected Sound spookyHome = new Sound(null, true);
-    protected Sound mushroom = new Sound("mushroom.wav", true);
-    protected Sound mushroomHome = new Sound("mushroomHome.wav", true);
-    protected Sound mountains = new Sound("mountainsBiome.wav", true);
-    protected Sound mountainsHome = new Sound("steamGardens.wav", true);
-    protected Sound saloon = new Sound("HippiesAndCowboys.wav",true);
+    protected static Sound start = new Sound("biomeStart.wav", true);
+    protected static Sound startHome = new Sound("ariaMath.wav", true);
+    protected static Sound desert = new Sound("GhostRiders.wav", true);
+    protected static Sound desertHome = new Sound(null, true);
+    protected static Sound spooky = new Sound("BiomeSpookymusic.wav", true);
+    protected static Sound spookyHome = new Sound(null, true);
+    protected static Sound mushroom = new Sound("mushroom.wav", true);
+    protected static Sound mushroomHome = new Sound("mushroomHome.wav", true);
+    protected static Sound mountains = new Sound("mountainsBiome.wav", true);
+    protected static Sound mountainsHome = new Sound("steamGardens.wav", true);
+    protected static Sound saloon = new Sound("HippiesAndCowboys.wav",true);
 
     //If each biome would like a different walking sound add them here, and set the walking sound in the appropriate switch statement
-    protected Sound grassWalking = new Sound("walkingGrass.wav", true);
-    protected Sound stoneWalking = new Sound("walkingStone.wav", true);
-    protected Sound woodWalking = new Sound("walkingWood.wav", true);
-    protected Sound sandWalking = new Sound("sandWalking.wav", true);
+    protected static Sound grassWalking = new Sound("walkingGrass.wav", true);
+    protected static Sound stoneWalking = new Sound("walkingStone.wav", true);
+    protected static Sound woodWalking = new Sound("walkingWood.wav", true);
+    protected static Sound sandWalking = new Sound("sandWalking.wav", true);
 
     //Collectible sound effects are managed in here
-    protected Sound keyCollectible = new Sound("keyCollectible.wav", false);
-    protected Sound collectible = new Sound("collectible.wav", false);
+    protected static Sound keyCollectible = new Sound("keyCollectible.wav", false);
+    protected static Sound collectible = new Sound("collectible.wav", false);
 
-    /**
-     * MusicManager manages the current player walking sound and current music playing in each map. 
-     * Sets the previous and current sounds to the same thing on creation (this makes it easier to 
-     * check when the music state has changed).
-     * @author higgins!
-     */
-    public MusicManager() {
-        musicState = MusicState.START_HOME;
-        previousSound = startHome;
-        currentSound = startHome;
-        previousWalkingSound = woodWalking;
-        walkingSound = woodWalking;
-    }
+    //Sounds set when class is initiated
+    protected static Sound previousSound = startHome;
+    protected static Sound currentSound = startHome;
+    protected static Sound previousWalkingSound = woodWalking;
+    protected static Sound walkingSound = woodWalking;
 
     /**
      * Updates the current music playing with the new musicState and then plays the appropriate music depending on the case. 
@@ -55,9 +45,9 @@ public class MusicManager {
      * @param musicState the musicState that the musicManager gets set to
      * @author higgins!
      */
-    public void updateMusic(MusicState musicState) {
+    public static void updateMusic(MusicState musicState) {
         previousSound.stop();
-        player.getWalkingSound().stop();
+        thePlayer.getWalkingSound().stop();
         switch (musicState) {
             case DESERT:
                 currentSound = desert;
@@ -107,7 +97,7 @@ public class MusicManager {
                 break;
         }
         currentSound.play();
-        player.setWalkingSound(walkingSound);
+        thePlayer.setWalkingSound(walkingSound);
         previousWalkingSound = walkingSound;
         previousSound = currentSound;
     }
@@ -116,7 +106,7 @@ public class MusicManager {
      * Gets the current sound playing. Used in the collectible script to pause map music.
      * @author higgins!
      */
-    public Sound getCurrentSound() {
+    public static Sound getCurrentSound() {
         return currentSound;
     }
 
@@ -124,15 +114,15 @@ public class MusicManager {
      * Sets the player to the {@code MusicManager} in order to change walking sounds.
      * @author higgins!
      */
-    public void setPlayer(Player player) {
-        this.player = player;
+    public static void setPlayer(Player player) {
+        thePlayer = player;
     }
 
     /**
      * Gets the current walking sound.
      * @author higgins!
      */
-    public Sound getWalkingSound() {
+    public static Sound getWalkingSound() {
         return walkingSound;
     }
 
@@ -142,7 +132,7 @@ public class MusicManager {
      * @return Correct collectible sound
      * @author higgins!
      */
-    public Sound getCollectibleSound(boolean isKeyCollectible) {
+    public static Sound getCollectibleSound(boolean isKeyCollectible) {
         return (isKeyCollectible) ? keyCollectible : collectible;
     }
 }
