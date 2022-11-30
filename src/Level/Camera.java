@@ -36,7 +36,6 @@ public class Camera extends Rectangle {
 	private ArrayList<Trigger> activeTriggers = new ArrayList<>();
 	private ArrayList<Collectible> activeCollectibles = new ArrayList<>();
 	private ArrayList<Furniture> activeFurniture = new ArrayList<>();
-	private ArrayList<HouseEntry> activeHouseEntries = new ArrayList<>();
 	
 	public static boolean CattleInPen = false;
 

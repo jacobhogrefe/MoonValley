@@ -357,10 +357,6 @@ public abstract class Map implements IntersectableRectangle {
 		return new ArrayList<>();
 	}
 
-	protected ArrayList<HouseEntry> loadHouseEntries() {
-		return new ArrayList<>();
-	}
-
 	// List of collectibles to be apart of the map, should be overridden in a
 	// subclass
 	protected ArrayList<Collectible> loadCollectibles() {
