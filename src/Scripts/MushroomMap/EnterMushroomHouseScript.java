@@ -1,14 +1,15 @@
 package Scripts.MushroomMap;
 
 import Game.Game;
-import Level.MapEntityManager;
+
+import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.MushroomHomeMap;
+import Level.Trigger;
 import Screens.PlayLevelScreen;
 
 // trigger script at beginning of game to set that heavy emotional plot
-public class EnterMushroomHouseScript extends Script {
+public class EnterMushroomHouseScript extends Script<Trigger> {
 	@Override
 	protected void setup() {
 		lockPlayer();
@@ -25,7 +26,7 @@ public class EnterMushroomHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = true;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(MapEntityManager.entitymanager.getSavedMap(9), 208, 144);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(8), 208, 144);
 		return ScriptState.COMPLETED;
 	}
 }

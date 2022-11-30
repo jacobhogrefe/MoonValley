@@ -7,6 +7,7 @@ import Engine.GraphicsHandler;
 import Level.Map;
 import Level.PlayerInventory;
 import Registry.ItemRegistry;
+import Screens.InventoryScreen;
 import Screens.PlayLevelScreen;
 
 
@@ -160,6 +161,9 @@ public class InventoryGrid {
 			System.out.println("You clicked Place!");
 			furnituretoplace = ItemRegistry.singleton.items.get(selectedItem).furnitureNumber;
 			Map.furnitureplacerequested = true;
+			InventoryScreen.SlotToEmpty = selectedSlot;
+			selectedItem = 0;
+			InventoryScreen.ItemWasPlaced = true;
 			
 		}
 
@@ -175,7 +179,6 @@ public class InventoryGrid {
 		System.out.println("shouldHighlightRemove " + shouldHighlightRemove);
 		System.out.println(" ");
 		System.out.println(" ");
-
 	}
 
 	// Really a lot more than a draw method, does most of the work

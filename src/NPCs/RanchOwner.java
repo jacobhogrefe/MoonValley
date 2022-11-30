@@ -8,10 +8,7 @@ import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.NPC;
 import Level.Player;
-import Screens.PlayLevelScreen;
 import Utils.Point;
-
-import java.awt.Color;
 import java.util.HashMap;
 
 // bears a striking resemblance to Doug Dimidome, owner of the Dimsdale Dimidome

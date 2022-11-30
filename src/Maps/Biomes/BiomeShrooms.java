@@ -1,14 +1,15 @@
 package Maps.Biomes;
 
-import java.util.function.Supplier;
-
+import java.util.ArrayList;
+import GameObject.Rectangle;
 import Level.Map;
-import Level.MapEntityManager;
 import Level.MusicState;
-import Maps.AbstractLoopingMap;
+import Level.Player;
+import Level.Trigger;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Scripts.SimpleTextScript;
+import Scripts.SmartMapTeleportScript;
 import Scripts.MushroomMap.EnterMushroomHouseScript;
 import Tilesets.MushroomTileset;
 import Utils.Side;
@@ -26,7 +27,7 @@ import Utils.Side;
  * |            |            |            |
  * +------------+------------+------------+
  */
-public class BiomeShrooms extends AbstractLoopingMap {
+public class BiomeShrooms extends Map {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.MAGNIFYING_GLASS;
 
     public BiomeShrooms() {
@@ -39,9 +40,9 @@ public class BiomeShrooms extends AbstractLoopingMap {
             case LEFT:
                 return null;
             case RIGHT:
-                return MapEntityManager.entitymanager.getSavedMap(5);
+                return Player.MapEntityManager.getSavedMap(5);
             case TOP:
-                return MapEntityManager.entitymanager.getSavedMap(1);
+                return null;
             case BOTTOM:
                 return null;
             default:
@@ -57,13 +58,31 @@ public class BiomeShrooms extends AbstractLoopingMap {
             case RIGHT:
                 return BiomeStart.REQUIRED_ITEM;
             case TOP:
-                return BiomeFallout.REQUIRED_ITEM;
+                return null;
             case BOTTOM:
                 return null;
             default:
                 return null;
         }
-    }   
+    }
+    
+    @Override
+    public ArrayList<Trigger> loadTriggers() {
+        ArrayList<Trigger> triggers = super.loadTriggers();
+        for (Side edge : Side.values()) {
+            Rectangle bounds = edge.getBorderWithWidth(this.getIntersectRectangle(), 16);
+            Trigger trigger = new Trigger(
+                (int) bounds.getX(),
+                (int) bounds.getY(),
+                bounds.getWidth(),
+                bounds.getHeight(),
+                new SmartMapTeleportScript(() -> this.createBorderingMap(edge), edge, this.getRequiredItem(edge))
+            );
+
+            triggers.add(trigger);
+        }
+        return triggers;
+    }
 
     @Override
     public void loadScripts() { 

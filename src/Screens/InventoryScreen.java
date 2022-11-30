@@ -3,19 +3,15 @@ package Screens;
 import Engine.*;
 import InventoryModifier.InventoryGrid;
 import Level.PlayerInventory;
-
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 // This class is for the win level screen
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 public class InventoryScreen extends JPanel {
 	protected PlayLevelScreen playLevelScreen;
 	protected KeyLocker keyLocker = new KeyLocker();
+	public static boolean ItemWasPlaced = false;
+	public static int SlotToEmpty = 0;
 	private PlayerInventory playerInventory;
 	private InventoryGrid inventoryGrid;
 	protected Key Inventory_Key = Key.I;
@@ -57,6 +53,16 @@ public class InventoryScreen extends JPanel {
 			playLevelScreen.resumeLevel();
 		}
 		if(GamePanel.clickToProcess) {
+			
+		}
+		if(ItemWasPlaced) {
+			
+			playerInventory.removeItem(SlotToEmpty);
+			ItemWasPlaced = false;
+			inventoryOpen = false;
+			inventoryIsOpen = false;
+			playerInventory = inventoryGrid.getPlayerInventory();
+			playLevelScreen.resumeLevel();	
 			
 		}
 

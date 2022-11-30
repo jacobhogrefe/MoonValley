@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 import GameObject.Furniture;
 import HouseCustomization.FurnitureRegistry;
-import InventoryModifier.InventoryGrid;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
 import NPCs.BartenderWalrus;
-import NPCs.Cattle;
 import NPCs.Cowboy;
 import Scripts.DesertMap.BartenderWalrusScript;
 import Scripts.DesertMap.CowboyScript;
@@ -22,7 +20,7 @@ public class SaloonMap extends Map {
 
 
     public SaloonMap() {
-        super("saloon_map.txt", new SaloonTileset(),10);
+        super("saloon_map.txt", new SaloonTileset(),9);
         this.playerStartPosition = getMapTile(5, 5).getLocation();
     }
     
@@ -48,10 +46,10 @@ public class SaloonMap extends Map {
     public ArrayList<Furniture> loadFurniture() {
         ArrayList<Furniture> furniture = new ArrayList<>();   
         
-        furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(0));
+        furniture.add(FurnitureRegistry.catalog.get(0));
         furniture.get(0).setX(600);
         furniture.get(0).setY(150);
-     
+        
         return furniture;
     }
     
@@ -59,7 +57,6 @@ public class SaloonMap extends Map {
     public void loadScripts() { 
     	 getMapTile(7, 11).setInteractScript(new ExitSaloonScript());
     	 getMapTile(8, 11).setInteractScript(new ExitSaloonScript());
-    	 System.out.println("Setting");
     } 
     @Override
     public MusicState getMusicState() {

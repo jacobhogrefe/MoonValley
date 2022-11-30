@@ -19,7 +19,7 @@ public class TileBuilder extends JPanel {
     private boolean showNPCs;
     private boolean showEnhancedMapTiles;
     private boolean showTriggers;
-    private boolean showCollectables;
+    private boolean showCollectibles;
 
     public TileBuilder(SelectedTileIndexHolder controlPanelHolder, JLabel hoveredTileIndexLabel) {
         setBackground(Colors.MAGENTA);
@@ -93,8 +93,8 @@ public class TileBuilder extends JPanel {
             }
         }
 
-        if (showCollectables) {
-            for (Collectible collectibles : map.getCollectables()) {
+        if (showCollectibles) {
+            for (Collectible collectibles : map.getCollectibles()) {
                 collectibles.draw(graphicsHandler);
             }
         }
@@ -191,12 +191,12 @@ public class TileBuilder extends JPanel {
         repaint();
     }
 
-    public boolean getShowCollectables() {
-        return showCollectables;
+    public boolean getShowCollectibles() {
+        return showCollectibles;
     }
 
-    public void setShowCollectables(boolean showCollectables) {
-        this.showCollectables = showCollectables;
+    public void setShowCollectibles(boolean showCollectibles) {
+        this.showCollectibles = showCollectibles;
         repaint();
     }
 }

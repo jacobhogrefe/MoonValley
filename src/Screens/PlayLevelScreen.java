@@ -2,29 +2,16 @@ package Screens;
 
 import java.util.Stack;
 import java.awt.Color;
-import Engine.GlobalKeyCooldown;
-import Engine.GraphicsHandler;
-import Engine.ImageLoader;
-import Engine.Key;
-import Engine.KeyLocker;
-import Engine.Keyboard;
-import Engine.Screen;
+import Engine.*;
 import Game.ScreenCoordinator;
-import GameObject.SpriteSheet;
 import Level.*;
-import Maps.Biomes.BiomeSpooky;
-import Maps.HouseMap;
-import Maps.Biomes.BiomeStart;
 import NPCs.Cloud;
 import NPCs.Cloud2;
 import NPCs.Cloud3;
-import Players.Cat;
-import Players.Kirby;
+import Players.*;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import Utils.Point;
-import Engine.Clock;
-import Engine.Config;
 
 // This class is for when the RPG game is actually being played
 public class PlayLevelScreen extends Screen {
@@ -92,12 +79,12 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("desertReward",false);
 
 		// define/setup map
-		this.map = new HouseMap();
-		// map.reset();
+		this.map = Player.MapEntityManager.getSavedMap(7);
+		isInHouse = true;
 		map.setFlagManager(flagManager);
 
 		// setup player
-		this.player = new Kirby(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+		this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
 		this.musicManager.setPlayer(this.player);
 		this.player.setWalkingSound(musicManager.getWalkingSound());
 		this.player.setMap(map);
@@ -146,7 +133,7 @@ public class PlayLevelScreen extends Screen {
 				trigger.getTriggerScript().setPlayer(player);
 			}
 		}
-		for (Collectible collectibles : map.getCollectables()) {
+		for (Collectible collectibles : map.getCollectibles()) {
 			if (collectibles.getInteractScript() == null) {
 				collectibles.setScriptMusicManager(musicManager);
 				collectibles.getInteractScript().setMap(map);
@@ -156,8 +143,6 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void update() {
-		// updates the music based on location
-		
 		if (CatWardrobe.wardrobeChange == true) {
 			
 			System.out.println("Changing clothes");
@@ -166,8 +151,6 @@ public class PlayLevelScreen extends Screen {
 			
 			CatWardrobe.wardrobeChange = false;
 		}
-		
-		musicManager.updateMusic();
 		// based on screen state, perform specific actions
 		// if level is "running" update player and map to keep game logic for the
 		// platformer level going
@@ -213,6 +196,11 @@ public class PlayLevelScreen extends Screen {
 			inventoryScreen.setPlayerInventory(playerInventory);
 			map.getFlagManager().unsetFlag("itemCollected");
 
+		}
+		
+		if(Map.furniturereturnrequested) {
+			map.takeItems();
+			Map.furniturereturnrequested = false;
 		}
 		if (map.getMapFileName().equals("walrus_house_map.txt")) {
 			if (playerInventory.containsItem(18)) {
@@ -300,7 +288,8 @@ public class PlayLevelScreen extends Screen {
 			map.getMapFileName().equals("Biomes/desert.txt") ||
 			map.getMapFileName().equals("Biomes/mountains.txt") || 
 			map.getMapFileName().equals("Biomes/fallout.txt") || 
-			map.getMapFileName().equals("Biomes/shrooms.txt")) {
+			map.getMapFileName().equals("Biomes/shrooms.txt") || 
+			map.getMapFileName().equals("Biomes/spooky.txt")) {
 		
 			if (timeOfDay == 5 || timeOfDay == 19) {
 				graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT,
@@ -393,6 +382,14 @@ public class PlayLevelScreen extends Screen {
 		screenCoordinator.pop(this);
 	}
 
+	public MusicManager getMusicManager() {
+		return this.musicManager;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
 	// This enum represents the different states this screen can be in
 	private enum PlayLevelScreenState {
 		RUNNING, LEVEL_COMPLETED, INVENTORY_OPEN
@@ -412,6 +409,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setX(x);
 		this.player.setY(y);
 		this.musicManager.setMusicState(map.getMusicState());
+		this.musicManager.updateMusic();
 		this.reinitializeMap();
 		this.map.update(this.player);
 	}

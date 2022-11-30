@@ -1,7 +1,5 @@
 package Level;
 
-import java.awt.Color;
-
 import Engine.GraphicsHandler;
 import GameObject.GameObject;
 import GameObject.IntersectableRectangle;

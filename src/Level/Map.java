@@ -8,8 +8,11 @@ import GameObject.IntersectableRectangle;
 import GameObject.Rectangle;
 import HouseCustomization.FurnitureRegistry;
 import InventoryModifier.InventoryGrid;
+import Registry.ItemRegistry.Item;
 import Utils.Direction;
 import Utils.Point;
+import Utils.Side;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -91,6 +94,9 @@ public abstract class Map implements IntersectableRectangle {
 	// music state for each map
 	protected MusicState musicState;
 
+	// required Item for each map
+	protected Item requiredItem;
+
 	// Items that have been collected or given to the player that need to be placed
 	// into inventory. This is where items "go" for a brief moment while being
 	// passed between the camera to the map, to the playlevelscreen, to, ultimately
@@ -100,6 +106,8 @@ public abstract class Map implements IntersectableRectangle {
 	protected Stack<Integer> itemsForInventory = new Stack<Integer>();
 	
 	public static boolean furnitureplacerequested = false;
+	public static boolean removefurniture = false;
+	public static boolean furniturereturnrequested = false;
 
 	public Map(String mapFileName, Tileset tileset, int mapID) {
 		this.mapID= mapID;
@@ -138,7 +146,7 @@ public abstract class Map implements IntersectableRectangle {
 			trigger.setMap(this);
 		}
 
-		this.collectibles = loadCollectables();
+		this.collectibles = loadCollectibles();
 		for (Collectible collectibles : this.collectibles) {
 			collectibles.setMap(this);
 		}
@@ -355,7 +363,7 @@ public abstract class Map implements IntersectableRectangle {
 
 	// List of collectibles to be apart of the map, should be overridden in a
 	// subclass
-	protected ArrayList<Collectible> loadCollectables() {
+	protected ArrayList<Collectible> loadCollectibles() {
 		return new ArrayList<>();
 	}
 
@@ -382,7 +390,7 @@ public abstract class Map implements IntersectableRectangle {
 		return triggers;
 	}
 
-	public ArrayList<Collectible> getCollectables() {
+	public ArrayList<Collectible> getCollectibles() {
 		return collectibles;
 	}
 	
@@ -429,8 +437,8 @@ public abstract class Map implements IntersectableRectangle {
 		return camera.getActiveTriggers();
 	}
 
-	public ArrayList<Collectible> getActiveCollectables() {
-		return camera.getActiveCollectables();
+	public ArrayList<Collectible> getActiveCollectibles() {
+		return camera.getActiveCollectibles();
 	}
 	
 	public ArrayList<Furniture> getActiveFurniture(){
@@ -456,7 +464,7 @@ public abstract class Map implements IntersectableRectangle {
 	}
 
 	// add a collectible to the map's list of collectibles
-	public void addCollectable(Collectible collectible) {
+	public void addCollectible(Collectible collectible) {
 		collectible.setMap(this);
 		this.collectibles.add(collectible);
 	}
@@ -464,6 +472,20 @@ public abstract class Map implements IntersectableRectangle {
 	public void addFurniture(Furniture furniture) {
 		furniture.setMap(this);
 		this.furniture.add(furniture);
+	}
+	
+	public void returnFurniture() {
+		
+		for (int i = 0; i < furniture.size();i++) {
+			itemsForInventory.push(furniture.get(i).getItemNumber());
+		}
+		
+		this.furniture.removeAll(furniture);
+		
+		furniturereturnrequested = true;
+		
+	
+		
 	}
 
 	public void setAdjustCamera(boolean adjustCamera) {
@@ -486,7 +508,7 @@ public abstract class Map implements IntersectableRectangle {
 		// gets active surrounding npcs
 		surroundingMapEntities.addAll(getActiveNPCs());
 		surroundingMapEntities.addAll(getActiveEnhancedMapTiles());
-		surroundingMapEntities.addAll(getActiveCollectables());
+		surroundingMapEntities.addAll(getActiveCollectibles());
 		surroundingMapEntities.addAll(getActiveFurniture());
 		return surroundingMapEntities;
 	}
@@ -586,13 +608,16 @@ public abstract class Map implements IntersectableRectangle {
 		camera.update(player);
 		if(furnitureplacerequested) {
 			System.out.println("Map recognizes place request");
-			furniture.add(FurnitureRegistry.furnitureregistry.catalog.get(InventoryGrid.furnituretoplace));
+			furniture.add(FurnitureRegistry.catalog.get(InventoryGrid.furnituretoplace));
 			furniture.get(furniture.size()-1).setX(player.getX());
 			furniture.get(furniture.size()-1).setY(player.getY()-40);
 			furniture.get(furniture.size()-1).setMap(this);
 			//furniture.get(furniture.size()-1).setLocation(player.getCalibratedXLocation(), player.getCalibratedYLocation()-40);
-
 			furnitureplacerequested = false;
+		}
+		if(removefurniture) {
+			returnFurniture();
+			removefurniture = false;
 		}
 		
 		if (adjustCamera) {
@@ -732,6 +757,24 @@ public abstract class Map implements IntersectableRectangle {
 	public Rectangle getIntersectRectangle() {
 		return new Rectangle(this.startBoundX, this.endBoundY, this.getWidthPixels(), this.getHeightPixels());
 	}
-	
 
+    public int getMapID() {
+        return mapID;
+    }
+
+	public Map getBorderingMap(Side side) {
+		return this;
+	}
+
+	public Map createBorderingMap(Side side) {
+		return this;
+	}
+
+	public Item getRequiredItem(Side side) {
+		return this.requiredItem;
+	}
+
+	public boolean hasFurniture() {
+		return !furniture.isEmpty();
+	}
 }

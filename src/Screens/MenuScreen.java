@@ -3,12 +3,12 @@ package Screens;
 import Engine.*;
 import Game.ScreenCoordinator;
 import Level.Map;
-import Maps.TitleScreenMap;
+import Maps.moonValleyTitle;
 import Utils.Sound;
 
 // This is the class for the main menu screen
 public class MenuScreen extends AbstractMenuScreen {
-    protected Map background = new TitleScreenMap();
+    protected Map background = new moonValleyTitle();
     public static Sound MenuSound = new Sound("blueMoon.wav", true);
 
     public static class PlayGameOption extends Option {

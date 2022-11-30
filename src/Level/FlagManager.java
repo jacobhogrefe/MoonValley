@@ -1,17 +1,15 @@
 package Level;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.Map.Entry;
-
 import Game.Game;
-
-import java.io.FileInputStream;
+import Screens.PlayLevelScreen;
+import Screens.SaveSlotScreen;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.PrintWriter;
 
 /**
  * FlagManager stores a list of flags - Strings which are either present or not.
@@ -56,96 +54,174 @@ public class FlagManager {
         if (flags.containsKey(flagName)) {
             return flags.get(flagName);
         }
+
         return false;
     }
 
     /**
-     * Anything that isn't a flag but needs to be saved should go in here.
-     * 
-     * See updateFrom and updateTo.
+     * Takes in a previously saved representation of all the flags and loads them in as the current flags.
+     * The current flags are cleared and the new ones are parsed into the HashMap.
+     * @param flagsToClear takes in the String representations of flags
+     * @author higgins!
      */
-    public static class ExtraSaveData implements Serializable {
+    public void overwriteFlags(ArrayList<String> flagsToClear) {
+        //clears the flags currently set in the FlagManager
+        flags.clear();
+        //loops over the list to extract the correct data
+        for (int i = 0; i < flagsToClear.size(); i++) {
+            //splits at the comma to differentiate between the key and value
+            String[] tempString = flagsToClear.get(i).split(",");
+            //adds the parsed flag and boolean value to the FlagManager
+            flags.put(tempString[0], Boolean.parseBoolean(tempString[1]));
+        }
+    }
+
+    /**
+     * Gets the current flags set and converts them into string representations in {@code key,value} format.
+     * @return The list of flags as Strings
+     * @author higgins!
+     */
+    public ArrayList<String> flagsToString() {
+        //list of strings the flags will be represented as
+        ArrayList<String> flagsToLoad = new ArrayList<>();
+        //for each flag, it'll set add a string containing the key,value
+        flags.forEach(
+            (key, value) -> flagsToLoad.add(key + "," + value));
+        //returns the list of strings
+        return flagsToLoad;
+    }
+
+    /**
+     * Save data being read in is temporarily stored in this class. Stored information is the
+     * playerX, playerY, inventory, and the mapID the player was in.
+     */
+    public static class ExtraSaveData {
         // The player's x position on the current map
         public float x;
         // The player's y position on the current map
         public float y;
         // The player's inventory
         public int[] inventory;
-        // The class name for the Map
-        public String map;
-
-        /**
-         * Store the class of Map the player is in.
-         * 
-         * This doesn't store any actual Map data; you'll have to save it yourself.
-         * 
-         * This uses reflection, which you probably haven't learned yet;
-         * in simple terms, this gets the name of the class, e.g. Maps.Biomes.BiomeStart,
-         * and stores it in this.map.
-         * 
-         * @param map An instance of the Map class to store.
-         */
-        public void storeMap(Map map) {
-            Class<? extends Map> clazz = map.getClass();
-
-            this.map = clazz.getName();
-        }
-
-        /**
-         * Create a new instance of the Map class saved in this.map.
-         * 
-         * This doesn't load any actual Map data; you'll have to load it yourself.
-         * 
-         * This uses reflection, which you probably haven't learned yet;
-         * in simple terms, this uses the name of the class, e.g. Maps.Biomes.BiomeStart,
-         * to make a new instance of that Map. This doesn't work if your Map has
-         * constructor parameters.
-         * 
-         * @return a new instance of the saved Map class
-         */
-        public Map createMap() {
-            ClassLoader loader = getClass().getClassLoader();
-
-            try {
-                Class<?> clazz = loader.loadClass(this.map);
-
-                return (Map) clazz.getDeclaredConstructor().newInstance();
-            } catch (Exception e) {
-                e.printStackTrace();
-
-                return null;
-            }
-        }
+        // The map the player was in
+        public int map;
     }
 
     public ExtraSaveData extraSaveData = new ExtraSaveData();
 
-    public void load(FileInputStream stream) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream ois = new ObjectInputStream(stream)) {
-            this.flags = (HashMap<String, Boolean>) ois.readObject();
-            this.extraSaveData = (ExtraSaveData) ois.readObject();
+    /**
+     * The save method to save relevant data to a text file to be read in at another point. 
+     * 
+     * @param i Save slot number
+     * @author higgins!
+     */
+    public void betterSave(int i) {
+        //sets the saveSlot in SaveSlotScreen to true if save data was saved to that slot
+        if (i == 0) {
+            SaveSlotScreen.saveSlot = true;
+        } else if (i == 1) {
+            SaveSlotScreen.saveSlot1 = true;
+        } else if (i == 2) {
+            SaveSlotScreen.saveSlot2 = true;
         }
+        try {
+            // creates/overwrites save file
+            PrintWriter saveFile = new PrintWriter(new File("save" + i + ".txt"));
+            //prints the mapID, playerX, and playerY in that format
+            saveFile.println(this.extraSaveData.map + "," + this.extraSaveData.x + "," + this.extraSaveData.y);
+            //turns the inventory array into a string and prints
+            for (int j = 0; j < this.extraSaveData.inventory.length; j++) {
+                if (j != this.extraSaveData.inventory.length - 1) {
+                    saveFile.print(this.extraSaveData.inventory[j] + ",");
+                } else {
+                    saveFile.print(this.extraSaveData.inventory[j] + "\n");
+                }
+            }
+            //gets the current flags and turns them into strings and prints
+            ArrayList<String> flagsToSave = flagsToString();
+            //loops over previously aquired strings and prints
+            for (int j = 0; j < flagsToSave.size(); j++) {
+                saveFile.println(flagsToSave.get(j));
+            }
+            //label for load feature to know when to stop looping over flags (unknown size)
+            saveFile.println("FURNITURE_INFO");
+            //gets the current furniture arrangements from each map and turns them into strings
+            ArrayList<String> furnitureToSave = Player.MapEntityManager.getFurnitureToSave();
+            //loops over previously aquired strings and prints
+            for (int j = 0; j < furnitureToSave.size(); j++) {
+                saveFile.println(furnitureToSave.get(j));
+            }
+            //label for load feature to know when to stop looping over npc data (unknown size)
+            saveFile.println("NPC_INFO");
+            //gets the current specific NPC arrangements from each map and turns them into strings
+            ArrayList<String> npcsToSave = Player.MapEntityManager.getNPCsToSave();
+            //loops over previously acquired strings and prints
+            for (int j = 0; j < npcsToSave.size(); j++) {
+                saveFile.println(npcsToSave.get(j));
+            }
+            //closes the printWriter
+            saveFile.close();
+        } catch (FileNotFoundException e) {}
     }
 
-    public void save(FileOutputStream stream) throws IOException {
-        try (ObjectOutputStream oos = new ObjectOutputStream(stream)) {
-            oos.writeObject(this.flags);
-            oos.writeObject(this.extraSaveData);
-        }
+     /**
+      * The load method for setting all the right data in the right places from a text file.
+      * @param i Load slot number
+      * @author higgins!
+      */
+    public void betterLoad(int i) {
+        try {
+            //reads in the file
+            Scanner scanner = new Scanner(new File("save" + i + ".txt"));
+            //gets the mapID, player x, and player y and sets them accordingly
+            String[] playerLocation = scanner.nextLine().split(",");
+            this.extraSaveData.map = Integer.parseInt(playerLocation[0]);
+            this.extraSaveData.x = Float.parseFloat(playerLocation[1]);
+            this.extraSaveData.y = Float.parseFloat(playerLocation[2]);
+            //reads in the inventory array and parses the ints from the split string
+            String[] inventoryData = scanner.nextLine().split(",");
+            //creates an empty int array to fill from data in inventoryData
+            int[] newInventory = new int[inventoryData.length];
+            //loops through inventoryData and parses ints into newInventory
+            for (int j = 0; j < inventoryData.length; j++) {
+                newInventory[j] = Integer.parseInt(inventoryData[j]);
+            }
+            this.extraSaveData.inventory = newInventory;
+            //reads in the flags and adds them to an ArrayList in key,value format
+            ArrayList<String> loadedFlags = new ArrayList<>();
+            //loops until a specified label is reached
+            boolean noMoreFlags = false;
+            while (!noMoreFlags) {
+                String tempLine = scanner.nextLine();
+                if (tempLine.equalsIgnoreCase("FURNITURE_INFO")) {
+                    noMoreFlags = true;
+                } else {
+                    loadedFlags.add(tempLine);
+                }
+            }
+            overwriteFlags(loadedFlags);
+            //reads in the furniture information with mapID,furnitureID,furnitureX,furnitureY format
+            ArrayList<String> furnitureInfo = new ArrayList<>();
+            //loops until a specified label is reached
+            boolean noMoreFurniture = false;
+            while (!noMoreFurniture) {
+                String tempLine = scanner.nextLine();
+                if (tempLine.equalsIgnoreCase("NPC_INFO")) {
+                    noMoreFurniture = true;
+                } else {
+                    furnitureInfo.add(tempLine);
+                }
+            }
+            Player.MapEntityManager.loadSavedFurniture(furnitureInfo);
+            //reads in the furniture information with mapID,furnitureID,furnitureX,furnitureY format
+            ArrayList<String> npcInfo = new ArrayList<>();
+            while (scanner.hasNextLine()) {
+                npcInfo.add(scanner.nextLine());
+            }
+            Player.MapEntityManager.loadSavedNPCs(npcInfo);
+            //closes the scanner
+            scanner.close();
+        } catch (Exception e) {}
     }
-
-    public void loadFromSlot(int i) throws FileNotFoundException, IOException, ClassNotFoundException {
-        try (FileInputStream stream = new FileInputStream(String.format("%d.save", i))) {
-            this.load(stream);
-        }
-    }
-
-    public void saveToSlot(int i) throws FileNotFoundException, IOException {
-        try (FileOutputStream stream = new FileOutputStream(String.format("%d.save", i))) {
-            this.save(stream);
-        }
-    }
-
     /**
      * Load the ExtraSaveData structure with the data that will need to be saved.
      * 
@@ -161,7 +237,7 @@ public class FlagManager {
             .getPlayLevelScreen()
             .getPlayerInventory()
             .getInventoryArray();
-        this.extraSaveData.storeMap(player.getMap());
+        this.extraSaveData.map = player.getMap().getMapID();
     }
 
     /**
@@ -172,16 +248,26 @@ public class FlagManager {
      * @param player the player object
      */
     public void updateTo(Player player) {
+        //sets player inventory from save data
         Game.getRunningInstance()
             .getScreenCoordinator()
             .getPlayLevelScreen()
             .getPlayerInventory()
             .setInventoryArray(this.extraSaveData.inventory);
+        //if the mapID from the sava data corresponds to a house, sets isInHouse to true
+        if (this.extraSaveData.map == 6 || 
+            this.extraSaveData.map == 7 || 
+            this.extraSaveData.map == 8 || 
+            this.extraSaveData.map == 10 || 
+            this.extraSaveData.map == 11) {
+            PlayLevelScreen.isInHouse = true;
+        }
+        //sets player to map from save data
         Game.getRunningInstance()
             .getScreenCoordinator()
             .getPlayLevelScreen()
             .teleport(
-                this.extraSaveData.createMap(),
+                Player.MapEntityManager.getSavedMap(this.extraSaveData.map),
                 this.extraSaveData.x,
                 this.extraSaveData.y
             );

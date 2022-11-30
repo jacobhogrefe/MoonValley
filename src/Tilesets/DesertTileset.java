@@ -390,7 +390,6 @@ public class DesertTileset extends Tileset {
                 .build();
 
         MapTileBuilder houseDoorTile = new MapTileBuilder(houseDoorFrame)
-        		.withTopLayer(houseDoorFrame)
         		.withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(houseDoorTile);
@@ -409,8 +408,7 @@ public class DesertTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder houseStepsTile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(houseStepsFrame)
+        MapTileBuilder houseStepsTile = new MapTileBuilder(houseStepsFrame)
         		.withTileType(TileType.PASSABLE);
 
         mapTiles.add(houseStepsTile);
@@ -419,8 +417,7 @@ public class DesertTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder houseFenceTile = new MapTileBuilder(floorFrame)
-        		.withTopLayer(houseFenceFrame)
+        MapTileBuilder houseFenceTile = new MapTileBuilder(houseFenceFrame)
         		.withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(houseFenceTile);

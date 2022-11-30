@@ -1,14 +1,19 @@
-package Level;
+ package Level;
 
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
+import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
+import HouseCustomization.FurnitureRegistry;
 import Utils.Direction;
 import java.util.ArrayList;
+import java.util.Arrays;
 import Utils.Sound;
+import Maps.Biomes.*;
+import Maps.*;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -44,8 +49,6 @@ public abstract class Player extends GameObject {
     protected Key MOVE_DOWN_KEY = Key.DOWN;
     protected Key MOVE_DOWN_KEY_ALT = Key.S;
     protected Key INTERACT_KEY = Key.SPACE;
-    protected Key QUICKSAVE_KEY = Key.N;
-    protected Key QUICKLOAD_KEY = Key.M;
 
     //Sound that plays for a player walking
     protected Sound walkingSound;
@@ -98,24 +101,6 @@ public abstract class Player extends GameObject {
                 playerInteracting();
                 walkingSound.pause();
                 break;
-        }
-
-        if (!keyLocker.isKeyLocked(QUICKSAVE_KEY) && Keyboard.isKeyDown(QUICKSAVE_KEY)) {
-            this.map.flagManager.updateFrom(this);
-
-            try {
-                this.map.flagManager.saveToSlot(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (!keyLocker.isKeyLocked(QUICKLOAD_KEY) && Keyboard.isKeyDown(QUICKLOAD_KEY)) {
-            try {
-                this.map.flagManager.loadFromSlot(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            this.map.flagManager.updateTo(this);
         }
     }
 
@@ -307,6 +292,171 @@ public abstract class Player extends GameObject {
         }
         else if (direction == Direction.RIGHT) {
             moveX(speed);
+        }
+    }
+    /**
+     * Class that contains all of the intiated maps that will appear within the game.
+     * @author Matt Zingarella
+     * @author higgins!
+     */
+    public static class MapEntityManager {
+
+        protected static ArrayList<Map> savedMaps = new ArrayList<> (Arrays.asList(
+            new BiomeDesert(), //0
+            new BiomeMountains(), //2
+            new BiomeShrooms(), //3
+            new BiomeSpooky(), //4
+            new BiomeStart(), //5
+            new DinoMap(), //6
+            new HouseMap(), //7
+            new MushroomHomeMap(), //8
+            new SaloonMap(), //9
+            new TreehouseMap(), //10
+            new WalrusMap() //11
+        ));
+
+        /**
+         * Gets the arrayList of all the maps that are in the game.
+         * @author Matt Zingarella
+         */
+        public static ArrayList<Map> getSavedMaps() {
+            return savedMaps;
+        }
+
+        /**
+         * Gets a specific map from the arrayList of all maps in the game.
+         * @param mapID ID of the map needed
+         * @return specified map from ID
+         * @author Matt Zingarella
+         */
+        public static Map getSavedMap(int mapID) {
+            return savedMaps.get(mapID);
+        }
+
+        /**
+         * Sets all the saved maps to a new arrayList of maps.
+         * @param newSavedMaps
+         * @author Matt Zingarella
+         */
+        public static void setSavedMaps(ArrayList<Map> newSavedMaps) {
+            savedMaps = newSavedMaps;
+        }
+
+        /**
+         * Gets the furniture location, ID, and map in which the furniture was placed.
+         * Each string is formatted as {@code mapID,furnitureID,furnitureX,furnitureY}.
+         * @return String representations of all the  furniture within all the maps
+         * @author higgins!
+         */
+        public static ArrayList<String> getFurnitureToSave() {
+            //list of all the strings the furniture will be represented as
+            ArrayList<String> furnitureLocation = new ArrayList<>();
+            //for each of the maps in the savedMaps it'll loop over
+            for (Map map : savedMaps) {
+                //checks if the map has furniture or not
+                if (map.hasFurniture()) {
+                    //loops over the furniture to get the mapID,furnitureID,furnitureX,furnitureY and adds it to the list
+                    for (int i = 0; i < map.getFurniture().size(); i++) {
+                        furnitureLocation.add(
+                            Integer.toString(map.getMapID()) + "," + 
+                            map.getFurniture().get(i).getItemNumber() + "," + 
+                            map.getFurniture().get(i).getX() + "," + 
+                            map.getFurniture().get(i).getY());
+                    }
+                }
+            }
+            //returns list of strings
+            return furnitureLocation;
+        }
+
+        /**
+         * Parses through each string to obtain the necessary information of where the current furniture in the maps is located.
+         * Each string is formatted as {@code mapID,furnitureID,furnitureX,furnitureY}.
+         * @param furnitureToSet String representations of all the furniture from a previous save
+         * @author higgins!
+         */
+        public static void loadSavedFurniture(ArrayList<String> furnitureToSet) {
+            //loops over the list of strings provided
+            for (String lineOfSave : furnitureToSet) {
+                //splits the string at the commas
+                String[] tempLine = lineOfSave.split(",");
+                //parses the information through these methods to return specified values
+                int currentMapNumber = Integer.parseInt(tempLine[0]);
+                int furnitureID = Integer.parseInt(tempLine[1]);
+                float x = Float.parseFloat(tempLine[2]);
+                float y = Float.parseFloat(tempLine[3]);
+                //if the furniture doesn't exist on the map, it'll set the furniture to the map in the specified location
+                if (!getSavedMap(currentMapNumber).getFurniture().contains(FurnitureRegistry.getFurnitureFromID(furnitureID))) {
+                    Furniture furnitureToAdd = FurnitureRegistry.getFurnitureFromID(furnitureID);
+                    furnitureToAdd.setX(x);
+                    furnitureToAdd.setY(y);
+                    getSavedMap(currentMapNumber).addFurniture(furnitureToAdd);
+                }
+            }
+        }
+        
+        /**
+         * A method used for saving certain NPC data within a save file. 
+         * Each string is formatted as {@code mapID,npcID,npcX,npcY}.
+         * @return String representations of the NPC data
+         * @author higgins!
+         */
+        public static ArrayList<String> getNPCsToSave() {
+            //the list of strings containing the desired NPC data
+            ArrayList<String> npcsToSave = new ArrayList<>();
+            //loops over the saved maps and the NPCs contained in those maps
+            for (Map map : savedMaps) {
+                for (int i = 0; i < map.getNPCs().size(); i++) {
+                    //gets the NPCId from the current NPC
+                    int npcID = map.getNPCs().get(i).getId();
+                    //if the NPC that's desired to be saved is any of numbers it'll save the data
+                    //add new NPCIds separated by || operator
+                    if (npcID == 3) {
+                        npcsToSave.add(
+                            Integer.toString(map.getMapID()) + "," + 
+                            npcID + "," + 
+                            map.getNPCs().get(i).getX() + "," + 
+                            map.getNPCs().get(i).getY() + "," + 
+                            map.getNPCs().get(i).getCurrentAnimationName());
+                    }
+                }
+            }
+            return npcsToSave;
+        }
+
+        /**
+         * Parses through each string to obtain the necessary information of where the current NPCs in the save 
+         * data is located. Each string is formatted as {@code mapID,npcID,npcX,npcY}.
+         * @param npcsToSave The list of strings of the updates NPCs
+         * @author higgins!
+         */
+        public static void loadSavedNPCs(ArrayList<String> npcsToSave) {
+            for (String lineOfSave : npcsToSave) {
+                //splits the string at the commas
+                String[] tempLine = lineOfSave.split(",");
+                //parses the information through these methods to return specified values
+                int currentMapNumber = Integer.parseInt(tempLine[0]);
+                int npcID = Integer.parseInt(tempLine[1]);
+                float x = Float.parseFloat(tempLine[2]);
+                float y = Float.parseFloat(tempLine[3]);
+                String animation = tempLine[4];
+                //gets the NPC from the save data, and alters the x and y positions of the NPC
+                NPC npcToChange = getSavedMap(currentMapNumber).getNPCById(npcID);
+                npcToChange.setCurrentAnimationName(animation);
+                npcToChange.setX(x);
+                npcToChange.setY(y);
+                npcToChange.update();
+            }
+        }
+
+        /**
+         * Clears the list of furniture currently in a map.
+         * @author higgins!
+         */
+        public static void clearAllFurniture() {
+            for (Map map : savedMaps) {
+                map.getFurniture().clear();
+            }
         }
     }
 }

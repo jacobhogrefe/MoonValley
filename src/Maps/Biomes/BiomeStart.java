@@ -1,27 +1,24 @@
 package Maps.Biomes;
 
 import java.util.ArrayList;
-import java.util.function.Supplier;
 import EnhancedMapTiles.Rock;
+import GameObject.Rectangle;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.Map;
-import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
+import Level.Player;
 import Level.Trigger;
-import Maps.AbstractLoopingMap;
 import NPCs.Dinosaur;
 import NPCs.Walrus;
-import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Scripts.SimpleTextScript;
-import Scripts.TestMap.DinoScript;
+import Scripts.SmartMapTeleportScript;
 import Scripts.TestMap.DinoScript2;
 import Scripts.TestMap.EnterDinoHouseScript;
 import Scripts.TestMap.EnterHouseScript;
 import Scripts.TestMap.EnterWalrusHouseScript;
-import Scripts.TestMap.LostBallScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
 import Scripts.TestMap.foundMagnifying;
@@ -41,9 +38,8 @@ import Utils.Side;
  * |            |            |            |
  * +------------+------------+------------+
  */
-public class BiomeStart extends AbstractLoopingMap {
+public class BiomeStart extends Map {
     public static final Item REQUIRED_ITEM = null;
-    private static final Supplier<Map> HouseMap = null;
 
     public BiomeStart() {
         super("Biomes/start.txt", new CommonTileset(),5);
@@ -54,11 +50,11 @@ public class BiomeStart extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return MapEntityManager.entitymanager.getSavedMap(3);
+                return Player.MapEntityManager.getSavedMap(3);
             case RIGHT:
-                return MapEntityManager.entitymanager.getSavedMap(0);
+                return Player.MapEntityManager.getSavedMap(0);
             case TOP:
-                return MapEntityManager.entitymanager.getSavedMap(4);
+                return Player.MapEntityManager.getSavedMap(4);
             case BOTTOM:
                 return null;
             default:
@@ -106,8 +102,21 @@ public class BiomeStart extends AbstractLoopingMap {
     }
 
     @Override
-    public ArrayList<Trigger> loadTriggers() {
+    protected ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = super.loadTriggers();
+
+        for (Side edge : Side.values()) {
+            Rectangle bounds = edge.getBorderWithWidth(this.getIntersectRectangle(), 16);
+            Trigger trigger = new Trigger(
+                (int) bounds.getX(),
+                (int) bounds.getY(),
+                bounds.getWidth(),
+                bounds.getHeight(),
+                new SmartMapTeleportScript(() -> this.createBorderingMap(edge), edge, this.getRequiredItem(edge))
+            );
+
+            triggers.add(trigger);
+        }
         triggers.add(new Trigger(500, 250, 20, 20, new foundMagnifying()));
 //        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
 //        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
@@ -116,7 +125,7 @@ public class BiomeStart extends AbstractLoopingMap {
     }
 
     @Override
-    public ArrayList<Collectible> loadCollectables() {
+    public ArrayList<Collectible> loadCollectibles() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
 //        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin", 2, false));
 //        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(11,19).getLocation(), "Yoshi Coin", 2, false));

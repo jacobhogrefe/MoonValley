@@ -3,6 +3,7 @@ package Screens;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
 import Game.ScreenCoordinator;
+import Level.Player;
 import Screens.SaveSlotScreen.SlotType;
 import SpriteFont.SpriteFont;
 import java.awt.*;
@@ -76,6 +77,7 @@ public class PauseScreen extends AbstractMenuScreen {
 
         @Override
         public void select(AbstractMenuScreen parent) {
+            Player.MapEntityManager.clearAllFurniture();
             parent.screenCoordinator.exitToMenu();
         }
     }
@@ -96,7 +98,9 @@ public class PauseScreen extends AbstractMenuScreen {
         this.options.add(new ResumeOption());
         this.options.add(new ControlsOption());
         this.options.add(new SaveOption());
-        this.options.add(new LoadOption());
+        if (SaveSlotScreen.saveSlot || SaveSlotScreen.saveSlot1 || SaveSlotScreen.saveSlot2) {
+            this.options.add(new LoadOption());
+        }
         this.options.add(new QuitOption());
     }
 

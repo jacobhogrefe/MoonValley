@@ -1,11 +1,12 @@
 package Scripts;
 
+import Level.MapEntity;
 import Level.Script;
 import Level.ScriptState;
 
 // Reusable simple interact script
 // Just shows text upon interacting with the associated entity
-public class SimpleTextScript extends Script {
+public class SimpleTextScript extends Script<MapEntity> {
     private String[] textItems;
 
     public SimpleTextScript(String text) {

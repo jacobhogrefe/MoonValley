@@ -3,14 +3,12 @@ package Engine;
 import GameObject.Rectangle;
 import Screens.InventoryScreen;
 import Utils.Colors;
-import Utils.Stopwatch;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /*
  * This is where the game loop starts
@@ -29,9 +27,6 @@ public class GamePanel extends JPanel {
 	private GraphicsHandler graphicsHandler;
 
 	private boolean doPaint = false;
-	private boolean isInventoryOpen = false;
-	private KeyLocker keyLocker = new KeyLocker();
-	private static final Key inventoryKey = Key.I;
 	public static boolean clickToProcess = false;
 	public static Point lastClick;
 	public static Point mousePosition;

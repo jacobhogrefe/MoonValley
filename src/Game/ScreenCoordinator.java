@@ -1,11 +1,15 @@
 package Game;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
+import java.util.Scanner;
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
+import Screens.SaveSlotScreen;
 
 /*
  * Based on the current game state, this class determines which Screen should be shown
@@ -23,6 +27,25 @@ public class ScreenCoordinator extends Screen {
 		mainMenuScreen = new MenuScreen(this);
 		mainMenuScreen.initialize();
 		this.currentScreen = mainMenuScreen;
+
+		//checks if save data is present and sets the appropiate boolean value
+		try {
+			Scanner save = new Scanner(new File("save0.txt"));
+			SaveSlotScreen.saveSlot = true;
+			save.close();
+		} catch (FileNotFoundException e) {}
+
+		try {
+			Scanner save1 = new Scanner(new File("save1.txt"));
+			SaveSlotScreen.saveSlot1 = true;
+			save1.close();
+		} catch (FileNotFoundException e) {}
+
+		try {
+			Scanner save2 = new Scanner(new File("save2.txt"));
+			SaveSlotScreen.saveSlot2 = true;
+			save2.close();
+		} catch (FileNotFoundException e) {}
 	}
 
 	@Override

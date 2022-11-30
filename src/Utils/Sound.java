@@ -4,14 +4,20 @@ import java.io.File;
 import javax.sound.sampled.*;
 import Engine.Config;
 
+/**
+ * A class desgined to make loading sounds into a program easier.
+ * @author higgins!
+ */
 public class Sound implements LineListener {
 
     protected boolean playCompleted, doesSoundLoop;
     protected Clip soundClip;
 
-    /* ALL SOUNDS SHOULD BE PLACED IN THE SOUND FOLDER
-     * Sound class that does all the heavy work in loading and playing a sound within the game.
-     * Contains methods to play, pause, close, and restart the current sound
+    /**
+     * An object representing a sound.
+     * @param soundFileName The name of the sound file (do not include path)
+     * @param doesSoundLoop Determines if the sound will keep playing after it has finished playing
+     * @author higgins!
      */
     public Sound(String soundFileName, boolean doesSoundLoop) {
         this.doesSoundLoop = doesSoundLoop;
@@ -26,7 +32,10 @@ public class Sound implements LineListener {
         } catch (Exception e) {}
     }
 
-    //checks if the current sound playing has stopped
+    /**
+     * Checks if the current sound has stopped playing.
+     * @author higgins!
+     */
     @Override
     public void update(LineEvent event) {
         LineEvent.Type type = event.getType();
@@ -35,7 +44,10 @@ public class Sound implements LineListener {
         }
     }
 
-    //plays the sound stored in the sound object
+    /**
+     * Plays the sound associated with this object.
+     * @author higgins!
+     */
     public void play() {
         if (soundClip != null && !doesSoundLoop) {
             soundClip.start();
@@ -45,7 +57,10 @@ public class Sound implements LineListener {
         }
     }
 
-    //closes the soundclip freeing up memory currently in use by it
+    /**
+     * Closes the current sound to free up memory being used by it.
+     * @author higgins!
+     */
     public void close() {
         if (soundClip != null) {
             soundClip.stop();
@@ -53,21 +68,30 @@ public class Sound implements LineListener {
         }
     }
 
-    //pauses the current sound playing
+    /**
+     * Pauses the current sound associated with this object.
+     * @author higgins!
+     */
     public void pause() {
         if (soundClip != null) {
             soundClip.stop();
         }
     }
 
-    //sets the position of the sound to the beginning (useful for looping sounds that need to be restarted)
+    /**
+     * Sets the position of the sound to the beginning (useful for looping sounds that need to be restarted).
+     * @author higgins!
+     */
     public void restart() {
         if (soundClip != null) {
             soundClip.setMicrosecondPosition(0);
         }
     }
 
-    //pauses and retsarts the current sound
+    /**
+     * Pauses and restarts the current sound associated with this object.
+     * @author higgins!
+     */
     public void stop() {
         if (soundClip != null) {
             soundClip.stop();
@@ -75,7 +99,11 @@ public class Sound implements LineListener {
         }
     }
 
-    //checks if the soundclip is currently playing using the LineListener update method
+    /**
+     * Checks if the sound associated with this object has completed playing.
+     * @return Whether or not the sound has finished playing
+     * @author higgins!
+     */
     public boolean isPlayComplete() {
         return playCompleted;
     }

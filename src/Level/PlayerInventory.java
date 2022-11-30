@@ -5,9 +5,7 @@ package Level;
  * screens we might add that manage the main game).
  */
 
-import java.util.Arrays;
 
-import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 
 public class PlayerInventory {
@@ -94,9 +92,9 @@ public class PlayerInventory {
 	}
 
 	// removes item from inventory
-	public void removeItem(int itemNumber) {
+	public void removeItem(int slotNumber) {
 		isInventoryFull = false;
-		inventoryArray[itemNumber] = 0;
+		inventoryArray[slotNumber] = 0;
 	}
 
 	// swaps the location of two items. For the sake of the game logic, an empty

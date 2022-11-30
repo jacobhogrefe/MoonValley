@@ -2,8 +2,9 @@ package Scripts.TestMap;
 
 import Level.Script;
 import Level.ScriptState;
+import Level.Trigger;
 
-public class foundMagnifying extends Script {
+public class foundMagnifying extends Script<Trigger> {
 
 	@Override
 	protected void setup() {

@@ -5,6 +5,7 @@ import Game.Game;
 import Level.Map;
 import Level.Script;
 import Level.ScriptState;
+import Level.Trigger;
 
 /**
  * @author hle0
@@ -13,7 +14,7 @@ import Level.ScriptState;
  * 
  * You probably want to use SmartMapTeleport or teleport the player directly instead.
  */
-public class MapTeleportScript extends Script {
+public class MapTeleportScript extends Script<Trigger> {
     public Supplier<Map> mapCreator;
     public OptionalDouble toX;
     public OptionalDouble toY;

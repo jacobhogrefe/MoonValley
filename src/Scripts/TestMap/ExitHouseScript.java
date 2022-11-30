@@ -1,15 +1,15 @@
 package Scripts.TestMap;
 
 import Game.Game;
-import Level.MapEntityManager;
+
+import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.TestMap;
-import Maps.Biomes.BiomeStart;
+import Level.Trigger;
 import Screens.PlayLevelScreen;
 
 // trigger script at beginning of game to set that heavy emotional plot
-public class ExitHouseScript extends Script {
+public class ExitHouseScript extends Script<Trigger> {
 	@Override
 	protected void setup() {
 		lockPlayer();
@@ -25,7 +25,7 @@ public class ExitHouseScript extends Script {
 	@Override
 	public ScriptState execute() {
 		PlayLevelScreen.isInHouse = false;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(MapEntityManager.entitymanager.getSavedMap(5), 825, 950);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(5), 825, 950);
 		return ScriptState.COMPLETED;
 	}
 }

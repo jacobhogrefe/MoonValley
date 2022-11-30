@@ -2,16 +2,18 @@ package Maps.Biomes;
 
 import java.util.ArrayList;
 
+import GameObject.Rectangle;
 import Level.Collectible;
 import Level.EnhancedMapTile;
 import Level.Map;
-import Level.MapEntityManager;
 import Level.MusicState;
 import Level.NPC;
-import Maps.AbstractLoopingMap;
+import Level.Player;
+import Level.Trigger;
 import NPCs.Mario;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
+import Scripts.SmartMapTeleportScript;
 import Scripts.BiomeMountains.EnterTreehouseScript;
 import Scripts.BiomeMountains.MarioScript;
 import Tilesets.MountainsTileset;
@@ -30,7 +32,7 @@ import Utils.Side;
  * |            |            |            |
  * +------------+------------+------------+
  */
-public class BiomeMountains extends AbstractLoopingMap {
+public class BiomeMountains extends Map {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GRAPPLING_HOOK;
 
     public BiomeMountains() {
@@ -41,13 +43,13 @@ public class BiomeMountains extends AbstractLoopingMap {
     public Map createBorderingMap(Side edge) {
         switch (edge) {
             case LEFT:
-                return MapEntityManager.entitymanager.getSavedMap(4);
+                return Player.MapEntityManager.getSavedMap(4);
             case RIGHT:
                 return null;
             case TOP:
                 return null;
             case BOTTOM:
-                return MapEntityManager.entitymanager.getSavedMap(0);
+                return Player.MapEntityManager.getSavedMap(0);
             default:
                 return null;
         }
@@ -90,10 +92,26 @@ public class BiomeMountains extends AbstractLoopingMap {
     //     triggers.add(new Trigger(48*5,48*24, 48, 1, new MagicTreeHouse(), "magicTreeHouse"));
     //     return triggers;
     // }
+    @Override
+    public ArrayList<Trigger> loadTriggers() {
+        ArrayList<Trigger> triggers = super.loadTriggers();
+        for (Side edge : Side.values()) {
+            Rectangle bounds = edge.getBorderWithWidth(this.getIntersectRectangle(), 16);
+            Trigger trigger = new Trigger(
+                (int) bounds.getX(),
+                (int) bounds.getY(),
+                bounds.getWidth(),
+                bounds.getHeight(),
+                new SmartMapTeleportScript(() -> this.createBorderingMap(edge), edge, this.getRequiredItem(edge))
+            );
 
+            triggers.add(trigger);
+        }
+        return triggers;
+    }
 
     @Override
-    public ArrayList<Collectible> loadCollectables() {
+    public ArrayList<Collectible> loadCollectibles() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
         Collectible nintendoSwitch = new Collectible("nintendoSwitch.png", getMapTile(6,4).getLocation(), "Nintendo Switch", 13, false);
         Collectible ramen = new Collectible("ramen.png", getMapTile(22,17).getLocation(), "bowl of Ramen", 12, false);

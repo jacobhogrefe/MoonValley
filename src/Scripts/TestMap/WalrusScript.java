@@ -6,7 +6,6 @@ import Level.ScriptState;
 
 // script for talking to walrus npc
 public class WalrusScript extends Script<NPC> {
-	private int sequence = 0;
 
 	@Override
 	protected void setup() {

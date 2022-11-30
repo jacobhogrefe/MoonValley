@@ -6,9 +6,7 @@ import Engine.ScreenManager;
 import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
-import NPCs.Walrus;
 import Utils.Direction;
-
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -36,7 +34,7 @@ public class Camera extends Rectangle {
 	private ArrayList<EnhancedMapTile> activeEnhancedMapTiles = new ArrayList<>();
 	private ArrayList<NPC> activeNPCs = new ArrayList<>();
 	private ArrayList<Trigger> activeTriggers = new ArrayList<>();
-	private ArrayList<Collectible> activeCollectables = new ArrayList<>();
+	private ArrayList<Collectible> activeCollectibles = new ArrayList<>();
 	private ArrayList<Furniture> activeFurniture = new ArrayList<>();
 	private ArrayList<HouseEntry> activeHouseEntries = new ArrayList<>();
 	
@@ -85,7 +83,7 @@ public class Camera extends Rectangle {
 	public void updateMapEntities(Player player) {
 		activeEnhancedMapTiles = loadActiveEnhancedMapTiles();
 		activeNPCs = loadActiveNPCs();
-		activeCollectables = loadActiveCollectables();
+		activeCollectibles = loadActiveCollectibles();
 		activeFurniture = loadActiveFurniture();
 
 		for (EnhancedMapTile enhancedMapTile : activeEnhancedMapTiles) {
@@ -178,23 +176,23 @@ public class Camera extends Rectangle {
 
 	// Draws the active collectibles on the map (when they exist and are within
 	// range of the camera)
-	private ArrayList<Collectible> loadActiveCollectables() {
-		ArrayList<Collectible> activeCollectables = new ArrayList<>();
-		for (int i = map.getCollectables().size() - 1; i >= 0; i--) {
-			Collectible collectible = map.getCollectables().get(i);
+	private ArrayList<Collectible> loadActiveCollectibles() {
+		ArrayList<Collectible> activeCollectibles = new ArrayList<>();
+		for (int i = map.getCollectibles().size() - 1; i >= 0; i--) {
+			Collectible collectible = map.getCollectibles().get(i);
 
 			if (isMapEntityActive(collectible)) {
-				activeCollectables.add(collectible);
+				activeCollectibles.add(collectible);
 				if (collectible.mapEntityStatus == MapEntityStatus.INACTIVE) {
 					collectible.setMapEntityStatus(MapEntityStatus.ACTIVE);
 				}
 			} else if (collectible.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
 				collectible.setMapEntityStatus(MapEntityStatus.INACTIVE);
 			} else if (collectible.getMapEntityStatus() == MapEntityStatus.REMOVED) {
-				map.getFurniture().remove(i);
+				map.getCollectibles().remove(i);
 			}
 		}
-		return activeCollectables;
+		return activeCollectibles;
 	}
 
 	// Draws the active furniture on the map (when they exist and are within
@@ -212,7 +210,7 @@ public class Camera extends Rectangle {
 			} else if (furniture.getMapEntityStatus() == MapEntityStatus.ACTIVE) {
 				furniture.setMapEntityStatus(MapEntityStatus.INACTIVE);
 			} else if (furniture.getMapEntityStatus() == MapEntityStatus.REMOVED) {
-				map.getCollectables().remove(i);
+				map.getFurniture().remove(i);
 			}
 		}
 		return activeFurniture;
@@ -347,7 +345,7 @@ public class Camera extends Rectangle {
 			}
 		}
 
-		for (Collectible collectibles : activeCollectables) {
+		for (Collectible collectibles : activeCollectibles) {
 			if (containsDraw(collectibles)) {
 				if (collectibles.intersects(player) && !PlayerInventory.isInventoryFull) {
 					map.giveItem(collectibles.getItemNumber());
@@ -375,8 +373,7 @@ public class Camera extends Rectangle {
 			if (furniture.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown()) {
 				System.out.println("setting tether...");
 				furniture.setTether(true, player);
-				tetherSet = true;
-				
+				tetherSet = true;	
 			}
 			
 
@@ -453,8 +450,8 @@ public class Camera extends Rectangle {
 		return activeTriggers;
 	}
 
-	public ArrayList<Collectible> getActiveCollectables() {
-		return activeCollectables;
+	public ArrayList<Collectible> getActiveCollectibles() {
+		return activeCollectibles;
 	}
 
 	public ArrayList<Furniture> getActiveFurniture() {

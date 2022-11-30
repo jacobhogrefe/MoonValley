@@ -1,14 +1,15 @@
 package Scripts.DesertMap;
 
 import Game.Game;
-import Level.MapEntityManager;
+
+import Level.Player;
 import Level.Script;
 import Level.ScriptState;
-import Maps.Biomes.BiomeDesert;
+import Level.Trigger;
 
 
 
-public class ExitSaloonScript extends Script {
+public class ExitSaloonScript extends Script<Trigger> {
 	@Override
 	protected void setup() {
 		lockPlayer();
@@ -23,7 +24,7 @@ public class ExitSaloonScript extends Script {
 
 	@Override
 	public ScriptState execute() {
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(MapEntityManager.entitymanager.getSavedMap(0), 825, 1250);
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(0), 825, 1250);
 		return ScriptState.COMPLETED;
 	}
 }

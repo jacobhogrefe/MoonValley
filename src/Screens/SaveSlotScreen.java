@@ -1,15 +1,13 @@
 package Screens;
 
-import java.io.IOException;
-
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
 import Game.ScreenCoordinator;
-import SpriteFont.SpriteFont;
-
 import java.awt.*;
 
 public class SaveSlotScreen extends AbstractMenuScreen {
+
+    public static boolean saveSlot, saveSlot1, saveSlot2;
     protected static abstract class SlotOption extends Option {
         public int slot;
 
@@ -23,7 +21,7 @@ public class SaveSlotScreen extends AbstractMenuScreen {
         }
 
         public String getFilename() {
-            return String.format("%d.save", this.slot);
+            return String.format("save%d.txt", this.slot);
         }
     }
 
@@ -35,16 +33,8 @@ public class SaveSlotScreen extends AbstractMenuScreen {
         @Override
         public void select(AbstractMenuScreen parent) {
             PlayLevelScreen playLevelScreen = parent.screenCoordinator.getPlayLevelScreen();
-            
             playLevelScreen.flagManager.updateFrom(playLevelScreen.player);
-
-            try {
-                playLevelScreen.flagManager.saveToSlot(this.slot);
-            } catch (IOException exception) {
-                exception.printStackTrace();
-                // TODO: warn user?
-            }
-
+            playLevelScreen.flagManager.betterSave(this.slot);
             parent.screenCoordinator.pop(parent);
         }
     }
@@ -57,16 +47,8 @@ public class SaveSlotScreen extends AbstractMenuScreen {
         @Override
         public void select(AbstractMenuScreen parent) {
             PlayLevelScreen playLevelScreen = parent.screenCoordinator.getPlayLevelScreen();
-            
-            try {
-                playLevelScreen.flagManager.loadFromSlot(this.slot);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-                // TODO: warn user?
-            }
-
+            playLevelScreen.flagManager.betterLoad(this.slot);
             playLevelScreen.flagManager.updateTo(playLevelScreen.player);
-
             parent.screenCoordinator.pop(parent);
         }
     }
@@ -90,7 +72,13 @@ public class SaveSlotScreen extends AbstractMenuScreen {
                     this.options.add(new SaveOption(i));
                     break;
                 case LOAD:
-                    this.options.add(new LoadOption(i));
+                    if (saveSlot && i == 0) {
+                        this.options.add(new LoadOption(i));
+                    } else if (saveSlot1 && i == 1) {
+                        this.options.add(new LoadOption(i));
+                    } else if (saveSlot2 && i == 2) {
+                        this.options.add(new LoadOption(i));
+                    }
                     break;
             }
         }

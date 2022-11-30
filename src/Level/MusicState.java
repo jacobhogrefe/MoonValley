@@ -1,8 +1,11 @@
 package Level;
 
-//enum to represent the different music that could be played in each area of the game
+/**
+ * An enum to define the different music states within the game
+ * @author higgins!
+ */
 public enum MusicState {
     MAIN_MENU,
-    START, DESERT, SPOOKY, TOXIC, MUSHROOM, MOUNTAINS,
-    START_HOME, DESERT_HOME, SPOOKY_HOME, TOXIC_HOME, MUSHROOM_HOME, MOUNTAINS_HOME, SALOON
+    START, DESERT, SPOOKY, MUSHROOM, MOUNTAINS,
+    START_HOME, DESERT_HOME, SPOOKY_HOME, MUSHROOM_HOME, MOUNTAINS_HOME, SALOON
 }
