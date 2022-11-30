@@ -166,6 +166,13 @@ public class InventoryGrid {
 			InventoryScreen.ItemWasPlaced = true;
 			
 		}
+		
+		if(!shouldHighlightMove && clickedX>565 && clickedX<775 && clickedY > 500 && clickedY < 540) {
+			Map.removefurniture = true;
+			InventoryScreen.ItemWasPlaced = true;
+			
+		}
+		
 
 	}
 
@@ -259,6 +266,8 @@ public class InventoryGrid {
 			goodClick = false;
 
 		}
+		
+		graphicsHandler.drawRetrieveFurnitureButton();
 
 		// if another click has occurred, and booleans indicate a move is taking place,
 		// move item

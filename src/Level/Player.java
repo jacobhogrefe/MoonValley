@@ -303,6 +303,7 @@ public abstract class Player extends GameObject {
 
         protected static ArrayList<Map> savedMaps = new ArrayList<> (Arrays.asList(
             new BiomeDesert(), //0
+            new moonValleyTitle(), //01   *****Placeholder map, not used but indexes were messed up after wasteland removal
             new BiomeMountains(), //2
             new BiomeShrooms(), //3
             new BiomeSpooky(), //4

@@ -170,20 +170,30 @@ public class GraphicsHandler {
 		// highlightSlot(0);
 
 	}
-	
-	//draws an orange square over the inventory slot that has been clicked
+
+	// draws an orange square over the inventory slot that has been clicked
 	public void highlightSlot(int slotNumber) {
 		int x = (int) inventoryGrid.getSlotCorner(slotNumber).getX();
 		int y = (int) inventoryGrid.getSlotCorner(slotNumber).getY();
 
 		drawRectangle(x, y, 48, 48, Color.ORANGE, 3);
 	}
-	
+
+	public void drawRetrieveFurnitureButton() {
+
+		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
+
+		// retrieve furniture button
+		drawFilledRectangleWithBorder(565, 500, 210, 40, Color.GRAY, Color.BLACK, 2);
+
+		drawString("RETRIEVE FURNITURE", 568, 525, buttonFont, Color.BLACK);
+
+	}
+
 	// draws item information to an optionsbox
 	public void drawOptionsBox(OptionsBox optionsBox) {
 		Font descriptionFont = new Font("descriptionFont", Font.PLAIN, 15);
 		Font nameFont = new Font("descriptionFont", Font.BOLD, 25);
-	
 
 		drawFilledRectangleWithBorder(240, 410, optionsBox.getBoxWidth(), optionsBox.getBoxHeight(), Color.LIGHT_GRAY,
 				Color.BLACK, 2);
@@ -199,69 +209,62 @@ public class GraphicsHandler {
 
 		drawString(optionsBox.getItemName(), 320, 450, nameFont, Color.BLACK);
 	}
-	
-	
-	//draws buttons to optionsbox, only called when items are selected, not empty slots
+
+	// draws buttons to optionsbox, only called when items are selected, not empty
+	// slots
 	public void drawOptionsBoxButtons(OptionsBox optionsBox) {
-		
+
 		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
-		
-		//move button
-		drawFilledRectangleWithBorder(250,530,60,25,Color.GRAY,Color.BLACK,2);
-		
+
+		// move button
+		drawFilledRectangleWithBorder(250, 530, 60, 25, Color.GRAY, Color.BLACK, 2);
+
 		drawString("MOVE", 253, 550, buttonFont, Color.BLACK);
-		
-		
-		
-		//remove button
-		drawFilledRectangleWithBorder(325,530,88,25,Color.GRAY,Color.BLACK,2);
+
+		// remove button
+		drawFilledRectangleWithBorder(325, 530, 88, 25, Color.GRAY, Color.BLACK, 2);
 		drawString("REMOVE", 328, 550, buttonFont, Color.BLACK);
-		
-	
-		
+
 	}
+
 	public void drawOptionsBoxButtonsWithPlace(OptionsBox optionsBox) {
-		
+
 		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
-		
-		//move button
-		drawFilledRectangleWithBorder(250,530,60,25,Color.GRAY,Color.BLACK,2);
-		
-		drawString("MOVE", 253, 550, buttonFont, Color.BLACK);	
-		
-		//remove button
-		drawFilledRectangleWithBorder(325,530,88,25,Color.GRAY,Color.BLACK,2);
+
+		// move button
+		drawFilledRectangleWithBorder(250, 530, 60, 25, Color.GRAY, Color.BLACK, 2);
+
+		drawString("MOVE", 253, 550, buttonFont, Color.BLACK);
+
+		// remove button
+		drawFilledRectangleWithBorder(325, 530, 88, 25, Color.GRAY, Color.BLACK, 2);
 		drawString("REMOVE", 328, 550, buttonFont, Color.BLACK);
-		
-		//Place button
-		drawFilledRectangleWithBorder(427,530,72,25,Color.GRAY,Color.BLACK,2);
+
+		// Place button
+		drawFilledRectangleWithBorder(427, 530, 72, 25, Color.GRAY, Color.BLACK, 2);
 		drawString("PLACE", 432, 550, buttonFont, Color.BLACK);
-		
+
 	}
-	
+
 	public void highlightMove() {
-		
+
 		drawRectangle(250, 530, 60, 25, Color.ORANGE, 3);
 	}
-	
+
 	public void highlightRemoveButton() {
-		
-		
+
 		drawRectangle(325, 530, 88, 25, Color.ORANGE, 3);
-	
+
 	}
-	
+
 	public void unhighlightRemoveButton() {
-		
-		
-		drawFilledRectangleWithBorder(325,530,88,25,Color.GRAY,Color.BLACK,2);
-	
+
+		drawFilledRectangleWithBorder(325, 530, 88, 25, Color.GRAY, Color.BLACK, 2);
+
 	}
-	
+
 	public void censorWalrus(Walrus walrus) {
-		drawFilledRectangleWithBorder((int)walrus.getX(),(int)walrus.getY(),88,25,Color.BLACK,Color.BLACK,2);
+		drawFilledRectangleWithBorder((int) walrus.getX(), (int) walrus.getY(), 88, 25, Color.BLACK, Color.BLACK, 2);
 	}
-	
-	
 
 }
