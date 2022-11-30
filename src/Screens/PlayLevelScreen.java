@@ -30,7 +30,6 @@ public class PlayLevelScreen extends Screen {
 	protected Cloud cloud = new Cloud(0, new Point(570, 4));
 	protected Cloud2 cloud2 = new Cloud2(0, new Point(235, 10));
 	protected Cloud3 cloud3 = new Cloud3(0, new Point(0, 35));
-	protected MusicManager musicManager = new MusicManager();
 	protected Key Inventory_Key = Key.I;
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
@@ -85,8 +84,8 @@ public class PlayLevelScreen extends Screen {
 
 		// setup player
 		this.player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
-		this.musicManager.setPlayer(this.player);
-		this.player.setWalkingSound(musicManager.getWalkingSound());
+		MusicManager.setPlayer(this.player);
+		this.player.setWalkingSound(MusicManager.getWalkingSound());
 		this.player.setMap(map);
 		Point playerStartPosition = map.getPlayerStartPosition();
 		this.player.setLocation(playerStartPosition.x, playerStartPosition.y);
@@ -97,7 +96,7 @@ public class PlayLevelScreen extends Screen {
 
 		winScreen = new WinScreen(this);
 		inventoryScreen = new InventoryScreen(this, playerInventory);
-		musicManager.getCurrentSound().play();
+		MusicManager.getCurrentSound().play();
 	}
 
 	public void reinitializeMap() {
@@ -133,8 +132,7 @@ public class PlayLevelScreen extends Screen {
 			}
 		}
 		for (Collectible collectibles : map.getCollectibles()) {
-			if (collectibles.getInteractScript() == null) {
-				collectibles.setScriptMusicManager(musicManager);
+			if (collectibles.getInteractScript() != null) {
 				collectibles.getInteractScript().setMap(map);
 				collectibles.getInteractScript().setPlayer(player);
 			}
@@ -345,18 +343,18 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void pause() {
-		musicManager.getCurrentSound().pause();
+		MusicManager.getCurrentSound().pause();
 		screenCoordinator.push(new PauseScreen(this, screenCoordinator));
 	}
 
 	public void controls() {
-		musicManager.getCurrentSound().pause();
+		MusicManager.getCurrentSound().pause();
 		screenCoordinator.push(new ControlsScreen(screenCoordinator));
 	}
 
 	public void resumeLevel() {
 		this.screenCoordinator.resumeLevel();
-		musicManager.getCurrentSound().play();
+		MusicManager.getCurrentSound().play();
 		playLevelScreenState = PlayLevelScreenState.RUNNING;
 	}
 
@@ -374,8 +372,8 @@ public class PlayLevelScreen extends Screen {
 		
 		
 		this.player = new Cat(currentX, currentY);
-		this.musicManager.setPlayer(this.player);
-		this.player.setWalkingSound(musicManager.getWalkingSound());
+		MusicManager.setPlayer(this.player);
+		this.player.setWalkingSound(MusicManager.getWalkingSound());
 		this.player.setMap(map);
 		this.player.setLocation(currentX, currentY);
 		this.playLevelScreenState = PlayLevelScreenState.RUNNING;
@@ -384,12 +382,8 @@ public class PlayLevelScreen extends Screen {
 	}
 
 	public void goBackToMenu() {
-		musicManager.getCurrentSound().stop();
+		MusicManager.getCurrentSound().stop();
 		screenCoordinator.pop(this);
-	}
-
-	public MusicManager getMusicManager() {
-		return this.musicManager;
 	}
 
 	public Player getPlayer() {
@@ -414,7 +408,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setMap(map);
 		this.player.setX(x);
 		this.player.setY(y);
-		this.musicManager.updateMusic(map.getMusicState());
+		MusicManager.updateMusic(map.getMusicState());
 		this.reinitializeMap();
 		this.map.update(this.player);
 	}
