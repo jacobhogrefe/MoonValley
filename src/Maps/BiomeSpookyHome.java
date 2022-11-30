@@ -2,10 +2,8 @@ package Maps;
 
 import Level.Map;
 import Level.MusicState;
-import Level.Tileset;
 import Scripts.BiomeSpooky.ExitHalloweenHome;
 import Tilesets.BiomeSpookyHomeTilesets;
-import Tilesets.BiomeSpookyTilesets;
 
 public class BiomeSpookyHome extends Map {
 

@@ -10,7 +10,6 @@ import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Scripts.SmartMapTeleportScript;
 import Scripts.BiomeSpooky.EnterHalloweenHome;
-import Scripts.TestMap.ExitDinoHouseScript;
 import Tilesets.BiomeSpookyTilesets;
 import Utils.Side;
 
