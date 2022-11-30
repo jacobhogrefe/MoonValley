@@ -85,7 +85,7 @@ public class BiomeSpooky extends Map {
     
     @Override
     public void loadScripts() {
-        getMapTile(8, 11).setInteractScript(new EnterHalloweenHome());
+        getMapTile(6, 5).setInteractScript(new EnterHalloweenHome());
     }
 
     @Override

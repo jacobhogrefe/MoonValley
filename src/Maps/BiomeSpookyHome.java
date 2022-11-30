@@ -8,13 +8,13 @@ import Tilesets.BiomeSpookyHomeTilesets;
 public class BiomeSpookyHome extends Map {
 
 	public BiomeSpookyHome() {
-        super("castle.txt", new BiomeSpookyHomeTilesets(),10);
+        super("castle.txt", new BiomeSpookyHomeTilesets(),12);
 		this.playerStartPosition = getMapTile(8, 10).getLocation();
     }
     
     @Override
     public void loadScripts() {
-        getMapTile(8,10).setInteractScript(new ExitHalloweenHome());
+        getMapTile(8,11).setInteractScript(new ExitHalloweenHome());
     }
 
     @Override

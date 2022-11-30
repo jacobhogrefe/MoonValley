@@ -6,6 +6,7 @@ import Level.Player;
 import Level.Script;
 import Level.ScriptState;
 import Level.Trigger;
+import Screens.PlayLevelScreen;
 
 
 
@@ -24,7 +25,8 @@ public class ExitHalloweenHome extends Script<Trigger> {
 
 	@Override
 	public ScriptState execute() {
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(4), 384, 480);
+		PlayLevelScreen.isInHouse = false;
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(4), 288, 288);
 		return ScriptState.COMPLETED;
 	}
 }

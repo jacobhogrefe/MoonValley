@@ -24,8 +24,8 @@ public class EnterHalloweenHome extends Script<Trigger> {
 
 	@Override
 	public ScriptState execute() {
-		PlayLevelScreen.isInHouse = false;
-		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(12),350,450);
+		PlayLevelScreen.isInHouse = true;
+		Game.getRunningInstance().getScreenCoordinator().getPlayLevelScreen().teleport(Player.MapEntityManager.getSavedMap(12),384,480);
 		return ScriptState.COMPLETED;
 	}
 }
