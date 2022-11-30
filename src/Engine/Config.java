@@ -13,6 +13,7 @@ public class Config {
     public static final String RESOURCES_PATH = "Resources/";
     public static final String MAP_FILES_PATH = "MapFiles/";
     public static final String SOUNDS_PATH = "Sounds/";
+    public static final String SAVE_PATH = "Saves/";
     public static final int GAME_WINDOW_WIDTH = 800;
     public static final int GAME_WINDOW_HEIGHT = 605;
     public static final Color TRANSPARENT_COLOR = Colors.MAGENTA;
