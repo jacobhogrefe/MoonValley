@@ -15,11 +15,7 @@ public class CollectibleScript extends SimpleTextScript {
         super("You have found a " + text + "!");
         textItem = "You have found a " + text + "!";
         this.musicManager = musicManager;
-        if (isKeyCollectible) {
-            sound = new Sound("keyCollectible.wav", false);
-        } else {
-            sound = new Sound("collectible.wav", false);
-        }
+        sound = musicManager.getCollectibleSound(isKeyCollectible);
     }
 
     @Override
@@ -35,7 +31,7 @@ public class CollectibleScript extends SimpleTextScript {
     protected void cleanup() {
         unlockPlayer();
         hideTextbox();
-        sound.close();
+        sound.stop();
         musicManager.getCurrentSound().play();
     }
 }

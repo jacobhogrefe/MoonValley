@@ -31,6 +31,10 @@ public class MusicManager {
     protected Sound woodWalking = new Sound("walkingWood.wav", true);
     protected Sound sandWalking = new Sound("sandWalking.wav", true);
 
+    //Collectible sound effects are managed in here
+    protected Sound keyCollectible = new Sound("keyCollectible.wav", false);
+    protected Sound collectible = new Sound("collectible.wav", false);
+
     /**
      * MusicManager manages the current player walking sound and current music playing in each map. 
      * Sets the previous and current sounds to the same thing on creation (this makes it easier to 
@@ -38,7 +42,6 @@ public class MusicManager {
      * @author higgins!
      */
     public MusicManager() {
-        previousMusicState = MusicState.START_HOME;
         musicState = MusicState.START_HOME;
         previousSound = startHome;
         currentSound = startHome;
@@ -47,75 +50,66 @@ public class MusicManager {
     }
 
     /**
-     * Checks if the current music state is different from the previous music state, 
-     * play the appropriate music depending on the case, and will pause and restart the previous music.
-     * This method also changes the player's walking sound.
+     * Updates the current music playing with the new musicState and then plays the appropriate music depending on the case. 
+     * Pauses and restarts the previous music, and changes the player's walking sound.
+     * @param musicState the musicState that the musicManager gets set to
      * @author higgins!
      */
-    public void updateMusic() {
-        if (previousMusicState != musicState) {
-            switch (musicState) {
-                case DESERT:
-                    currentSound = desert;
-                    walkingSound = sandWalking;
-                    break;
-                case DESERT_HOME:
-                    currentSound = desertHome;
-                    walkingSound = woodWalking;
-                    break;
-                case MOUNTAINS:
-                    currentSound = mountains;
-                    walkingSound = stoneWalking;
-                    break;
-                case MOUNTAINS_HOME:
-                    currentSound = mountainsHome;
-                    walkingSound = woodWalking;
-                    break;
-                case MUSHROOM:
-                    currentSound = mushroom;
-                    walkingSound = grassWalking;
-                    break;
-                case MUSHROOM_HOME:
-                    currentSound = mushroomHome;
-                    walkingSound = woodWalking;
-                    break;
-                case SPOOKY:
-                    currentSound = spooky;
-                    walkingSound = grassWalking;
-                    break;
-                case SPOOKY_HOME:
-                    currentSound = spookyHome;
-                    walkingSound = stoneWalking;
-                    break;
-                case START:
-                    currentSound = start;
-                    walkingSound = grassWalking;
-                    break;
-                case START_HOME:
-                    currentSound = startHome;
-                    walkingSound = woodWalking;
-                case SALOON:
-                	currentSound = saloon;
-                    walkingSound = woodWalking;
-                default:
-                    break;
-            }
-            previousSound.stop();
-            currentSound.play();
-            player.getWalkingSound().stop();
-            player.setWalkingSound(walkingSound);
-            previousWalkingSound = walkingSound;
-            previousSound = currentSound;
-            previousMusicState = musicState;
+    public void updateMusic(MusicState musicState) {
+        previousSound.stop();
+        player.getWalkingSound().stop();
+        switch (musicState) {
+            case DESERT:
+                currentSound = desert;
+                walkingSound = sandWalking;
+                break;
+            case DESERT_HOME:
+                currentSound = desertHome;
+                walkingSound = woodWalking;
+                break;
+            case MOUNTAINS:
+                currentSound = mountains;
+                walkingSound = stoneWalking;
+                break;
+            case MOUNTAINS_HOME:
+                currentSound = mountainsHome;
+                walkingSound = woodWalking;
+                break;
+            case MUSHROOM:
+                currentSound = mushroom;
+                walkingSound = grassWalking;
+                break;
+            case MUSHROOM_HOME:
+                currentSound = mushroomHome;
+                walkingSound = woodWalking;
+                break;
+            case SPOOKY:
+                currentSound = spooky;
+                walkingSound = grassWalking;
+                break;
+            case SPOOKY_HOME:
+                currentSound = spookyHome;
+                walkingSound = stoneWalking;
+                break;
+            case START:
+                currentSound = start;
+                walkingSound = grassWalking;
+                break;
+            case START_HOME:
+                currentSound = startHome;
+                walkingSound = woodWalking;
+                break;
+            case SALOON:
+                currentSound = saloon;
+                walkingSound = woodWalking;
+                break;
+            default:
+                break;
         }
-    }
-
-    /**
-     * Sets the {@code MusicState} to determine if the state has changed.
-     * @author higgins!
-     */
-    public void setMusicState(MusicState musicState) {
-        this.musicState = musicState;
+        currentSound.play();
+        player.setWalkingSound(walkingSound);
+        previousWalkingSound = walkingSound;
+        previousSound = currentSound;
     }
 
     /**
@@ -140,5 +134,15 @@ public class MusicManager {
      */
     public Sound getWalkingSound() {
         return walkingSound;
+    }
+
+    /**
+     * Gets the collectible sound in this class and sets it in the collectible script class.
+     * @param isKeyCollectible Whether or not the collectible is important
+     * @return Correct collectible sound
+     * @author higgins!
+     */
+    public Sound getCollectibleSound(boolean isKeyCollectible) {
+        return (isKeyCollectible) ? keyCollectible : collectible;
     }
 }

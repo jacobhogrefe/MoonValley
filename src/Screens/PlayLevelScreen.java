@@ -97,7 +97,6 @@ public class PlayLevelScreen extends Screen {
 
 		winScreen = new WinScreen(this);
 		inventoryScreen = new InventoryScreen(this, playerInventory);
-		musicManager.setMusicState(map.getMusicState());
 		musicManager.getCurrentSound().play();
 	}
 
@@ -418,8 +417,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setMap(map);
 		this.player.setX(x);
 		this.player.setY(y);
-		this.musicManager.setMusicState(map.getMusicState());
-		this.musicManager.updateMusic();
+		this.musicManager.updateMusic(map.getMusicState());
 		this.reinitializeMap();
 		this.map.update(this.player);
 	}
