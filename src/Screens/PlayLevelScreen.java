@@ -38,7 +38,7 @@ public class PlayLevelScreen extends Screen {
 	
 	
 	
-	//Matt's public static booleans because its the only way he know how to do anything - Matt
+	//Matt's public static booleans because its the only way he know how to do anything and he hates the FlagManager - Matt
 	public static boolean isInHouse = false;
 	public static boolean shouldcensorwalrus = false;
 	public static boolean ShouldGiveLasso = false;
@@ -46,6 +46,7 @@ public class PlayLevelScreen extends Screen {
 	public static boolean ShouldGiveWaterBucket = false;
 	public static boolean HasWaterBucket = false;
 	public static boolean ShouldGiveMagnifyingGlass = false;
+	public static boolean ShouldGiveCowboyHat = false;
 
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
@@ -187,6 +188,12 @@ public class PlayLevelScreen extends Screen {
 		if (ShouldGiveMagnifyingGlass == true) {
 			playerInventory.addItem(ItemRegistry.singleton.MAGNIFYING_GLASS);
 			ShouldGiveMagnifyingGlass = false;
+		}
+		
+		if (ShouldGiveCowboyHat) {
+			playerInventory.addItem(ItemRegistry.singleton.COWBOY_HAT);
+			ShouldGiveCowboyHat = false;
+			
 		}
 
 		if (Map.furniturereturnrequested) {

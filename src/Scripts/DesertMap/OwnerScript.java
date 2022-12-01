@@ -29,7 +29,9 @@ public class OwnerScript extends Script<NPC> {
     	  addTextToTextboxQueue( "A deed worthy of a reward!");
     	  addTextToTextboxQueue( "...Money? Well, not exactly..");
     	  addTextToTextboxQueue( "Why would you want money when you could have this\nantique magnifying glass!");
+    	  addTextToTextboxQueue( "Heck! Take this gen-u-ine cowboy hat too!");
     	  PlayLevelScreen.ShouldGiveMagnifyingGlass = true;
+    	  PlayLevelScreen.ShouldGiveCowboyHat = true;
     	  addTextToTextboxQueue( "Thank you kindly for the help my friend!");
       }
 
