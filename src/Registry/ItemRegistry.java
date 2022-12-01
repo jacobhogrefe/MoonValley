@@ -237,6 +237,13 @@ public class ItemRegistry {
 			.withSubimage(68 + 17 * 8, 0)
 			.build()
 			.addToRegistry(this);
+	
+	public Item BEARD_COMB = new Item.Builder() //20
+			.withName("Beard Comb")
+			.withDescription("This is the grossest comb ever.")
+			.withSubimage(68 + 17 * 9, 0)
+			.build()
+			.addToRegistry(this);
 
 	private ItemRegistry() {
 

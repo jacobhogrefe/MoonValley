@@ -70,6 +70,9 @@ public class PlayLevelScreen extends Screen {
 
 		//mushroom biome flags
 		flagManager.addFlag("hasTalkedToShittake", false);
+		flagManager.addFlag("petDoesntExist", true);
+		flagManager.addFlag("dogsPresent", false);
+		flagManager.addFlag("hasTalkedToDog", false);
 		
 		// mountains map flags
 		flagManager.addFlag("removeItem", false);
@@ -257,7 +260,17 @@ public class PlayLevelScreen extends Screen {
 				flagManager.unsetFlag("desertReward");
 			}
 		}
-
+		
+		//mushroom stuff
+		if (flagManager.isFlagSet("hasTalkedToShittake")) {
+			flagManager.unsetFlag("petDoesntExist");
+		}
+		
+		if (flagManager.isFlagSet("dogsPresent")) {
+			if (!playerInventory.containsItem(20)) {
+				playerInventory.addItem(20);
+			}
+		}
 
 		// mountains collectible quest flags
 		if (map.getMapFileName().equals("Biomes/mountains.txt")) {

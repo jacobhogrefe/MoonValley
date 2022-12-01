@@ -119,7 +119,7 @@ public class MushroomManScript extends Script<NPC> {
 					end();
 				}
 			}
-			//walk up
+			// walk up
 			else if (sequence == 5) {
 				start();
 				entity.walk(Direction.UP, 1);
@@ -128,7 +128,7 @@ public class MushroomManScript extends Script<NPC> {
 					end();
 				}
 			}
-			//talks
+			// talks
 			else if (sequence == 6) {
 				start();
 				if (isTextboxQueueEmpty()) {
@@ -137,6 +137,7 @@ public class MushroomManScript extends Script<NPC> {
 			}
 			return ScriptState.RUNNING;
 		}
+
 		return ScriptState.COMPLETED;
 	}
 }
