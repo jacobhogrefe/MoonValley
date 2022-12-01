@@ -1,24 +1,16 @@
 package Maps;
 
 import java.util.ArrayList;
-
-import GameObject.Rectangle;
 import Level.Collectible;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
 import Level.Trigger;
-import NPCs.Dinosaur;
 import NPCs.Walrus;
-import Scripts.SmartMapTeleportScript;
-import Scripts.TestMap.CrashScript;
-import Scripts.TestMap.DinoScript2;
 import Scripts.TestMap.ExitWalrusHouseScript;
 import Scripts.TestMap.WalrusScript;
-import Scripts.TestMap.checkHouseScript;
 import Scripts.TestMap.transformScript;
 import Tilesets.HouseTileset;
-import Utils.Side;
 
 public class WalrusMap extends Map {
 

@@ -10,7 +10,6 @@ import Level.Map;
 import Level.MusicState;
 import Level.Trigger;
 import Scripts.DesertMap.ExitDesertHomeScript;
-import Scripts.TestMap.ExitHouseScript;
 import Tilesets.HouseTileset;
 
 // Represents a test map to be used in a level
