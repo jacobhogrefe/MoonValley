@@ -21,16 +21,18 @@ public class OwnerScript extends Script<NPC> {
             addTextToTextboxQueue( "And where might my cowboy be? No where to \nbe found I tell ya! Takin' a French leave!");
             addTextToTextboxQueue( "If you come across that chucklehead, tell him \nhe best be back here in a twinklin' of a bed post!");
         }
-      if(isFlagSet("lassoFound") && Camera.CattleInPen == true && !isFlagSet("desertReward")) {
+      if (isFlagSet("desertDone")) {
+    	  addTextToTextboxQueue( "Where is that dang ol' cowboy?!");
+      } else if(isFlagSet("lassoFound") && Camera.CattleInPen == true && !isFlagSet("desertReward")) {
     	  addTextToTextboxQueue( "Well I'll be durned! You found my steer!");
     	  addTextToTextboxQueue( "A deed worthy of a reward!");
     	  addTextToTextboxQueue( "...Money? Well, not exactly..");
-    	  addTextToTextboxQueue( "Why would you want money when you could have this\nsnazzy Hawaiian shirt!");
+    	  addTextToTextboxQueue( "Why would you want money when you could have this\nsnazzy magnifying glass!");
     	  addTextToTextboxQueue( "Thank you kindly for the help my friend!");
       }
-      else {
-    	  addTextToTextboxQueue( "Where is that dang ol' cowboy?!");
-      }
+//      else {
+//    	  addTextToTextboxQueue( "Where is that dang ol' cowboy?!");
+//      }
       entity.facePlayer(player);
     }
 
@@ -40,8 +42,12 @@ public class OwnerScript extends Script<NPC> {
     protected void cleanup() {
         unlockPlayer();
         hideTextbox();
-        if(isFlagSet("lassoFound") && Camera.CattleInPen == true) {
+//        if(isFlagSet("lassoFound") && Camera.CattleInPen == true) {
+//        	setFlag("desertReward");
+//        } 
+        if (isFlagSet("lassoFound") && Camera.CattleInPen == true && !isFlagSet("desertReward")) {
         	setFlag("desertReward");
+        	setFlag("desertDone");
         }
         setFlag("needsFindBucket");
     }

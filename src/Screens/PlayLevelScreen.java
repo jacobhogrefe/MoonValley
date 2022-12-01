@@ -81,6 +81,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("bucketFound",false);
 		flagManager.addFlag("lassoFound", false);
 		flagManager.addFlag("desertReward",false);
+		flagManager.addFlag("desertDone", false);
 
 		// define/setup map
 		this.map = Player.MapEntityManager.getSavedMap(7);
@@ -222,6 +223,13 @@ public class PlayLevelScreen extends Screen {
 			}
 		}
 
+		//desert reward
+		if (map.getMapFileName().equals("Biomes/desert.txt")) {
+			if (flagManager.isFlagSet("desertReward")) {
+				playerInventory.addItem(5);
+				flagManager.unsetFlag("desertReward");
+			}
+		}
 		
 //		if (map.getMapFileName().equals("Biomes/start.txt")) {
 //			if (flagManager.isFlagSet("finesse")) {
