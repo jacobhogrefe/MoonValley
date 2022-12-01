@@ -188,7 +188,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 		}
 		
 		public void select(AbstractMenuScreen parent) {
-			PlayLevelScreen.shouldcensorwalrus = true;
+			PlayLevelScreen.transformcomplete = true;
 		}
 	}
 

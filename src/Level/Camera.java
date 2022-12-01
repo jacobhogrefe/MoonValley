@@ -309,6 +309,13 @@ public class Camera extends Rectangle {
 					if(CattleInPen) {
 						npc.eatGrass();
 					}
+					if(PlayLevelScreen.transformwalrus && npc.isBlake && PlayLevelScreen.transformcomplete == false) {
+						npc.eatGrass();
+					}
+					if(PlayLevelScreen.transformcomplete && npc.isBlake) {
+						npc.becomeBlake();
+					}
+					
 					npc.draw(graphicsHandler);
 				} else {
 					drawNpcsAfterPlayer.add(npc);
@@ -332,6 +339,8 @@ public class Camera extends Rectangle {
 						
 						System.out.println("Cattle penned.");
 					}
+					
+					
 					else {
 						CattleInPen = false;
 						npc.stand(player.facingDirection);
@@ -343,6 +352,7 @@ public class Camera extends Rectangle {
 				npc.draw(graphicsHandler);
 
 			}
+			
 		}
 
 		for (Collectible collectibles : activeCollectibles) {
