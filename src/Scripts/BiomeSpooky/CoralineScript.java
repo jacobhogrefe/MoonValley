@@ -1,11 +1,6 @@
 package Scripts.BiomeSpooky;
 
-import Builders.FrameBuilder;
-import Builders.MapTileBuilder;
-import GameObject.Frame;
 import Level.NPC;
-import Utils.Direction;
-import Utils.Point;
 import Level.Script;
 import Level.ScriptState;
 
