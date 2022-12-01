@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class BiomeSpookyTilesets extends Tileset {
 
     public BiomeSpookyTilesets() {
-        super(ImageLoader.load("BiomeSpooky.png"), 16, 16, 3);
+        super(ImageLoader.load("BiomeSpooky2.png"), 16, 16, 3);
     }
     
     //down across
@@ -43,7 +43,9 @@ public class BiomeSpookyTilesets extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder grassfloortile2 = new MapTileBuilder(grassfloortile2Frame);
+        MapTileBuilder grassfloortile2 = new MapTileBuilder(grassfloortile2Frame)
+        		.withTileType(TileType.NOT_PASSABLE);
+        
 
         mapTiles.add(grassfloortile2);
                 
@@ -65,7 +67,7 @@ public class BiomeSpookyTilesets extends Tileset {
 
         MapTileBuilder CastleplainTile = new MapTileBuilder(CastleplainFrame)
                 .withTopLayer(CastleplainFrame)
-        		.withTileType(TileType.NOT_PASSABLE);
+        		.withTileType(TileType.PASSABLE);
 
         mapTiles.add(CastleplainTile);
         
@@ -77,7 +79,7 @@ public class BiomeSpookyTilesets extends Tileset {
 
       MapTileBuilder PumpkinlefttopTile = new MapTileBuilder(PumpkinlefttopFrame)
       		.withTopLayer(PumpkinlefttopFrame)
-      		.withTileType(TileType.PASSABLE);
+      		.withTileType(TileType.NOT_PASSABLE);
 
       mapTiles.add(PumpkinlefttopTile);
         
@@ -89,7 +91,7 @@ public class BiomeSpookyTilesets extends Tileset {
 
     MapTileBuilder Pumpkinstem1Tile = new MapTileBuilder(Pumpkinstem1Frame)
     		.withTopLayer(Pumpkinstem1Frame)
-    		.withTileType(TileType.PASSABLE);
+    		.withTileType(TileType.NOT_PASSABLE);
 
     mapTiles.add(Pumpkinstem1Tile);
     
@@ -101,7 +103,7 @@ public class BiomeSpookyTilesets extends Tileset {
 
   MapTileBuilder Pumpkinstem2Tile = new MapTileBuilder(Pumpkinstem2Frame)
   		.withTopLayer(Pumpkinstem2Frame)
-  		.withTileType(TileType.PASSABLE);
+  		.withTileType(TileType.NOT_PASSABLE);
 
   mapTiles.add(Pumpkinstem2Tile);
   
@@ -113,7 +115,7 @@ public class BiomeSpookyTilesets extends Tileset {
 
 MapTileBuilder PumpkinrighttopTile = new MapTileBuilder(PumpkinrighttopFrame)
 		.withTopLayer(PumpkinrighttopFrame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(PumpkinrighttopTile);
 
@@ -126,7 +128,7 @@ Frame PumpkinrleftsideFrame = new FrameBuilder(getSubImage(2, 0))
 
 MapTileBuilder PumpkinleftsideTile = new MapTileBuilder(PumpkinrleftsideFrame)
 		.withTopLayer(PumpkinrleftsideFrame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(PumpkinleftsideTile);
 
@@ -163,7 +165,7 @@ Frame PumpkinrightsideFrame = new FrameBuilder(getSubImage(2, 3))
 
 MapTileBuilder PumpkinrightsideTile = new MapTileBuilder(PumpkinrightsideFrame)
 		.withTopLayer(PumpkinrightsideFrame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(PumpkinrightsideTile);
 
@@ -175,7 +177,7 @@ Frame PumpkinbottomleftFrame = new FrameBuilder(getSubImage(3, 0))
 
 MapTileBuilder PumpkinbottomleftTile = new MapTileBuilder(PumpkinbottomleftFrame)
 		.withTopLayer(PumpkinbottomleftFrame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(PumpkinbottomleftTile);
 
@@ -187,7 +189,7 @@ Frame Pumpkinbottomleft2Frame = new FrameBuilder(getSubImage(3, 1))
 
 MapTileBuilder Pumpkinbottomleft2Tile = new MapTileBuilder(Pumpkinbottomleft2Frame)
 		.withTopLayer(Pumpkinbottomleft2Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Pumpkinbottomleft2Tile);
 
@@ -199,7 +201,7 @@ Frame PumpkinbottomrightFrame = new FrameBuilder(getSubImage(3, 2))
 
 MapTileBuilder PumpkinbottomrightTile = new MapTileBuilder(PumpkinbottomrightFrame)
 		.withTopLayer(PumpkinbottomrightFrame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(PumpkinbottomrightTile);
         
@@ -211,7 +213,7 @@ Frame Pumpkinbottomright2Frame = new FrameBuilder(getSubImage(3, 3))
 
 MapTileBuilder Pumpkinbottomright2Tile = new MapTileBuilder(Pumpkinbottomright2Frame)
 		.withTopLayer(Pumpkinbottomright2Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Pumpkinbottomright2Tile);
 
@@ -298,7 +300,7 @@ Frame Castle7Frame = new FrameBuilder(getSubImage(1, 4))
 
 MapTileBuilder Castle7Tile = new MapTileBuilder(Castle7Frame)
 		.withTopLayer(Castle7Frame)
-		.withTileType(TileType.NOT_PASSABLE);
+		.withTileType(TileType.PASSABLE);
 
 mapTiles.add(Castle7Tile);
       
@@ -310,7 +312,7 @@ Frame Castle8Frame = new FrameBuilder(getSubImage(2, 4))
 
 MapTileBuilder Castle8Tile = new MapTileBuilder(Castle8Frame)
 		.withTopLayer(Castle8Frame)
-		.withTileType(TileType.NOT_PASSABLE);
+		.withTileType(TileType.PASSABLE);
 
 mapTiles.add(Castle8Tile);
 
@@ -322,7 +324,7 @@ Frame Castle9Frame = new FrameBuilder(getSubImage(3, 4))
 
 MapTileBuilder Castle9Tile = new MapTileBuilder(Castle9Frame)
 		.withTopLayer(Castle9Frame)
-		.withTileType(TileType.NOT_PASSABLE);
+		.withTileType(TileType.PASSABLE);
 mapTiles.add(Castle9Tile);
 
 //Castle10
@@ -336,6 +338,26 @@ MapTileBuilder Castle10Tile = new MapTileBuilder(Castle10Frame)
 		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle10Tile);
+
+Frame gravelFrame = new FrameBuilder(getSubImage(0, 5))
+.withScale(tileScale)
+.build();
+
+MapTileBuilder gravelTile = new MapTileBuilder(gravelFrame);
+
+mapTiles.add(gravelTile);
+
+
+Frame treeleafFrame = new FrameBuilder(getSubImage(1, 5))
+.withScale(tileScale)
+.build();
+
+MapTileBuilder treeleafTile = new MapTileBuilder(treeleafFrame)
+		.withTopLayer(treeleafFrame)
+		.withTileType(TileType.PASSABLE);
+
+mapTiles.add(treeleafTile);
+
 
 
 
