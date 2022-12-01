@@ -29,7 +29,7 @@ import Utils.Side;
  * +------------+------------+------------+
  */
 public class BiomeSpooky extends Map {
-    public static final Item REQUIRED_ITEM = ItemRegistry.singleton.PUMPKIN;
+    public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GHOST_COSTUME;
 
     public BiomeSpooky() {
         super("Biomes/spooky.txt", new BiomeSpookyTilesets(), 4);

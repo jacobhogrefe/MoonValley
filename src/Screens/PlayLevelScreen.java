@@ -35,10 +35,9 @@ public class PlayLevelScreen extends Screen {
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
 	protected boolean isInventoryOpen = false;
-	
-	
-	
-	//Matt's public static booleans because its the only way he know how to do anything - Matt
+
+	// Matt's public static booleans because its the only way he know how to do
+	// anything - Matt
 	public static boolean isInHouse = false;
 	public static boolean shouldcensorwalrus = false;
 	public static boolean ShouldGiveLasso = false;
@@ -174,7 +173,7 @@ public class PlayLevelScreen extends Screen {
 			reloadPlayer(player);
 			CatWardrobe.wardrobeChange = false;
 		}
-		
+
 		if (ShouldGiveWaterBucket == true) {
 			playerInventory.addItem(ItemRegistry.singleton.WATER_BUCKET);
 			HasLasso = true;
@@ -185,7 +184,7 @@ public class PlayLevelScreen extends Screen {
 			HasLasso = true;
 			ShouldGiveLasso = false;
 		}
-		
+
 		if (ShouldGiveMagnifyingGlass == true) {
 			playerInventory.addItem(ItemRegistry.singleton.MAGNIFYING_GLASS);
 			ShouldGiveMagnifyingGlass = false;
@@ -284,17 +283,20 @@ public class PlayLevelScreen extends Screen {
 				flagManager.unsetFlag("haveHawaiian");
 			}
 		}
-		if (playerInventory.containsItem(20)) {
-			if (flagManager.isFlagSet("removeItem4")) {
+		if (flagManager.isFlagSet("removeItem4")) {
+			if (playerInventory.containsItem(20)) {
 				playerInventory.removeItem(20);
-				playerInventory.addItem(4);
+				if (!playerInventory.containsItem(21))
+					playerInventory.addItem(21);
 			}
 		}
 
 		// desert reward
 		if (map.getMapFileName().equals("Biomes/desert.txt")) {
 			if (flagManager.isFlagSet("desertReward")) {
-				playerInventory.addItem(5);
+				if (!playerInventory.containsItem(5)) {
+					playerInventory.addItem(5);
+				}
 				flagManager.unsetFlag("desertReward");
 			}
 		}
