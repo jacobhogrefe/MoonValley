@@ -360,7 +360,15 @@ MapTileBuilder treeleafTile = new MapTileBuilder(treeleafFrame)
 mapTiles.add(treeleafTile);
 
 
+Frame treeJawn = new FrameBuilder(getSubImage(1, 4))
+.withScale(tileScale)
+.build();
 
+MapTileBuilder treeJawn2 = new MapTileBuilder(treeJawn)
+		.withTopLayer(treeJawn)
+		.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(treeJawn2);
 
         return mapTiles;
     }
