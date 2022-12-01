@@ -21,7 +21,7 @@ public class CoralineScript extends Script<NPC> {
 			addTextToTextboxQueue("The other mother took them after she sewed buttons \ninto their eyes and hid them around this biome!");
 			addTextToTextboxQueue("The other mother's hint was that she hid the eyes in \neach wonder in this world.");
 			addTextToTextboxQueue("Have all three eyes collected before coming back \nto me!");
-		} else if(!isFlagSet("FoundtheLostEyes")) {
+		} else if(isFlagSet("FoundtheLostEyes")) {
 			addTextToTextboxQueue("Thank you lost one for helping me \nfree the lost children!");
 			addTextToTextboxQueue("Now I can go back to my world and defeat \nthe other mother and find my parents!");
 			addTextToTextboxQueue("Goodluck on the rest of your journey lost \none! Here this is for all your help!");
@@ -38,10 +38,10 @@ public class CoralineScript extends Script<NPC> {
 		hideTextbox();
 		if(!isFlagSet("firstTalktoCoraline")) {
 			setFlag("firstTalktoCoraline");
-			unsetFlag("Searchlosteyes");
-		} else if (isFlagSet("Searchlosteyes") && (isFlagSet("FoundtheLostEyes"))) {
-			unsetFlag("FoundtheLostEyes");
-			setFlag("removeitem");
+//			unsetFlag("Searchlosteyes");
+		} else if (isFlagSet("FoundtheLostEyes")) {
+//			unsetFlag("FoundtheLostEyes");
+			setFlag("removeItem7");
 		}
 
 	}

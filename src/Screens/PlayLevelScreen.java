@@ -75,6 +75,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("removeItem5", false);
 		flagManager.addFlag("cantUseComputer", true);
 		flagManager.addFlag("thisIsDoneNow", false);
+		flagManager.addFlag("removeItem7", false);
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);
@@ -338,6 +339,17 @@ public class PlayLevelScreen extends Screen {
 		if (flagManager.isFlagSet("dogsPresent")) {
 			if (!playerInventory.containsItem(20)) {
 				playerInventory.addItem(20);
+			}
+		}
+		if (playerInventory.containsItem(25) && playerInventory.containsItem(26) && playerInventory.containsItem(27)) {
+			flagManager.setFlag("FoundtheLostEyes");
+		}
+		
+		if (flagManager.isFlagSet("removeItem7")) {
+			if (playerInventory.containsItem(25) && playerInventory.containsItem(26) && playerInventory.containsItem(27)) {
+				playerInventory.removeItem(playerInventory.getItemSlotNumber(25));
+				playerInventory.removeItem(playerInventory.getItemSlotNumber(26));
+				playerInventory.removeItem(playerInventory.getItemSlotNumber(27));
 			}
 		}
 
