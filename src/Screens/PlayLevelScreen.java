@@ -56,6 +56,8 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("foundMagnifying", false);
 		flagManager.addFlag("desertDialogue", false);
 		flagManager.addFlag("removeItem2", false);
+		flagManager.addFlag("haveHawaiian", false);
+		flagManager.addFlag("removeItem3", false);
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);
@@ -235,6 +237,15 @@ public class PlayLevelScreen extends Screen {
 				}
 			}
 		}
+		
+		if (playerInventory.containsItem(19)) {
+			flagManager.setFlag("haveHawaiian");
+			if (flagManager.isFlagSet("removeItem3")) {
+				playerInventory.removeItem(playerInventory.getItemSlotNumber(19));
+				playerInventory.addItem(6);
+				flagManager.unsetFlag("haveHawaiian");
+			}
+		}
 
 		// desert reward
 		if (map.getMapFileName().equals("Biomes/desert.txt")) {
@@ -244,12 +255,6 @@ public class PlayLevelScreen extends Screen {
 			}
 		}
 
-//		if (map.getMapFileName().equals("Biomes/start.txt")) {
-//			if (flagManager.isFlagSet("finesse")) {
-//				screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(5);
-//				flagManager.unsetFlag("finesse");
-//			}
-//		}
 
 		// mountains collectible quest flags
 		if (map.getMapFileName().equals("Biomes/mountains.txt")) {

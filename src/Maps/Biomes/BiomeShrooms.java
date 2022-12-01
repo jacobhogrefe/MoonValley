@@ -28,7 +28,7 @@ import Utils.Side;
  * +------------+------------+------------+
  */
 public class BiomeShrooms extends Map {
-    public static final Item REQUIRED_ITEM = ItemRegistry.singleton.MAGNIFYING_GLASS;
+    public static final Item REQUIRED_ITEM = ItemRegistry.singleton.GAS_MASK;
 
     public BiomeShrooms() {
         super("mushroom_map.txt", new MushroomTileset(),3);

@@ -15,6 +15,14 @@ public class WalrusScript extends Script<NPC> {
 		if (!isFlagSet("hasTalkedToWalrus")) {
 			addTextToTextboxQueue("Am I okay? No! I cannot see \nanything and I keep bumping into things.");
 			addTextToTextboxQueue("My name? …..I have no idea! \nI cannot remember a thing!");
+		} else if (isFlagSet("haveHawaiian")) {
+			addTextToTextboxQueue("Oh Cat, you are back! \nWhat have you found?");
+			addTextToTextboxQueue("Hm…a Hawaiian shirt? It seems to be just my size too, \nAND it inscribed J.B? Well, I guess it must be mine.");
+			addTextToTextboxQueue("I’m not entirely sure what this means, but I \nguess I am someone with a snazzy sense of style.");
+			addTextToTextboxQueue("Oh, I almost forgot! I found something else \naround the house, check out this gas mask!");
+			addTextToTextboxQueue("I noticed the area west of here is filled with mushrooms.");
+			addTextToTextboxQueue("Maybe this would help you breath over there\n with all the fungi in the air and such.");
+			addTextToTextboxQueue("Do you mind checking for more clues over there?");
 		} else if (isFlagSet("desertDone") && !isFlagSet("desertDialogue")) {
 			addTextToTextboxQueue("Cat you're back!");
 			addTextToTextboxQueue("Please tell me you have found something\nto make out this faded inscription...");
@@ -42,8 +50,6 @@ public class WalrusScript extends Script<NPC> {
 			addTextToTextboxQueue("This Canteen on the couch must be mine. \nPlease, take it!");
 			addTextToTextboxQueue("I wish there was something more I could give you.");
 		}
-		
-		
 
 		entity.facePlayer(player);
 	}
@@ -60,9 +66,14 @@ public class WalrusScript extends Script<NPC> {
 			setFlag("removeItem2");
 			unsetFlag("foundGlasses");
 		}
-		
+
 		if (isFlagSet("desertDone")) {
 			setFlag("desertDialogue");
+		}
+
+		if (isFlagSet("haveHawaiian")) {
+			setFlag("removeItem3");
+//			unsetFlag("haveHawaiian");
 		}
 	}
 
