@@ -57,7 +57,7 @@ public class WalrusScript extends Script<NPC> {
 			unsetFlag("searchForGlasses");
 		} else if (isFlagSet("foundGlasses")) {
 			unsetFlag("searchForCanteen");
-			setFlag("removeItem");
+			setFlag("removeItem2");
 			unsetFlag("foundGlasses");
 		}
 		

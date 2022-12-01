@@ -230,6 +230,13 @@ public class ItemRegistry {
 			.withSubimage(68 + 17 * 7, 0)
 			.build()
 			.addToRegistry(this);
+	
+	public Item HAWAIIAN_SHIRT = new Item.Builder() //19
+			.withName("Hawaiian Shirt")
+			.withDescription("Pretty flowers!")
+			.withSubimage(68 + 17 * 8, 0)
+			.build()
+			.addToRegistry(this);
 
 	private ItemRegistry() {
 

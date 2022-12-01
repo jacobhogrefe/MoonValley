@@ -55,6 +55,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("phaseOneDone", false);
 		flagManager.addFlag("foundMagnifying", false);
 		flagManager.addFlag("desertDialogue", false);
+		flagManager.addFlag("removeItem2", false);
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);
@@ -217,14 +218,14 @@ public class PlayLevelScreen extends Screen {
 		if (map.getMapFileName().equals("walrus_house_map.txt")) {
 			if (playerInventory.containsItem(18)) {
 				flagManager.setFlag("foundGlasses");
-				if (flagManager.isFlagSet("removeItem")) {
+				if (flagManager.isFlagSet("removeItem2")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(18));
 				}
 			} else if (playerInventory.containsItem(3)) {
 				flagManager.setFlag("foundCanteen");
 			} else if (playerInventory.containsItem(5)) {
 				flagManager.setFlag("foundMagnifying");
-				if (flagManager.isFlagSet("removeItem")) {
+				if (flagManager.isFlagSet("removeItem2")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(5));
 				}
 			}
@@ -257,6 +258,7 @@ public class PlayLevelScreen extends Screen {
 				if (flagManager.isFlagSet("removeItem")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(13));
 					playerInventory.addItem(14);
+					System.out.println("Added tv");
 					flagManager.unsetFlag("foundSwitch");
 					flagManager.unsetFlag("removeItem");
 				}
@@ -280,7 +282,7 @@ public class PlayLevelScreen extends Screen {
 				flagManager.setFlag("foundYoshiCoin");
 				if (flagManager.isFlagSet("removeItem")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(2));
-					playerInventory.addItem(17);
+					playerInventory.addItem(19);
 					flagManager.unsetFlag("foundYoshiCoin");
 					flagManager.unsetFlag("removeItem");
 				}
