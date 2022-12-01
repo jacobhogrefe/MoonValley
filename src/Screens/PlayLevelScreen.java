@@ -45,7 +45,11 @@ public class PlayLevelScreen extends Screen {
 	public static boolean HasWaterBucket = false;
 	public static boolean ShouldGiveMagnifyingGlass = false;
 	public static boolean ShouldGiveCowboyHat = false;
-
+	public static boolean transformwalrus = false;
+	public static boolean transformcomplete = false;
+	
+	
+	
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
 	}
@@ -108,6 +112,11 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("lassoFound", false);
 		flagManager.addFlag("desertReward", false);
 		flagManager.addFlag("desertDone", false);
+		
+		flagManager.addFlag("FoundtheLostEyes",false);
+		flagManager.addFlag("Searchlosteyes",false);
+		flagManager.addFlag("firstTalktoCoraline",false );
+		flagManager.addFlag("removeitem",false);
 
 		// define/setup map
 		this.map = Player.MapEntityManager.getSavedMap(7);
@@ -228,7 +237,6 @@ public class PlayLevelScreen extends Screen {
 			inventoryScreen.update();
 			break;
 		}
-
 		// if flag is set at any point during gameplay, game is "won"
 		if (map.getFlagManager().isFlagSet("hasFoundBall")) {
 			playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
@@ -280,7 +288,7 @@ public class PlayLevelScreen extends Screen {
 				}
 			}
 		}
-
+		
 		if (playerInventory.containsItem(20)) {
 			flagManager.setFlag("hasBrush");
 		}
@@ -371,14 +379,23 @@ public class PlayLevelScreen extends Screen {
 					flagManager.unsetFlag("removeItem");
 				}
 			}
+			
 			if(map.getMapFileName().equals("Biomes/spooky.txt")) {
-				//if(playerInventory.containsItem()) {
+				if(playerInventory.containsItem(25)||playerInventory.containsItem(26)||playerInventory.containsItem(27)) {
 				flagManager.setFlag("FoundtheLostEyes");
-		//	} 
+					if(flagManager.isFlagSet("removeitem")) {			
+						playerInventory.removeItem(playerInventory.getItemSlotNumber(25));
+						playerInventory.removeItem(playerInventory.getItemSlotNumber(26));
+						playerInventory.removeItem(playerInventory.getItemSlotNumber(27));
+						//playerInventory.addItem();
+						flagManager.unsetFlag("FoundtheLostEyes");
+						flagManager.unsetFlag("removeitem");
+					}
+			} 
 		}
 
-		}
 	}
+}
 
 	public PlayerInventory getPlayerInventory() {
 		return playerInventory;

@@ -272,7 +272,24 @@ public class ItemRegistry {
 			.withSubimage(68 + 17 * 5, 34)
 			.build()
 			.addToRegistry(this);
-	
+	public Item lostEye1 = new Item.Builder() // 25
+			.withName("Lost Eye 1")
+			.withDescription("Lost Eye #1")
+			.withImage(ImageLoader.load("losteye1.png").getSubimage(0, 0, 17, 17))
+			.build()
+			.addToRegistry(this);
+	public Item lostEye2 = new Item.Builder() // 26
+			.withName("Lost Eye 1")
+			.withDescription("Lost Eye #1")
+			.withImage(ImageLoader.load("losteye2.png").getSubimage(0, 0, 17, 17))
+			.build()
+			.addToRegistry(this);
+	public Item lostEye3 = new Item.Builder() // 27
+			.withName("Lost Eye 1")
+			.withDescription("Lost Eye #1")
+			.withImage(ImageLoader.load("losteye3.png").getSubimage(0, 0, 17, 17))
+			.build()
+			.addToRegistry(this);
 	
 
 

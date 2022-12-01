@@ -3,6 +3,7 @@ package Scripts.BiomeSpooky;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
+import Screens.PlayLevelScreen;
 
 // script for talking to mushroom man npc
 // the script is segmented -- it has multiple setups, cleanups, and executions based on its current action
@@ -20,12 +21,10 @@ public class CoralineScript extends Script<NPC> {
 			addTextToTextboxQueue("The other mother took them after she sewed buttons \ninto their eyes and hid them around this biome!");
 			addTextToTextboxQueue("The other mother's hint was that she hid the eyes in \neach wonder in this world.");
 			addTextToTextboxQueue("Have all three eyes collected before coming back \nto me!");
-		} else if (!isFlagSet("Searchlosteyes")) {
-			addTextToTextboxQueue("Please help me save the lost children's eyes lost one!");
 		} else if(!isFlagSet("FoundtheLostEyes")) {
-			addTextToTextboxQueue("Thank you lost one for helping me free the lost children!");
-			addTextToTextboxQueue("Now I can go back to my world and defeat the other mother and find my parents!");
-			addTextToTextboxQueue("Goodluck on the rest of your journey lost one! Here this is for all your help!");
+			addTextToTextboxQueue("Thank you lost one for helping me \nfree the lost children!");
+			addTextToTextboxQueue("Now I can go back to my world and defeat \nthe other mother and find my parents!");
+			addTextToTextboxQueue("Goodluck on the rest of your journey lost \none! Here this is for all your help!");
 		} else {
 			addTextToTextboxQueue("I wonder where the other mother is right now.");
 		}

@@ -2,6 +2,7 @@ package Maps.Biomes;
 
 import java.util.ArrayList;
 import GameObject.Rectangle;
+import Level.Collectible;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
@@ -94,7 +95,17 @@ public class BiomeSpooky extends Map {
         npcs.add(coraline);
         return npcs;
     }
-    
+    @Override
+    public ArrayList<Collectible> loadCollectibles() {
+        ArrayList<Collectible> collectibles = new ArrayList<>();
+        Collectible LostEye1 = new Collectible("losteye1.png", getMapTile(19,12).getLocation(), "Lost Eye #1", 25, true);
+        Collectible LostEye2 = new Collectible("losteye2.png", getMapTile(20,2).getLocation(), "Lost Eye #2", 26, true);
+        Collectible LostEye3 = new Collectible("losteye3.png", getMapTile(1,14).getLocation(), "Lost Eye #3", 27, true);
+        collectibles.add(LostEye1);
+        collectibles.add(LostEye2);
+        collectibles.add(LostEye3);
+        return collectibles;
+    }
     @Override
     public void loadScripts() {
         getMapTile(6, 5).setInteractScript(new EnterHalloweenHome());

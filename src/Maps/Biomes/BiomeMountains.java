@@ -110,6 +110,7 @@ public class BiomeMountains extends Map {
         Collectible ramen = new Collectible("ramen.png", getMapTile(22,17).getLocation(), "bowl of Ramen", 12, false);
         Collectible terminal = new Collectible("terminal.png", getMapTile(2,13).getLocation(), "Terminal", 11, false);
         Collectible yoshiCoin = new Collectible("yoshiCoin.png", getMapTile(22,1).getLocation(), "Yoshi Coin", 2, true);
+       
         nintendoSwitch.setExistenceFlag("searchForSwitch");
         ramen.setExistenceFlag("searchForRamen");
         terminal.setExistenceFlag("searchForTerminal");
