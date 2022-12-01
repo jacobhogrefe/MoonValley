@@ -41,6 +41,8 @@ public class CoralineScript extends Script<NPC> {
 //			unsetFlag("Searchlosteyes");
 		} else if (isFlagSet("FoundtheLostEyes")) {
 //			unsetFlag("FoundtheLostEyes");
+			
+			setFlag("giveHeadphones");
 			setFlag("removeItem7");
 		}
 
