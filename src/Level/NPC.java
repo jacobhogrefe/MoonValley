@@ -17,6 +17,9 @@ public class NPC extends MapEntity {
 	//override methods in subclass
 	protected boolean isTethered = false;
 	protected boolean isTetherable = false;
+	
+	protected boolean isBlake = false;
+	
 
 
 
@@ -26,6 +29,14 @@ public class NPC extends MapEntity {
 
 	public void setTetherable(boolean isTetherable) {
 		this.isTetherable = isTetherable;
+	}
+	
+	public boolean isBlake() {
+		return isBlake;
+	}
+
+	public void setBlake(boolean isBlake) {
+		this.isBlake = isBlake;
 	}
 
 	public NPC(int id, float x, float y, SpriteSheet spriteSheet, String startingAnimation) {
@@ -99,9 +110,19 @@ public class NPC extends MapEntity {
 	}
 	
 	public void eatGrass() {
-		if(isTetherable()) {
+		if(isTetherable() || isBlake()) {
 			this.currentAnimationName = "EAT_GRASS";
 			this.isEatingGrass = true;
+		}
+		else {
+			
+		}
+	}
+	
+	public void becomeBlake() {
+		if(isBlake()) {
+			this.currentAnimationName = "BLAKE";
+			this.isEatingGrass = false;
 		}
 		else {
 			

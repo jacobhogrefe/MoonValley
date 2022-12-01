@@ -45,7 +45,8 @@ public class PlayLevelScreen extends Screen {
 	public static boolean HasWaterBucket = false;
 	public static boolean ShouldGiveMagnifyingGlass = false;
 	public static boolean ShouldGiveCowboyHat = false;
-
+	public static boolean transformwalrus = false;
+	public static boolean transformcomplete = false;
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
 	}

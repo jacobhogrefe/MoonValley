@@ -19,6 +19,7 @@ public class Walrus extends NPC {
 
     public Walrus(int id, Point location) {
         super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Walrus.png"), 24, 24), "STAND_LEFT");
+        this.isBlake = true;
         
     }
 
@@ -80,6 +81,67 @@ public class Walrus extends NPC {
                     .withScale(3)
                     .withBounds(7, 13, 11, 7)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build()
+            });
+            put("EAT_GRASS", new Frame[] {
+                    new FrameBuilder(spriteSheet.getSprite(2, 0),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(2, 1),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(2, 0),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(2, 1),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(2, 2),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(3, 0),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(2, 2),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(3, 0),500)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(3, 1),200)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build(),
+                    new FrameBuilder(spriteSheet.getSprite(3, 2),200)
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
+                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                    .build()
+                    
+                    
+            });
+            
+            put("BLAKE", new Frame[] {
+                    new FrameBuilder(spriteSheet.getSprite(4, 0))
+                    .withScale(3)
+                    .withBounds(7, 13, 11, 7)
                     .build()
             });
 
