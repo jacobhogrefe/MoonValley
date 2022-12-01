@@ -22,7 +22,7 @@ public class MapEntity extends GameObject {
 	protected String existenceFlag;
 
 	// script that executes when entity is interacted with by the player
-	protected Script interactScript;
+	protected Script<MapEntity> interactScript;
 
 	public MapEntity(float x, float y, SpriteSheet spriteSheet, String startingAnimation) {
 		super(spriteSheet, x, y, startingAnimation);
@@ -60,16 +60,17 @@ public class MapEntity extends GameObject {
 		this.isUpdateOffScreen = isUpdateOffScreen;
 	}
 
-	public Script getInteractScript() {
+	public Script<MapEntity> getInteractScript() {
 		return interactScript;
 	}
 
-	public void setInteractScript(Script interactScript) {
-		this.interactScript = interactScript;
+	@SuppressWarnings("unchecked")
+	public void setInteractScript(Script<? extends MapEntity> interactScript) {
+		this.interactScript = (Script<MapEntity>) interactScript;
 		this.interactScript.setMapEntity(this);
 	}
 
-	protected Script loadScript() {
+	protected Script<MapEntity> loadScript() {
 		return null;
 	}
 

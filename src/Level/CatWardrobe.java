@@ -14,18 +14,10 @@ public class CatWardrobe{
 	
 	public static int currentWardrobe = 0;
 	public static boolean wardrobeChange = false;
-	private SpriteSheet spriteSheet = new SpriteSheet(ImageLoader.load("Cat.png"), 24, 24);
-	
-	public CatWardrobe() {	
-	}
-	
+	private static SpriteSheet spriteSheet = new SpriteSheet(ImageLoader.load("Cat.png"), 24, 24);
 
-	public SpriteSheet getSpriteSheet() {
-		return spriteSheet;
-	}
+	public static SpriteSheet getSpriteSheet() {return spriteSheet;}
 
-	public void setSpriteSheet(SpriteSheet spriteSheet) {
-		this.spriteSheet = spriteSheet;
-	}
+	public static void setSpriteSheet(SpriteSheet newSpriteSheet) {spriteSheet = newSpriteSheet;}
 
 }

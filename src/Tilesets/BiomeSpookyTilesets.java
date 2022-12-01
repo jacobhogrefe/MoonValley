@@ -223,7 +223,7 @@ Frame Castle1Frame = new FrameBuilder(getSubImage(4, 0))
 
 MapTileBuilder Castle1Tile = new MapTileBuilder(Castle1Frame)
 		.withTopLayer(Castle1Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle1Tile);
 
@@ -236,7 +236,7 @@ Frame Castle2Frame = new FrameBuilder(getSubImage(4, 1))
 
 MapTileBuilder Castle2Tile = new MapTileBuilder(Castle2Frame)
 		.withTopLayer(Castle2Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle2Tile);
 
@@ -248,7 +248,7 @@ Frame Castle3Frame = new FrameBuilder(getSubImage(4, 2))
 
 MapTileBuilder Castle3Tile = new MapTileBuilder(Castle3Frame)
 		.withTopLayer(Castle3Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle3Tile);
 
@@ -261,7 +261,7 @@ Frame Castle4Frame = new FrameBuilder(getSubImage(4, 3))
 
 MapTileBuilder Castle4Tile = new MapTileBuilder(Castle4Frame)
 		.withTopLayer(Castle4Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle4Tile);
 
@@ -273,7 +273,7 @@ Frame Castle5Frame = new FrameBuilder(getSubImage(4, 4))
 
 MapTileBuilder Castle5Tile = new MapTileBuilder(Castle5Frame)
 		.withTopLayer(Castle5Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle5Tile);
         
@@ -286,7 +286,7 @@ Frame Castle6Frame = new FrameBuilder(getSubImage(0, 4))
 
 MapTileBuilder Castle6Tile = new MapTileBuilder(Castle6Frame)
 		.withTopLayer(Castle6Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle6Tile);
 
@@ -298,7 +298,7 @@ Frame Castle7Frame = new FrameBuilder(getSubImage(1, 4))
 
 MapTileBuilder Castle7Tile = new MapTileBuilder(Castle7Frame)
 		.withTopLayer(Castle7Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle7Tile);
       
@@ -310,7 +310,7 @@ Frame Castle8Frame = new FrameBuilder(getSubImage(2, 4))
 
 MapTileBuilder Castle8Tile = new MapTileBuilder(Castle8Frame)
 		.withTopLayer(Castle8Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle8Tile);
 
@@ -322,7 +322,7 @@ Frame Castle9Frame = new FrameBuilder(getSubImage(3, 4))
 
 MapTileBuilder Castle9Tile = new MapTileBuilder(Castle9Frame)
 		.withTopLayer(Castle9Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 mapTiles.add(Castle9Tile);
 
 //Castle10
@@ -333,7 +333,7 @@ Frame Castle10Frame = new FrameBuilder(getSubImage(4, 4))
 
 MapTileBuilder Castle10Tile = new MapTileBuilder(Castle10Frame)
 		.withTopLayer(Castle10Frame)
-		.withTileType(TileType.PASSABLE);
+		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle10Tile);
 

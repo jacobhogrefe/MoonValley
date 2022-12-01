@@ -9,17 +9,11 @@ public class CollectibleScript extends SimpleTextScript {
 
     protected Sound sound;
     protected String textItem;
-    protected MusicManager musicManager;
 
-    public CollectibleScript(String text, boolean isKeyCollectible, MusicManager musicManager) {
+    public CollectibleScript(String text, boolean isKeyCollectible) {
         super("You have found a " + text + "!");
         textItem = "You have found a " + text + "!";
-        this.musicManager = musicManager;
-        if (isKeyCollectible) {
-            sound = new Sound("keyCollectible.wav", false);
-        } else {
-            sound = new Sound("collectible.wav", false);
-        }
+        sound = MusicManager.getCollectibleSound(isKeyCollectible);
     }
 
     @Override
@@ -27,7 +21,7 @@ public class CollectibleScript extends SimpleTextScript {
         lockPlayer();
         showTextbox();
         addTextToTextboxQueue(textItem);
-        musicManager.getCurrentSound().pause();
+        MusicManager.getCurrentSound().pause();
         sound.play();
     }
 
@@ -35,7 +29,7 @@ public class CollectibleScript extends SimpleTextScript {
     protected void cleanup() {
         unlockPlayer();
         hideTextbox();
-        sound.close();
-        musicManager.getCurrentSound().play();
+        sound.stop();
+        MusicManager.getCurrentSound().play();
     }
 }

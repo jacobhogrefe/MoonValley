@@ -19,35 +19,34 @@ public class InventoryGrid {
 	// variables used for selecting slot, prior to the move item logic being
 	// initiated
 
-	private Point[] slotNumberCorner = new Point[55];
-	private Point frameCorner = new Point(624, 337);
-	private int previousSelectedSlot = 0;
-	private int selectedSlot;
-	private int selectedItem;
-	private PlayerInventory playerInventory;
+	protected Point[] slotNumberCorner = new Point[55];
+	protected int previousSelectedSlot = 0;
+	protected int selectedSlot;
+	protected int selectedItem;
+	protected PlayerInventory playerInventory;
 
 	// start variables for moving items
-	private int arrowSlot;
-	private int targetSlot;
+	protected int arrowSlot;
+	protected int targetSlot;
 
 	// end variables for moving items
 
 	// To keep all the graphicshandler stuff in the draw method, I modify these
 	// booleans in the assignLastClickSlot() method and then check them in the draw
 	// method
-	private boolean shouldHighlightMove = false;
-	private boolean shouldHighlightRemove = false;
-	private boolean itemIsBeingMoved;
-	private boolean goodClick = false;
+	protected boolean shouldHighlightMove = false;
+	protected boolean shouldHighlightRemove = false;
+	protected boolean itemIsBeingMoved;
+	protected boolean goodClick = false;
 
 	// private boolean reported = false; //uncomment for testing (along with other
 	// commented things below)
 
 	// Used to determine whether the "place" button should be drawn
-	private boolean inHouse = false;
-	private boolean indoorItem = false;
-	private boolean outdoorItem = false;
-	private boolean placeable = false;
+	protected boolean inHouse = false;
+	protected boolean indoorItem = false;
+	protected boolean outdoorItem = false;
+	protected boolean placeable = false;
 
 	public static boolean itemPlaceRequested = false;
 	public static int itemToBePlaced;
@@ -106,8 +105,7 @@ public class InventoryGrid {
 				int yUpperBound = (int) slotNumberCorner[index].getY() + 48;
 
 				// checking if a slot was clicked
-				if (clickedX > xLowerBound && clickedX < xUpperBound && clickedY > yLowerBound
-						&& clickedY < yUpperBound) {
+				if (clickedX > xLowerBound && clickedX < xUpperBound && clickedY > yLowerBound && clickedY < yUpperBound) {
 					clickedSlot = ((j * 11) + k);
 					previousSelectedSlot = selectedSlot;
 					selectedSlot = clickedSlot;

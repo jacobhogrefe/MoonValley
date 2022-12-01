@@ -77,7 +77,7 @@ public abstract class Map implements IntersectableRectangle {
 	protected ArrayList<Furniture> furniture;
 	
 
-	protected Script activeInteractScript;
+	protected Script<MapEntity> activeInteractScript;
 
 	// if set to false, camera will not move as player moves
 	protected boolean adjustCamera = true;
@@ -357,10 +357,6 @@ public abstract class Map implements IntersectableRectangle {
 		return new ArrayList<>();
 	}
 
-	protected ArrayList<HouseEntry> loadHouseEntries() {
-		return new ArrayList<>();
-	}
-
 	// List of collectibles to be apart of the map, should be overridden in a
 	// subclass
 	protected ArrayList<Collectible> loadCollectibles() {
@@ -402,14 +398,15 @@ public abstract class Map implements IntersectableRectangle {
 		return animatedMapTiles;
 	}
 
-	public Script getActiveInteractScript() {
+	public Script<MapEntity> getActiveInteractScript() {
 		return activeInteractScript;
 	}
 
 	// this method is only used to set activeInteractScript back to null after the
 	// script is finished running
-	public void setActiveInteractScript(Script script) {
-		activeInteractScript = script;
+	@SuppressWarnings("unchecked")
+	public void setActiveInteractScript(Script<? extends MapEntity> script) {
+		activeInteractScript = (Script<MapEntity>) script;
 	}
 
 	public NPC getNPCById(int id) {

@@ -6,6 +6,7 @@ import Level.MusicState;
 import Level.NPC;
 import NPCs.MushroomMan;
 import Scripts.MushroomMap.ExitMushroomHouseScript;
+import Scripts.MushroomMap.MushroomManScript;
 import Tilesets.MushroomHomeTileset;
 
 // Represents a test map to be used in a level
@@ -21,7 +22,7 @@ public class MushroomHomeMap extends Map {
         ArrayList<NPC> npcs = new ArrayList<>();
 
         MushroomMan mushroomMan = new MushroomMan(1, getMapTile(8, 7).getLocation().subtractY(40));
-//        mushroomMan.setInteractScript(new MushroomManScript());
+        mushroomMan.setInteractScript(new MushroomManScript());
         npcs.add(mushroomMan);
 
         return npcs;

@@ -36,6 +36,7 @@ public class Collectible extends MapEntity {
         this.x = location.x;
         this.y = location.y;
         this.itemNumber = itemNumber;
+        this.collectibleScript = new CollectibleScript(nameOfItem, isKeyCollectible);
     }
 
     public int getItemNumber() {
@@ -45,10 +46,6 @@ public class Collectible extends MapEntity {
 	public void setItemNumber(int itemNumber) {
 		this.itemNumber = itemNumber;
 	}
-
-    public void setScriptMusicManager(MusicManager musicManager) {
-        this.collectibleScript = new CollectibleScript(nameOfItem, isKeyCollectible, musicManager);
-    }
 
 	//Gets the interact script of the collectible (just a simple text script)
     public CollectibleScript getInteractScript() {

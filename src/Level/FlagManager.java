@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map.Entry;
+
+import Engine.Config;
 import Game.Game;
 import Screens.PlayLevelScreen;
 import Screens.SaveSlotScreen;
@@ -124,8 +126,8 @@ public class FlagManager {
             SaveSlotScreen.saveSlot2 = true;
         }
         try {
-            // creates/overwrites save file
-            PrintWriter saveFile = new PrintWriter(new File("save" + i + ".txt"));
+            //creates/overwrites save file
+            PrintWriter saveFile = new PrintWriter(new File(Config.SAVE_PATH + "save" + i + ".txt"));
             //prints the mapID, playerX, and playerY in that format
             saveFile.println(this.extraSaveData.map + "," + this.extraSaveData.x + "," + this.extraSaveData.y);
             //turns the inventory array into a string and prints
@@ -160,7 +162,17 @@ public class FlagManager {
             }
             //closes the printWriter
             saveFile.close();
-        } catch (FileNotFoundException e) {}
+        } catch (FileNotFoundException e) {
+            //if the folder does not exist it'll make a new directory for it
+            File directory = new File(Config.SAVE_PATH);
+            //checks if the directory already exists
+            if (!directory.exists()) {
+                //makes the directory if it doesn't
+                directory.mkdir();
+                //calls the save method again to save to the new folder
+                betterSave(i);
+            }
+        }
     }
 
      /**
@@ -171,7 +183,7 @@ public class FlagManager {
     public void betterLoad(int i) {
         try {
             //reads in the file
-            Scanner scanner = new Scanner(new File("save" + i + ".txt"));
+            Scanner scanner = new Scanner(new File(Config.SAVE_PATH + "save" + i + ".txt"));
             //gets the mapID, player x, and player y and sets them accordingly
             String[] playerLocation = scanner.nextLine().split(",");
             this.extraSaveData.map = Integer.parseInt(playerLocation[0]);

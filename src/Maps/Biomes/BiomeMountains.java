@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import GameObject.Rectangle;
 import Level.Collectible;
-import Level.EnhancedMapTile;
 import Level.Map;
 import Level.MusicState;
 import Level.NPC;
@@ -69,12 +68,6 @@ public class BiomeMountains extends Map {
             default:
                 return null;
         }
-    }
-
-    @Override
-    public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
-        ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
-        return enhancedMapTiles;
     }
 
     @Override

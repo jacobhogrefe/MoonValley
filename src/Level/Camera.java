@@ -36,7 +36,6 @@ public class Camera extends Rectangle {
 	private ArrayList<Trigger> activeTriggers = new ArrayList<>();
 	private ArrayList<Collectible> activeCollectibles = new ArrayList<>();
 	private ArrayList<Furniture> activeFurniture = new ArrayList<>();
-	private ArrayList<HouseEntry> activeHouseEntries = new ArrayList<>();
 	
 	public static boolean CattleInPen = false;
 
@@ -389,8 +388,8 @@ public class Camera extends Rectangle {
 			if (containsDraw(furniture) && furniture.isTethered()) {
 
 				if (player.getPlayerState() == PlayerState.WALKING) {
-					furniture.setX(player.getX()+15);
-					furniture.setY(player.getY() - 45);
+					furniture.setX(player.getX());
+					furniture.setY(player.getY() - 40);
 				}
 				
 				if(GlobalKeyCooldown.Keys.SPACE.onceDown()) {

@@ -11,6 +11,7 @@ import Maps.Biomes.BiomeMountains;
 import Maps.Biomes.BiomeShrooms;
 import Maps.Biomes.BiomeSpooky;
 import Maps.Biomes.BiomeStart;
+import Maps.BiomeSpookyHome;
 import Maps.DinoMap;
 import Maps.WalrusMap;
 
@@ -31,6 +32,7 @@ public class EditorMaps {
             add("MushroomHomeMap");
             add("Treehouse");
             add("SaloonMap");
+            add("BiomeSpookyHome");
         }};
     }
 
@@ -60,6 +62,8 @@ public class EditorMaps {
                 return new TreehouseMap();
             case "SaloonMap":
             	return new SaloonMap();
+            case "BiomeSpookyHome" :
+            	return new BiomeSpookyHome();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

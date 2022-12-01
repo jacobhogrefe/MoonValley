@@ -12,7 +12,7 @@ public class CrashScript extends Script<Trigger> {
 		showTextbox();
 		addTextToTextboxQueue("*CRASH*");
 		addTextToTextboxQueue("Woah, what was that?");
-		addTextToTextboxQueue("Walrus is nearby, I should probably go see if he's okay.");
+		addTextToTextboxQueue("I should probably go check that out.");
 
 	}
 
@@ -24,11 +24,6 @@ public class CrashScript extends Script<Trigger> {
 		unlockPlayer();
 
 	}
-
-	// troubleshooter method
-//	protected void reportFlags() {
-//		System.out.println("hasCrash: " + isFlagSet("hasCrash"));
-//	}
 
 	@Override
 	protected ScriptState execute() {
