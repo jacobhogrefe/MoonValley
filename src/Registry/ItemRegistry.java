@@ -244,6 +244,8 @@ public class ItemRegistry {
 			.withSubimage(68 + 17 * 9, 0)
 			.build()
 			.addToRegistry(this);
+	
+
 
 	private ItemRegistry() {
 
