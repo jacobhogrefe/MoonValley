@@ -17,7 +17,7 @@ public class MusicManager {
     protected static Sound desert = new Sound("GhostRiders.wav", true);
     protected static Sound desertHome = new Sound(null, true);
     protected static Sound spooky = new Sound("BiomeSpookymusic.wav", true);
-    protected static Sound spookyHome = new Sound(null, true);
+    protected static Sound spookyHome = new Sound("ariaMath.wav", true);
     protected static Sound mushroom = new Sound("mushroom.wav", true);
     protected static Sound mushroomHome = new Sound("mushroomHome.wav", true);
     protected static Sound mountains = new Sound("mountainsBiome.wav", true);
