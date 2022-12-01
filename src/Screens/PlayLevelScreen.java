@@ -45,14 +45,19 @@ public class PlayLevelScreen extends Screen {
 		// setup state
 		flagManager = new FlagManager();
 		flagManager.addFlag("hasCrash", false);
+		
+		flagManager.addFlag("wentOutside", false);
 		flagManager.addFlag("hasTalkedToWalrus", false);
+		flagManager.addFlag("searchForGlasses", true);
+		flagManager.addFlag("foundGlasses", false);
+		flagManager.addFlag("searchForCanteen", true);
+		flagManager.addFlag("foundCanteen", false);
+		flagManager.addFlag("phaseOneDone", false);		
+
 		flagManager.addFlag("itemCollected", false);
-		flagManager.addFlag("hasGlasses", false);
 		flagManager.addFlag("finishGlasses", false);
 		flagManager.addFlag("hasTalkedToDino", false);
-		flagManager.addFlag("hasMagnifying", false);
 		flagManager.addFlag("noMore", false);
-		flagManager.addFlag("finesse", false);
 		
 //		flagManager.addFlag("hasLostBall", false);
 //		flagManager.addFlag("hasTalkedToDinosaur", false);
@@ -205,19 +210,25 @@ public class PlayLevelScreen extends Screen {
 
 		}
 		
-
+		//beginning quest flags
 		if (map.getMapFileName().equals("walrus_house_map.txt")) {
 			if (playerInventory.containsItem(18)) {
-				flagManager.setFlag("hasGlasses");
+				flagManager.setFlag("foundGlasses");
+				if (flagManager.isFlagSet("removeItem")) {
+					playerInventory.removeItem(playerInventory.getItemSlotNumber(18));
+				}
+			} else if (playerInventory.containsItem(3)) {
+				flagManager.setFlag("foundCanteen");
 			}
 		}
+
 		
-		if (map.getMapFileName().equals("Biomes/start.txt")) {
-			if (flagManager.isFlagSet("finesse")) {
-				screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(5);
-				flagManager.unsetFlag("finesse");
-			}
-		}
+//		if (map.getMapFileName().equals("Biomes/start.txt")) {
+//			if (flagManager.isFlagSet("finesse")) {
+//				screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(5);
+//				flagManager.unsetFlag("finesse");
+//			}
+//		}
 		
 		//mountains collectible quest flags
 		if(map.getMapFileName().equals("Biomes/mountains.txt")) {
