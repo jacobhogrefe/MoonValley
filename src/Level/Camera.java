@@ -6,6 +6,7 @@ import Engine.ScreenManager;
 import GameObject.Furniture;
 import GameObject.GameObject;
 import GameObject.Rectangle;
+import Screens.PlayLevelScreen;
 import Utils.Direction;
 import java.awt.*;
 import java.util.ArrayList;
@@ -292,7 +293,7 @@ public class Camera extends Rectangle {
 		// if drawn here, npc will later be "overlapped" by player
 		// if drawn later, npc will "cover" player
 		for (NPC npc : activeNPCs) {
-			if (npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown() && npc.isTetherable()) {
+			if (PlayLevelScreen.HasLasso && npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown() && npc.isTetherable()) {
 				System.out.println("setting tether...");
 				npc.setTether(true, player);
 				tetherSet = true;

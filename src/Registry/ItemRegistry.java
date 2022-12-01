@@ -219,7 +219,7 @@ public class ItemRegistry {
 
 	public Item HEADPHONES = new Item.Builder() // 17
 			.withName("Headphones")
-			.withDescription("Great for tuning out your student's crys")
+			.withDescription("Great for tuning out your student's cries")
 			.withSubimage(68 + 17 * 1, 34)
 			.build()
 			.addToRegistry(this);
@@ -244,6 +244,30 @@ public class ItemRegistry {
 			.withSubimage(68 + 17 * 9, 0)
 			.build()
 			.addToRegistry(this);
+	
+	public Item GHOST_COSTUME = new Item.Builder() // 21
+			.withName("Ghost Costume")
+			.withDescription("oOOoooOOOOoooOOOo! Spooky!")
+			.withSubimage(68 + 17 * 2, 34)
+			.build()
+			.addToRegistry(this);
+	
+	public Item LASSO = new Item.Builder() // 22
+			.withName("Lasso")
+			.withDescription("Used for leading cattle")
+			.withSubimage(68 + 17 * 3, 34)
+			.build()
+			.addToRegistry(this);
+	
+	public Item WATER_BUCKET = new Item.Builder() // 23
+			.withName("Water Bucket")
+			.withDescription("A bucket of nasty, stagnant, water")
+			.withSubimage(68 + 17 * 4, 34)
+			.build()
+			.addToRegistry(this);
+	
+	
+
 
 	private ItemRegistry() {
 

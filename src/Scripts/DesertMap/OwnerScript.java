@@ -30,9 +30,11 @@ public class OwnerScript extends Script<NPC> {
     	  addTextToTextboxQueue( "Why would you want money when you could have this\nsnazzy magnifying glass!");
     	  addTextToTextboxQueue( "Thank you kindly for the help my friend!");
       }
-//      else {
-//    	  addTextToTextboxQueue( "Where is that dang ol' cowboy?!");
-//      }
+
+      else {
+    	  addTextToTextboxQueue( "Where is that daggone cowboy?!");
+      }
+
       entity.facePlayer(player);
     }
 

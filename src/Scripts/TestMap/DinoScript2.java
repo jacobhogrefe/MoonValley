@@ -10,23 +10,13 @@ public class DinoScript2 extends Script<NPC> {
 	protected void setup() {
 		lockPlayer();
 		showTextbox();
-
-		if (!isFlagSet("hasTalkedToDino")) {
-			addTextToTextboxQueue("Hi Cat!");
-		} else if (isFlagSet("finishGlasses")) {
-			addTextToTextboxQueue("Oh! You are looking for a magnifying\n glass?");
-			addTextToTextboxQueue("You can try checking my garden!");
-		}
-
+		addTextToTextboxQueue("Hi Cat!");
 	}
 
 	@Override
 	protected void cleanup() {
 		unlockPlayer();
 		hideTextbox();
-
-		setFlag("hasTalkedToDino");
-		System.out.println("Setting flag: hasTalkedToDino");
 	}
 
 	@Override

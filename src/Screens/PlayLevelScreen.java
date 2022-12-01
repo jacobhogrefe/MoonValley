@@ -9,6 +9,7 @@ import NPCs.Cloud;
 import NPCs.Cloud2;
 import NPCs.Cloud3;
 import Players.*;
+import Registry.ItemRegistry;
 import SpriteFont.SpriteFont;
 import Utils.Direction;
 import Utils.Point;
@@ -34,8 +35,17 @@ public class PlayLevelScreen extends Screen {
 	protected Key Pause_Key = Key.P;
 	protected Key Debug_Key = Key.ZERO;
 	protected boolean isInventoryOpen = false;
+	
+	
+	
+	//Matt's public static booleans because its the only way he know how to do anything - Matt
 	public static boolean isInHouse = false;
 	public static boolean shouldcensorwalrus = false;
+	public static boolean ShouldGiveLasso = false;
+	public static boolean HasLasso = false;
+	public static boolean ShouldGiveWaterBucket = false;
+	public static boolean HasWaterBucket = false;
+	public static boolean ShouldGiveMagnifyingGlass = false;
 
 	public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
 		this.screenCoordinator = screenCoordinator;
@@ -163,6 +173,22 @@ public class PlayLevelScreen extends Screen {
 			System.out.println("Changing clothes");
 			reloadPlayer(player);
 			CatWardrobe.wardrobeChange = false;
+		}
+		
+		if (ShouldGiveWaterBucket == true) {
+			playerInventory.addItem(ItemRegistry.singleton.WATER_BUCKET);
+			HasLasso = true;
+			ShouldGiveWaterBucket = false;
+		}
+		if (ShouldGiveLasso == true) {
+			playerInventory.addItem(ItemRegistry.singleton.LASSO);
+			HasLasso = true;
+			ShouldGiveLasso = false;
+		}
+		
+		if (ShouldGiveMagnifyingGlass == true) {
+			playerInventory.addItem(ItemRegistry.singleton.MAGNIFYING_GLASS);
+			ShouldGiveMagnifyingGlass = false;
 		}
 
 		if (Map.furniturereturnrequested) {
