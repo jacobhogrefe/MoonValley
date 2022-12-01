@@ -23,7 +23,7 @@ public class CoralineScript extends Script<NPC> {
 		} else if (!isFlagSet("Searchlosteyes")) {
 			addTextToTextboxQueue("Please help me save the lost children's eyes lost one!");
 		} else if(!isFlagSet("FoundtheLostEyes")) {
-			addTextToTextboxQueue("Thank you lost one for helpping me free the lost children!");
+			addTextToTextboxQueue("Thank you lost one for helping me free the lost children!");
 			addTextToTextboxQueue("Now I can go back to my world and defeat the other mother and find my parents!");
 			addTextToTextboxQueue("Goodluck on the rest of your journey lost one! Here this is for all your help!");
 		} else {
