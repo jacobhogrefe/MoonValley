@@ -36,7 +36,8 @@ public class PlayLevelScreen extends Screen {
 	protected Key Debug_Key = Key.ZERO;
 	protected boolean isInventoryOpen = false;
 
-	//Matt's public static booleans because its the only way he know how to do anything and he hates the FlagManager - Matt
+	// Matt's public static booleans because its the only way he know how to do
+	// anything and he hates the FlagManager - Matt
 	public static boolean isInHouse = false;
 	public static boolean shouldcensorwalrus = false;
 	public static boolean ShouldGiveLasso = false;
@@ -76,6 +77,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("cantUseComputer", true);
 		flagManager.addFlag("thisIsDoneNow", false);
 		flagManager.addFlag("removeItem7", false);
+		flagManager.addFlag("giveHeadphones", false);
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);
@@ -111,11 +113,11 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("lassoFound", false);
 		flagManager.addFlag("desertReward", false);
 		flagManager.addFlag("desertDone", false);
-		
-		flagManager.addFlag("FoundtheLostEyes",false);
-		flagManager.addFlag("Searchlosteyes",false);
-		flagManager.addFlag("firstTalktoCoraline",false );
-		flagManager.addFlag("removeitem",false);
+
+		flagManager.addFlag("FoundtheLostEyes", false);
+		flagManager.addFlag("Searchlosteyes", false);
+		flagManager.addFlag("firstTalktoCoraline", false);
+		flagManager.addFlag("removeitem", false);
 
 		// define/setup map
 		this.map = Player.MapEntityManager.getSavedMap(7);
@@ -187,7 +189,7 @@ public class PlayLevelScreen extends Screen {
 		}
 
 		if (ShouldGiveWaterBucket == true) {
-			playerInventory.addItem(ItemRegistry.singleton.WATER_BUCKET);    
+			playerInventory.addItem(ItemRegistry.singleton.WATER_BUCKET);
 			HasLasso = true;
 			ShouldGiveWaterBucket = false;
 		}
@@ -201,11 +203,11 @@ public class PlayLevelScreen extends Screen {
 			playerInventory.addItem(ItemRegistry.singleton.MAGNIFYING_GLASS);
 			ShouldGiveMagnifyingGlass = false;
 		}
-		
+
 		if (ShouldGiveCowboyHat) {
 			playerInventory.addItem(ItemRegistry.singleton.COWBOY_HAT);
 			ShouldGiveCowboyHat = false;
-			
+
 		}
 
 		if (Map.furniturereturnrequested) {
@@ -287,7 +289,7 @@ public class PlayLevelScreen extends Screen {
 				}
 			}
 		}
-		
+
 		if (playerInventory.containsItem(20)) {
 			flagManager.setFlag("hasBrush");
 		}
@@ -308,12 +310,18 @@ public class PlayLevelScreen extends Screen {
 			}
 		}
 
-		if (playerInventory.containsItem(17)) {
-			flagManager.setFlag("hasHeadphones");
-			if (!playerInventory.containsItem(24))
-				playerInventory.addItem(24);
+		if (flagManager.isFlagSet("giveHeadphones")) {
+			if (!playerInventory.containsItem(17)) {
+				playerInventory.addItem(17);
+			}
+			if (playerInventory.containsItem(17)) {
+				flagManager.setFlag("hasHeadphones");
+				if (!playerInventory.containsItem(24))
+					playerInventory.addItem(24);
 
+			}
 		}
+
 		if (flagManager.isFlagSet("removeItem5")) {
 			if (playerInventory.containsItem(17) && playerInventory.containsItem(24)) {
 				playerInventory.removeItem(playerInventory.getItemSlotNumber(17));
@@ -344,9 +352,10 @@ public class PlayLevelScreen extends Screen {
 		if (playerInventory.containsItem(25) && playerInventory.containsItem(26) && playerInventory.containsItem(27)) {
 			flagManager.setFlag("FoundtheLostEyes");
 		}
-		
+
 		if (flagManager.isFlagSet("removeItem7")) {
-			if (playerInventory.containsItem(25) && playerInventory.containsItem(26) && playerInventory.containsItem(27)) {
+			if (playerInventory.containsItem(25) && playerInventory.containsItem(26)
+					&& playerInventory.containsItem(27)) {
 				playerInventory.removeItem(playerInventory.getItemSlotNumber(25));
 				playerInventory.removeItem(playerInventory.getItemSlotNumber(26));
 				playerInventory.removeItem(playerInventory.getItemSlotNumber(27));
@@ -389,23 +398,24 @@ public class PlayLevelScreen extends Screen {
 					flagManager.unsetFlag("removeItem");
 				}
 			}
-			
-			if(map.getMapFileName().equals("Biomes/spooky.txt")) {
-				if(playerInventory.containsItem(25)||playerInventory.containsItem(26)||playerInventory.containsItem(27)) {
-				flagManager.setFlag("FoundtheLostEyes");
-					if(flagManager.isFlagSet("removeitem")) {			
+
+			if (map.getMapFileName().equals("Biomes/spooky.txt")) {
+				if (playerInventory.containsItem(25) || playerInventory.containsItem(26)
+						|| playerInventory.containsItem(27)) {
+					flagManager.setFlag("FoundtheLostEyes");
+					if (flagManager.isFlagSet("removeitem")) {
 						playerInventory.removeItem(playerInventory.getItemSlotNumber(25));
 						playerInventory.removeItem(playerInventory.getItemSlotNumber(26));
 						playerInventory.removeItem(playerInventory.getItemSlotNumber(27));
-						//playerInventory.addItem();
+						// playerInventory.addItem();
 						flagManager.unsetFlag("FoundtheLostEyes");
 						flagManager.unsetFlag("removeitem");
 					}
-			} 
-		}
+				}
+			}
 
+		}
 	}
-}
 
 	public PlayerInventory getPlayerInventory() {
 		return playerInventory;
