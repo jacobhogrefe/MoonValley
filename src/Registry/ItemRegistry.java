@@ -259,6 +259,13 @@ public class ItemRegistry {
 			.build()
 			.addToRegistry(this);
 	
+	public Item WATER_BUCKET = new Item.Builder() // 23
+			.withName("Water Bucket")
+			.withDescription("A bucket of nasty, stagnant, water")
+			.withSubimage(68 + 17 * 4, 34)
+			.build()
+			.addToRegistry(this);
+	
 	
 
 

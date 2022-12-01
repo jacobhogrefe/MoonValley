@@ -3,6 +3,7 @@ package Scripts.DesertMap;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
+import Screens.PlayLevelScreen;
 
 // script for talking to walrus npc
 public class CowboyScript extends Script<NPC> {
@@ -21,6 +22,8 @@ public class CowboyScript extends Script<NPC> {
     	  addTextToTextboxQueue( "WHAHAHAGHH!!");
     	  addTextToTextboxQueue( "...ughh...wife left...dog died....blehhhhgggggh");
     	  addTextToTextboxQueue( "*Drops Lasso*");
+    	  PlayLevelScreen.ShouldGiveLasso = true;
+    	 
     	  
       }
       else {
@@ -37,6 +40,7 @@ public class CowboyScript extends Script<NPC> {
         hideTextbox();
         
         if(isFlagSet("needsFindBucket") && isFlagSet("bucketFound")) {
+        	
         	setFlag("lassoFound");
         }
         else {
