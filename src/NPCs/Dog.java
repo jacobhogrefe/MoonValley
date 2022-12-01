@@ -24,13 +24,13 @@ public class Dog extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(1)
-                            .withBounds(4, 5, 10, 10)
+                            .withBounds(5, 5, 7, 17)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(1)
-                           .withBounds(4, 5, 10, 10)
+                           .withBounds(5, 5, 7, 17)
                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                            .build()
            });
@@ -38,11 +38,11 @@ public class Dog extends NPC {
             put("WALK_LEFT", new Frame[]{
                     new FrameBuilder(spriteSheet.getSprite(0,0), 200)
                             .withScale(1)
-                            .withBounds(4, 5, 10, 10)
+                            .withBounds(5, 5, 7, 17)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0,0), 200)
                             .withScale(3)
-                            .withBounds(4, 5, 10, 10)
+                            .withBounds(5, 5, 7, 17)
                             .build()
             });
 
@@ -50,12 +50,12 @@ public class Dog extends NPC {
                     new FrameBuilder(spriteSheet.getSprite(0,0), 200)
                             .withScale(1)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 10, 10)
+                            .withBounds(5, 5, 7, 17)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(0,0), 200)
                             .withScale(1)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 10, 10)
+                            .withBounds(5, 5, 7, 17)
                             .build()
             });
         }};
