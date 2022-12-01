@@ -30,7 +30,7 @@ public class ControlsScreen extends Screen {
         controls[2] = new SpriteFont("A/Left arrow: Move player left", 50, 130, "Comic Sans", 30, Color.white);
         controls[3] = new SpriteFont("D/Right arrow: Move player right", 50, 170, "Comic Sans", 30, Color.white);
         controls[4] = new SpriteFont("S/Down arrow: Move player down", 50, 210, "Comic Sans", 30, Color.white);
-        controls[5] = new SpriteFont("Space: Interact with NPCs/search for collectibles", 50, 250, "Comic Sans", 30, Color.white);
+        controls[5] = new SpriteFont("Space: Interact with NPCs/enter buildings", 50, 250, "Comic Sans", 30, Color.white);
         controls[6] = new SpriteFont("I: Access the Inventory", 50, 290, "Comic Sans", 30, Color.white);
         controls[7] = new SpriteFont("P: Pause game", 50, 330, "Comic Sans", 30, Color.white);
         controls[8] = new SpriteFont("Press Space to go back", 20, 560, "Comic Sans", 30, Color.white);
