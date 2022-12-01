@@ -17,7 +17,15 @@ public class MushroomManScript extends Script<NPC> {
 	@Override
 	protected void setup() {
 		lockPlayer();
-		if (!isFlagSet("hasTalkedToShittake")) {
+		if (isFlagSet("hasTalkedToDog")) {
+			showTextbox();
+			addTextToTextboxQueue(
+					"That lil brat is always ruining the garden. You should\n take the nasty brush to walrus or something.");
+		} 
+//		else if (!isFlagSet("hasTalkedToDog") && isFlagSet("hasTalkedToShittake")) {
+//			showTextbox();
+//			addTextToTextboxQueue("Where's my dog bro?");
+		 else if (!isFlagSet("hasTalkedToShittake")) {
 			if (sequence == 0) {
 				showTextbox();
 				addTextToTextboxQueue("Sup dawg. It's house tour time.");
@@ -44,14 +52,24 @@ public class MushroomManScript extends Script<NPC> {
 				addTextToTextboxQueue("This is my dresser.");
 				addTextToTextboxQueue("Yo actually where is my pet? Any chance you\n could hunt him down?");
 				addTextToTextboxQueue("He's like a foot tall and blue if that helps.");
-				addTextToTextboxQueue("Thanks dawg");
+				addTextToTextboxQueue("Thanks dawg.");
 			}
 		}
 	}
 
 	@Override
 	protected void cleanup() {
-		if (!isFlagSet("hasTalkedToShittake")) {
+		if (isFlagSet("hasTalkedToDog")) {
+			hideTextbox();
+			System.out.println("hide textbox");
+			unlockPlayer();
+			System.out.println("unlocked player");
+
+		} 
+//		else if (!isFlagSet("hasTalkedToDog") && isFlagSet("hasTalkedToShittake")) {
+//			hideTextbox();
+//			unlockPlayer();
+		 else if (!isFlagSet("hasTalkedToShittake")) {
 			if (sequence == 0) {
 				hideTextbox();
 				sequence++;
@@ -77,7 +95,25 @@ public class MushroomManScript extends Script<NPC> {
 
 	@Override
 	protected ScriptState execute() {
-		if (!isFlagSet("hasTalkedToShittake")) {
+		if (isFlagSet("hasTalkedToDog")) {
+			start();
+			if (!isTextboxQueueEmpty()) {
+				System.out.println("Script state running");
+				return ScriptState.RUNNING;
+			}
+			end();
+			System.out.println("Script state completed");
+			return ScriptState.COMPLETED;
+		} 
+//		else if (!isFlagSet("hasTalkedToDog") && (isFlagSet("hasTalkedToShittake"))) {
+//			start();
+//			if (!isTextboxQueueEmpty()) {
+//				System.out.println("wtf running");
+//				return ScriptState.RUNNING;
+//			}
+//			end();
+//			return ScriptState.COMPLETED;
+		 else if (!isFlagSet("hasTalkedToShittake")) {
 			// talks
 			if (sequence == 0) {
 				start();
@@ -135,9 +171,10 @@ public class MushroomManScript extends Script<NPC> {
 					end();
 				}
 			}
+			System.out.println("running");
 			return ScriptState.RUNNING;
 		}
-
+		System.out.println("done");
 		return ScriptState.COMPLETED;
 	}
 }

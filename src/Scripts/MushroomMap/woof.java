@@ -26,7 +26,7 @@ public class woof extends Script<NPC> {
 		hideTextbox();
 		unlockPlayer();
 		setFlag("dogsPresent");
-		setFlag("talkedToDog");
+		setFlag("hasTalkedToDog");
 
 	}
 
