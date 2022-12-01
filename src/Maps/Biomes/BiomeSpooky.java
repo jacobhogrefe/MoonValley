@@ -11,6 +11,7 @@ import NPCs.CoralineNPC;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Scripts.SmartMapTeleportScript;
+import Scripts.BiomeSpooky.CoralineScript;
 import Scripts.BiomeSpooky.EnterHalloweenHome;
 import Tilesets.BiomeSpookyTilesets;
 import Utils.Side;
@@ -89,7 +90,7 @@ public class BiomeSpooky extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
         CoralineNPC coraline = new CoralineNPC(1, getMapTile(10,8).getLocation());
-        //coraline.setInteractScript(new MarioScript());
+        coraline.setInteractScript(new CoralineScript());
         npcs.add(coraline);
         return npcs;
     }
