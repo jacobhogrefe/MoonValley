@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import Level.Collectible;
 import Level.Map;
 import Level.MusicState;
+import Level.NPC;
+import NPCs.Dinosaur;
+import NPCs.Walrus;
+import Scripts.TestMap.DinoScript2;
 import Scripts.TestMap.ExitWalrusHouseScript;
+import Scripts.TestMap.WalrusScript;
 import Tilesets.HouseTileset;
 
 public class WalrusMap extends Map {
@@ -26,10 +31,28 @@ public class WalrusMap extends Map {
 	@Override
 	public ArrayList<Collectible> loadCollectibles() {
 		ArrayList<Collectible> collectibles = new ArrayList<>();
-        collectibles.add(new Collectible("Glasses.png", getMapTile(6, 6).getLocation(), "Glasses", 18, false));
+       
+		Collectible glasses = new Collectible("Glasses.png", getMapTile(4, 10).getLocation(), "Glasses", 18, false);
+        glasses.setExistenceFlag("searchForGlasses");
+        collectibles.add(glasses);
+        
+        Collectible canteen = new Collectible("Canteen.png", getMapTile(5, 3).getLocation(), "Canteen", 3, false);
+        canteen.setExistenceFlag("searchForCanteen");
+        collectibles.add(canteen);
 
 		return collectibles;
 	}
+	
+    @Override
+    public ArrayList<NPC> loadNPCs() {
+        ArrayList<NPC> npcs = new ArrayList<>();
+
+        Walrus walrus = new Walrus(1, getMapTile(10, 4).getLocation().subtractY(40));
+        walrus.setInteractScript(new WalrusScript());
+        npcs.add(walrus);
+
+        return npcs;
+    }
 
 	@Override
 	public MusicState getMusicState() {

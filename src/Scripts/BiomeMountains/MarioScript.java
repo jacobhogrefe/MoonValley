@@ -48,7 +48,7 @@ public class MarioScript extends Script<NPC> {
             addTextToTextboxQueue("I'm not sure where I last saw it, but it is\npretty valuable.");
         } else if (isFlagSet("foundYoshiCoin")) {
             addTextToTextboxQueue("Perfect! This was exactly what I was looking for!");
-            addTextToTextboxQueue("Here are a pair of headphones for a certain blue\nfella. Tell him Mario says hi!");
+            addTextToTextboxQueue("Here is a hawaiian shirt for a certain blue\nfella. Tell him Mario says hi!");
         } else {
             addTextToTextboxQueue("It's pretty chilly up here, maybe you should invest\nin a jacket.");
         }

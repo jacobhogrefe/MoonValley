@@ -11,11 +11,11 @@ import Utils.Point;
 
 import java.util.HashMap;
 
-// This class is for the dinosaur NPC
-public class MushroomMan extends NPC {
+// This class is for the dog NPC
+public class Dog extends NPC {
 
-    public MushroomMan(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("MushroomMan.png"), 13, 27), "STAND_LEFT");
+    public Dog(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("Dog.png"), 40, 40), "STAND_LEFT");
     }
 
     @Override
@@ -23,39 +23,39 @@ public class MushroomMan extends NPC {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
-                            .withScale(3)
-                            .withBounds(8, 8, 8, 25)
+                            .withScale(1)
+                            .withBounds(4, 5, 10, 10)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
-                           .withScale(3)
-                           .withBounds(8, 8, 8, 25)
+                           .withScale(1)
+                           .withBounds(4, 5, 10, 10)
                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                            .build()
            });
 
             put("WALK_LEFT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(1, 0), 200)
-                            .withScale(3)
-                            .withBounds(8, 8, 8, 25)
+                    new FrameBuilder(spriteSheet.getSprite(0,0), 200)
+                            .withScale(1)
+                            .withBounds(4, 5, 10, 10)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 200)
+                    new FrameBuilder(spriteSheet.getSprite(0,0), 200)
                             .withScale(3)
-                            .withBounds(8, 8, 8, 25)
+                            .withBounds(4, 5, 10, 10)
                             .build()
             });
 
             put("WALK_RIGHT", new Frame[]{
-                    new FrameBuilder(spriteSheet.getSprite(1, 0), 200)
-                            .withScale(3)
+                    new FrameBuilder(spriteSheet.getSprite(0,0), 200)
+                            .withScale(1)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(8, 8, 8, 25)
+                            .withBounds(4, 5, 10, 10)
                             .build(),
-                    new FrameBuilder(spriteSheet.getSprite(1, 1), 200)
-                            .withScale(3)
+                    new FrameBuilder(spriteSheet.getSprite(0,0), 200)
+                            .withScale(1)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(8, 8, 8, 25)
+                            .withBounds(4, 5, 10, 10)
                             .build()
             });
         }};

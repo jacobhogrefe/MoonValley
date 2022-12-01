@@ -4,22 +4,21 @@ import Level.Script;
 import Level.ScriptState;
 import Level.Trigger;
 
-public class foundMagnifying extends Script<Trigger> {
+public class checkHouseScript extends Script<Trigger> {
 
 	@Override
 	protected void setup() {
 		lockPlayer();
 		showTextbox();
-		addTextToTextboxQueue("I found the magnifying glass!");
-		addTextToTextboxQueue("I should take this back to Walrus.");
+		addTextToTextboxQueue("I think its coming from the house over that way, \nI didn’t know anyone lived there!");
+		addTextToTextboxQueue("Maybe I should go make sure whoever is inside \nis okay.");
 
 	}
 
 	@Override
 	protected void cleanup() {
-		setFlag("hasMagnifying");
-		setFlag("finesse");
-    	System.out.println("Setting flag: hasMagnifying");
+		setFlag("wentOutside");
+		System.out.println("Setting flag: wentOutside");
 		hideTextbox();
 		unlockPlayer();
 
@@ -27,7 +26,7 @@ public class foundMagnifying extends Script<Trigger> {
 
 	@Override
 	protected ScriptState execute() {
-		if (!isFlagSet("hasMagnifying")) {
+		if (!isFlagSet("wentOutside")) {
 			start();
 			if (!isTextboxQueueEmpty()) {
 				return ScriptState.RUNNING;

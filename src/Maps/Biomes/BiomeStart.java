@@ -21,7 +21,7 @@ import Scripts.TestMap.EnterHouseScript;
 import Scripts.TestMap.EnterWalrusHouseScript;
 import Scripts.TestMap.TreeScript;
 import Scripts.TestMap.WalrusScript;
-import Scripts.TestMap.foundMagnifying;
+import Scripts.TestMap.checkHouseScript;
 import Tilesets.CommonTileset;
 import Utils.Side;
 
@@ -89,10 +89,6 @@ public class BiomeStart extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
-        walrus.setInteractScript(new WalrusScript());
-        npcs.add(walrus);
-
         Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
         dinosaur.setExistenceFlag("hasTalkedToDinosaur");
         dinosaur.setInteractScript(new DinoScript2());
@@ -117,35 +113,21 @@ public class BiomeStart extends Map {
 
             triggers.add(trigger);
         }
-        triggers.add(new Trigger(500, 250, 20, 20, new foundMagnifying()));
-//        triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-//        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-//        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
+        triggers.add(new Trigger(816, 960, 48, 48, new checkHouseScript(), "wentOutside"));
         return triggers;
     }
 
     @Override
     public ArrayList<Collectible> loadCollectibles() {
         ArrayList<Collectible> collectibles = new ArrayList<>();
-//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(12,19).getLocation(), "Yoshi Coin", 2, false));
-//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(11,19).getLocation(), "Yoshi Coin", 2, false));
-//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(10,19).getLocation(), "Yoshi Coin", 2, true));
-//        collectibles.add(new Collectible("yoshiCoin.png", getMapTile(9,19).getLocation(), "Yoshi Coin", 2, true));
         return collectibles;
     }
-    
-//    @Override
-//    public ArrayList<HouseEntry> loadHouseEntries() {
-//    	ArrayList<HouseEntry> entries = new ArrayList<>();
-//    	entries.add(new HouseEntry(17, 19));
-//    	return entries;
-//    }
-    
+
     @Override
     public void loadScripts() {
         getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));
 
-        getMapTile(7, 26).setInteractScript(new SimpleTextScript("Walrus's house"));
+        getMapTile(7, 26).setInteractScript(new SimpleTextScript("House"));
 
         getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
 
