@@ -15,6 +15,16 @@ public class WalrusScript extends Script<NPC> {
 		if (!isFlagSet("hasTalkedToWalrus")) {
 			addTextToTextboxQueue("Am I okay? No! I cannot see \nanything and I keep bumping into things.");
 			addTextToTextboxQueue("My name? …..I have no idea! \nI cannot remember a thing!");
+		} else if (isFlagSet("desertDone") && !isFlagSet("desertDialogue")) {
+			addTextToTextboxQueue("Cat you're back!");
+			addTextToTextboxQueue("Please tell me you have found something\nto make out this faded inscription...");
+			addTextToTextboxQueue("YOU DID?!?!");
+			addTextToTextboxQueue("A magnifying glass? \nThat is perfect!");
+			addTextToTextboxQueue("Here, take my glasses and try to make out the \ninscription. I'll try not to fall.");
+			addTextToTextboxQueue("...J.B.? Two letters? That doesn't help at all.\nHow will I remember what happened?");
+			addTextToTextboxQueue("Thank you for your help Cat. While you were gone\nI found a grappling hook.");
+			addTextToTextboxQueue("I noticed some mountains northeast of here\nmaybe you could put it to use");
+			addTextToTextboxQueue("You may even find more hints for me to remember\n who I am.");
 		} else if (isFlagSet("foundCanteen")) {
 			addTextToTextboxQueue("Let me know if you find anything!");
 		} else if (isFlagSet("hasTalkedToWalrus") && !isFlagSet("foundGlasses")) {
@@ -32,6 +42,8 @@ public class WalrusScript extends Script<NPC> {
 			addTextToTextboxQueue("This Canteen on the couch must be mine. \nPlease, take it!");
 			addTextToTextboxQueue("I wish there was something more I could give you.");
 		}
+		
+		
 
 		entity.facePlayer(player);
 	}
@@ -47,6 +59,10 @@ public class WalrusScript extends Script<NPC> {
 			unsetFlag("searchForCanteen");
 			setFlag("removeItem");
 			unsetFlag("foundGlasses");
+		}
+		
+		if (isFlagSet("desertDone")) {
+			setFlag("desertDialogue");
 		}
 	}
 

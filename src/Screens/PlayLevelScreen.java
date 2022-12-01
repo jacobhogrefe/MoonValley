@@ -45,25 +45,27 @@ public class PlayLevelScreen extends Screen {
 		// setup state
 		flagManager = new FlagManager();
 		flagManager.addFlag("hasCrash", false);
-		
+
 		flagManager.addFlag("wentOutside", false);
 		flagManager.addFlag("hasTalkedToWalrus", false);
 		flagManager.addFlag("searchForGlasses", true);
 		flagManager.addFlag("foundGlasses", false);
 		flagManager.addFlag("searchForCanteen", true);
 		flagManager.addFlag("foundCanteen", false);
-		flagManager.addFlag("phaseOneDone", false);		
+		flagManager.addFlag("phaseOneDone", false);
+		flagManager.addFlag("foundMagnifying", false);
+		flagManager.addFlag("desertDialogue", false);
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);
 		flagManager.addFlag("hasTalkedToDino", false);
 		flagManager.addFlag("noMore", false);
-		
+
 //		flagManager.addFlag("hasLostBall", false);
 //		flagManager.addFlag("hasTalkedToDinosaur", false);
 //		flagManager.addFlag("hasFoundBall", false);
 
-		//mountains map flags
+		// mountains map flags
 		flagManager.addFlag("removeItem", false);
 		flagManager.addFlag("firstTalkToMario", false);
 		flagManager.addFlag("searchForSwitch", true);
@@ -74,13 +76,13 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("foundTerminal", false);
 		flagManager.addFlag("searchForYoshiCoin", true);
 		flagManager.addFlag("foundYoshiCoin", false);
-		
-		//desert map flags
-		flagManager.addFlag("needsFindBucket",false);
-		flagManager.addFlag("firstBartenderTalk",false);
-		flagManager.addFlag("bucketFound",false);
+
+		// desert map flags
+		flagManager.addFlag("needsFindBucket", false);
+		flagManager.addFlag("firstBartenderTalk", false);
+		flagManager.addFlag("bucketFound", false);
 		flagManager.addFlag("lassoFound", false);
-		flagManager.addFlag("desertReward",false);
+		flagManager.addFlag("desertReward", false);
 		flagManager.addFlag("desertDone", false);
 
 		// define/setup map
@@ -109,7 +111,7 @@ public class PlayLevelScreen extends Screen {
 		// let pieces of map know which button to listen for as the "interact" button
 		map.getTextbox().setInteractKey(player.getInteractKey());
 
-		//sets the new map's flag manager
+		// sets the new map's flag manager
 		map.setFlagManager(flagManager);
 
 		// setup map scripts to have references to the map and player
@@ -151,8 +153,8 @@ public class PlayLevelScreen extends Screen {
 			reloadPlayer(player);
 			CatWardrobe.wardrobeChange = false;
 		}
-		
-		if(Map.furniturereturnrequested) {
+
+		if (Map.furniturereturnrequested) {
 			Stack<Integer> itemsReceived = new Stack<Integer>();
 
 			itemsReceived = map.takeItems();
@@ -210,8 +212,8 @@ public class PlayLevelScreen extends Screen {
 			map.getFlagManager().unsetFlag("itemCollected");
 
 		}
-		
-		//beginning quest flags
+
+		// beginning quest flags
 		if (map.getMapFileName().equals("walrus_house_map.txt")) {
 			if (playerInventory.containsItem(18)) {
 				flagManager.setFlag("foundGlasses");
@@ -220,26 +222,36 @@ public class PlayLevelScreen extends Screen {
 				}
 			} else if (playerInventory.containsItem(3)) {
 				flagManager.setFlag("foundCanteen");
+			} else if (playerInventory.containsItem(5)) {
+				flagManager.setFlag("foundMagnifying");
+				if (flagManager.isFlagSet("removeItem")) {
+					playerInventory.removeItem(playerInventory.getItemSlotNumber(5));
+				}
+			}
+			if (!playerInventory.containsItem(7)) {
+				if (flagManager.isFlagSet("desertDialogue")) {
+					playerInventory.addItem(7);
+				}
 			}
 		}
 
-		//desert reward
+		// desert reward
 		if (map.getMapFileName().equals("Biomes/desert.txt")) {
 			if (flagManager.isFlagSet("desertReward")) {
 				playerInventory.addItem(5);
 				flagManager.unsetFlag("desertReward");
 			}
 		}
-		
+
 //		if (map.getMapFileName().equals("Biomes/start.txt")) {
 //			if (flagManager.isFlagSet("finesse")) {
 //				screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(5);
 //				flagManager.unsetFlag("finesse");
 //			}
 //		}
-		
-		//mountains collectible quest flags
-		if(map.getMapFileName().equals("Biomes/mountains.txt")) {
+
+		// mountains collectible quest flags
+		if (map.getMapFileName().equals("Biomes/mountains.txt")) {
 			if (playerInventory.containsItem(13)) {
 				flagManager.setFlag("foundSwitch");
 				if (flagManager.isFlagSet("removeItem")) {
@@ -307,13 +319,12 @@ public class PlayLevelScreen extends Screen {
 		time.setText("Time: " + clock.getTimeOfDay() + ":00");
 		time.draw(graphicsHandler);
 		int timeOfDay = clock.getTimeOfDay();
-		if (map.getMapFileName().equals("Biomes/start.txt") || 
-			map.getMapFileName().equals("Biomes/desert.txt") ||
-			map.getMapFileName().equals("Biomes/mountains.txt") || 
-			map.getMapFileName().equals("Biomes/fallout.txt") || 
-			map.getMapFileName().equals("Biomes/shrooms.txt") || 
-			map.getMapFileName().equals("Biomes/spooky.txt")) {
-		
+		if (map.getMapFileName().equals("Biomes/start.txt") || map.getMapFileName().equals("Biomes/desert.txt")
+				|| map.getMapFileName().equals("Biomes/mountains.txt")
+				|| map.getMapFileName().equals("Biomes/fallout.txt")
+				|| map.getMapFileName().equals("Biomes/shrooms.txt")
+				|| map.getMapFileName().equals("Biomes/spooky.txt")) {
+
 			if (timeOfDay == 5 || timeOfDay == 19) {
 				graphicsHandler.drawFilledRectangle(0, 0, Config.GAME_WINDOW_WIDTH, Config.GAME_WINDOW_HEIGHT,
 						new Color(0, 0, 0, 25));
@@ -337,14 +348,14 @@ public class PlayLevelScreen extends Screen {
 						new Color(0, 0, 0, 0));
 			}
 		}
-				
+
 		if (clock.getTimeOfDay() >= 19 || clock.getTimeOfDay() <= 5) {
 			if (map.getMapFileName().equals("Biomes/start.txt")) {
 				cloud.draw(graphicsHandler);
 				cloud2.draw(graphicsHandler);
 				cloud3.draw(graphicsHandler);
-				
-			} 		
+
+			}
 		}
 
 	}
@@ -380,16 +391,14 @@ public class PlayLevelScreen extends Screen {
 	public void resetLevel() {
 		initialize();
 	}
-	
+
 	public void reloadPlayer(Player currentPlayer) {
-		
+
 		float currentX = player.getX();
 		float currentY = player.getY();
-		
+
 		Direction currentDirection = player.getFacingDirection();
-		
-		
-		
+
 		this.player = new Cat(currentX, currentY);
 		MusicManager.setPlayer(this.player);
 		this.player.setWalkingSound(MusicManager.getWalkingSound());
@@ -397,7 +406,7 @@ public class PlayLevelScreen extends Screen {
 		this.player.setLocation(currentX, currentY);
 		this.playLevelScreenState = PlayLevelScreenState.RUNNING;
 		this.player.setFacingDirection(currentDirection);
-		
+
 	}
 
 	public void goBackToMenu() {
