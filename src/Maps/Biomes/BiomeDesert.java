@@ -12,6 +12,7 @@ import NPCs.RanchOwner;
 import Registry.ItemRegistry;
 import Registry.ItemRegistry.Item;
 import Scripts.SmartMapTeleportScript;
+import Scripts.DesertMap.EnterDesertHomeScript;
 import Scripts.DesertMap.EnterSaloonScript;
 import Scripts.DesertMap.OwnerScript;
 import Tilesets.DesertTileset;
@@ -33,6 +34,7 @@ import Utils.Side;
 public class BiomeDesert extends Map {
     public static final Item REQUIRED_ITEM = ItemRegistry.singleton.WATER_CANTEEN;
     public static final EnterSaloonScript enterSaloon = new EnterSaloonScript();
+    public static final EnterDesertHomeScript enterDesertHome = new EnterDesertHomeScript();
 
     public BiomeDesert() {
         super("Biomes/desert.txt", new DesertTileset(),0);
@@ -42,6 +44,7 @@ public class BiomeDesert extends Map {
     public void loadScripts() {  
         getMapTile(17, 25).setInteractScript(enterSaloon);
         getMapTile(18, 25).setInteractScript(enterSaloon);
+        getMapTile(3, 26).setInteractScript(enterDesertHome);
     } 
 
     @Override
