@@ -58,6 +58,8 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("removeItem2", false);
 		flagManager.addFlag("haveHawaiian", false);
 		flagManager.addFlag("removeItem3", false);
+		flagManager.addFlag("hasBrush", false);
+		flagManager.addFlag("removeItem4", false);
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);
@@ -68,12 +70,12 @@ public class PlayLevelScreen extends Screen {
 //		flagManager.addFlag("hasTalkedToDinosaur", false);
 //		flagManager.addFlag("hasFoundBall", false);
 
-		//mushroom biome flags
+		// mushroom biome flags
 		flagManager.addFlag("hasTalkedToShittake", false);
 		flagManager.addFlag("petDoesntExist", true);
 		flagManager.addFlag("dogsPresent", false);
 		flagManager.addFlag("hasTalkedToDog", false);
-		
+
 		// mountains map flags
 		flagManager.addFlag("removeItem", false);
 		flagManager.addFlag("firstTalkToMario", false);
@@ -243,13 +245,23 @@ public class PlayLevelScreen extends Screen {
 				}
 			}
 		}
-		
+
+		if (playerInventory.containsItem(20)) {
+			flagManager.setFlag("hasBrush");
+		}
+
 		if (playerInventory.containsItem(19)) {
 			flagManager.setFlag("haveHawaiian");
 			if (flagManager.isFlagSet("removeItem3")) {
 				playerInventory.removeItem(playerInventory.getItemSlotNumber(19));
 				playerInventory.addItem(6);
 				flagManager.unsetFlag("haveHawaiian");
+			}
+		}
+		if (playerInventory.containsItem(20)) {
+			if (flagManager.isFlagSet("removeItem4")) {
+				playerInventory.removeItem(20);
+				playerInventory.addItem(4);
 			}
 		}
 
@@ -260,12 +272,12 @@ public class PlayLevelScreen extends Screen {
 				flagManager.unsetFlag("desertReward");
 			}
 		}
-		
-		//mushroom stuff
+
+		// mushroom stuff
 		if (flagManager.isFlagSet("hasTalkedToShittake")) {
 			flagManager.unsetFlag("petDoesntExist");
 		}
-		
+
 		if (flagManager.isFlagSet("dogsPresent")) {
 			if (!playerInventory.containsItem(20)) {
 				playerInventory.addItem(20);

@@ -98,11 +98,9 @@ public class MushroomManScript extends Script<NPC> {
 		if (isFlagSet("hasTalkedToDog")) {
 			start();
 			if (!isTextboxQueueEmpty()) {
-				System.out.println("Script state running");
 				return ScriptState.RUNNING;
 			}
 			end();
-			System.out.println("Script state completed");
 			return ScriptState.COMPLETED;
 		} 
 //		else if (!isFlagSet("hasTalkedToDog") && (isFlagSet("hasTalkedToShittake"))) {
@@ -171,10 +169,8 @@ public class MushroomManScript extends Script<NPC> {
 					end();
 				}
 			}
-			System.out.println("running");
 			return ScriptState.RUNNING;
 		}
-		System.out.println("done");
 		return ScriptState.COMPLETED;
 	}
 }

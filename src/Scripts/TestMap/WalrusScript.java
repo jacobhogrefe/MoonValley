@@ -15,6 +15,16 @@ public class WalrusScript extends Script<NPC> {
 		if (!isFlagSet("hasTalkedToWalrus")) {
 			addTextToTextboxQueue("Am I okay? No! I cannot see \nanything and I keep bumping into things.");
 			addTextToTextboxQueue("My name? …..I have no idea! \nI cannot remember a thing!");
+		} else if (isFlagSet("hasBrush")) {
+			addTextToTextboxQueue("Oh Cat! Back again!");
+			addTextToTextboxQueue("You found... a beard brush inscribed\nJ.B.?");
+			addTextToTextboxQueue("But... Im a walrus, I can't grow\n a beard.");
+			addTextToTextboxQueue("This is a very interesting development...\nWhat could it mean?");
+			addTextToTextboxQueue("Well, in other news,\nI have a surprise for you.");
+			addTextToTextboxQueue("Do you know that Halloween town north of here?\n They don't let anyone in without a costume.");
+			addTextToTextboxQueue("I made this spooky ghost costume!\nTry it on?");
+			addTextToTextboxQueue("You can access the town if you have this with you.");
+			addTextToTextboxQueue("Maybe there are more clues up there!");
 		} else if (isFlagSet("haveHawaiian")) {
 			addTextToTextboxQueue("Oh Cat, you are back! \nWhat have you found?");
 			addTextToTextboxQueue("Hm…a Hawaiian shirt? It seems to be just my size too, \nAND it inscribed J.B? Well, I guess it must be mine.");
@@ -42,11 +52,9 @@ public class WalrusScript extends Script<NPC> {
 			addTextToTextboxQueue("There is an inscription on the side but \nI can’t quite make it out… ");
 			addTextToTextboxQueue("I still can’t remember a thing though... \nwould you do me a favor?");
 			addTextToTextboxQueue("Maybe the inscription on the side of my \nglasses will help me remember who I am.");
-			addTextToTextboxQueue(
-					"If you come across anything that might help \nme remember, would you bring it here for me?");
+			addTextToTextboxQueue("If you come across anything that might help \nme remember, would you bring it here for me?");
 			addTextToTextboxQueue("You will? I don’t know what I would \nhave done if you did not show up.");
-			addTextToTextboxQueue(
-					"Thank you so much… I don’t know what I can do to \nrepay you, but I think this is my house.");
+			addTextToTextboxQueue("Thank you so much… I don’t know what I can do to \nrepay you, but I think this is my house.");
 			addTextToTextboxQueue("This Canteen on the couch must be mine. \nPlease, take it!");
 			addTextToTextboxQueue("I wish there was something more I could give you.");
 		}
@@ -66,7 +74,9 @@ public class WalrusScript extends Script<NPC> {
 			setFlag("removeItem2");
 			unsetFlag("foundGlasses");
 		}
-
+		if (isFlagSet("hasBrush")) {
+			setFlag("removeItem4");
+		}
 		if (isFlagSet("desertDone")) {
 			setFlag("desertDialogue");
 		}
