@@ -11,6 +11,7 @@ import GameObject.SpriteSheet;
 public class CatWardrobe{
 	
 	//Cowboy hat: currentWardrobe = 2
+	//Ghost Costume currentWardrobe = 4;
 	
 	public static int currentWardrobe = 0;
 	public static boolean wardrobeChange = false;
