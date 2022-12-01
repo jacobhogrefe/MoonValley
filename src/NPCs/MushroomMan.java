@@ -24,13 +24,13 @@ public class MushroomMan extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(3)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(8, 8, 8, 25)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(3)
-                           .withBounds(4, 5, 5, 10)
+                           .withBounds(8, 8, 8, 25)
                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                            .build()
            });
@@ -38,11 +38,11 @@ public class MushroomMan extends NPC {
             put("WALK_LEFT", new Frame[]{
                     new FrameBuilder(spriteSheet.getSprite(1, 0), 200)
                             .withScale(3)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(8, 8, 8, 25)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 200)
                             .withScale(3)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(8, 8, 8, 25)
                             .build()
             });
 
@@ -50,12 +50,12 @@ public class MushroomMan extends NPC {
                     new FrameBuilder(spriteSheet.getSprite(1, 0), 200)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(8, 8, 8, 25)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 200)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(8, 8, 8, 25)
                             .build()
             });
         }};

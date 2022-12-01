@@ -68,6 +68,9 @@ public class PlayLevelScreen extends Screen {
 //		flagManager.addFlag("hasTalkedToDinosaur", false);
 //		flagManager.addFlag("hasFoundBall", false);
 
+		//mushroom biome flags
+		flagManager.addFlag("hasTalkedToShittake", false);
+		
 		// mountains map flags
 		flagManager.addFlag("removeItem", false);
 		flagManager.addFlag("firstTalkToMario", false);
