@@ -317,6 +317,15 @@ public class CommonTileset extends Tileset {
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(topWaterTile);
+        
+        Frame grassImpassable = new FrameBuilder(getSubImage(0, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder grassImpass = new MapTileBuilder(grassImpassable)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(grassImpass);
 
 
         return mapTiles;
