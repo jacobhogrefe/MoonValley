@@ -17,7 +17,10 @@ public class WalrusScript extends Script<NPC> {
 		if (!isFlagSet("hasTalkedToWalrus")) {
 			addTextToTextboxQueue("Am I okay? No! I cannot see \nanything and I keep bumping into things.");
 			addTextToTextboxQueue("My name? …..I have no idea! \nI cannot remember a thing!");
-		} else if (isFlagSet("hasHeadphones")) {
+//		} else if (isFlagSet("thisIsDoneNow") && (!isFlagSet("cantUseComputer"))) {
+//			addTextToTextboxQueue("Quick! To the computer!");
+		}
+		if (isFlagSet("hasHeadphones") && !isFlagSet("thisIsDoneNow")) {
 			addTextToTextboxQueue("Hello again, what have you found now?");
 			addTextToTextboxQueue("A tape? What could be on it?\nCould this explain everything?");
 			addTextToTextboxQueue("Well let's start it up");
@@ -56,7 +59,10 @@ public class WalrusScript extends Script<NPC> {
 			addTextToTextboxQueue("Thank you for your help Cat. While you were gone\nI found a grappling hook.");
 			addTextToTextboxQueue("I noticed some mountains northeast of here\nmaybe you could put it to use");
 			addTextToTextboxQueue("You may even find more hints for me to remember\n who I am.");
-		} else if (isFlagSet("foundCanteen")) {
+		} else if (isFlagSet("thisIsDoneNow")) {
+			addTextToTextboxQueue("Quick to the computer!");
+		}
+		else if (isFlagSet("foundCanteen")) {
 			addTextToTextboxQueue("Let me know if you find anything!");
 		} else if (isFlagSet("hasTalkedToWalrus") && !isFlagSet("foundGlasses")) {
 			addTextToTextboxQueue("Oh, what am I going to do!?!\nWhy can't I see?");
@@ -89,11 +95,12 @@ public class WalrusScript extends Script<NPC> {
 			setFlag("removeItem2");
 			unsetFlag("foundGlasses");
 		}
-		if (isFlagSet("hasHeadphones")) {
+		if (isFlagSet("hasHeadphones") && !isFlagSet("thisIsDoneNow")) {
 			MusicManager.updateMusic(MusicState.TAPE);
 			setFlag("removeItem5");
 			unsetFlag("cantUseComputer");
 			unsetFlag("hasHeadphones");
+			setFlag("thisIsDoneNow");
 		}
 		if (isFlagSet("hasBrush")) {
 			setFlag("removeItem4");
