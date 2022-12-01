@@ -371,6 +371,12 @@ public class PlayLevelScreen extends Screen {
 					flagManager.unsetFlag("removeItem");
 				}
 			}
+			if(map.getMapFileName().equals("Biomes/spooky.txt")) {
+				//if(playerInventory.containsItem()) {
+				flagManager.setFlag("FoundtheLostEyes");
+		//	} 
+		}
+
 		}
 	}
 
