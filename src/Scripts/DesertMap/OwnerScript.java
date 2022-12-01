@@ -4,6 +4,7 @@ import Level.Camera;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
+import Screens.PlayLevelScreen;
 
 // script for talking to walrus npc
 public class OwnerScript extends Script<NPC> {
@@ -27,7 +28,8 @@ public class OwnerScript extends Script<NPC> {
     	  addTextToTextboxQueue( "Well I'll be durned! You found my steer!");
     	  addTextToTextboxQueue( "A deed worthy of a reward!");
     	  addTextToTextboxQueue( "...Money? Well, not exactly..");
-    	  addTextToTextboxQueue( "Why would you want money when you could have this\nsnazzy magnifying glass!");
+    	  addTextToTextboxQueue( "Why would you want money when you could have this\nantique magnifying glass!");
+    	  PlayLevelScreen.ShouldGiveMagnifyingGlass = true;
     	  addTextToTextboxQueue( "Thank you kindly for the help my friend!");
       }
 

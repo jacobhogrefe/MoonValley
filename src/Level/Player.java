@@ -313,7 +313,8 @@ public abstract class Player extends GameObject {
             new SaloonMap(), //9
             new TreehouseMap(), //10
             new WalrusMap(), //11
-            new BiomeSpookyHome() //12
+            new BiomeSpookyHome(), //12
+            new DesertHomeMap() //13
         ));
 
         /**

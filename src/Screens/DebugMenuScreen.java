@@ -116,7 +116,7 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.GAS_MASK);
 			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.WATER_CANTEEN);
 			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.MAGNIFYING_GLASS);
-			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.PUMPKIN);
+			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.GHOST_COSTUME);
 			parent.screenCoordinator.getPlayLevelScreen().getPlayerInventory().addItem(ItemRegistry.singleton.GRAPPLING_HOOK);
 
 			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());

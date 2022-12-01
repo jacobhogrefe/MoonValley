@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class CoralineNPC extends NPC {
 
     public CoralineNPC(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("CoralineNPC.png"), 8, 13), "STAND_LEFT");
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("CoralineNPC.png"), 10, 8), "STAND_LEFT");
     }
     
     public HashMap<String, Frame[]> loadAnimations(SpriteSheet spriteSheet) {
