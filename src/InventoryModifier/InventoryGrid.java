@@ -1,15 +1,14 @@
 package InventoryModifier;
 
-
 import java.awt.Point;
 import Engine.GamePanel;
 import Engine.GraphicsHandler;
+import Level.CatWardrobe;
 import Level.Map;
 import Level.PlayerInventory;
 import Registry.ItemRegistry;
 import Screens.InventoryScreen;
 import Screens.PlayLevelScreen;
-
 
 //A grid that interprets mouse clicks to determine selected inventory slots, moved items etc. 
 //Draw method contains the draw order for inventory components and inventory logic is executed based on clicks
@@ -38,6 +37,7 @@ public class InventoryGrid {
 	protected boolean shouldHighlightRemove = false;
 	protected boolean itemIsBeingMoved;
 	protected boolean goodClick = false;
+	protected boolean clothesSelected = false;
 
 	// private boolean reported = false; //uncomment for testing (along with other
 	// commented things below)
@@ -50,7 +50,7 @@ public class InventoryGrid {
 
 	public static boolean itemPlaceRequested = false;
 	public static int itemToBePlaced;
-	
+
 	public static int furnituretoplace;
 
 	public InventoryGrid(PlayerInventory playerInventory) {
@@ -105,7 +105,8 @@ public class InventoryGrid {
 				int yUpperBound = (int) slotNumberCorner[index].getY() + 48;
 
 				// checking if a slot was clicked
-				if (clickedX > xLowerBound && clickedX < xUpperBound && clickedY > yLowerBound && clickedY < yUpperBound) {
+				if (clickedX > xLowerBound && clickedX < xUpperBound && clickedY > yLowerBound
+						&& clickedY < yUpperBound) {
 					clickedSlot = ((j * 11) + k);
 					previousSelectedSlot = selectedSlot;
 					selectedSlot = clickedSlot;
@@ -162,15 +163,42 @@ public class InventoryGrid {
 			InventoryScreen.SlotToEmpty = selectedSlot;
 			selectedItem = 0;
 			InventoryScreen.ItemWasPlaced = true;
-			
+
 		}
-		
-		if(!shouldHighlightMove && clickedX>565 && clickedX<775 && clickedY > 500 && clickedY < 540) {
+
+		if (!shouldHighlightMove && clickedX > 565 && clickedX < 775 && clickedY > 500 && clickedY < 540) {
 			Map.removefurniture = true;
 			InventoryScreen.ShouldCloseInventory = true;
-			
+
 		}
-		
+
+		// 50, 500, 158, 40
+
+		if (clothesSelected && clickedX > 50 && clickedX < 208 && clickedY > 500 && clickedY < 540) {
+			if (selectedItem == 1) {
+				CatWardrobe.currentWardrobe = 2;
+				CatWardrobe.wardrobeChange = true;
+				InventoryScreen.ShouldCloseInventory = true;
+
+			}
+			if (selectedItem == 21) {
+				CatWardrobe.currentWardrobe = 4;
+				CatWardrobe.wardrobeChange = true;
+				InventoryScreen.ShouldCloseInventory = true;
+
+			}
+			
+
+		}
+
+		if (!clothesSelected && clickedX > 50 && clickedX < 208 && clickedY > 500 && clickedY < 540) {
+
+			CatWardrobe.currentWardrobe = 0;
+			CatWardrobe.wardrobeChange = true;
+			InventoryScreen.ShouldCloseInventory = true;
+
+
+		}
 
 	}
 
@@ -264,7 +292,7 @@ public class InventoryGrid {
 			goodClick = false;
 
 		}
-		
+
 		graphicsHandler.drawRetrieveFurnitureButton();
 
 		// if another click has occurred, and booleans indicate a move is taking place,
@@ -293,7 +321,14 @@ public class InventoryGrid {
 				itemIsBeingMoved = false;
 			}
 		}
-
+		if (selectedItem == 1 || selectedItem == 21) {
+			graphicsHandler.drawEquipItemButton();
+			clothesSelected = true;
+		}
+		if (selectedItem != 1 && selectedItem != 21) {
+			graphicsHandler.drawRemoveClothesButton();
+			clothesSelected = false;
+		}
 		// goodClick = false;
 
 		// if(reported == false) {

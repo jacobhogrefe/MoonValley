@@ -184,7 +184,7 @@ public class GraphicsHandler {
 		Font buttonFont = new Font("descriptionFont", Font.BOLD, 18);
 
 		// retrieve furniture button
-		drawFilledRectangleWithBorder(565, 500, 210, 40, Color.GRAY, Color.BLACK, 2);
+		drawFilledRectangleWithBorder(565, 500, 212, 40, Color.GRAY, Color.BLACK, 2);
 
 		drawString("RETRIEVE FURNITURE", 568, 525, buttonFont, Color.BLACK);
 
@@ -265,6 +265,28 @@ public class GraphicsHandler {
 
 	public void censorWalrus(Walrus walrus) {
 		drawFilledRectangleWithBorder((int) walrus.getX(), (int) walrus.getY(), 88, 25, Color.BLACK, Color.BLACK, 2);
+	}
+	
+	public void drawEquipItemButton() {
+		
+		Font buttonFont = new Font("EQUIP CLOTHES", Font.BOLD, 18);
+
+		// retrieve furniture button
+		drawFilledRectangleWithBorder(50, 500, 158, 40, Color.GRAY, Color.BLACK, 2);
+
+		drawString("EQUIP CLOTHES", 53, 525, buttonFont, Color.BLACK);
+		
+	}
+	
+	public void drawRemoveClothesButton() {
+		
+		Font buttonFont = new Font("EQUIP CLOTHES", Font.BOLD, 18);
+
+		// retrieve furniture button
+		drawFilledRectangleWithBorder(50, 500, 178, 40, Color.GRAY, Color.BLACK, 2);
+
+		drawString("REMOVE CLOTHES", 53, 525, buttonFont, Color.BLACK);
+		
 	}
 
 }
