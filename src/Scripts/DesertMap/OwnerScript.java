@@ -29,7 +29,7 @@ public class OwnerScript extends Script<NPC> {
     	  addTextToTextboxQueue( "Thank you kindly for the help my friend!");
       }
       else {
-    	  addTextToTextboxQueue( "Where is that dang ol' cowboy?!");
+    	  addTextToTextboxQueue( "Where is that daggone cowboy?!");
       }
       entity.facePlayer(player);
     }
