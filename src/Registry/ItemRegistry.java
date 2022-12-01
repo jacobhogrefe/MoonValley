@@ -266,6 +266,13 @@ public class ItemRegistry {
 			.build()
 			.addToRegistry(this);
 	
+	public Item TAPE = new Item.Builder() // 24
+			.withName("Tape")
+			.withDescription("What does this say?")
+			.withSubimage(68 + 17 * 5, 34)
+			.build()
+			.addToRegistry(this);
+	
 	
 
 

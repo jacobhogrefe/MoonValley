@@ -1,3 +1,4 @@
+
 package Level;
 
 import Utils.Sound;
@@ -22,6 +23,7 @@ public class MusicManager {
     protected static Sound mountains = new Sound("mountainsBiome.wav", true);
     protected static Sound mountainsHome = new Sound("steamGardens.wav", true);
     protected static Sound saloon = new Sound("HippiesAndCowboys.wav",true);
+    protected static Sound tape = new Sound("BlakeAudio.wav", false);
 
     //If each biome would like a different walking sound add them here, and set the walking sound in the appropriate switch statement
     protected static Sound grassWalking = new Sound("walkingGrass.wav", true);
@@ -93,6 +95,8 @@ public class MusicManager {
                 currentSound = saloon;
                 walkingSound = woodWalking;
                 break;
+            case TAPE:
+            	currentSound = tape;
             default:
                 break;
         }

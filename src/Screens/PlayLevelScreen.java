@@ -69,6 +69,9 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("removeItem3", false);
 		flagManager.addFlag("hasBrush", false);
 		flagManager.addFlag("removeItem4", false);
+		flagManager.addFlag("hasHeadphones", false);
+		flagManager.addFlag("removeItem5", false);
+		flagManager.addFlag("cantUseComputer", true);
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);
@@ -285,9 +288,22 @@ public class PlayLevelScreen extends Screen {
 		}
 		if (flagManager.isFlagSet("removeItem4")) {
 			if (playerInventory.containsItem(20)) {
-				playerInventory.removeItem(20);
+				playerInventory.removeItem(playerInventory.getItemSlotNumber(20));
 				if (!playerInventory.containsItem(21))
 					playerInventory.addItem(21);
+			}
+		}
+
+		if (playerInventory.containsItem(17)) {
+			flagManager.setFlag("hasHeadphones");
+			if (!playerInventory.containsItem(24))
+				playerInventory.addItem(24);
+
+		}
+		if (flagManager.isFlagSet("removeItem5")) {
+			if (playerInventory.containsItem(17) && playerInventory.containsItem(24)) {
+				playerInventory.removeItem(playerInventory.getItemSlotNumber(17));
+				playerInventory.removeItem(playerInventory.getItemSlotNumber(24));
 			}
 		}
 
