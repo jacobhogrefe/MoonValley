@@ -22,13 +22,13 @@ public class CoralineNPC extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(3)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(4, 5, 5, 15)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(3)
-                           .withBounds(4, 5, 5, 10)
+                           .withBounds(4, 5, 5, 15)
                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                            .build()
            });
@@ -36,11 +36,11 @@ public class CoralineNPC extends NPC {
             put("WALK_LEFT", new Frame[]{
                     new FrameBuilder(spriteSheet.getSprite(1, 0), 200)
                             .withScale(3)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(4, 5, 5, 15)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 200)
                             .withScale(3)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(4, 5, 5, 15)
                             .build()
             });
 
@@ -48,12 +48,12 @@ public class CoralineNPC extends NPC {
                     new FrameBuilder(spriteSheet.getSprite(1, 0), 200)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(4, 5, 5, 15)
                             .build(),
                     new FrameBuilder(spriteSheet.getSprite(1, 1), 200)
                             .withScale(3)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                            .withBounds(4, 5, 5, 10)
+                            .withBounds(4, 5, 5, 15)
                             .build()
             });
         }};
