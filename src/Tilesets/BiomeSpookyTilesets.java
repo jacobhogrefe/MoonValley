@@ -311,7 +311,7 @@ Frame Castle8Frame = new FrameBuilder(getSubImage(2, 4))
 .build();
 
 MapTileBuilder Castle8Tile = new MapTileBuilder(Castle8Frame)
-		.withTopLayer(Castle8Frame)
+		.withBottomLayer(Castle8Frame)
 		.withTileType(TileType.PASSABLE);
 
 mapTiles.add(Castle8Tile);
@@ -323,7 +323,7 @@ Frame Castle9Frame = new FrameBuilder(getSubImage(3, 4))
 .build();
 
 MapTileBuilder Castle9Tile = new MapTileBuilder(Castle9Frame)
-		.withTopLayer(Castle9Frame)
+		.withBottomLayer(Castle9Frame)
 		.withTileType(TileType.PASSABLE);
 mapTiles.add(Castle9Tile);
 
@@ -334,17 +334,18 @@ Frame Castle10Frame = new FrameBuilder(getSubImage(4, 4))
 .build();
 
 MapTileBuilder Castle10Tile = new MapTileBuilder(Castle10Frame)
-		.withTopLayer(Castle10Frame)
+		.withBottomLayer(Castle10Frame)
 		.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(Castle10Tile);
-
+//0,5
 Frame gravelFrame = new FrameBuilder(getSubImage(0, 5))
 .withScale(tileScale)
 .build();
 
-MapTileBuilder gravelTile = new MapTileBuilder(gravelFrame);
-
+MapTileBuilder gravelTile = new MapTileBuilder(gravelFrame)
+.withBottomLayer(gravelFrame)
+.withTileType(TileType.PASSABLE);
 mapTiles.add(gravelTile);
 
 

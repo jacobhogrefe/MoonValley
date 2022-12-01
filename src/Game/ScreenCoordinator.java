@@ -50,7 +50,7 @@ public class ScreenCoordinator extends Screen {
 
 	@Override
 	public void update() {
-		if(currentScreen != mainMenuScreen) {
+		if(currentScreen ==playLevelScreen) {
 			MenuScreen.MenuSound.pause();
 		}
 		currentScreen.update();

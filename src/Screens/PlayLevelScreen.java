@@ -179,7 +179,7 @@ public class PlayLevelScreen extends Screen {
 		}
 
 		if (ShouldGiveWaterBucket == true) {
-			playerInventory.addItem(ItemRegistry.singleton.WATER_BUCKET);
+			playerInventory.addItem(ItemRegistry.singleton.WATER_BUCKET);    
 			HasLasso = true;
 			ShouldGiveWaterBucket = false;
 		}
