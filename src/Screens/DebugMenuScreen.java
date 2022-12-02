@@ -184,11 +184,13 @@ public class DebugMenuScreen extends AbstractMenuScreen {
 		@Override
 		
 		public String getText() {
-			return "Censor Ugly Walrus";
+			return "Become Jonathan Blake";
 		}
 		
 		public void select(AbstractMenuScreen parent) {
 			PlayLevelScreen.transformcomplete = true;
+			parent.screenCoordinator.dropUntil(parent.screenCoordinator.getPlayLevelScreen());
+			
 		}
 	}
 

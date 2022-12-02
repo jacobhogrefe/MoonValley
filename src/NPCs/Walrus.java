@@ -109,7 +109,48 @@ public class Walrus extends NPC {
             });
             
             put("BLAKE", new Frame[] {
-                    new FrameBuilder(spriteSheet.getSprite(4, 0))
+            		
+             new FrameBuilder(spriteSheet.getSprite(2, 0),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),
+             new FrameBuilder(spriteSheet.getSprite(2, 1),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),      
+             new FrameBuilder(spriteSheet.getSprite(2, 0),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),
+             new FrameBuilder(spriteSheet.getSprite(2, 1),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),    
+             new FrameBuilder(spriteSheet.getSprite(2, 2),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),
+             new FrameBuilder(spriteSheet.getSprite(3, 0),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),  
+             new FrameBuilder(spriteSheet.getSprite(3, 1),200)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),
+             new FrameBuilder(spriteSheet.getSprite(3, 2),200)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),  
+             new FrameBuilder(spriteSheet.getSprite(4, 0))
                     .withScale(3)
                     .withBounds(7, 13, 11, 7)
                     .build()

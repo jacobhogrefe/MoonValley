@@ -309,12 +309,12 @@ public class Camera extends Rectangle {
 					if(CattleInPen) {
 						npc.eatGrass();
 					}
-//					if(PlayLevelScreen.transformwalrus && npc.isBlake && PlayLevelScreen.transformcomplete == false) {
-////						npc.eatGrass();
-//					}
-//					if(PlayLevelScreen.transformcomplete && npc.isBlake) {
-//						npc.becomeBlake();
-//					}
+	//				if(PlayLevelScreen.transformwalrus && npc.isBlake && PlayLevelScreen.transformcomplete == false) {
+	//					npc.eatGrass();
+	//				}
+				if(PlayLevelScreen.transformcomplete && npc.isBlake) {
+					npc.becomeBlake();
+					}
 					
 					npc.draw(graphicsHandler);
 				} else {
