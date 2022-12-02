@@ -5,6 +5,7 @@ import Level.MusicState;
 import Level.NPC;
 import Level.Script;
 import Level.ScriptState;
+import Screens.PlayLevelScreen;
 
 // script for talking to walrus npc
 public class WalrusScript extends Script<NPC> {
@@ -79,8 +80,9 @@ public class WalrusScript extends Script<NPC> {
 			addTextToTextboxQueue("This Canteen on the couch must be mine. \nPlease, take it!");
 			addTextToTextboxQueue("I wish there was something more I could give you.");
 		}
-
+		if(!PlayLevelScreen.transformcomplete) {
 		entity.facePlayer(player);
+		}
 	}
 
 	@Override
