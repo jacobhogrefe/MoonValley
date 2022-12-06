@@ -3,27 +3,42 @@ package Scripts.TestMap;
 import Level.Script;
 import Level.ScriptState;
 import Level.Trigger;
+import Screens.PlayLevelScreen;
 
 public class transformScript extends Script<Trigger> {
 
 	@Override
 	protected void setup() {
-		// TODO Auto-generated method stub
+
+		
+		if(isFlagSet("computerScriptActive") && !PlayLevelScreen.transformcomplete) {
+			lockPlayer();
+			showTextbox();
+		addTextToTextboxQueue("Initiating ToHuman.scala....");
+		
+		PlayLevelScreen.transformcomplete = true;
+		}
+		else {
+			
+		}
 
 	}
 
 	@Override
 	protected void cleanup() {
-		// TODO Auto-generated method stub
-		
-		//must set "cantUseComputer" again when done
+		unlockPlayer();
+		hideTextbox();
 
 	}
 
 	@Override
 	protected ScriptState execute() {
-		// TODO Auto-generated method stub
-		return null;
+		start();
+		if (!isTextboxQueueEmpty()) {
+			return ScriptState.RUNNING;
+		}
+		end();
+		return ScriptState.COMPLETED;
 	}
 
 }

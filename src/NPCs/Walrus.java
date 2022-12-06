@@ -130,12 +130,42 @@ public class Walrus extends NPC {
                      .withBounds(7, 13, 11, 7)
                      .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                      .build(),    
+             new FrameBuilder(spriteSheet.getSprite(2, 0),150)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),
+             new FrameBuilder(spriteSheet.getSprite(2, 1),150)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),   
              new FrameBuilder(spriteSheet.getSprite(2, 2),350)
                      .withScale(3)
                      .withBounds(7, 13, 11, 7)
                      .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                      .build(),
+             new FrameBuilder(spriteSheet.getSprite(2, 1),150)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),   
+             new FrameBuilder(spriteSheet.getSprite(2, 2),200)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),
              new FrameBuilder(spriteSheet.getSprite(3, 0),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),  
+             new FrameBuilder(spriteSheet.getSprite(2, 2),350)
+                     .withScale(3)
+                     .withBounds(7, 13, 11, 7)
+                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                     .build(),
+             new FrameBuilder(spriteSheet.getSprite(3, 0),450)
                      .withScale(3)
                      .withBounds(7, 13, 11, 7)
                      .withImageEffect(ImageEffect.FLIP_HORIZONTAL)

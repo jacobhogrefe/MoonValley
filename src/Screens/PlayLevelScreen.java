@@ -78,6 +78,7 @@ public class PlayLevelScreen extends Screen {
 		flagManager.addFlag("thisIsDoneNow", false);
 		flagManager.addFlag("removeItem7", false);
 		flagManager.addFlag("giveHeadphones", false);
+		flagManager.addFlag("computerScriptActive");
 
 		flagManager.addFlag("itemCollected", false);
 		flagManager.addFlag("finishGlasses", false);

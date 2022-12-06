@@ -25,6 +25,7 @@ public class WalrusMap extends Map {
 	@Override
 	public void loadScripts() {
 		getMapTile(8, 11).setInteractScript(new ExitWalrusHouseScript());
+		getMapTile(4,7).setInteractScript(new transformScript());
 	}
 
 	@Override
@@ -45,9 +46,9 @@ public class WalrusMap extends Map {
 	@Override
 	public ArrayList<Trigger> loadTriggers() {
 		ArrayList<Trigger> triggers = super.loadTriggers();
-		Trigger computer = new Trigger(192, 384, 48, 48, new transformScript());
-		computer.setExistenceFlag("cantUseComputer");
-		triggers.add(computer);
+	//	Trigger computer = new Trigger(192, 360, 48, 48, new transformScript());
+	//	computer.setExistenceFlag("cantUseComputer");
+	//	triggers.add(computer);
 		return triggers;
 	}
 
