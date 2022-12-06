@@ -336,8 +336,6 @@ public class Camera extends Rectangle {
 					if (npc.getX() > 600 && npc.getX() < 1050 && npc.getY() > 50 && npc.getY()<545) {
 						CattleInPen = true;
 						npc.eatGrass();
-						
-						System.out.println("Cattle penned.");
 					}
 					
 					
@@ -345,7 +343,6 @@ public class Camera extends Rectangle {
 						CattleInPen = false;
 						npc.stand(player.facingDirection);
 					}
-					System.out.println("npc X: "+npc.getX()+"npc Y: "+npc.getY());
 					tetherSet = false;
 				}
 

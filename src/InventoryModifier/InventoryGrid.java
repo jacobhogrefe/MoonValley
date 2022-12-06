@@ -202,18 +202,6 @@ public class InventoryGrid {
 
 	}
 
-	public void troubleshoot() {
-		System.out.println("Selected slot: " + selectedSlot);
-		System.out.println("arrow slot: " + arrowSlot);
-		System.out.println("target slot: " + targetSlot);
-		System.out.println("goodClick: " + goodClick);
-		System.out.println("itemIsBeingMoved: " + itemIsBeingMoved);
-		System.out.println("shouldHighlightMove " + shouldHighlightMove);
-		System.out.println("shouldHighlightRemove " + shouldHighlightRemove);
-		System.out.println(" ");
-		System.out.println(" ");
-	}
-
 	// Really a lot more than a draw method, does most of the work
 	// calling the right methods to execute item moves after clicks are interpreted
 	// So it is not purely a draw method, but it is far easier to update the
@@ -255,7 +243,6 @@ public class InventoryGrid {
 		// if indoor item, but outdoors
 		if (selectedItem != 0 && indoorItem && !outdoorItem && !inHouse) {
 			placeable = false;
-			// System.out.println("3");
 			graphicsHandler.drawOptionsBoxButtons(optionsBox);
 		}
 
@@ -263,14 +250,12 @@ public class InventoryGrid {
 		if (selectedItem != 0 && outdoorItem && !inHouse) {
 			placeable = true;
 			graphicsHandler.drawOptionsBoxButtonsWithPlace(optionsBox);
-			// System.out.println("4");
 		}
 
 		// if outdoor item, but indoors
 		if (selectedItem != 0 && outdoorItem && inHouse && !indoorItem) {
 			placeable = false;
 			graphicsHandler.drawOptionsBoxButtons(optionsBox);
-			// System.out.println("5");
 		}
 
 		// if the move button has been clicked (assignClick logic only flags
@@ -298,18 +283,12 @@ public class InventoryGrid {
 		// if another click has occurred, and booleans indicate a move is taking place,
 		// move item
 		if (GamePanel.clickToProcess && itemIsBeingMoved && shouldHighlightMove) {
-
-			troubleshoot();
-
 			if (goodClick) {
 				assignLastClickSlot(GamePanel.lastClick);
 				targetSlot = selectedSlot; // unnecessary variable but more readable
 				playerInventory.moveItem(arrowSlot, targetSlot);
 				selectedSlot = targetSlot;
 				selectedItem = playerInventory.getItemInSlot(selectedSlot);
-				// System.out.println("Move Executed. Arrow: "+arrowSlot+", Target:
-				// "+targetSlot);
-				// System.out.println(" ");
 				shouldHighlightMove = false;
 				itemIsBeingMoved = false;
 				GamePanel.clickToProcess = false;

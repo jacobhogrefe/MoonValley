@@ -18,7 +18,6 @@ public class checkHouseScript extends Script<Trigger> {
 	@Override
 	protected void cleanup() {
 		setFlag("wentOutside");
-		System.out.println("Setting flag: wentOutside");
 		hideTextbox();
 		unlockPlayer();
 

@@ -57,9 +57,7 @@ public class MushroomManScript extends Script<NPC> {
 	protected void cleanup() {
 		if (isFlagSet("hasTalkedToDog")) {
 			hideTextbox();
-			System.out.println("hide textbox");
 			unlockPlayer();
-			System.out.println("unlocked player");
 
 		} 
 //		else if (!isFlagSet("hasTalkedToDog") && isFlagSet("hasTalkedToShittake")) {

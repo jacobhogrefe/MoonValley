@@ -19,7 +19,6 @@ public class CrashScript extends Script<Trigger> {
 	@Override
 	protected void cleanup() {
 		setFlag("hasCrash");
-    	System.out.println("Setting flag: hasCrash");
 		hideTextbox();
 		unlockPlayer();
 

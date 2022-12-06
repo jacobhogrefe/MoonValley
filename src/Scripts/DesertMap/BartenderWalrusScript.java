@@ -40,22 +40,13 @@ public class BartenderWalrusScript extends Script<NPC> {
         hideTextbox();
         
         if(isFlagSet("firstBartenderTalk")&& isFlagSet("needsFindBucket")&&!isFlagSet("bucketFound")) {
-        	System.out.println("Setting flag: bucketFound");
         	setFlag("bucketFound");
         	
         }
         
         if (!isFlagSet("firstBartenderTalk")){
         	setFlag("firstBartenderTalk");
-        	System.out.println("Setting flag: firstBartenderTalk");
         }
-    }
-    
-    //troubleshooter method
-    protected void reportFlags() {
-    	System.out.println("needsFindBucket: " + isFlagSet("needsFindBucket"));
-    	System.out.println("firstBartenderTalk: " + isFlagSet("firstBartenderTalk"));
-    	System.out.println("bucketFound: " + isFlagSet("bucketFound"));
     }
 
     @Override

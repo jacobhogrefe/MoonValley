@@ -184,7 +184,6 @@ public class PlayLevelScreen extends Screen {
 
 	public void update() {
 		if (CatWardrobe.wardrobeChange == true && InventoryScreen.inventoryOpen == false) {
-			System.out.println("Changing clothes");
 			reloadPlayer(player);
 			CatWardrobe.wardrobeChange = false;
 		}
@@ -249,10 +248,6 @@ public class PlayLevelScreen extends Screen {
 		}
 		if (Keyboard.isKeyDown(Pause_Key) && !keyLocker.isKeyLocked(Pause_Key)) {
 			this.pause();
-		}
-
-		if (GlobalKeyCooldown.Keys.ZERO.onceDown()) {
-			this.screenCoordinator.push(new DebugMenuScreen(this.screenCoordinator));
 		}
 
 		if (map.getFlagManager().isFlagSet("itemCollected")) {
@@ -370,7 +365,6 @@ public class PlayLevelScreen extends Screen {
 				if (flagManager.isFlagSet("removeItem")) {
 					playerInventory.removeItem(playerInventory.getItemSlotNumber(13));
 					playerInventory.addItem(14);
-					System.out.println("Added tv");
 					flagManager.unsetFlag("foundSwitch");
 					flagManager.unsetFlag("removeItem");
 				}

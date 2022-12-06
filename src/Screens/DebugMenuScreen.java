@@ -3,7 +3,6 @@ package Screens;
 import Game.ScreenCoordinator;
 import Level.CatWardrobe;
 import Level.Map;
-import Maps.BiomeSpookyHome;
 import Maps.MushroomHomeMap;
 import Maps.Biomes.BiomeDesert;
 import Maps.Biomes.BiomeMountains;
