@@ -157,7 +157,6 @@ public class InventoryGrid {
 		// clicked
 
 		if (!shouldHighlightMove && placeable && clickedX > 427 && clickedX < 499 && clickedY > 530 && clickedY < 618) {
-			System.out.println("You clicked Place!");
 			furnituretoplace = ItemRegistry.singleton.items.get(selectedItem).furnitureNumber;
 			Map.furnitureplacerequested = true;
 			InventoryScreen.SlotToEmpty = selectedSlot;

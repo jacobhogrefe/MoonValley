@@ -294,7 +294,6 @@ public class Camera extends Rectangle {
 		// if drawn later, npc will "cover" player
 		for (NPC npc : activeNPCs) {
 			if (PlayLevelScreen.HasLasso && npc.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown() && npc.isTetherable()) {
-				System.out.println("setting tether...");
 				npc.setTether(true, player);
 				tetherSet = true;
 				
@@ -378,7 +377,6 @@ public class Camera extends Rectangle {
 		for (Furniture furniture : activeFurniture) {
 
 			if (furniture.overlaps(player) && !tetherSet && GlobalKeyCooldown.Keys.SPACE.onceDown()) {
-				System.out.println("setting tether...");
 				furniture.setTether(true, player);
 				tetherSet = true;	
 			}

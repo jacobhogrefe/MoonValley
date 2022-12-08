@@ -604,7 +604,6 @@ public abstract class Map implements IntersectableRectangle {
 	public void update(Player player) {
 		camera.update(player);
 		if(furnitureplacerequested) {
-			System.out.println("Map recognizes place request");
 			furniture.add(FurnitureRegistry.catalog.get(InventoryGrid.furnituretoplace));
 			furniture.get(furniture.size()-1).setX(player.getX());
 			furniture.get(furniture.size()-1).setY(player.getY()-40);
