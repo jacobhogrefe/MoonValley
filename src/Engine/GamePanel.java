@@ -62,8 +62,6 @@ public class GamePanel extends JPanel {
 				if(InventoryScreen.inventoryOpen) {
 				lastClick = evt.getPoint();
 				clickToProcess = true;
-				// System.out.println("Plz work");
-				// System.out.println(evt.getX()+","+evt.getY());
 			}
 			}
 		});
